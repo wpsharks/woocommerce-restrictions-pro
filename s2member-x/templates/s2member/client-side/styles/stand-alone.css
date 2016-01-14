@@ -1,0 +1,35 @@
+/**
+ * Stand-Alone Styles.
+ *
+ * Copyright: © 2012 (coded in the USA)
+ * {@link http://www.websharks-inc.com WebSharks™}
+ *
+ * @author JasWSInc
+ * @package s2Member\Styles
+ * @since 120318
+ *
+ * @note The extra `.ui` is to achieve equal precedence to UI themes.
+ *    UI themes use `.websharks-core.ui.ui-theme-x`.
+ */
+
+.s2member.ui.ui div.header.wrapper
+{
+	width      : 960px;
+	text-align : center;
+	margin     : 50px auto 10px auto;
+}
+.s2member.ui.ui div.content.wrapper
+{
+	width  : 960px;
+	margin : 0 auto 50px auto;
+}
+.s2member.ui.ui div.content.container
+{
+	padding : 20px;
+}
+.s2member.ui.ui.stand-alone-login-wrapper div.content.wrapper,
+.s2member.ui.ui.stand-alone-lost-password-wrapper div.content.wrapper,
+.s2member.ui.ui.stand-alone-reset-password-wrapper div.content.wrapper
+{
+	width : 600px;
+}
