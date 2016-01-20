@@ -1,0 +1,21 @@
+project_title                    = s2Member X Pro
+
+project_owner                    = websharks
+project_slug                     = s2member-x
+
+project_namespace                = WebSharks\\s2Member\\X\\Pro
+project_sub_namespace            = s2MemberXPro
+
+project_lite_title               = s2Member X Lite
+project_lite_slug                = s2member-x-lite
+
+project_lite_namespace           = WebSharks\\s2Member\\X\\Lite
+project_lite_sub_namespace       = s2MemberXLite
+
+project_version                  = %y%m%d
+
+project_php_required_version     = 7.0.1
+project_php_tested_up_to_version = ${php.version}
+
+project_wp_required_version      = 4.4
+project_wp_tested_up_to_version  = 4.4

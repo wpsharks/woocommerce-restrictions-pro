@@ -1,1 +1,3 @@
-## s2Member X
+## s2Member® X
+
+Membership management for WordPress.
