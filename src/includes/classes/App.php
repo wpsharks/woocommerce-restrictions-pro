@@ -3,7 +3,6 @@ declare (strict_types = 1);
 namespace WebSharks\s2Member\X\Pro\Classes;
 
 use WebSharks\s2Member\X\Pro\Classes\Utils;
-use WebSharks\s2Member\X\Pro\Classes\Utils\Uuid64;
 use WebSharks\s2Member\X\Pro\Functions as a;
 use WebSharks\s2Member\X\Pro\Interfaces;
 use WebSharks\s2Member\X\Pro\Traits;
