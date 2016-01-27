@@ -15,10 +15,10 @@ use WebSharks\Core\s2MemberXPro\Interfaces as CoreInterfaces;
 use WebSharks\Core\s2MemberXPro\Traits as CoreTraits;
 
 /**
- * Foo.
+ * Gate.
  *
  * @since 16xxxx Foo.
  */
-class Foo extends CoreClasses\AppBase
+class Gate extends CoreClasses\AppBase
 {
 }
