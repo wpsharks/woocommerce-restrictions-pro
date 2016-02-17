@@ -1,5 +1,5 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\s2Member\X\Pro;
+namespace WebSharks\s2MemberX\Pro;
 
-require_once dirname(__FILE__, 2).'/vendor/autoload.php';
+require_once __DIR__.'/stub.php';

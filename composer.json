@@ -30,17 +30,18 @@
     "websharks/wp-core": "dev-master"
   },
   "require-dev": {
-
+    "package/bourbon": "4.2.3",
+    "websharks/wp-i18n-tools": "dev-master"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
 
   "autoload": {
     "psr-4": {
-      "WebSharks\\s2Member\\X\\Pro\\Classes\\": "src/includes/classes",
-      "WebSharks\\s2Member\\X\\Pro\\Functions\\": "src/includes/functions",
-      "WebSharks\\s2Member\\X\\Pro\\Interfaces\\": "src/includes/interfaces",
-      "WebSharks\\s2Member\\X\\Pro\\Traits\\": "src/includes/traits"
+      "WebSharks\\s2MemberX\\Pro\\Classes\\": "src/includes/classes",
+      "WebSharks\\s2MemberX\\Pro\\Functions\\": "src/includes/functions",
+      "WebSharks\\s2MemberX\\Pro\\Interfaces\\": "src/includes/interfaces",
+      "WebSharks\\s2MemberX\\Pro\\Traits\\": "src/includes/traits"
     },
     "files": ["src/includes/functions/_load.php"]
   },
@@ -50,5 +51,15 @@
     "preferred-install": "dist"
   },
 
-  "repositories": []
+  "repositories": [{
+    "type": "package",
+    "package": {
+      "name": "package/bourbon",
+      "version": "4.2.3",
+      "dist": {
+        "url": "https://github.com/thoughtbot/bourbon/releases/download/v4.2.3/bourbon-v4.2.3.zip",
+        "type": "zip"
+      }
+    }
+  }]
 }

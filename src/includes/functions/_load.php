@@ -1,6 +1,6 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\s2Member\X\Pro\Functions;
+namespace WebSharks\s2MemberX\Pro\Functions;
 
 /* Use this snippet to recompile this file after a lot of changes.
 foreach (array_diff(scandir(__DIR__), ['.', '..', basename(__FILE__)]) as $_file) {

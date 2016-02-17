@@ -1,6 +1,6 @@
 === s2Member X ===
 
-Stable tag: 160120
+Stable tag: 160216
 Requires at least: 4.4
 Tested up to: 4.4
 Text Domain: s2member-x
