@@ -2,7 +2,7 @@
 // @codingStandardsIgnoreFile
 
 declare (strict_types = 1);
-namespace WebSharks\s2MemberX\Pro\Traits\Facades;
+namespace WebSharks\WpSharks\s2MemberX\Pro\Traits\Facades;
 
 error_reporting(-1);
 ini_set('display_errors', 'yes');
@@ -16,15 +16,15 @@ $Facades = '<?php
 // '.date('F jS, Y, g:i a T').'
 
 declare (strict_types = 1);
-namespace WebSharks\s2MemberX\Pro\Classes\Base;
+namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Base;
 
-use WebSharks\s2MemberX\Pro\Classes;
-use WebSharks\s2MemberX\Pro\Interfaces;
-use WebSharks\s2MemberX\Pro\Traits;
+use WebSharks\WpSharks\s2MemberX\Pro\Classes;
+use WebSharks\WpSharks\s2MemberX\Pro\Interfaces;
+use WebSharks\WpSharks\s2MemberX\Pro\Traits;
 #
-use WebSharks\s2MemberX\Pro\Classes\AppFacades as a;
-use WebSharks\s2MemberX\Pro\Classes\SCoreFacades as s;
-use WebSharks\s2MemberX\Pro\Classes\CoreFacades as c;
+use WebSharks\WpSharks\s2MemberX\Pro\Classes\AppFacades as a;
+use WebSharks\WpSharks\s2MemberX\Pro\Classes\SCoreFacades as s;
+use WebSharks\WpSharks\s2MemberX\Pro\Classes\CoreFacades as c;
 #
 use WebSharks\WpSharks\Core\Classes as SCoreClasses;
 use WebSharks\WpSharks\Core\Interfaces as SCoreInterfaces;

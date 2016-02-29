@@ -3,11 +3,12 @@
 Stable tag: 160229
 Requires at least: 4.4
 Tested up to: 4.4
-Text Domain: s2member-x
+Text Domain: wps-s2member-x
 
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
+Donate: https://wpsharks.com/donate/
 Contributors: wpsharks, JasWSInc, raamdev, KristineDS, reedyseth, sitegeek
 Tags: member, members, membership, woocommerce, woo commerce, ecommerce, cart, shopping cart, payment, pay wall, paywall, login, protect, restrict, roles, capabilities, s2member
 

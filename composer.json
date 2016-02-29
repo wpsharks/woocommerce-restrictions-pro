@@ -1,6 +1,6 @@
 {
-  "name": "websharks/s2member-x-pro",
-  "homepage": "https://github.com/websharks/s2member-x-pro",
+  "name": "websharks/wps-s2member-x-pro",
+  "homepage": "https://github.com/websharks/wps-s2member-x-pro",
   "description": "Membership management for WordPress.",
   "keywords": ["websharks", "s2member"],
 
@@ -22,11 +22,13 @@
   }],
 
   "support": {
-    "source": "https://github.com/websharks/s2member-x-pro",
-    "issues": "https://github.com/websharks/s2member-x/issues"
+    "source": "https://github.com/websharks/wps-s2member-x-pro",
+    "issues": "https://github.com/websharks/wps-s2member-x-pro/issues"
   },
 
-  "require": {},
+  "require": {
+    "wp-sharks-rv": "dev-master"
+  },
   "require-dev": {
     "package/bourbon": "4.2.3",
     "websharks/wp-i18n-tools": "dev-master",
@@ -37,10 +39,10 @@
 
   "autoload": {
     "psr-4": {
-      "WebSharks\\s2MemberX\\Pro\\Classes\\": "src/includes/classes",
-      "WebSharks\\s2MemberX\\Pro\\Functions\\": "src/includes/functions",
-      "WebSharks\\s2MemberX\\Pro\\Interfaces\\": "src/includes/interfaces",
-      "WebSharks\\s2MemberX\\Pro\\Traits\\": "src/includes/traits"
+      "WebSharks\\WpSharks\\s2MemberX\\Pro\\Classes\\": "src/includes/classes",
+      "WebSharks\\WpSharks\\s2MemberX\\Pro\\Functions\\": "src/includes/functions",
+      "WebSharks\\WpSharks\\s2MemberX\\Pro\\Interfaces\\": "src/includes/interfaces",
+      "WebSharks\\WpSharks\\s2MemberX\\Pro\\Traits\\": "src/includes/traits"
     }
   },
 

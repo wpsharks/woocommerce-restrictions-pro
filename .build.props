@@ -1,16 +1,16 @@
 project_title                    = s2Member X Pro
 
 project_owner                    = websharks
-project_slug                     = s2member-x-pro
+project_slug                     = wps-s2member-x-pro
 
-project_namespace                = WebSharks\\s2MemberX\\Pro
-project_sub_namespace            = s2MemberXPro
+project_namespace                = WebSharks\\WpSharks\\s2MemberX\\Pro
+project_sub_namespace            = WpSharkss2MemberXPro
 
 project_lite_title               = s2Member X
-project_lite_slug                = s2member-x
+project_lite_slug                = wps-s2member-x
 
-project_lite_namespace           = WebSharks\\s2MemberX
-project_lite_sub_namespace       = s2MemberX
+project_lite_namespace           = WebSharks\\WpSharks\\s2MemberX
+project_lite_sub_namespace       = WpSharkss2MemberX
 
 project_version                  = %y%m%d
 

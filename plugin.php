@@ -1,11 +1,14 @@
 <?php
 /*
 Version: 160229
-Text Domain: s2member-x
+Text Domain: wps-s2member-x
 Plugin Name: s2Member X Pro
 
 Author: WP Sharks™
 Author URI: https://wpsharks.com/
+
+License: GPL-3.0+
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Plugin URI: https://wpsharks.com/product/s2member-x/
 Description: Membership functionality for WooCommerce.
