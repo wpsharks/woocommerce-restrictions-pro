@@ -9,4 +9,4 @@ if (!defined('WPINC')) {
 }
 require_once __DIR__.'/stub.php';
 
-new App(['§uninstall' => true]);
+new App();

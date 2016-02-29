@@ -1,6 +1,6 @@
 {
-  "name": "websharks/s2member-x",
-  "homepage": "https://github.com/websharks/s2member-x",
+  "name": "websharks/s2member-x-pro",
+  "homepage": "https://github.com/websharks/s2member-x-pro",
   "description": "Membership management for WordPress.",
   "keywords": ["websharks", "s2member"],
 
@@ -22,12 +22,12 @@
   }],
 
   "support": {
-    "source": "https://github.com/websharks/s2member-x",
+    "source": "https://github.com/websharks/s2member-x-pro",
     "issues": "https://github.com/websharks/s2member-x/issues"
   },
 
   "require": {
-    "websharks/wp-core": "dev-master"
+    "websharks/wp-sharks-core": "dev-master"
   },
   "require-dev": {
     "package/bourbon": "4.2.3",
@@ -42,8 +42,7 @@
       "WebSharks\\s2MemberX\\Pro\\Functions\\": "src/includes/functions",
       "WebSharks\\s2MemberX\\Pro\\Interfaces\\": "src/includes/interfaces",
       "WebSharks\\s2MemberX\\Pro\\Traits\\": "src/includes/traits"
-    },
-    "files": ["src/includes/functions/_load.php"]
+    }
   },
 
   "config": {

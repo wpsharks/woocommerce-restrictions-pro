@@ -1,6 +1,6 @@
-=== s2Member X ===
+=== s2Member X Pro ===
 
-Stable tag: 160216
+Stable tag: 160229
 Requires at least: 4.4
 Tested up to: 4.4
 Text Domain: s2member-x
@@ -8,12 +8,11 @@ Text Domain: s2member-x
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Contributors: WebSharks, JasWSInc, raamdev
-Donate link: http://websharks-inc.com/r/wp-theme-plugin-donation/
-Tags: member, members, membership, ecommerce, cart, shopping cart, stripe, stripe checkout, payment, pay wall, paywall, login, protect, restrict, roles, capabilities, s2member
+Contributors: wpsharks, JasWSInc, raamdev, KristineDS, reedyseth, sitegeek
+Tags: member, members, membership, woocommerce, woo commerce, ecommerce, cart, shopping cart, payment, pay wall, paywall, login, protect, restrict, roles, capabilities, s2member
 
-s2Member® X is a powerful (free) membership plugin for WordPress®.
+s2Member® X is a powerful (free) membership plugin for WooCommerce.
 
 == Description ==
 
-s2Member® X is a powerful (free) membership plugin for WordPress®. Protect members only content and sell products/services w/ a powerful shopping cart driven almost entirely by WordPress shortcodes.
+Protect members only content with WooCommerce + s2Member® X. Sell access to Roles, Capabilities, and/or Access Tokens. You can also use the `[s2x_if][/s2x_if]` shortcode for WordPress to build conditionals around portions of your content and provide access only if a customer has paid you for it.

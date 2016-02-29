@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9be45c6f44c1a03c67ef3c3013676a9b",
-    "content-hash": "ec72a70f0b8c63ced2a20eddce48f608",
+    "hash": "7c38a5638a2884eef8b87248962ef9c0",
+    "content-hash": "c58780c8d3ff1a0991571b7a11c00bd9",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -352,16 +352,16 @@
         },
         {
             "name": "lusitanian/oauth",
-            "version": "v0.8.8",
+            "version": "v0.8.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lusitanian/PHPoAuthLib.git",
-                "reference": "eeafc1937d7560825ff5c2f1b8e5f86f059b5a28"
+                "reference": "29bda6e176df6c292a9b1c43ae8a44d56a87c30b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/eeafc1937d7560825ff5c2f1b8e5f86f059b5a28",
-                "reference": "eeafc1937d7560825ff5c2f1b8e5f86f059b5a28",
+                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/29bda6e176df6c292a9b1c43ae8a44d56a87c30b",
+                "reference": "29bda6e176df6c292a9b1c43ae8a44d56a87c30b",
                 "shasum": ""
             },
             "require": {
@@ -415,7 +415,7 @@
                 "oauth",
                 "security"
             ],
-            "time": "2016-02-14 22:50:50"
+            "time": "2016-02-24 00:20:18"
         },
         {
             "name": "michelf/php-markdown",
@@ -531,16 +531,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.1.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "3cc2dd253e296ce05f99635b2f633048adfbaa96"
+                "reference": "adee1ba4a6885ed800021a98dd69ae2394d695ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/3cc2dd253e296ce05f99635b2f633048adfbaa96",
-                "reference": "3cc2dd253e296ce05f99635b2f633048adfbaa96",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/adee1ba4a6885ed800021a98dd69ae2394d695ec",
+                "reference": "adee1ba4a6885ed800021a98dd69ae2394d695ec",
                 "shasum": ""
             },
             "require": {
@@ -554,11 +554,12 @@
                 "ircmaxell/random-lib": "^1.1",
                 "jakub-onderka/php-parallel-lint": "^0.9.0",
                 "moontoast/math": "^1.1",
-                "phpunit/phpunit": "^4.7",
+                "phpunit/phpunit": "^4.7|^5.0",
                 "satooshi/php-coveralls": "^0.6.1",
                 "squizlabs/php_codesniffer": "^2.3"
             },
             "suggest": {
+                "ext-libsodium": "Provides the PECL libsodium extension for use with the SodiumRandomGenerator",
                 "ext-uuid": "Provides the PECL UUID extension for use with the PeclUuidTimeGenerator and PeclUuidRandomGenerator",
                 "ircmaxell/random-lib": "Provides RandomLib for use with the RandomLibAdapter",
                 "moontoast/math": "Provides support for converting UUID to 128-bit integer (in string form).",
@@ -597,20 +598,20 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2015-12-17 15:21:44"
+            "time": "2016-02-17 23:32:34"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.2",
+            "version": "v2.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "ee278f7c851533e58ca307f66305ccb9188aceda"
+                "reference": "78c468665c9568c3faaa9c416a7134308f2d85c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/ee278f7c851533e58ca307f66305ccb9188aceda",
-                "reference": "ee278f7c851533e58ca307f66305ccb9188aceda",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/78c468665c9568c3faaa9c416a7134308f2d85c3",
+                "reference": "78c468665c9568c3faaa9c416a7134308f2d85c3",
                 "shasum": ""
             },
             "require": {
@@ -657,20 +658,20 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-13 10:28:07"
+            "time": "2016-01-27 05:14:19"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.2",
+            "version": "v2.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "34c8a4b51e751e7ea869b8262f883d008a2b81b8"
+                "reference": "2a4ee40acb880c56f29fb1b8886e7ffe94f3b995"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/34c8a4b51e751e7ea869b8262f883d008a2b81b8",
-                "reference": "34c8a4b51e751e7ea869b8262f883d008a2b81b8",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/2a4ee40acb880c56f29fb1b8886e7ffe94f3b995",
+                "reference": "2a4ee40acb880c56f29fb1b8886e7ffe94f3b995",
                 "shasum": ""
             },
             "require": {
@@ -706,7 +707,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-01-13 10:28:07"
+            "time": "2016-02-23 07:41:20"
         },
         {
             "name": "websharks/core",
@@ -714,12 +715,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/core.git",
-                "reference": "a626f3555b33bbaf5d3b15f15a779ae3cd641649"
+                "reference": "3444014d1c6f7f26a5d14f9da02b70bb5444c8d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/core/zipball/a626f3555b33bbaf5d3b15f15a779ae3cd641649",
-                "reference": "a626f3555b33bbaf5d3b15f15a779ae3cd641649",
+                "url": "https://api.github.com/repos/websharks/core/zipball/3444014d1c6f7f26a5d14f9da02b70bb5444c8d9",
+                "reference": "3444014d1c6f7f26a5d14f9da02b70bb5444c8d9",
                 "shasum": ""
             },
             "require": {
@@ -800,7 +801,7 @@
                     "WebSharks\\Core\\Traits\\": "src/includes/traits"
                 },
                 "files": [
-                    "src/includes/functions/_load.php"
+                    "src/includes/functions/.load.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -829,7 +830,7 @@
             "keywords": [
                 "websharks"
             ],
-            "time": "2016-01-27 22:39:49"
+            "time": "2016-02-29 06:07:51"
         },
         {
             "name": "websharks/dicer",
@@ -883,68 +884,6 @@
             "time": "2015-11-24 06:22:55"
         },
         {
-            "name": "websharks/wp-core",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/websharks/wp-core.git",
-                "reference": "366e6940c4a54248b0be71779083652296675900"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-core/zipball/366e6940c4a54248b0be71779083652296675900",
-                "reference": "366e6940c4a54248b0be71779083652296675900",
-                "shasum": ""
-            },
-            "require": {
-                "websharks/core": "dev-master",
-                "websharks/wp-php-rv": "150511"
-            },
-            "require-dev": {
-                "websharks/wp-i18n-tools": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "WebSharks\\WpCore\\Classes\\": "src/includes/classes",
-                    "WebSharks\\WpCore\\Functions\\": "src/includes/functions",
-                    "WebSharks\\WpCore\\Interfaces\\": "src/includes/interfaces",
-                    "WebSharks\\WpCore\\Traits\\": "src/includes/traits"
-                },
-                "files": [
-                    "src/includes/functions/_load.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0+"
-            ],
-            "authors": [
-                {
-                    "name": "websharks",
-                    "homepage": "http://websharks-inc.com/",
-                    "role": "company"
-                },
-                {
-                    "name": "jaswsinc",
-                    "homepage": "http://jaswsinc.com/",
-                    "role": "developer"
-                },
-                {
-                    "name": "raamdev",
-                    "homepage": "http://raam.org/",
-                    "role": "developer"
-                }
-            ],
-            "description": "Core WP library used by WebSharks, Inc.",
-            "homepage": "https://github.com/websharks/wp-core",
-            "keywords": [
-                "websharks",
-                "wordpress"
-            ],
-            "time": "2016-01-22 12:16:27"
-        },
-        {
             "name": "websharks/wp-php-rv",
             "version": "150511",
             "source": {
@@ -991,6 +930,66 @@
                 "wordpress"
             ],
             "time": "2015-05-10 10:30:04"
+        },
+        {
+            "name": "websharks/wp-sharks-core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/websharks/wp-sharks-core.git",
+                "reference": "de2fe0738f2da15b044f34d188179922ecd96ecb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core/zipball/de2fe0738f2da15b044f34d188179922ecd96ecb",
+                "reference": "de2fe0738f2da15b044f34d188179922ecd96ecb",
+                "shasum": ""
+            },
+            "require": {
+                "websharks/core": "dev-master",
+                "websharks/wp-php-rv": "150511"
+            },
+            "require-dev": {
+                "websharks/wp-i18n-tools": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WebSharks\\WpSharks\\Core\\Classes\\": "src/includes/classes",
+                    "WebSharks\\WpSharks\\Core\\Functions\\": "src/includes/functions",
+                    "WebSharks\\WpSharks\\Core\\Interfaces\\": "src/includes/interfaces",
+                    "WebSharks\\WpSharks\\Core\\Traits\\": "src/includes/traits"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "websharks",
+                    "homepage": "http://websharks-inc.com/",
+                    "role": "company"
+                },
+                {
+                    "name": "jaswsinc",
+                    "homepage": "http://jaswsinc.com/",
+                    "role": "developer"
+                },
+                {
+                    "name": "raamdev",
+                    "homepage": "http://raam.org/",
+                    "role": "developer"
+                }
+            ],
+            "description": "Core WP plugin framework used by WP Sharks™",
+            "homepage": "https://github.com/websharks/wp-sharks-core",
+            "keywords": [
+                "websharks",
+                "wordpress",
+                "wp sharks"
+            ],
+            "time": "2016-02-29 07:09:47"
         }
     ],
     "packages-dev": [
@@ -1056,7 +1055,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "websharks/wp-core": 20,
+        "websharks/wp-sharks-core": 20,
         "websharks/wp-i18n-tools": 20
     },
     "prefer-stable": true,
