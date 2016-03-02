@@ -1,6 +1,6 @@
 === s2Member X Pro ===
 
-Stable tag: 160229
+Stable tag: 160302
 Requires at least: 4.4
 Tested up to: 4.4
 Text Domain: wps-s2member-x

@@ -27,7 +27,7 @@
   },
 
   "require": {
-    "wp-sharks-core-rv": "dev-master"
+    "websharks/wp-sharks-core-rv": "dev-master"
   },
   "require-dev": {
     "package/bourbon": "4.2.3",

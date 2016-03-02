@@ -4,9 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7c38a5638a2884eef8b87248962ef9c0",
-    "content-hash": "c58780c8d3ff1a0991571b7a11c00bd9",
+    "hash": "19801c55ed867eadf498e9461bdd3054",
+    "content-hash": "7faf41afb7e8902313e852b8cc500c29",
     "packages": [
+        {
+            "name": "websharks/wp-sharks-core-rv",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/websharks/wp-sharks-core-rv.git",
+                "reference": "f2966b9694947f6f63544db9824fcce858fd9a21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/f2966b9694947f6f63544db9824fcce858fd9a21",
+                "reference": "f2966b9694947f6f63544db9824fcce858fd9a21",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "websharks",
+                    "homepage": "http://websharks-inc.com/",
+                    "role": "company"
+                },
+                {
+                    "name": "jaswsinc",
+                    "homepage": "http://jaswsinc.com/",
+                    "role": "developer"
+                },
+                {
+                    "name": "raamdev",
+                    "homepage": "http://raam.org/",
+                    "role": "developer"
+                }
+            ],
+            "description": "Stub for WordPress themes/plugins that require the WP Sharks™ Core.",
+            "homepage": "https://github.com/websharks/wp-sharks-core-rv",
+            "keywords": [
+                "websharks",
+                "wordpress",
+                "wp sharks"
+            ],
+            "time": "2016-03-01 01:03:05"
+        }
+    ],
+    "packages-dev": [
         {
             "name": "aws/aws-sdk-php",
             "version": "2.8.27",
@@ -469,6 +516,17 @@
             "time": "2015-12-24 01:37:31"
         },
         {
+            "name": "package/bourbon",
+            "version": "4.2.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/thoughtbot/bourbon/releases/download/v4.2.3/bourbon-v4.2.3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
             "name": "phpmailer/phpmailer",
             "version": "v5.2.14",
             "source": {
@@ -715,12 +773,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/core.git",
-                "reference": "3444014d1c6f7f26a5d14f9da02b70bb5444c8d9"
+                "reference": "92a0f4ec454feb9a58ebe3981119248c758a6910"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/core/zipball/3444014d1c6f7f26a5d14f9da02b70bb5444c8d9",
-                "reference": "3444014d1c6f7f26a5d14f9da02b70bb5444c8d9",
+                "url": "https://api.github.com/repos/websharks/core/zipball/92a0f4ec454feb9a58ebe3981119248c758a6910",
+                "reference": "92a0f4ec454feb9a58ebe3981119248c758a6910",
                 "shasum": ""
             },
             "require": {
@@ -830,7 +888,7 @@
             "keywords": [
                 "websharks"
             ],
-            "time": "2016-02-29 06:07:51"
+            "time": "2016-03-02 19:31:06"
         },
         {
             "name": "websharks/dicer",
@@ -882,6 +940,53 @@
                 "websharks"
             ],
             "time": "2015-11-24 06:22:55"
+        },
+        {
+            "name": "websharks/wp-i18n-tools",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/websharks/wp-i18n-tools.git",
+                "reference": "47a2af9f88cfaf0ad33a81c2c882cd70bfed95b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/websharks/wp-i18n-tools/zipball/47a2af9f88cfaf0ad33a81c2c882cd70bfed95b6",
+                "reference": "47a2af9f88cfaf0ad33a81c2c882cd70bfed95b6",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "websharks",
+                    "homepage": "http://websharks-inc.com/",
+                    "role": "company"
+                },
+                {
+                    "name": "jaswsinc",
+                    "homepage": "http://jaswsinc.com/",
+                    "role": "developer"
+                },
+                {
+                    "name": "raamdev",
+                    "homepage": "http://raam.org/",
+                    "role": "developer"
+                }
+            ],
+            "description": "WordPress i18n/translation tools.",
+            "homepage": "https://github.com/websharks/wp-i18n-tools",
+            "keywords": [
+                "gettext",
+                "i18n",
+                "translation",
+                "websharks",
+                "wordpress"
+            ],
+            "time": "2015-05-11 14:42:39"
         },
         {
             "name": "websharks/wp-php-rv",
@@ -937,12 +1042,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-sharks-core.git",
-                "reference": "de2fe0738f2da15b044f34d188179922ecd96ecb"
+                "reference": "bc8ce5187f17dfb864faed089b2b88fc2a575796"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-sharks-core/zipball/de2fe0738f2da15b044f34d188179922ecd96ecb",
-                "reference": "de2fe0738f2da15b044f34d188179922ecd96ecb",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core/zipball/bc8ce5187f17dfb864faed089b2b88fc2a575796",
+                "reference": "bc8ce5187f17dfb864faed089b2b88fc2a575796",
                 "shasum": ""
             },
             "require": {
@@ -989,74 +1094,15 @@
                 "wordpress",
                 "wp sharks"
             ],
-            "time": "2016-02-29 07:09:47"
-        }
-    ],
-    "packages-dev": [
-        {
-            "name": "package/bourbon",
-            "version": "4.2.3",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/thoughtbot/bourbon/releases/download/v4.2.3/bourbon-v4.2.3.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "library"
-        },
-        {
-            "name": "websharks/wp-i18n-tools",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/websharks/wp-i18n-tools.git",
-                "reference": "47a2af9f88cfaf0ad33a81c2c882cd70bfed95b6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-i18n-tools/zipball/47a2af9f88cfaf0ad33a81c2c882cd70bfed95b6",
-                "reference": "47a2af9f88cfaf0ad33a81c2c882cd70bfed95b6",
-                "shasum": ""
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0+"
-            ],
-            "authors": [
-                {
-                    "name": "websharks",
-                    "homepage": "http://websharks-inc.com/",
-                    "role": "company"
-                },
-                {
-                    "name": "jaswsinc",
-                    "homepage": "http://jaswsinc.com/",
-                    "role": "developer"
-                },
-                {
-                    "name": "raamdev",
-                    "homepage": "http://raam.org/",
-                    "role": "developer"
-                }
-            ],
-            "description": "WordPress i18n/translation tools.",
-            "homepage": "https://github.com/websharks/wp-i18n-tools",
-            "keywords": [
-                "gettext",
-                "i18n",
-                "translation",
-                "websharks",
-                "wordpress"
-            ],
-            "time": "2015-05-11 14:42:39"
+            "time": "2016-02-29 18:05:25"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "websharks/wp-sharks-core": 20,
-        "websharks/wp-i18n-tools": 20
+        "websharks/wp-sharks-core-rv": 20,
+        "websharks/wp-i18n-tools": 20,
+        "websharks/wp-sharks-core": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
