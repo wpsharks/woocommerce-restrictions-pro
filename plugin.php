@@ -4,7 +4,7 @@
  *
  * @wp-plugin
  *
- * Version: 160302
+ * Version: 160303
  * Text Domain: wps-s2member-x
  * Plugin Name: s2Member X Pro
  *
@@ -20,6 +20,4 @@
 if (!defined('WPINC')) {
     exit('Do NOT access this file directly: '.basename(__FILE__));
 }
-if ($is_wp_sharks_core_active) {
-    require_once __DIR__.'/src/includes/stub.php';
-}
+require_once __DIR__.'/src/includes/plugin.php';

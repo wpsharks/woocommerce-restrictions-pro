@@ -7,6 +7,13 @@ use WebSharks\WpSharks\s2MemberX\Pro\Classes\App;
 if (!defined('WPINC')) {
     exit('Do NOT access this file directly: '.basename(__FILE__));
 }
-require_once __DIR__.'/stub.php';
+require __DIR__.'/rv.php'; // Setup `wp_sharks_core_rv` config.
 
-new App();
+if (require(dirname(__DIR__).'/vendor/websharks/wp-sharks-core-rv/src/includes/check.php')) {
+    add_action('plugins_loaded', function () {
+        require_once __DIR__.'/stub.php';
+        new App();
+    });
+} else {
+    wp_php_rv_notice('s2Member® X Pro');
+}
