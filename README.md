@@ -1,4 +1,4 @@
-## s2Member® X Pro
+## s2Member® X Pro  [![Build Status](https://travis-ci.org/websharks/wps-s2member-x-pro.svg?branch=000000-dev)](https://travis-ci.org/websharks/wps-s2member-x-pro)
 
 Membership management for WooCommerce running in WordPress.
 
