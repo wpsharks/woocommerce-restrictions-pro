@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the s2Member X Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: s2Member X Pro 160303\n"
+"Project-Id-Version: s2Member X Pro 160418\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wps-s2member-x-pro\n"
-"POT-Creation-Date: 2016-03-03 23:46:49+00:00\n"
+"POT-Creation-Date: 2016-04-18 07:53:32+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
