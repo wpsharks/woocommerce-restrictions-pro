@@ -52,12 +52,8 @@ class App extends SCoreClasses\App
                 ],
             ],
 
-            '§options' => [
-
-            ],
-            '§pro_option_keys' => [
-
-            ],
+            '§options'         => [],
+            '§pro_option_keys' => [],
         ];
         parent::__construct($instance_base, $instance);
     }
@@ -67,7 +63,7 @@ class App extends SCoreClasses\App
      *
      * @since 16xxxx Initial release.
      */
-    protected function setupHooks()
+    protected function onPluginsLoadedSetupHooks()
     {
     }
 }

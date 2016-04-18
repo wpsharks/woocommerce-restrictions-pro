@@ -1,5 +1,5 @@
 <?php
-declare (strict_types = 1);
+// PHP v5.3 compatible.
 namespace WebSharks\WpSharks\s2MemberX\Pro;
 
 use WebSharks\WpSharks\s2MemberX\Pro\Classes\App;
