@@ -23,6 +23,6 @@ class ActiveTest extends \PHPUnit_Framework_TestCase
 {
     public function testActive()
     {
-        $this->assertSame(true, a::app() instanceof Classes\App);
+        $this->assertSame(true, c::app() instanceof Classes\App);
     }
 }
