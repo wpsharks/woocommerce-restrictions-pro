@@ -30,9 +30,8 @@
     "websharks/wp-sharks-core-rv": "dev-master"
   },
   "require-dev": {
-    "package/bourbon": "4.2.3",
-    "websharks/wp-i18n-tools": "dev-master",
-    "websharks/wp-sharks-core": "dev-master"
+    "websharks/wp-sharks-core": "dev-master",
+    "package/bourbon": "4.2.3"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,

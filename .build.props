@@ -14,11 +14,11 @@ project_lite_sub_namespace       = WpSharksS2MemberX
 
 project_version                  = %y%m%d
 
-project_php_required_version     = 7.0.1
+project_php_required_version     = 7.0.4
 project_php_tested_up_to_version = ${php.version}
 
-project_wp_required_version      = 4.4
-project_wp_tested_up_to_version  = 4.4
+project_wp_required_version      = 4.5
+project_wp_tested_up_to_version  = 4.5
 
 project_wp_sharks_core_required_version                 = 160229
 project_wp_sharks_core_tested_up_to_version             = 160229
