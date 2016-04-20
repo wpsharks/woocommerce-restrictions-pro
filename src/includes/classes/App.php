@@ -52,7 +52,7 @@ class App extends SCoreClasses\App
                 ],
             ],
 
-            '§options'         => [],
+            '§default_options' => [],
             '§pro_option_keys' => [],
         ];
         parent::__construct($instance_base, $instance);

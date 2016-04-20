@@ -1,5 +1,6 @@
 $.test.begin('Check if plugin is active.', function () {
   $.start();
+
   $$.wp.thenLogin();
 
   /* if ($$.wp.isMultisite()) {
@@ -10,6 +11,11 @@ $.test.begin('Check if plugin is active.', function () {
   $.then(function () {
     $.test.assertExists('input[type="radio"][name="' + $$$.GLOBAL_NS + '[saveOptions][enable]"][value="1"]:checked');
   }); */
+
+  $.then(function () {
+    $.test.assertSame(true, true);
+  });
+
   $$.wp.thenLogout();
 
   $.run(function () {
