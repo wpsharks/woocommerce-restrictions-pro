@@ -26,4 +26,5 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
  */
 class SecurityGate extends SCoreFacades\SCore\Base\Core
 {
+    // @TODO
 }
