@@ -58,11 +58,11 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                 ],
                 'delete_with_user' => false,
 
-                'menu_position' => 1,
+                'menu_position' => null,
                 'menu_icon'     => $menu_icon,
                 'description'   => __('Content Restriction', 's2member-x'),
 
-                'labels' => [
+                'labels' => [ // See: <http://jas.xyz/244m2Sd>
                     'name'                  => __('Restrictions', 's2member-x'),
                     'singular_name'         => __('Restriction', 's2member-x'),
                     'add_new'               => __('Add Restriction', 's2member-x'),
@@ -113,6 +113,31 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                 'query_var' => false,
 
                 'description' => __('Content Restriction Tags/Categories', 's2member-x'),
+
+                'labels' => [ // See: <http://jas.xyz/244m1Oc>
+                    'name'                       => __('Categories', 's2member-x'),
+                    'singular_name'              => __('Category', 's2member-x'),
+                    'search_items'               => __('Search Categories', 's2member-x'),
+                    'popular_items'              => __('Popular Categories', 's2member-x'),
+                    'all_items'                  => __('All Categories', 's2member-x'),
+                    'parent_item'                => __('Parent Category', 's2member-x'),
+                    'parent_item_colon'          => __('Parent Category:', 's2member-x'),
+                    'edit_item'                  => __('Edit Category', 's2member-x'),
+                    'view_item'                  => __('View Category', 's2member-x'),
+                    'update_item'                => __('Update Category', 's2member-x'),
+                    'add_new_item'               => __('Add New Category', 's2member-x'),
+                    'new_item_name'              => __('New Category Name', 's2member-x'),
+                    'separate_items_with_commas' => __('Separate Categories w/ Commas', 's2member-x'),
+                    'add_or_remove_items'        => __('Add or Remove Categories', 's2member-x'),
+                    'choose_from_most_used'      => __('Choose From the Most Used Categories', 's2member-x'),
+                    'not_found'                  => __('No Categories Found', 's2member-x'),
+                    'no_terms'                   => __('No Categories', 's2member-x'),
+                    'items_list_navigation'      => __('Categories List Navigation', 's2member-x'),
+                    'items_list'                 => __('Categories List', 's2member-x'),
+                    'menu_name'                  => __('Categories', 's2member-x'),
+                    'name_admin_bar'             => __('Category', 's2member-x'),
+                    'archives'                   => __('All Categories', 's2member-x'),
+                ],
 
                 'capabilities' => [
                     'assign_terms' => 'edit_'.$this->App->Config->©brand['©prefix'].'_restrictions',
