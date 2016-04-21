@@ -111,4 +111,34 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             ]
         );
     }
+
+    /**
+     * Position restrictions.
+     *
+     * @since 16xxxx Restrictions.
+     */
+    public function onMenuOrder(array $menu_items): array
+    {
+        $woocommerce_item = 'woocommerce'; // Position after this.
+        $woocommerce_key  = array_search($woocommerce_item, $menu_items, true);
+
+        $restriction_item = 'edit.php?post_type='.$this->App->Config->©brand['©prefix'].'_restriction';
+        $restriction_key  = array_search($restriction_item, $menu_items, true);
+
+        if ($woocommerce_key === false || $restriction_key === false) {
+            return $menu_items; // Not possible.
+        }
+        $new_menu_items = []; // Initialize new menu items.
+
+        foreach ($menu_items as $_key => $_item) {
+            if ($_item !== $restriction_item) {
+                $new_menu_items[] = $_item;
+            }
+            if ($_item === $woocommerce_item) {
+                $new_menu_items[] = $restriction_item;
+            }
+        } // unset($_key, $_item); // Housekeeping.
+
+        return $new_menu_items;
+    }
 }

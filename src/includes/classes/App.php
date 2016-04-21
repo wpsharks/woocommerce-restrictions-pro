@@ -67,8 +67,8 @@ class App extends SCoreClasses\App
     {
         parent::onSetupEarlyHooks(); // Core hooks.
 
-        s::addAction('other_install_routines', [$this->App->Utils->Installer, 'onOtherInstallRoutines']);
-        s::addAction('other_uninstall_routines', [$this->App->Utils->Uninstaller, 'onOtherUninstallRoutines']);
+        s::addAction('other_install_routines', [$this->Utils->Installer, 'onOtherInstallRoutines']);
+        s::addAction('other_uninstall_routines', [$this->Utils->Uninstaller, 'onOtherUninstallRoutines']);
     }
 
     /**
@@ -80,7 +80,10 @@ class App extends SCoreClasses\App
     {
         parent::onSetupOtherHooks(); // Core hooks.
 
-        add_action('init', [$this->App->Utils->Restriction, 'onInitRegisterPostType'], -1001);
-        add_action('init', [$this->App->Utils->SecurityGate, 'onInitGuardRestrictions'], -1000);
+        add_action('init', [$this->Utils->Restriction, 'onInitRegisterPostType'], -1001);
+        add_action('init', [$this->Utils->SecurityGate, 'onInitGuardRestrictions'], -1000);
+
+        add_filter('custom_menu_order', '__return_true');
+        add_filter('menu_order', [$this->Utils->Restriction, 'onMenuOrder'], 1000);
     }
 }
