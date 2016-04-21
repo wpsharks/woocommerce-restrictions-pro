@@ -1,6 +1,6 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Base;
+namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Utils;
 
 use WebSharks\WpSharks\s2MemberX\Pro\Classes;
 use WebSharks\WpSharks\s2MemberX\Pro\Interfaces;
@@ -20,11 +20,19 @@ use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 
 /**
- * Pseudo-static facades.
+ * Installer.
  *
- * @since 160227 Initial release.
+ * @since 16xxxx Installer.
  */
-abstract class Facades
+class Installer extends SCoreClasses\SCore\Base\Core
 {
-    use Traits\Facades\RestrictionCaps;
+    /**
+     * Other install routines.
+     *
+     * @since 16xxxx Restrictions.
+     */
+    public function onOtherInstallRoutines()
+    {
+        a::addDefaultRestrictionCaps();
+    }
 }

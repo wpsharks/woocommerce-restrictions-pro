@@ -4,8 +4,8 @@
  *
  * @wp-plugin
  *
- * Version: 160420
- * Text Domain: wps-s2member-x
+ * Version: 160421
+ * Text Domain: s2member-x
  * Plugin Name: s2Member X Pro
  *
  * Author: WP Sharks™

@@ -1,8 +1,8 @@
 {
-  "name": "websharks/wps-s2member-x-pro",
-  "homepage": "https://github.com/websharks/wps-s2member-x-pro",
+  "name": "websharks/s2member-x-pro",
+  "homepage": "https://github.com/websharks/s2member-x-pro",
   "description": "Membership management for WordPress.",
-  "keywords": ["websharks", "s2member"],
+  "keywords": ["websharks", "wpsharks", "s2member"],
 
   "type": "project",
   "license": "GPL-3.0+",
@@ -22,8 +22,8 @@
   }],
 
   "support": {
-    "source": "https://github.com/websharks/wps-s2member-x-pro",
-    "issues": "https://github.com/websharks/wps-s2member-x-pro/issues"
+    "source": "https://github.com/websharks/s2member-x-pro",
+    "issues": "https://github.com/websharks/s2member-x-pro/issues"
   },
 
   "require": {

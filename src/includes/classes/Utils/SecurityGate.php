@@ -24,7 +24,10 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
  *
  * @since 16xxxx Security gate.
  */
-class SecurityGate extends SCoreFacades\SCore\Base\Core
+class SecurityGate extends SCoreClasses\SCore\Base\Core
 {
-    // @TODO
+    public function onInitGuardRestrictions()
+    {
+        // @TODO
+    }
 }

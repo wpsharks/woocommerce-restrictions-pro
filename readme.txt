@@ -1,9 +1,11 @@
 === s2Member X Pro ===
 
-Stable tag: 160420
-Requires at least: 4.5
+Stable tag: 160421
+
 Tested up to: 4.5
-Text Domain: wps-s2member-x
+Requires at least: 4.5
+
+Text Domain: s2member-x
 
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html

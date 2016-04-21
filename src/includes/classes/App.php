@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160420'; //v//
+    const VERSION = '160421'; //v//
 
     /**
      * Constructor.
@@ -59,11 +59,28 @@ class App extends SCoreClasses\App
     }
 
     /**
-     * Hook setup handler.
+     * Early hook setup handler.
      *
      * @since 16xxxx Initial release.
      */
-    protected function onPluginsLoadedSetupHooks()
+    protected function onSetupEarlyHooks()
     {
+        parent::onSetupEarlyHooks(); // Core hooks.
+
+        s::addAction('other_install_routines', [$this->App->Utils->Installer, 'onOtherInstallRoutines']);
+        s::addAction('other_uninstall_routines', [$this->App->Utils->Uninstaller, 'onOtherUninstallRoutines']);
+    }
+
+    /**
+     * Other hook setup handler.
+     *
+     * @since 16xxxx Initial release.
+     */
+    protected function onSetupOtherHooks()
+    {
+        parent::onSetupOtherHooks(); // Core hooks.
+
+        add_action('init', [$this->App->Utils->Restriction, 'onInitRegisterPostType'], -1001);
+        add_action('init', [$this->App->Utils->SecurityGate, 'onInitGuardRestrictions'], -1000);
     }
 }
