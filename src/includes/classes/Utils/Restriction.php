@@ -178,4 +178,14 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         return $new_menu_items;
     }
+
+    /**
+     * Restriction pointers.
+     *
+     * @since 16xxxx Restrictions.
+     */
+    public function setupPointers()
+    {
+        // @TODO: <http://wptavern.com/create-your-own-custom-pointers-in-the-wordpress-admin>
+    }
 }
