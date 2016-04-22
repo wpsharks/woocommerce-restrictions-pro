@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: s2Member X Pro 160422\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/s2member-x-pro\n"
-"POT-Creation-Date: 2016-04-22 15:52:19+00:00\n"
+"POT-Creation-Date: 2016-04-22 18:41:24+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -329,86 +329,79 @@ msgstr ""
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:241
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:241
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:241
-msgid "Restricts Posts"
+#: src/includes/classes/Utils/Restriction.php:241
+msgid "Restricted Posts"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:242
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:242
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:242
-msgid "Restricts Post Types"
+#: src/includes/classes/Utils/Restriction.php:242
+msgid "Restricted Post Types"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:243
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:243
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:243
-msgid "Restricts Taxnomy Terms"
+#: src/includes/classes/Utils/Restriction.php:243
+msgid "Restricted Taxnomy Terms (e.g., Categories/Tags)"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:244
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:244
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:244
-msgid "Restricts URI Patterns"
+#: src/includes/classes/Utils/Restriction.php:244
+msgid "Restricted URI Patterns"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:245
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:245
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:245
-msgid "Restricts Capabilities"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:271
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:271
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:271
-msgid "Posts to Restrict (hold <kbd>Ctrl</kbd> or <kbd>⌘ Cmd</kbd> to select multiple):"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:277
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:277
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:277
-msgid "Posts to Restrict (WordPress Post IDs, comma-delimited):"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:320
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:320
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:320
-#: src/includes/classes/Utils/Restriction.php:340
-msgid "URI Patterns to Restrict (one per line):"
-msgstr ""
-
-#: src/includes/classes/Utils/Restriction.php:241
-msgid "Restricted Posts"
-msgstr ""
-
-#: src/includes/classes/Utils/Restriction.php:242
-msgid "Restricted Post Types"
-msgstr ""
-
-#: src/includes/classes/Utils/Restriction.php:243
-msgid "Restricted Taxnomy Terms (e.g., Categories/Tags)"
-msgstr ""
-
-#: src/includes/classes/Utils/Restriction.php:244
-msgid "Restricted URI Patterns"
-msgstr ""
-
 #: src/includes/classes/Utils/Restriction.php:245
 msgid "Restricted Capabilities"
 msgstr ""
 
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:272
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:272
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:272
 #: src/includes/classes/Utils/Restriction.php:272
 msgid "Posts to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):"
 msgstr ""
 
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:278
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:278
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:278
 #: src/includes/classes/Utils/Restriction.php:278
 msgid "Post IDs to Restrict (WordPress Post IDs, comma-delimited):"
 msgstr ""
 
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:303
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:303
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:303
 #: src/includes/classes/Utils/Restriction.php:303
 msgid "Post Types to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):"
 msgstr ""
 
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:309
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:309
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:309
 #: src/includes/classes/Utils/Restriction.php:309
 msgid "Post Types to Restrict (WordPress Post Types, comma-delimited):"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:340
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:340
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:340
+#: src/includes/classes/Utils/Restriction.php:340
+msgid "URI Patterns to Restrict (one per line):"
+msgstr ""
+
+#: src/includes/classes/Utils/Restriction.php:364
+msgid "Capabilities to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):"
+msgstr ""
+
+#: src/includes/classes/Utils/Restriction.php:370
+msgid "Capabilities to Restrict (WordPress Capabilities, comma-delimited):"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

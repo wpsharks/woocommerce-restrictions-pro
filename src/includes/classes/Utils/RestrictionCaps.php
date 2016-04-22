@@ -49,6 +49,8 @@ class RestrictionCaps extends SCoreClasses\SCore\Base\Core
         $post_type_var = a::restrictionPostTypeVar();
 
         $this->caps = [ // All capabilities.
+            'create_'.$post_type_var.'s',
+
             'edit_'.$post_type_var.'s',
             'edit_others_'.$post_type_var.'s',
             'edit_published_'.$post_type_var.'s',

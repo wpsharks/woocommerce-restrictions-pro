@@ -270,7 +270,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         if ($post_id_select_options) {
             echo '<div style="margin:0;">';
             echo    '<p style="margin-bottom:0;">'.__('Posts to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):', 's2member-x').'</p>';
-            echo    '<p style="margin-top:0;"><select multiple name="'.esc_attr($this->post_type_var.'_post_ids').'" autocomplete="off" style="width:100%; height:100px;">'.
+            echo    '<p style="margin-top:0;"><select multiple name="'.esc_attr($this->post_type_var.'_post_ids').'" autocomplete="off" style="width:100%; height:150px;">'.
                         $post_id_select_options.'</select></p>';
             echo '</div>';
         } else {
@@ -301,7 +301,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         if ($post_type_select_options) {
             echo '<div style="margin:0;">';
             echo    '<p style="margin-bottom:0;">'.__('Post Types to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):', 's2member-x').'</p>';
-            echo    '<p style="margin-top:0;"><select multiple name="'.esc_attr($this->post_type_var.'_post_types').'" autocomplete="off" style="width:100%; height:100px;">'.
+            echo    '<p style="margin-top:0;"><select multiple name="'.esc_attr($this->post_type_var.'_post_types').'" autocomplete="off" style="width:100%; height:150px;">'.
                         $post_type_select_options.'</select></p>';
             echo '</div>';
         } else {
@@ -338,7 +338,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         echo '<div style="margin:0;">';
         echo    '<p style="margin-bottom:0;">'.__('URI Patterns to Restrict (one per line):', 's2member-x').'</p>';
-        echo    '<p style="margin-top:0;"><textarea name="'.esc_attr($this->post_type_var.'_uri_patterns').'" autocomplete="off" spellcheck="false" wrap="soft" style="width:100%; height:100px; white-space:pre; word-wrap:normal; overflow-x:scroll;">'.
+        echo    '<p style="margin-top:0;"><textarea name="'.esc_attr($this->post_type_var.'_uri_patterns').'" autocomplete="off" spellcheck="false" wrap="soft" style="width:100%; height:150px; white-space:pre; word-wrap:normal; overflow-x:scroll;">'.
                     esc_textarea(implode("\n", $current_uri_patterns)).'</textarea></p>';
         echo '</div>';
     }
@@ -353,6 +353,24 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function restrictsCapsMetaBox(\WP_Post $post, array $args = [])
     {
+        $current_caps        = $this->getMeta($post->ID, 'caps');
+        $caps_select_options = s::capSelectOptions([
+            'exclude'      => array_merge(a::restrictionCaps(), ['read']),
+            'allow_empty'  => false,
+            'current_caps' => $current_caps,
+        ]);
+        if ($caps_select_options) {
+            echo '<div style="margin:0;">';
+            echo    '<p style="margin-bottom:0;">'.__('Capabilities to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):', 's2member-x').'</p>';
+            echo    '<p style="margin-top:0;"><select multiple name="'.esc_attr($this->post_type_var.'_caps').'" autocomplete="off" style="width:100%; height:150px;">'.
+                        $caps_select_options.'</select></p>';
+            echo '</div>';
+        } else {
+            echo '<div style="margin:0;">';
+            echo    '<p style="margin-bottom:0;">'.__('Capabilities to Restrict (WordPress Capabilities, comma-delimited):', 's2member-x').'</p>';
+            echo    '<p style="margin-top:0;"><input type="text" name="'.esc_attr($this->post_type_var.'_caps').'" autocomplete="off" spellcheck="false" value="'.esc_attr(implode(',', $current_caps)).'" style="width:100%;"></p>';
+            echo '</div>';
+        }
     }
 
     /**
