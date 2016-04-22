@@ -85,5 +85,7 @@ class App extends SCoreClasses\App
 
         add_filter('custom_menu_order', '__return_true');
         add_filter('menu_order', [$this->Utils->Restriction, 'onMenuOrder'], 1000);
+
+        add_action('add_meta_boxes', [$this->Utils->Restriction, 'onAddMetaBoxes']);
     }
 }

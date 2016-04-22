@@ -24,6 +24,14 @@ trait RestrictionCaps
     /**
      * @since 16xxxx Initial release.
      */
+    public static function restrictionCaps(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->RestrictionCaps->caps;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
     public static function addDefaultRestrictionCaps(...$args)
     {
         return $GLOBALS[static::class]->Utils->RestrictionCaps->addDefaults(...$args);

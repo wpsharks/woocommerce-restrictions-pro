@@ -33,7 +33,7 @@ class RestrictionCaps extends SCoreClasses\SCore\Base\Core
      *
      * @type array All caps.
      */
-    protected $caps;
+    public $caps;
 
     /**
      * Class constructor.
@@ -46,20 +46,22 @@ class RestrictionCaps extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->caps = [
-            'edit_'.$this->App->Config->©brand['©prefix'].'_restrictions',
-            'edit_others_'.$this->App->Config->©brand['©prefix'].'_restrictions',
-            'edit_published_'.$this->App->Config->©brand['©prefix'].'_restrictions',
-            'edit_private_'.$this->App->Config->©brand['©prefix'].'_restrictions',
+        $post_type_var = a::restrictionPostTypeVar();
 
-            'publish_'.$this->App->Config->©brand['©prefix'].'_restrictions',
+        $this->caps = [ // All capabilities.
+            'edit_'.$post_type_var.'s',
+            'edit_others_'.$post_type_var.'s',
+            'edit_published_'.$post_type_var.'s',
+            'edit_private_'.$post_type_var.'s',
 
-            'delete_'.$this->App->Config->©brand['©prefix'].'_restrictions',
-            'delete_private_'.$this->App->Config->©brand['©prefix'].'_restrictions',
-            'delete_published_'.$this->App->Config->©brand['©prefix'].'_restrictions',
-            'delete_others_'.$this->App->Config->©brand['©prefix'].'_restrictions',
+            'publish_'.$post_type_var.'s',
 
-            'read_private_'.$this->App->Config->©brand['©prefix'].'_restrictions',
+            'delete_'.$post_type_var.'s',
+            'delete_private_'.$post_type_var.'s',
+            'delete_published_'.$post_type_var.'s',
+            'delete_others_'.$post_type_var.'s',
+
+            'read_private_'.$post_type_var.'s',
         ];
     }
 
