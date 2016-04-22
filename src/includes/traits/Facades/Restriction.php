@@ -24,7 +24,7 @@ trait Restriction
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionIcon(...$args)
+    public static function restrictionIcon()
     {
         return $GLOBALS[static::class]->Utils->Restriction->icon;
     }
@@ -32,7 +32,7 @@ trait Restriction
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionPostType(...$args)
+    public static function restrictionPostType()
     {
         return $GLOBALS[static::class]->Utils->Restriction->post_type;
     }
@@ -40,7 +40,7 @@ trait Restriction
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionPostTypeVar(...$args)
+    public static function restrictionPostTypeVar()
     {
         return $GLOBALS[static::class]->Utils->Restriction->post_type_var;
     }
@@ -48,7 +48,7 @@ trait Restriction
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionPostTypeSlug(...$args)
+    public static function restrictionPostTypeSlug()
     {
         return $GLOBALS[static::class]->Utils->Restriction->post_type_slug;
     }

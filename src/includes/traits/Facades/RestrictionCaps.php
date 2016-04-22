@@ -24,7 +24,7 @@ trait RestrictionCaps
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionCaps(...$args)
+    public static function restrictionCaps()
     {
         return $GLOBALS[static::class]->Utils->RestrictionCaps->caps;
     }

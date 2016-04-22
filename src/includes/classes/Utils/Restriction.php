@@ -259,22 +259,26 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function restrictsPostsMetaBox(\WP_Post $post, array $args = [])
     {
-        $current_type = $this->getMeta($post->ID, 'type');
-
-        echo '<div id="'.esc_attr($this->post_type_slug.'s-item').'" style="margin-top:1em;">';
-        echo    '<div id="'.esc_attr($this->post_type_slug.'s-uri-pattern-item').'">';
-        echo        '<p style="margin-bottom:0;">'.__('URI Pattern to Restrict:', 's2member-x').'</p>';
-        echo        '<p style="margin-top:0;"><input type="text" name="'.esc_attr($this->post_type_var.'_uri_pattern_item').'" spellcheck="false" style="width:100%;" /></p>';
-        echo    '</div>';
-        echo    '<div id="'.esc_attr($this->post_type_slug.'s-cap-item').'">';
-        echo        '<p style="margin-bottom:0;">'.__('Capability to Restrict:', 's2member-x').'</p>';
-        echo        '<p style="margin-top:0;"><input type="text" name="'.esc_attr($this->post_type_var.'_cap_item').'" spellcheck="false" style="width:100%;" /></p>';
-        echo    '</div>';
-        echo    '<div id="'.esc_attr($this->post_type_slug.'s-cap-item').'">';
-        echo        '<p style="margin-bottom:0;">'.__('Capability to Restrict:', 's2member-x').'</p>';
-        echo        '<p style="margin-top:0;"><input type="text" name="'.esc_attr($this->post_type_var.'_cap_item').'" spellcheck="false" style="width:100%;" /></p>';
-        echo    '</div>';
-        echo '</div>';
+        $current_post_ids       = $this->getMeta($post->ID, 'post_ids');
+        $post_id_select_options = s::postSelectOptions([
+            'exclude_post_types'         => ['attachment', $this->post_type],
+            'exclude_post_statuses'      => ['draft', 'pending'],
+            'exclude_password_protected' => false,
+            'current_post_ids'           => $current_post_ids,
+            'allow_empty'                => false,
+        ]);
+        if ($post_id_select_options) {
+            echo '<div style="margin:0;">';
+            echo    '<p style="margin-bottom:0;">'.__('Posts to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):', 's2member-x').'</p>';
+            echo    '<p style="margin-top:0;"><select multiple name="'.esc_attr($this->post_type_var.'_post_ids').'" autocomplete="off" style="width:100%; height:100px;">'.
+                    $post_id_select_options.'</select></p>';
+            echo '</div>';
+        } else {
+            echo '<div style="margin:0;">';
+            echo    '<p style="margin-bottom:0;">'.__('Posts to Restrict (WordPress Post IDs, comma-delimited):', 's2member-x').'</p>';
+            echo    '<p style="margin-top:0;"><input type="text" name="'.esc_attr($this->post_type_var.'_post_ids').'" autocomplete="off" spellcheck="false" value="'.esc_attr(implode(',', $current_post_ids)).'" style="width:100%;"></p>';
+            echo '</div>';
+        }
     }
 
     /**
@@ -312,11 +316,11 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public function restrictsUriPatternsMetaBox(\WP_Post $post, array $args = [])
     {
         $current_uri_patterns = $this->getMeta($post->ID, 'uri_patterns');
-        $current_uri_patterns = is_array($current_uri_patterns) ? $current_uri_patterns : [];
 
-        echo '<div id="'.esc_attr($this->post_type_slug.'s-cap-item').'">';
+        echo '<div style="margin:0;">';
         echo    '<p style="margin-bottom:0;">'.__('URI Patterns to Restrict (one per line):', 's2member-x').'</p>';
-        echo    '<p style="margin-top:0;"><textarea name="'.esc_attr($this->post_type_var.'_cap_item').'" spellcheck="false" wrap="soft" style="width:100%; height:200px; white-space:pre; word-wrap:normal; overflow-x:scroll;"></textarea></p>';
+        echo    '<p style="margin-top:0;"><textarea name="'.esc_attr($this->post_type_var.'_uri_patterns').'" autocomplete="off" spellcheck="false" wrap="soft" style="width:100%; height:100px; white-space:pre; word-wrap:normal; overflow-x:scroll;">'.
+                    esc_textarea(implode("\n", $current_uri_patterns)).'</textarea></p>';
         echo '</div>';
     }
 
@@ -333,36 +337,41 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * Get meta key.
+     * Get meta values.
      *
      * @since 16xxxx Restrictions.
      *
      * @param int    $post_id Post ID.
      * @param string $key     Meta key.
      *
-     * @return mixed Meta value.
+     * @return array Meta values.
      */
-    public function getMeta(int $post_id, string $key)
+    public function getMeta(int $post_id, string $key): array
     {
-        return (string) get_post_meta($post_id, $this->post_type_var.'_'.$key, true);
+        $values = get_post_meta($post_id, $this->post_type_var.'_'.$key);
+        return is_array($values) ? $values : [];
     }
 
     /**
-     * Update meta key.
+     * Update meta values.
      *
      * @since 16xxxx Restrictions.
      *
      * @param int    $post_id Post ID.
      * @param string $key     Meta key.
-     * @param mixed  $value   Meta value.
+     * @param array  $values  Meta values.
      */
-    public function updateMeta(int $post_id, string $key, $value)
+    public function updateMeta(int $post_id, string $key, array $values)
     {
-        update_post_meta($post_id, $this->post_type_var.'_'.$key, $value);
+        $this->deleteMeta($post_id, $this->post_type_var.'_'.$key);
+
+        foreach ($values as $_value) {
+            add_post_meta($post_id, $this->post_type_var.'_'.$key, $_value);
+        } // unset($_value); // Housekeeping.
     }
 
     /**
-     * Delete meta key.
+     * Delete meta values.
      *
      * @since 16xxxx Restrictions.
      *
