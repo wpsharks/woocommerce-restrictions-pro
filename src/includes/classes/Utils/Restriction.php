@@ -238,11 +238,11 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             return; // Not applicable.
         }
         $meta_boxes = [
-            $this->post_type_slug.'s-posts'          => ['title' => __('Restricts Posts', 's2member-x'), 'callback' => 'restrictsPostsMetaBox'],
-            $this->post_type_slug.'s-post-types'     => ['title' => __('Restricts Post Types', 's2member-x'), 'callback' => 'restrictsPostTypesMetaBox'],
-            $this->post_type_slug.'s-taxonomy-terms' => ['title' => __('Restricts Taxnomy Terms', 's2member-x'), 'callback' => 'restrictsTaxnomyTermsMetaBox'],
-            $this->post_type_slug.'s-uri-patterns'   => ['title' => __('Restricts URI Patterns', 's2member-x'), 'callback' => 'restrictsUriPatternsMetaBox'],
-            $this->post_type_slug.'s-caps'           => ['title' => __('Restricts Capabilities', 's2member-x'), 'callback' => 'restrictsCapabilitiesMetaBox'],
+            $this->post_type_slug.'s-post-ids'       => ['title' => __('Restricted Posts', 's2member-x'), 'callback' => 'restrictsPostIdsMetaBox'],
+            $this->post_type_slug.'s-post-types'     => ['title' => __('Restricted Post Types', 's2member-x'), 'callback' => 'restrictsPostTypesMetaBox'],
+            $this->post_type_slug.'s-taxonomy-terms' => ['title' => __('Restricted Taxnomy Terms (e.g., Categories/Tags)', 's2member-x'), 'callback' => 'restrictsTaxnomyTermsMetaBox'],
+            $this->post_type_slug.'s-uri-patterns'   => ['title' => __('Restricted URI Patterns', 's2member-x'), 'callback' => 'restrictsUriPatternsMetaBox'],
+            $this->post_type_slug.'s-caps'           => ['title' => __('Restricted Capabilities', 's2member-x'), 'callback' => 'restrictsCapsMetaBox'],
         ];
         foreach ($meta_boxes as $_id => $_data) {
             add_meta_box($_id, $_data['title'], [$this, $_data['callback']], null, 'normal', 'default', []);
@@ -250,39 +250,39 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * Meta box.
+     * Post IDs meta box.
      *
      * @since 16xxxx Restrictions.
      *
      * @param \WP_Post $post Post object.
      * @param array    $args Callback args, if any.
      */
-    public function restrictsPostsMetaBox(\WP_Post $post, array $args = [])
+    public function restrictsPostIdsMetaBox(\WP_Post $post, array $args = [])
     {
         $current_post_ids       = $this->getMeta($post->ID, 'post_ids');
         $post_id_select_options = s::postSelectOptions([
-            'exclude_post_types'         => ['attachment', $this->post_type],
-            'exclude_post_statuses'      => ['draft', 'pending'],
+            'include_post_types'         => get_post_types(['public' => true]),
+            'exclude_post_types'         => ['attachment'],
             'exclude_password_protected' => false,
-            'current_post_ids'           => $current_post_ids,
             'allow_empty'                => false,
+            'current_post_ids'           => $current_post_ids,
         ]);
         if ($post_id_select_options) {
             echo '<div style="margin:0;">';
             echo    '<p style="margin-bottom:0;">'.__('Posts to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):', 's2member-x').'</p>';
             echo    '<p style="margin-top:0;"><select multiple name="'.esc_attr($this->post_type_var.'_post_ids').'" autocomplete="off" style="width:100%; height:100px;">'.
-                    $post_id_select_options.'</select></p>';
+                        $post_id_select_options.'</select></p>';
             echo '</div>';
         } else {
             echo '<div style="margin:0;">';
-            echo    '<p style="margin-bottom:0;">'.__('Posts to Restrict (WordPress Post IDs, comma-delimited):', 's2member-x').'</p>';
+            echo    '<p style="margin-bottom:0;">'.__('Post IDs to Restrict (WordPress Post IDs, comma-delimited):', 's2member-x').'</p>';
             echo    '<p style="margin-top:0;"><input type="text" name="'.esc_attr($this->post_type_var.'_post_ids').'" autocomplete="off" spellcheck="false" value="'.esc_attr(implode(',', $current_post_ids)).'" style="width:100%;"></p>';
             echo '</div>';
         }
     }
 
     /**
-     * Meta box.
+     * Post types meta box.
      *
      * @since 16xxxx Restrictions.
      *
@@ -291,10 +291,29 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function restrictsPostTypesMetaBox(\WP_Post $post, array $args = [])
     {
+        $current_post_types       = $this->getMeta($post->ID, 'post_types');
+        $post_type_select_options = s::postTypeSelectOptions([
+            'include'            => get_post_types(['public' => true]),
+            'exclude'            => ['attachment'],
+            'allow_empty'        => false,
+            'current_post_types' => $current_post_types,
+        ]);
+        if ($post_type_select_options) {
+            echo '<div style="margin:0;">';
+            echo    '<p style="margin-bottom:0;">'.__('Post Types to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):', 's2member-x').'</p>';
+            echo    '<p style="margin-top:0;"><select multiple name="'.esc_attr($this->post_type_var.'_post_types').'" autocomplete="off" style="width:100%; height:100px;">'.
+                        $post_type_select_options.'</select></p>';
+            echo '</div>';
+        } else {
+            echo '<div style="margin:0;">';
+            echo    '<p style="margin-bottom:0;">'.__('Post Types to Restrict (WordPress Post Types, comma-delimited):', 's2member-x').'</p>';
+            echo    '<p style="margin-top:0;"><input type="text" name="'.esc_attr($this->post_type_var.'_post_types').'" autocomplete="off" spellcheck="false" value="'.esc_attr(implode(',', $current_post_types)).'" style="width:100%;"></p>';
+            echo '</div>';
+        }
     }
 
     /**
-     * Meta box.
+     * Taxonomy terms meta box.
      *
      * @since 16xxxx Restrictions.
      *
@@ -306,7 +325,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * Meta box.
+     * URI patterns meta box.
      *
      * @since 16xxxx Restrictions.
      *
@@ -325,14 +344,14 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * Meta box.
+     * Caps meta box.
      *
      * @since 16xxxx Restrictions.
      *
      * @param \WP_Post $post Post object.
      * @param array    $args Callback args, if any.
      */
-    public function restrictsCapabilitiesMetaBox(\WP_Post $post, array $args = [])
+    public function restrictsCapsMetaBox(\WP_Post $post, array $args = [])
     {
     }
 
