@@ -46,24 +46,24 @@ class RestrictionCaps extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $post_type_var = a::restrictionPostTypeVar();
+        $post_type = a::restrictionPostType();
 
         $this->caps = [ // All capabilities.
-            'create_'.$post_type_var.'s',
+            'create_'.$post_type.'s',
 
-            'edit_'.$post_type_var.'s',
-            'edit_others_'.$post_type_var.'s',
-            'edit_published_'.$post_type_var.'s',
-            'edit_private_'.$post_type_var.'s',
+            'edit_'.$post_type.'s',
+            'edit_others_'.$post_type.'s',
+            'edit_published_'.$post_type.'s',
+            'edit_private_'.$post_type.'s',
 
-            'publish_'.$post_type_var.'s',
+            'publish_'.$post_type.'s',
 
-            'delete_'.$post_type_var.'s',
-            'delete_private_'.$post_type_var.'s',
-            'delete_published_'.$post_type_var.'s',
-            'delete_others_'.$post_type_var.'s',
+            'delete_'.$post_type.'s',
+            'delete_private_'.$post_type.'s',
+            'delete_published_'.$post_type.'s',
+            'delete_others_'.$post_type.'s',
 
-            'read_private_'.$post_type_var.'s',
+            'read_private_'.$post_type.'s',
         ];
     }
 
@@ -71,6 +71,8 @@ class RestrictionCaps extends SCoreClasses\SCore\Base\Core
      * Add default caps.
      *
      * @since 16xxxx Restrictions.
+     *
+     * @note Must be compatible w/ config `§caps['§manage']`.
      */
     public function addDefaults()
     {

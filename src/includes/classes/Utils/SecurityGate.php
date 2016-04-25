@@ -26,8 +26,24 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
  */
 class SecurityGate extends SCoreClasses\SCore\Base\Core
 {
+    /**
+     * Class constructor.
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @param Classes\App $App Instance.
+     */
+    public function __construct(Classes\App $App)
+    {
+        parent::__construct($App);
+    }
+
+    /**
+     * Guard restrictions.
+     *
+     * @since 16xxxx Restrictions.
+     */
     public function onInitGuardRestrictions()
     {
-        // @TODO
     }
 }

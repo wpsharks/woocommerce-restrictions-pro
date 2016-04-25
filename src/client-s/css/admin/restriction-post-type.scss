@@ -1,0 +1,93 @@
+/*
+ * Dependencies.
+ */
+@import '../bourbon/bourbon';
+@import '../../../vendor/websharks/sharkicons/src/sharkicons';
+@include sharkicons-font('../../../vendor/websharks/sharkicons/src');
+@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/lists';
+@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/colors/fields';
+@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/fields';
+@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/jquery-chosen/fields';
+
+/*
+ * Built-in meta box.
+ */
+#slugdiv.postbox {
+  > .hndle .-label {
+    float:                    right;
+    opacity:                  0.5;
+  }
+
+  > .inside {
+    @include wp-admin-field-standards('>');
+  }
+}
+
+/*
+ * Prefixed meta boxes.
+ */
+.postbox[id^='fdbmjuxwzjfjtaucytprkbcqfpftudyg'] {
+  > .hndle .-label {
+    float:                    right;
+    opacity:                  0.5;
+  }
+
+  > .inside {
+    > .-about,
+    > .-meta {
+      @include wp-admin-list-enable('>');
+
+      > h4,
+      > p {
+        &:first-child {
+          margin-top:         0;
+        }
+
+        &:last-child {
+          margin-bottom:      0;
+        }
+
+        + ol,
+        + ul {
+          margin-top:        -.5em;
+        }
+      }
+
+      a {
+        text-decoration:      none;
+      }
+
+      > .-heading {
+        margin-bottom:        0;
+
+        + .-field {
+          margin-top:         0;
+        }
+      }
+
+      > .-field {
+        @include wp-admin-field-standards('>');
+        @include jquery-chosen-wp-admin-field-standards;
+
+        > textarea {
+          white-space:        pre;
+          word-wrap:          normal;
+          overflow-x:         scroll;
+        }
+      }
+
+      &.-uri-patterns > .-examples {
+        padding-left:         0;
+        margin-left:         .5em;
+        list-style-type:      none;
+
+        em {
+          font-size:          110%;
+          font-weight:        500;
+          font-style:         normal;
+          font-family:        monospace;
+        }
+      }
+    }
+  }
+}

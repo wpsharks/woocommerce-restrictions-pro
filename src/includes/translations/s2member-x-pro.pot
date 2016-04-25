@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the s2Member X Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: s2Member X Pro 160422\n"
+"Project-Id-Version: s2Member X Pro 160425\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/s2member-x-pro\n"
-"POT-Creation-Date: 2016-04-22 18:41:24+00:00\n"
+"POT-Creation-Date: 2016-04-25 16:13:04+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,396 +12,623 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:109
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:109
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:109
-#: src/includes/classes/Utils/Restriction.php:109
-msgid "Content Restriction"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:112
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:133
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:112
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:133
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:112
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:133
-#: src/includes/classes/Utils/Restriction.php:112
-#: src/includes/classes/Utils/Restriction.php:133
-msgid "Restrictions"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:113
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:134
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:113
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:134
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:113
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:134
-#: src/includes/classes/Utils/Restriction.php:113
-#: src/includes/classes/Utils/Restriction.php:134
-msgid "Restriction"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:114
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:114
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:114
-#: src/includes/classes/Utils/Restriction.php:114
-msgid "Add Restriction"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:115
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:115
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:115
-#: src/includes/classes/Utils/Restriction.php:115
-msgid "Add New Restriction"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:116
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:116
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:116
-#: src/includes/classes/Utils/Restriction.php:116
-msgid "Edit Restriction"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:117
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:117
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:117
-#: src/includes/classes/Utils/Restriction.php:117
-msgid "New Restriction"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:118
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:118
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:118
-#: src/includes/classes/Utils/Restriction.php:118
-msgid "View Restriction"
-msgstr ""
-
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:119
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:119
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:119
 #: src/includes/classes/Utils/Restriction.php:119
-msgid "Search Restrictions"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:120
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:120
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:120
-#: src/includes/classes/Utils/Restriction.php:120
-msgid "No Restrictions found"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:121
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:121
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:121
-#: src/includes/classes/Utils/Restriction.php:121
-msgid "No Restrictions found in Trash"
+msgid "Content Restriction"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:122
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:143
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:122
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:143
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:122
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:143
 #: src/includes/classes/Utils/Restriction.php:122
-msgid "Parent Restriction:"
+#: src/includes/classes/Utils/Restriction.php:143
+msgid "Restrictions"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:123
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:144
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:123
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:144
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:123
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:144
 #: src/includes/classes/Utils/Restriction.php:123
-msgid "All Restrictions"
+#: src/includes/classes/Utils/Restriction.php:144
+msgid "Restriction"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:124
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:124
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:124
 #: src/includes/classes/Utils/Restriction.php:124
-msgid "Restriction Archives"
+msgid "Add Restriction"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:125
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:125
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:125
 #: src/includes/classes/Utils/Restriction.php:125
-msgid "Insert into Restriction"
+msgid "Add New Restriction"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:126
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:126
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:126
 #: src/includes/classes/Utils/Restriction.php:126
-msgid "Upload to this Restriction"
+msgid "Edit Restriction"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:127
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:127
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:127
 #: src/includes/classes/Utils/Restriction.php:127
-msgid "Set Featured Image"
+msgid "New Restriction"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:128
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:128
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:128
 #: src/includes/classes/Utils/Restriction.php:128
-msgid "Remove Featured Image"
+msgid "View Restriction"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:129
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:129
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:129
 #: src/includes/classes/Utils/Restriction.php:129
-msgid "Use as Featured Image"
+msgid "Search Restrictions"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:130
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:130
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:130
 #: src/includes/classes/Utils/Restriction.php:130
-msgid "Filter Restrictions List"
+msgid "No Restrictions found"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:131
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:131
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:131
 #: src/includes/classes/Utils/Restriction.php:131
-msgid "Restrictions List Navigation"
+msgid "No Restrictions found in Trash"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:132
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:132
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:132
 #: src/includes/classes/Utils/Restriction.php:132
+msgid "Parent Restriction:"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:133
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:133
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:133
+#: src/includes/classes/Utils/Restriction.php:133
+msgid "All Restrictions"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:134
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:134
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:134
+#: src/includes/classes/Utils/Restriction.php:134
+msgid "Restriction Archives"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:135
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:135
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:135
+#: src/includes/classes/Utils/Restriction.php:135
+msgid "Insert into Restriction"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:136
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:136
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:136
+#: src/includes/classes/Utils/Restriction.php:136
+msgid "Upload to this Restriction"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:137
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:137
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:137
+#: src/includes/classes/Utils/Restriction.php:137
+msgid "Set Featured Image"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:138
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:138
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:138
+#: src/includes/classes/Utils/Restriction.php:138
+msgid "Remove Featured Image"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:139
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:139
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:139
+#: src/includes/classes/Utils/Restriction.php:139
+msgid "Use as Featured Image"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:140
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:140
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:140
+#: src/includes/classes/Utils/Restriction.php:140
+msgid "Filter Restrictions List"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:141
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:141
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:141
+#: src/includes/classes/Utils/Restriction.php:141
+msgid "Restrictions List Navigation"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:142
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:142
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:142
+#: src/includes/classes/Utils/Restriction.php:142
 msgid "Restrictions List"
 msgstr ""
 
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:161
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:161
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:161
-#: src/includes/classes/Utils/Restriction.php:161
-msgid "Content Restriction Tags/Categories"
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:214
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:214
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:269
+#: src/includes/classes/Utils/Restriction.php:269
+msgid "About Restrictions"
 msgstr ""
 
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:164
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:183
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:164
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:183
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:164
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:183
-#: src/includes/classes/Utils/Restriction.php:164
-#: src/includes/classes/Utils/Restriction.php:183
-msgid "Categories"
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:215
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:215
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:270
+#: src/includes/classes/Utils/Restriction.php:270
+msgid "Protected Posts"
 msgstr ""
 
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:165
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:184
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:165
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:184
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:165
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:184
-#: src/includes/classes/Utils/Restriction.php:165
-#: src/includes/classes/Utils/Restriction.php:184
-msgid "Category"
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:216
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:216
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:271
+#: src/includes/classes/Utils/Restriction.php:271
+msgid "Protected Post Types"
 msgstr ""
 
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:166
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:166
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:166
-#: src/includes/classes/Utils/Restriction.php:166
-msgid "Search Categories"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:167
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:167
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:167
-#: src/includes/classes/Utils/Restriction.php:167
-msgid "Popular Categories"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:168
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:185
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:168
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:185
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:168
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:185
-#: src/includes/classes/Utils/Restriction.php:168
-#: src/includes/classes/Utils/Restriction.php:185
-msgid "All Categories"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:169
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:169
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:169
-#: src/includes/classes/Utils/Restriction.php:169
-msgid "Parent Category"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:170
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:170
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:170
-#: src/includes/classes/Utils/Restriction.php:170
-msgid "Parent Category:"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:171
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:171
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:171
-#: src/includes/classes/Utils/Restriction.php:171
-msgid "Edit Category"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:172
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:172
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:172
-#: src/includes/classes/Utils/Restriction.php:172
-msgid "View Category"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:173
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:173
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:173
-#: src/includes/classes/Utils/Restriction.php:173
-msgid "Update Category"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:174
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:174
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:174
-#: src/includes/classes/Utils/Restriction.php:174
-msgid "Add New Category"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:175
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:175
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:175
-#: src/includes/classes/Utils/Restriction.php:175
-msgid "New Category Name"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:176
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:176
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:176
-#: src/includes/classes/Utils/Restriction.php:176
-msgid "Separate Categories w/ Commas"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:177
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:177
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:177
-#: src/includes/classes/Utils/Restriction.php:177
-msgid "Add or Remove Categories"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:178
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:178
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:178
-#: src/includes/classes/Utils/Restriction.php:178
-msgid "Choose From the Most Used Categories"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:179
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:179
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:179
-#: src/includes/classes/Utils/Restriction.php:179
-msgid "No Categories Found"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:180
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:180
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:180
-#: src/includes/classes/Utils/Restriction.php:180
-msgid "No Categories"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:181
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:181
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:181
-#: src/includes/classes/Utils/Restriction.php:181
-msgid "Categories List Navigation"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:182
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:182
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:182
-#: src/includes/classes/Utils/Restriction.php:182
-msgid "Categories List"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:241
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:241
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:241
-#: src/includes/classes/Utils/Restriction.php:241
-msgid "Restricted Posts"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:242
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:242
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:242
-#: src/includes/classes/Utils/Restriction.php:242
-msgid "Restricted Post Types"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:243
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:243
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:243
-#: src/includes/classes/Utils/Restriction.php:243
-msgid "Restricted Taxnomy Terms (e.g., Categories/Tags)"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:244
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:244
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:244
-#: src/includes/classes/Utils/Restriction.php:244
-msgid "Restricted URI Patterns"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:245
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:245
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:245
-#: src/includes/classes/Utils/Restriction.php:245
-msgid "Restricted Capabilities"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:272
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:272
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:217
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:217
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:272
 #: src/includes/classes/Utils/Restriction.php:272
-msgid "Posts to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):"
+msgid "Protected Cats/Tags/Terms"
 msgstr ""
 
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:278
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:278
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:278
-#: src/includes/classes/Utils/Restriction.php:278
-msgid "Post IDs to Restrict (WordPress Post IDs, comma-delimited):"
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:218
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:218
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:273
+#: src/includes/classes/Utils/Restriction.php:273
+msgid "Protected Roles"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:219
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:219
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:274
+#: src/includes/classes/Utils/Restriction.php:274
+msgid "Protected Capabilities"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:220
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:220
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:275
+#: src/includes/classes/Utils/Restriction.php:275
+msgid "Protected URI Patterns"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:279
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:279
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:334
+#: src/includes/classes/Utils/Restriction.php:334
+msgid "Descriptive summary here..."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:280
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:280
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:335
+#: src/includes/classes/Utils/Restriction.php:335
+msgid "Enter a descriptive summary here..."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:281
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:281
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:336
+#: src/includes/classes/Utils/Restriction.php:336
+msgid "Enter a unique identifier..."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:282
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:282
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:337
+#: src/includes/classes/Utils/Restriction.php:337
+msgid "Suggested"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:283
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:283
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:338
+#: src/includes/classes/Utils/Restriction.php:338
+msgid "Optional"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:301
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:301
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:356
+#: src/includes/classes/Utils/Restriction.php:356
+msgid "A Restriction Serves Two Purposes"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:303
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:303
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:303
-#: src/includes/classes/Utils/Restriction.php:303
-msgid "Post Types to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):"
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:358
+#: src/includes/classes/Utils/Restriction.php:358
+msgid "It protects content in WordPress. Each individual Restriction that you add can protect multiple Post/Pages/etc."
 msgstr ""
 
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:309
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:309
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:309
-#: src/includes/classes/Utils/Restriction.php:309
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:304
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:304
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:359
+#: src/includes/classes/Utils/Restriction.php:359
+msgid "It can grant access to the content you've protected; i.e., you can associate each Restriction with a unique ID/Slug and then sell (or otherwise allow) access to what a Restriction protects."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:306
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:306
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:361
+#: src/includes/classes/Utils/Restriction.php:361
+msgid "Therefore, it helps to think about Restrictions as both a form of protection and also as a way to prepare packages that can be accessed by others."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:335
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:365
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:410
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:335
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:365
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:410
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:390
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:420
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:465
+#: src/includes/classes/Utils/Restriction.php:390
+#: src/includes/classes/Utils/Restriction.php:420
+#: src/includes/classes/Utils/Restriction.php:465
+msgid "<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:337
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:337
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:392
+#: src/includes/classes/Utils/Restriction.php:392
+msgid "Post IDs to Restrict (WordPress Post IDs, comma-delimited):"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:338
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:338
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:393
+#: src/includes/classes/Utils/Restriction.php:393
+msgid "e.g., 123, 345, 789, 3492"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:367
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:367
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:422
+#: src/includes/classes/Utils/Restriction.php:422
 msgid "Post Types to Restrict (WordPress Post Types, comma-delimited):"
 msgstr ""
 
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:340
-#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:340
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:340
-#: src/includes/classes/Utils/Restriction.php:340
-msgid "URI Patterns to Restrict (one per line):"
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:368
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:368
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:423
+#: src/includes/classes/Utils/Restriction.php:423
+msgid "e.g., post, article, movie, book"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:364
-msgid "Capabilities to Restrict (use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple):"
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:370
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:370
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:425
+#: src/includes/classes/Utils/Restriction.php:425
+msgid "<strong>Note:</strong> Protecting a Post Type will automatically protect <em>all</em> Posts of that type (everything)."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:370
-msgid "Capabilities to Restrict (WordPress Capabilities, comma-delimited):"
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:408
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:408
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:463
+#: src/includes/classes/Utils/Restriction.php:463
+msgid "<a href=\"https://developer.wordpress.org/plugins/users/roles-and-capabilities/\" target=\"_blank\">WordPress Roles</a> are predefined Capability sets. See also: <a href=\"https://wordpress.org/plugins/user-role-editor/\" target=\"_blank\">Role Editor</a>"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:412
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:412
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:467
+#: src/includes/classes/Utils/Restriction.php:467
+msgid "<a href=\"https://developer.wordpress.org/plugins/users/roles-and-capabilities/\" target=\"_blank\">WordPress Roles</a> in comma-delimited format. See also: <a href=\"https://wordpress.org/plugins/user-role-editor/\" target=\"_blank\">Role Editor</a>"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:414
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:414
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:469
+#: src/includes/classes/Utils/Restriction.php:469
+msgid "<strong>Note:</strong> There are some Roles that are \"reserved\" internally and cannot be associated with a Restriction. They include: %1$s"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:434
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:434
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:489
+#: src/includes/classes/Utils/Restriction.php:489
+msgid "<a href=\"https://developer.wordpress.org/reference/functions/current_user_can/\" target=\"_blank\">WordPress Capabilities</a> in comma-delimited format:"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:435
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:435
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:490
+#: src/includes/classes/Utils/Restriction.php:490
+msgid "e.g., something, something_else, pro_membership"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:438
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:438
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:493
+#: src/includes/classes/Utils/Restriction.php:493
+msgid "<strong>Tip:</strong> You can enter <a href=\"https://codex.wordpress.org/Roles_and_Capabilities\" target=\"_blank\">Built-In Capabilities</a> or type arbitrary word fragments (i.e., Custom Capabilities) that you will test using: <a href=\"https://developer.wordpress.org/reference/functions/current_user_can/\" target=\"_blank\">current_user_can()</a>."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:439
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:439
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:494
+#: src/includes/classes/Utils/Restriction.php:494
+msgid "<strong>Note:</strong> Automatic Capability prefixing has been disabled on this installation. What you type is what you test, as entered. Please be careful about what you expose."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:441
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:441
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:496
+#: src/includes/classes/Utils/Restriction.php:496
+msgid "<strong>Note:</strong> Capabilities (i.e., what you enter here) are automatically prefixed with <code>%1$s</code> internally. You can test them with: <a href=\"https://developer.wordpress.org/reference/functions/current_user_can/\" target=\"_blank\" style=\"text-decoration:none;\">current_user_can('%1$s<code style=\"padding:0;\">something</code>')</a>"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:460
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:460
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:515
+#: src/includes/classes/Utils/Restriction.php:515
+msgid "URI Patterns in line-delmited format (i.e., one per line):"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:461
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:461
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:516
+#: src/includes/classes/Utils/Restriction.php:516
+msgid "e.g., /path/to/members-only/**"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:462
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:462
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:517
+#: src/includes/classes/Utils/Restriction.php:517
+msgid "<strong>Tip:</strong> This allows you to protect any location that is served by WordPress, even if it doesn't have a formal WordPress content-type (i.e., even if it's not a Post/Page)."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:464
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:464
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:519
+#: src/includes/classes/Utils/Restriction.php:519
+msgid "A \"URI\" is everything after the domain name in a URL:"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:465
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:465
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:520
+#: src/includes/classes/Utils/Restriction.php:520
+msgid "http://example.com<code>/this/is/the-URI/part/in-a-location</code>"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:467
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:467
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:522
+#: src/includes/classes/Utils/Restriction.php:522
+msgid "This watered-down regex syntax can be used in your patterns:"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:469
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:469
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:524
+#: src/includes/classes/Utils/Restriction.php:524
+msgid "<code>*</code> Matches zero or more characters that are not a <em><strong>/</strong></em>"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:470
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:470
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:525
+#: src/includes/classes/Utils/Restriction.php:525
+msgid "<code>**</code> Matches zero or more characters of any kind."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:471
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:471
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:526
+#: src/includes/classes/Utils/Restriction.php:526
+msgid "<code>?</code> Matches exactly one character that is not a <em><strong>/</strong></em>"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:472
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:472
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:527
+#: src/includes/classes/Utils/Restriction.php:527
+msgid "<code>??</code> Matches exactly one character of any kind."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:473
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:473
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:528
+#: src/includes/classes/Utils/Restriction.php:528
+msgid "<code>[abc]</code> Matches exactly one character: <em>a</em>, <em>b</em>, or <em>c</em>."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:474
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:474
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:529
+#: src/includes/classes/Utils/Restriction.php:529
+msgid "<code>[a-z0-9]</code> Matches exactly one character: <em>a</em> thru <em>z</em> or <em>0</em> thru <em>9</em>."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:475
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:475
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:530
+#: src/includes/classes/Utils/Restriction.php:530
+msgid "<code>[!abc]</code> A leading <em>!</em> inside <em>[]</em> negates; i.e., anything that is not: <em>a</em>, <em>b</em>, or <em>c</em>."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:476
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:476
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:531
+#: src/includes/classes/Utils/Restriction.php:531
+msgid "<code>{abc,def}</code> Matches the fragment <em>abc</em> or <em>def</em> (one or the other)."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:477
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:477
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:532
+#: src/includes/classes/Utils/Restriction.php:532
+msgid "<code>{abc,def,}</code> Matches <em>abc</em>, <em>def</em> or nothing; i.e., an optional match."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:478
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:478
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:533
+#: src/includes/classes/Utils/Restriction.php:533
+msgid "<code>{/**,}</code> Matches a <em>/</em> followed by zero or more characters. Also matches end of string."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:479
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:479
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:534
+#: src/includes/classes/Utils/Restriction.php:534
+msgid "<code>[*?[]{}]</code> Matches a literal special character. One of: <em>?*[]{}</em> explicitly."
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:481
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:481
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:536
+#: src/includes/classes/Utils/Restriction.php:536
+msgid "<strong>Note:</strong> All comparisons are caSe-insensitive. You <strong>must match the entire URI</strong> and not just a small portion of it; i.e., <code>*</code> and <code>**</code> are your friends. Any trailing slash and/or query string variables on the end of a URI (e.g., <code>.../?p=123&amp;key=value</code>) are stripped before comparison so you don't need to worry about them. However, if your pattern includes <code>[?]</code> (i.e., a literal <code>?</code> indicating that you DO want to check the trailing slash &amp; query string), then they are NOT stripped away when comparing, and the pattern you give will be capable of matching. Just remember that query string variables can appear in any arbitrary order, as entered by a user. If you check for query strings, use <code>**</code> around your check; e.g., <code>/members-only{/,}[?]**key=value**</code>"
+msgstr ""
+
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:482
+#: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:482
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:537
+#: src/includes/classes/Utils/Restriction.php:537
+msgid "<strong>Note:</strong> There are some URIs that are \"reserved\" internally and cannot be associated with a Restriction. They include: %1$s"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:173
+#: src/includes/classes/Utils/Restriction.php:173
+msgid "Content Restriction Tags/Categories"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:176
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:195
+#: src/includes/classes/Utils/Restriction.php:176
+#: src/includes/classes/Utils/Restriction.php:195
+msgid "Categories"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:177
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:196
+#: src/includes/classes/Utils/Restriction.php:177
+#: src/includes/classes/Utils/Restriction.php:196
+msgid "Category"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:178
+#: src/includes/classes/Utils/Restriction.php:178
+msgid "Search Categories"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:179
+#: src/includes/classes/Utils/Restriction.php:179
+msgid "Popular Categories"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:180
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:197
+#: src/includes/classes/Utils/Restriction.php:180
+#: src/includes/classes/Utils/Restriction.php:197
+msgid "All Categories"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:181
+#: src/includes/classes/Utils/Restriction.php:181
+msgid "Parent Category"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:182
+#: src/includes/classes/Utils/Restriction.php:182
+msgid "Parent Category:"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:183
+#: src/includes/classes/Utils/Restriction.php:183
+msgid "Edit Category"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:184
+#: src/includes/classes/Utils/Restriction.php:184
+msgid "View Category"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:185
+#: src/includes/classes/Utils/Restriction.php:185
+msgid "Update Category"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:186
+#: src/includes/classes/Utils/Restriction.php:186
+msgid "Add New Category"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:187
+#: src/includes/classes/Utils/Restriction.php:187
+msgid "New Category Name"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:188
+#: src/includes/classes/Utils/Restriction.php:188
+msgid "Separate Categories w/ Commas"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:189
+#: src/includes/classes/Utils/Restriction.php:189
+msgid "Add or Remove Categories"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:190
+#: src/includes/classes/Utils/Restriction.php:190
+msgid "Choose From the Most Used Categories"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:191
+#: src/includes/classes/Utils/Restriction.php:191
+msgid "No Categories Found"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:192
+#: src/includes/classes/Utils/Restriction.php:192
+msgid "No Categories"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:193
+#: src/includes/classes/Utils/Restriction.php:193
+msgid "Categories List Navigation"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:194
+#: src/includes/classes/Utils/Restriction.php:194
+msgid "Categories List"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160422'; //v//
+    const VERSION = '160425'; //v//
 
     /**
      * Constructor.
@@ -52,8 +52,16 @@ class App extends SCoreClasses\App
                 ],
             ],
 
-            '§default_options' => [], // @TODO
-            '§pro_option_keys' => [], // @TODO
+            '§pro_option_keys' => [
+                'restricted_caps_auto_prefix',
+                'restriction_categories_enable',
+            ],
+            '§default_options' => [
+                'restricted_caps_auto_prefix'   => 'access_',
+                'restriction_categories_enable' => '0',
+            ],
+            // @TODO Require WooCommerce.
+            // @TODO Require fancy permalinks.
         ];
         parent::__construct($instance_base, $instance);
     }
@@ -80,12 +88,30 @@ class App extends SCoreClasses\App
     {
         parent::onSetupOtherHooks(); // Core hooks.
 
-        add_action('init', [$this->Utils->Restriction, 'onInitRegisterPostType'], -1001);
-        add_action('init', [$this->Utils->SecurityGate, 'onInitGuardRestrictions'], -1000);
+        add_action('woocommerce_init', function () {
+            # Restriction-related hooks.
 
-        add_filter('custom_menu_order', '__return_true');
-        add_filter('menu_order', [$this->Utils->Restriction, 'onMenuOrder'], 1000);
+            $this->Utils->Restriction->onInitRegisterPostType();
 
-        add_action('add_meta_boxes', [$this->Utils->Restriction, 'onAddMetaBoxes']);
+            add_action('current_screen', [$this->Utils->Restriction, 'onCurrentScreen']);
+
+            add_filter('custom_menu_order', '__return_true'); // Enable custom order.
+            add_filter('menu_order', [$this->Utils->Restriction, 'onMenuOrder'], 1000);
+
+            add_action('add_meta_boxes', [$this->Utils->Restriction, 'onAddMetaBoxes']);
+            add_filter('default_hidden_meta_boxes', [$this->Utils->Restriction, 'onDefaultHiddenMetaBoxes'], 10, 2);
+
+            add_action('admin_enqueue_scripts', [$this->Utils->Restriction, 'onAdminEnqueueScripts']);
+
+            # Security gate; always after the `restriction` post type registration.
+
+            // See also: <http://jas.xyz/1WlT51u> to review the BuddyPress loading order.
+            // BuddyPress runs its setup on `plugins_loaded` at the latest, so this comes after BP.
+
+            // See also: <https://github.com/wp-plugins/bbpress/blob/master/bbpress.php#L969>
+            // bbPress runs its setup on `plugins_loaded` at the latest, so this comes after BBP.
+
+            $this->Utils->SecurityGate->onInitGuardRestrictions();
+        });
     }
 }

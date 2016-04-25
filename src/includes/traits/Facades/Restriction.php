@@ -40,22 +40,6 @@ trait Restriction
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionPostTypeVar()
-    {
-        return $GLOBALS[static::class]->Utils->Restriction->post_type_var;
-    }
-
-    /**
-     * @since 16xxxx Initial release.
-     */
-    public static function restrictionPostTypeSlug()
-    {
-        return $GLOBALS[static::class]->Utils->Restriction->post_type_slug;
-    }
-
-    /**
-     * @since 16xxxx Initial release.
-     */
     public static function getRestrictionMeta(...$args)
     {
         return $GLOBALS[static::class]->Utils->Restriction->getMeta(...$args);

@@ -28,4 +28,5 @@ abstract class Facades
 {
     use Traits\Facades\Restriction;
     use Traits\Facades\RestrictionCaps;
+    use Traits\Facades\Systematics;
 }
