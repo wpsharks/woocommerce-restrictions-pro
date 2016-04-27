@@ -388,7 +388,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo '<div class="-meta -post-ids">';
 
         if ($post_id_select_options) {
-            echo '<p class="-field -select-field"><select name="'.esc_attr($this->post_type.'_post_ids').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$post_id_select_options.'</select></p>';
+            echo '<p class="-field -select-field"><select name="'.esc_attr($this->post_type.'_post_ids[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$post_id_select_options.'</select></p>';
             echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
             echo '<p class="-heading -input-heading">'.__('Post IDs to Restrict (WordPress Post IDs, comma-delimited):', 's2member-x').'</p>';
@@ -422,7 +422,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo '<div class="-meta -post-types">';
 
         if ($post_type_select_options) {
-            echo '<p class="-field -select-field"><select name="'.esc_attr($this->post_type.'_post_types').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$post_type_select_options.'</select></p>';
+            echo '<p class="-field -select-field"><select name="'.esc_attr($this->post_type.'_post_types[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$post_type_select_options.'</select></p>';
             echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
             echo '<p class="-heading -input-heading">'.__('Post Types to Restrict (WordPress Post Types, comma-delimited):', 's2member-x').'</p>';
@@ -455,7 +455,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo '<div class="-meta -tax-term-ids">';
 
         if ($tax_term_id_select_options) {
-            echo '<p class="-field -select-field"><select name="'.esc_attr($this->post_type.'_tax_term_ids').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$tax_term_id_select_options.'</select></p>';
+            echo '<p class="-field -select-field"><select name="'.esc_attr($this->post_type.'_tax_term_ids[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$tax_term_id_select_options.'</select></p>';
             echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
             echo '<p class="-heading -input-heading">'.__('Taxonomy Terms to Restrict (<em style="font-style:normal; font-family:monospace;">[taxonomy]:[term ID]</em>s, comma-delimited):', 's2member-x').'</p>';
@@ -489,7 +489,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         if ($role_select_options) {
             echo '<p class="-heading -select-heading">'.__('A <a href="https://developer.wordpress.org/plugins/users/roles-and-capabilities/" target="_blank">WordPress Role</a> is a predefined list of Capabilities. See also: <a href="https://wordpress.org/plugins/user-role-editor/" target="_blank">Role Editor</a>', 's2member-x').'</p>';
-            echo '<p class="-field -select-field"><select name="'.esc_attr($this->post_type.'_roles').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$role_select_options.'</select></p>';
+            echo '<p class="-field -select-field"><select name="'.esc_attr($this->post_type.'_roles[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$role_select_options.'</select></p>';
             echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
             echo '<p class="-heading -input-heading">'.__('<a href="https://developer.wordpress.org/plugins/users/roles-and-capabilities/" target="_blank">WordPress Roles</a> in comma-delimited format. See also: <a href="https://wordpress.org/plugins/user-role-editor/" target="_blank">Role Editor</a>', 's2member-x').'</p>';
@@ -590,20 +590,17 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         $post_id = (int) $post_id; // Force integer.
 
-        $post_ids = $_REQUEST[$this->post_type.'_post_ids'] ?? [];
-        $post_ids = is_string($post_ids) ? preg_split('/[\s,]+/', $post_ids, -1, PREG_SPLIT_NO_EMPTY) : $post_ids;
-        $post_ids = array_unique(c::removeEmptys(array_map('intval', is_array($post_ids) ? $post_ids : [])));
-        $this->updateMeta($post_id, 'post_ids', $post_ids);
+        foreach (['post_ids', 'post_types', 'tax_term_ids', 'roles', 'ccaps', 'uri_patterns'] as $_meta_key) {
+            $_split_regex        = $_meta_key === 'uri_patterns' ? '/['."\r\n".']+/' : '/[\s,]+/';
+            $_array_map_callback = $_meta_key === 'post_ids' ? 'intval' : 'strval';
 
-        $post_types = $_REQUEST[$this->post_type.'_post_types'] ?? [];
-        $post_types = is_string($post_types) ? preg_split('/[\s,]+/', $post_types, -1, PREG_SPLIT_NO_EMPTY) : $post_types;
-        $post_types = array_unique(c::removeEmptys(array_map('strval', is_array($post_types) ? $post_types : [])));
-        $this->updateMeta($post_id, 'post_types', $post_types);
+            $_meta_values = c::unslash($_REQUEST[$this->post_type.'_'.$_meta_key] ?? []);
+            $_meta_values = is_string($_meta_values) ? preg_split($_split_regex, $_meta_values, -1, PREG_SPLIT_NO_EMPTY) : $_meta_values;
+            $_meta_values = array_map($_array_map_callback, is_array($_meta_values) ? $_meta_values : []);
+            $_meta_values = array_unique(c::removeEmptys($_meta_values));
 
-        $tax_term_ids = $_REQUEST[$this->post_type.'_tax_term_ids'] ?? [];
-        $tax_term_ids = is_string($tax_term_ids) ? preg_split('/[\s,]+/', $tax_term_ids, -1, PREG_SPLIT_NO_EMPTY) : $tax_term_ids;
-        $tax_term_ids = array_unique(c::removeEmptys(array_map('strval', is_array($tax_term_ids) ? $tax_term_ids : [])));
-        $this->updateMeta($post_id, 'tax_term_ids', $tax_term_ids);
+            $this->updateMeta($post_id, $_meta_key, $_meta_values);
+        } // unset($_meta_key, $_split_regex, $_array_map_callback, $_meta_values); // Housekeeping.
     }
 
     /**
@@ -638,7 +635,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         $post_id = (int) $post_id; // Force integer.
 
-        $this->deleteMeta($post_id, $this->post_type.'_'.$key);
+        $this->deleteMeta($post_id, /* No prefix here.*/ $key);
 
         foreach ($values as $_value) {
             add_post_meta($post_id, $this->post_type.'_'.$key, $_value);
