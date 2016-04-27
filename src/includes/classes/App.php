@@ -100,6 +100,7 @@ class App extends SCoreClasses\App
 
             add_action('add_meta_boxes', [$this->Utils->Restriction, 'onAddMetaBoxes']);
             add_filter('default_hidden_meta_boxes', [$this->Utils->Restriction, 'onDefaultHiddenMetaBoxes'], 10, 2);
+            add_action('save_post_'.$this->Utils->Restriction->post_type, [$this->Utils->Restriction, 'onSavePost'], 10, 3);
 
             add_action('admin_enqueue_scripts', [$this->Utils->Restriction, 'onAdminEnqueueScripts']);
 
