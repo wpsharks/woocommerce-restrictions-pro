@@ -594,6 +594,16 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         $post_ids = is_string($post_ids) ? preg_split('/[\s,]+/', $post_ids, -1, PREG_SPLIT_NO_EMPTY) : $post_ids;
         $post_ids = array_unique(c::removeEmptys(array_map('intval', is_array($post_ids) ? $post_ids : [])));
         $this->updateMeta($post_id, 'post_ids', $post_ids);
+
+        $post_types = $_REQUEST[$this->post_type.'_post_types'] ?? [];
+        $post_types = is_string($post_types) ? preg_split('/[\s,]+/', $post_types, -1, PREG_SPLIT_NO_EMPTY) : $post_types;
+        $post_types = array_unique(c::removeEmptys(array_map('strval', is_array($post_types) ? $post_types : [])));
+        $this->updateMeta($post_id, 'post_types', $post_types);
+
+        $tax_term_ids = $_REQUEST[$this->post_type.'_tax_term_ids'] ?? [];
+        $tax_term_ids = is_string($tax_term_ids) ? preg_split('/[\s,]+/', $tax_term_ids, -1, PREG_SPLIT_NO_EMPTY) : $tax_term_ids;
+        $tax_term_ids = array_unique(c::removeEmptys(array_map('strval', is_array($tax_term_ids) ? $tax_term_ids : [])));
+        $this->updateMeta($post_id, 'tax_term_ids', $tax_term_ids);
     }
 
     /**
