@@ -104,13 +104,11 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      * Anything else; e.g., URIs.
      *
      * @since 16xxxx Security gate.
+     *
+     * @note `is_date()`, `is_author()`, `is_search()` should be covered here.
+     *  i.e., if a site owner wants to protect those areas they will need URI patterns.
      */
     protected function maybeGuardOtherAccess()
     {
     }
-
-    // @TODO Decide how to handle author and date-based archives, if at all.
-    //  This will probably be something that a site owner should cover on their own via URI Patterns.
-    // I would like to avoid needing to deal with the Alternative Views concept in the old software.
-    // `is_date()`, `is_author()`.
 }
