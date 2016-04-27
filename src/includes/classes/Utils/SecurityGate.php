@@ -45,6 +45,9 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      */
     public function onInitGuardRestrictions()
     {
+        if (c::isCli()) {
+            return; // Not applicable.
+        }
         $this->maybeGuardSingularAccess();
         $this->maybeGuardCategoryArchiveAccess();
         $this->maybeGuardTagArchiveAccess();
@@ -119,5 +122,23 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     protected function maybeGuardOtherAccess()
     {
         global $wp_the_query;
+    }
+
+    /**
+     * Deny and redirect.
+     *
+     * @since 16xxxx Security gate.
+     */
+    protected function denyWithRedirection()
+    {
+        $redirects_to_post_id  = (int) s::getOption('security_gate_redirects_to_post_id');
+        $redirect_to_url       = $redirects_to_post_id ? get_permalink($redirects_to_post_id) : home_url('/');
+        $redirect_to_url_parts = $redirect_to_url ? parse_url($redirect_to_url) : [];
+
+        $redirect_to = !$redirect_to_url_parts || $redirect_to_url_parts['uri'] === c::currentUri()
+            ? wp_login_url() : $redirect_to_url; // Try hard to avoid loops.
+
+        wp_redirect($redirect_to, 307);
+        exit; // Stop here.
     }
 }

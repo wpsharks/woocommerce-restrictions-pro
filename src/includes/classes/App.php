@@ -57,8 +57,9 @@ class App extends SCoreClasses\App
                 'restriction_categories_enable',
             ],
             '§default_options' => [
-                'restricted_ccaps_auto_prefix'  => 'access_',
-                'restriction_categories_enable' => '0',
+                'restricted_ccaps_auto_prefix'       => 'access_',
+                'restriction_categories_enable'      => '0',
+                'security_gate_redirects_to_post_id' => '',
             ],
             // @TODO Require WooCommerce.
             // @TODO Require fancy permalinks.

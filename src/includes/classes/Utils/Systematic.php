@@ -55,9 +55,10 @@ class Systematic extends SCoreClasses\SCore\Base\Core
             return $post_ids; // Cached already.
         }
         $post_ids = []; // Initialize.
+        $post_ids = array_merge($post_ids, [(int) s::getOption('security_gate_redirects_to_post_id')]);
         $post_ids = array_merge($post_ids, $this->collectWcPostIds($no_cache));
         $post_ids = array_merge($post_ids, $this->collectBpPostIds($no_cache));
-        $post_ids = array_unique($post_ids);
+        $post_ids = array_unique(c::removeEmptys($post_ids));
 
         return $post_ids;
     }
