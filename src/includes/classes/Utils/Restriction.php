@@ -266,13 +266,13 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             return; // Not applicable.
         }
         $meta_boxes = [
-            $this->client_side_prefix.'-about'          => ['title' => __('About Restrictions', 's2member-x'), 'callback' => 'aboutRestrictionsMetaBox'],
-            $this->client_side_prefix.'-post-ids'       => ['title' => __('Protected Posts/Pages', 's2member-x'), 'callback' => 'restrictsPostIdsMetaBox'],
-            $this->client_side_prefix.'-post-types'     => ['title' => __('Protected Post Types', 's2member-x'), 'callback' => 'restrictsPostTypesMetaBox'],
-            $this->client_side_prefix.'-taxonomy-terms' => ['title' => __('Protected Catgs., Tags, Terms', 's2member-x'), 'callback' => 'restrictsTaxnomyTermsMetaBox'],
-            $this->client_side_prefix.'-roles'          => ['title' => __('Protected Role Capabilities', 's2member-x'), 'callback' => 'restrictsRolesMetaBox'],
-            $this->client_side_prefix.'-ccaps'          => ['title' => __('Protected Capabilities (Custom)', 's2member-x'), 'callback' => 'restrictsCcapsMetaBox'],
-            $this->client_side_prefix.'-uri-patterns'   => ['title' => __('Protected URI Patterns', 's2member-x'), 'callback' => 'restrictsUriPatternsMetaBox'],
+            $this->client_side_prefix.'-about'        => ['title' => __('About Restrictions', 's2member-x'), 'callback' => 'aboutRestrictionsMetaBox'],
+            $this->client_side_prefix.'-post-ids'     => ['title' => __('Protected Posts/Pages', 's2member-x'), 'callback' => 'restrictsPostIdsMetaBox'],
+            $this->client_side_prefix.'-post-types'   => ['title' => __('Protected Post Types', 's2member-x'), 'callback' => 'restrictsPostTypesMetaBox'],
+            $this->client_side_prefix.'-tax-term-ids' => ['title' => __('Protected Catgs., Tags (Terms)', 's2member-x'), 'callback' => 'restrictsTaxTermIdsMetaBox'],
+            $this->client_side_prefix.'-roles'        => ['title' => __('Protected Role Capabilities', 's2member-x'), 'callback' => 'restrictsRolesMetaBox'],
+            $this->client_side_prefix.'-ccaps'        => ['title' => __('Protected Capabilities (Custom)', 's2member-x'), 'callback' => 'restrictsCcapsMetaBox'],
+            $this->client_side_prefix.'-uri-patterns' => ['title' => __('Protected URI Patterns', 's2member-x'), 'callback' => 'restrictsUriPatternsMetaBox'],
         ];
         $closed_meta_boxes = get_user_option('closedpostboxes_'.$this->post_type);
 
@@ -434,16 +434,36 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * Taxonomy terms meta box.
+     * Tax:term IDs meta box.
      *
      * @since 16xxxx Restrictions.
      *
      * @param \WP_Post $post Post object.
      * @param array    $args Callback args, if any.
      */
-    public function restrictsTaxnomyTermsMetaBox(\WP_Post $post, array $args = [])
+    public function restrictsTaxTermIdsMetaBox(\WP_Post $post, array $args = [])
     {
-        // @TODO : Ugh, this will be a fun one!
+        $current_tax_term_ids = $this->getMeta($post->ID, 'tax_term_ids');
+
+        $tax_term_id_select_options = s::termSelectOptions(
+            s::applyFilters('restriction_ui_tax_term_id_select_option_args', [
+                'allow_empty'              => false,
+                'option_child_indent_char' => '|',
+                'current_tax_term_ids'     => $current_tax_term_ids,
+            ])
+        );
+        echo '<div class="-meta -tax-term-ids">';
+
+        if ($tax_term_id_select_options) {
+            echo '<p class="-field -select-field"><select name="'.esc_attr($this->post_type.'_tax_term_ids').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$tax_term_id_select_options.'</select></p>';
+            echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
+        } else {
+            echo '<p class="-heading -input-heading">'.__('Taxonomy Terms to Restrict (<em style="font-style:normal; font-family:monospace;">[taxonomy]:[term ID]</em>s, comma-delimited):', 's2member-x').'</p>';
+            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_tax_term_ids').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., category:123, post_tag:456, product_cat:678, product_tag:789', 's2member-x').'" value="'.esc_attr(implode(',', $current_tax_term_ids)).'"></p>';
+        }
+        echo    '<p>'.__('<strong>Note:</strong> Protecting a Taxonomy Term (i.e., a Category, Tag, etc.) will protect all archive views associated with that Term (including any child Terms in a hierarchy). It also protects all permalinks leading to Posts associated with the Term (e.g., if a Post has a Tag that you protect, or it\'s in a Category that you protect, it is protected automatically also). However, this may not protect all excerpts presented by your theme. In most cases, that is desirable, since excerpts are often used as teasers. However, if you do want to protect all excerpts presented by your theme, you can use URI Patterns to cover any additional areas.', 's2member-x').'</p>';
+
+        echo '</div>';
     }
 
     /**
