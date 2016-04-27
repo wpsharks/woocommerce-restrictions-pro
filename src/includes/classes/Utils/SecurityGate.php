@@ -59,7 +59,9 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      */
     protected function maybeGuardSingularAccess()
     {
-        if (!is_singular()) {
+        global $wp_the_query;
+
+        if (!$wp_the_query->is_singular()) {
             return; // Not applicable.
         }
     }
@@ -71,7 +73,9 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      */
     protected function maybeGuardCategoryArchiveAccess()
     {
-        if (!is_category()) {
+        global $wp_the_query;
+
+        if (!$wp_the_query->is_category()) {
             return; // Not applicable.
         }
     }
@@ -83,7 +87,9 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      */
     protected function maybeGuardTagArchiveAccess()
     {
-        if (!is_tag()) {
+        global $wp_the_query;
+
+        if (!$wp_the_query->is_tag()) {
             return; // Not applicable.
         }
     }
@@ -95,7 +101,9 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      */
     protected function maybeGuardTaxArchiveAccess()
     {
-        if (!is_tax()) {
+        global $wp_the_query;
+
+        if (!$wp_the_query->is_tax()) {
             return; // Not applicable.
         }
     }
@@ -105,10 +113,11 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Security gate.
      *
-     * @note `is_date()`, `is_author()`, `is_search()` should be covered here.
-     *  i.e., if a site owner wants to protect those areas they will need URI patterns.
+     * @note `is_date()`, `is_author()`, `is_search()`, `is_feed()`, `is_comment_feed()` should be covered here.
+     *  i.e., If a site owner wants to protect these areas (or anything else) they will need URI patterns.
      */
     protected function maybeGuardOtherAccess()
     {
+        global $wp_the_query;
     }
 }
