@@ -52,7 +52,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         $this->maybeGuardCategoryArchiveAccess();
         $this->maybeGuardTagArchiveAccess();
         $this->maybeGuardTaxArchiveAccess();
-        $this->maybeGuardOtherAccess();
+        $this->maybeGuardOtherUriAccess();
     }
 
     /**
@@ -119,7 +119,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      * @note `is_date()`, `is_author()`, `is_search()`, `is_feed()`, `is_comment_feed()` should be covered here.
      *  i.e., If a site owner wants to protect these areas (or anything else) they will need URI patterns.
      */
-    protected function maybeGuardOtherAccess()
+    protected function maybeGuardOtherUriAccess()
     {
         global $wp_the_query;
     }
