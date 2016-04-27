@@ -56,6 +56,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         }
         $post_ids = []; // Initialize.
         $post_ids = array_merge($post_ids, $this->collectWcPostIds($no_cache));
+        $post_ids = array_merge($post_ids, $this->collectBpPostIds($no_cache));
         $post_ids = array_unique($post_ids);
 
         return $post_ids;
@@ -135,7 +136,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         $wc_urls             = $this->collectWcUrls($no_cache);
         $bp_urls             = $this->collectBpUrls($no_cache);
 
-        $uri_patterns[] = '/{wp-**,xmlrpc}.php{/**,}'; // WP root files.
+        $uri_patterns[] = '/{wp-*,xmlrpc}.php{/**,}'; // WP root files.
 
         if (!empty($wp_login_url['path']) && $wp_login_url['path'] !== '/') {
             $uri_patterns[] = '/'.c::mbTrim($wp_login_url['path'], '/').'{/**,}';
@@ -154,6 +155,8 @@ class Systematic extends SCoreClasses\SCore\Base\Core
             }
         } // unset($_bp_url); // Housekeeping.
 
+        $uri_patterns = array_unique($uri_patterns); // De-dupe.
+
         if ($as_regex) { // Conver to regex?
             $uri_patterns = c::wregx($uri_patterns);
         }
@@ -161,7 +164,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * Post IDs.
+     * WC Post IDs.
      *
      * @since 16xxxx Initial release.
      *
@@ -216,6 +219,36 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         s::setTransient($transient_key, $wc_urls, HOUR_IN_SECONDS);
 
         return $wc_urls;
+    }
+
+    /**
+     * BP Post IDs.
+     *
+     * @since 16xxxx Initial release.
+     *
+     * @param bool|null $no_cache Bypass cache?
+     *
+     * @return int[] Array of post IDs.
+     */
+    protected function collectBpPostIds(bool $no_cache = null): array
+    {
+        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
+
+        if (($bp_post_ids = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
+            return $bp_post_ids; // Cached already.
+        }
+        $bp_post_ids = []; // Initialize.
+
+        if (!c::canCallFunc('buddypress')) {
+            return $bp_post_ids = []; // Not running.
+        }
+        foreach ((array) bp_core_get_directory_page_ids() as $_bp_page => $_bp_page_id) {
+            if (in_array($_bp_page, ['register', 'activate'], true) && ($_bp_page_id = (int) $_bp_page_id) > 0) {
+                $bp_post_ids[] = $_bp_page_id;
+            }
+        } // unset($_bp_page, $_bp_page_id); // Housekeeping.
+
+        return $bp_post_ids;
     }
 
     /**

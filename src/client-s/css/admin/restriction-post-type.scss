@@ -38,18 +38,16 @@
       @include wp-admin-list-enable('>');
 
       > h4,
-      > p {
+      > p,
+      > ul {
+        margin:               1em 0;
+
         &:first-child {
           margin-top:         0;
         }
 
         &:last-child {
           margin-bottom:      0;
-        }
-
-        + ol,
-        + ul {
-          margin-top:        -.5em;
         }
       }
 
@@ -76,16 +74,25 @@
         }
       }
 
-      &.-uri-patterns > .-examples {
-        padding-left:         0;
-        margin-left:         .5em;
-        list-style-type:      none;
+      &.-uri-patterns {
+        > .-syntax-examples,
+        > .-syntax-tips {
+          ul {
+            margin-top:      .5em;
+          }
 
-        em {
-          font-size:          110%;
-          font-weight:        500;
-          font-style:         normal;
-          font-family:        monospace;
+          em {
+            font-size:        105%;
+            font-weight:      500;
+            font-style:       normal;
+            font-family:      monospace;
+          }
+        }
+
+        > .-syntax-examples {
+          padding-left:       0;
+          margin-left:       .5em;
+          list-style-type:    none;
         }
       }
     }

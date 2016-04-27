@@ -53,11 +53,11 @@ class App extends SCoreClasses\App
             ],
 
             '§pro_option_keys' => [
-                'restricted_caps_auto_prefix',
+                'restricted_ccaps_auto_prefix',
                 'restriction_categories_enable',
             ],
             '§default_options' => [
-                'restricted_caps_auto_prefix'   => 'access_',
+                'restricted_ccaps_auto_prefix'  => 'access_',
                 'restriction_categories_enable' => '0',
             ],
             // @TODO Require WooCommerce.
