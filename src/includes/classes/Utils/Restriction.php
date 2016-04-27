@@ -582,6 +582,25 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Restrictions.
      *
+     * @param string|int $post_id  Post ID.
+     * @param \WP_Post   $post     Post object.
+     * @param bool       $updating On update?
+     */
+    public function onSavePost($post_id, \WP_Post $post, bool $updating)
+    {
+        $post_id = (int) $post_id; // Force integer.
+
+        $post_ids = $_REQUEST[$this->post_type.'_post_ids'] ?? [];
+        $post_ids = is_string($post_ids) ? preg_split('/[\s,]+/', $post_ids, -1, PREG_SPLIT_NO_EMPTY) : $post_ids;
+        $post_ids = array_unique(c::removeEmptys(array_map('intval', is_array($post_ids) ? $post_ids : [])));
+        $this->updateMeta($post_id, 'post_ids', $post_ids);
+    }
+
+    /**
+     * Get meta values.
+     *
+     * @since 16xxxx Restrictions.
+     *
      * @param string|int $post_id Post ID.
      * @param string     $key     Meta key.
      *
