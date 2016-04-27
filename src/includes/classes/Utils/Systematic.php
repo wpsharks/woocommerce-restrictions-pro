@@ -83,7 +83,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         $post_types = array_merge($post_types, [a::restrictionPostType()]);
         $post_types = array_merge($post_types, ['attachment', 'nav_menu_item']);
         $post_types = array_merge($post_types, ['shop_order', 'shop_coupon', 'shop_webhook']);
-        $post_types = array_unique($post_types);
+        $post_types = array_unique(c::removeEmptys($post_types));
 
         return $post_types;
     }
@@ -109,7 +109,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
             'bbp_keymaster', 'bbp_blocked',
             'customer', 'shop_manager',
         ];
-        $role_ids = array_unique($role_ids);
+        $role_ids = array_unique(c::removeEmptys($role_ids));
 
         return $role_ids;
     }
@@ -156,7 +156,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
             }
         } // unset($_bp_url); // Housekeeping.
 
-        $uri_patterns = array_unique($uri_patterns); // De-dupe.
+        $uri_patterns = array_unique(c::removeEmptys($uri_patterns));
 
         if ($as_regex) { // Conver to regex?
             $uri_patterns = c::wregx($uri_patterns);
