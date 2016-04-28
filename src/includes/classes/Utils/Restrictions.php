@@ -93,7 +93,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
 
         $sql = 'SELECT `post_id`, `meta_key` AS `full_meta_key`, `meta_value` FROM `'.esc_sql($WpDb->postmeta).'`'.
                 ' WHERE `post_id` IN('.$sql_post_ids_sub_query.')'.// For published Restrictions.
-                ' AND `full_meta_key` IN('.c::quoteSqlIn($full_meta_keys).')';// Restriction keys.
+                ' AND `meta_key` IN('.c::quoteSqlIn($full_meta_keys).')';// Restriction keys.
 
         if (!($results = $WpDb->get_results($sql))) {
             s::setTransient($this->transient_cache_key, $restrictions, HOUR_IN_SECONDS);

@@ -69,8 +69,15 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         if (c::isCli()) {
             return; // Not applicable.
         }
-        $this->guardUriAccess();
+        // This checks admin areas too!
+
+        $this->alwaysGuardUriAccess();
         $this->maybeGuardSingularAccess();
+
+        foreach ($this->accessing as $_meta_key => &$_accessing) {
+            $_accessing = array_unique(c::removeEmptys($_accessing));
+        } // Must unset temp variable by reference.
+        unset($_meta_key, $_accessing); // Housekeeping.
     }
 
     /**
@@ -78,7 +85,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Security gate.
      */
-    protected function guardUriAccess()
+    protected function alwaysGuardUriAccess()
     {
         $this->accessing['uri_patterns'][] = c::currentUri();
     }
