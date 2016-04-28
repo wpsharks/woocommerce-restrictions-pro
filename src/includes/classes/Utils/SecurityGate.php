@@ -161,7 +161,10 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      */
     protected function sanitizeComparisonData()
     {
+        $int_meta_keys = a::restrictionIntMetaKeys();
+
         foreach ($this->accessing as $_meta_key => &$_accessing) {
+            $_accessing = array_map(in_array($_meta_key, $int_meta_keys, true) ? 'intval' : 'strval', $_accessing);
             $_accessing = array_unique(c::removeEmptys($_accessing));
         } // Must unset temp variable by reference.
         unset($_meta_key, $_accessing); // Housekeeping.
