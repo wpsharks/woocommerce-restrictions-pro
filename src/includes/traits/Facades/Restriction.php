@@ -40,6 +40,22 @@ trait Restriction
     /**
      * @since 16xxxx Initial release.
      */
+    public static function restrictionMetaKeys()
+    {
+        return $GLOBALS[static::class]->Utils->Restriction->meta_keys;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function restrictionIntMetaKeys()
+    {
+        return $GLOBALS[static::class]->Utils->Restriction->int_meta_keys;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
     public static function getRestrictionMeta(...$args)
     {
         return $GLOBALS[static::class]->Utils->Restriction->getMeta(...$args);

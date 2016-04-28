@@ -50,7 +50,6 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     public function postIds(bool $no_cache = null): array
     {
         $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-
         if (($post_ids = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
             return $post_ids; // Cached already.
         }
@@ -75,7 +74,6 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     public function postTypes(bool $no_cache = null): array
     {
         $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-
         if (($post_types = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
             return $post_types; // Cached already.
         }
@@ -100,7 +98,6 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     public function roleIds(bool $no_cache = null): array
     {
         $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-
         if (($role_ids = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
             return $role_ids; // Cached already.
         }
@@ -127,7 +124,6 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     public function uriPatterns(bool $no_cache = null, bool $as_regex = false)
     {
         $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-
         if (($uri_patterns = &$this->cacheKey(__FUNCTION__, $as_regex)) !== null && !$no_cache) {
             return $uri_patterns; // Cached already.
         }
@@ -176,7 +172,6 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     protected function collectWcPostIds(bool $no_cache = null): array
     {
         $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-
         if (($wc_post_ids = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
             return $wc_post_ids; // Cached already.
         }
@@ -202,10 +197,10 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      */
     protected function collectWcUrls(bool $no_cache = null): array
     {
-        $no_cache      = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-        $transient_key = 'systematic_wc_urls'; // Transient cache key.
+        $transient_cache_key = 'systematic_wc_urls';
 
-        if (!$no_cache && is_array($wc_urls = s::getTransient($transient_key))) {
+        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
+        if (!$no_cache && is_array($wc_urls = s::getTransient($transient_cache_key))) {
             return $wc_urls; // Cached already.
         }
         $wc_urls  = []; // Initialize.
@@ -217,7 +212,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
             }
         } // unset($_wc_page, $_wc_page_url); // Housekeeping.
 
-        s::setTransient($transient_key, $wc_urls, HOUR_IN_SECONDS);
+        s::setTransient($transient_cache_key, $wc_urls, HOUR_IN_SECONDS);
 
         return $wc_urls;
     }
@@ -234,7 +229,6 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     protected function collectBpPostIds(bool $no_cache = null): array
     {
         $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-
         if (($bp_post_ids = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
             return $bp_post_ids; // Cached already.
         }
@@ -263,10 +257,10 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      */
     protected function collectBpUrls(bool $no_cache = null): array
     {
-        $no_cache      = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-        $transient_key = 'systematic_bp_urls'; // Transient cache key.
+        $transient_cache_key = 'systematic_bp_urls';
 
-        if (!$no_cache && is_array($bp_urls = s::getTransient($transient_key))) {
+        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
+        if (!$no_cache && is_array($bp_urls = s::getTransient($transient_cache_key))) {
             return $bp_urls; // Cached already.
         }
         $bp_urls = []; // Initialize.
@@ -280,7 +274,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         if (($bp_activation_page_url = bp_get_activation_page())) {
             $bp_urls[] = $bp_activation_page_url;
         }
-        s::setTransient($transient_key, $bp_urls, HOUR_IN_SECONDS);
+        s::setTransient($transient_cache_key, $bp_urls, HOUR_IN_SECONDS);
 
         return $bp_urls;
     }

@@ -45,6 +45,24 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public $client_side_prefix;
 
     /**
+     * Meta keys.
+     *
+     * @since 16xxxx
+     *
+     * @type array
+     */
+    public $meta_keys;
+
+    /**
+     * Meta keys.
+     *
+     * @since 16xxxx
+     *
+     * @type array
+     */
+    public $int_meta_keys;
+
+    /**
      * Screen.
      *
      * @since 16xxxx
@@ -75,7 +93,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         $this->post_type          = 'restriction';
         $this->client_side_prefix = 'fdbmjuxwzjfjtaucytprkbcqfpftudyg';
-        $this->screen             = $this->screen_is_mobile             = null;
+        $this->meta_keys          = ['post_ids', 'post_types', 'tax_term_ids', 'author_ids', 'roles', 'ccaps', 'uri_patterns'];
+        $this->int_meta_keys      = ['post_ids', 'author_ids']; // Integer data type.
     }
 
     /**
@@ -384,7 +403,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             echo '<p class="-heading -input-heading">'.__('Post IDs to Restrict (WordPress Post IDs, comma-delimited):', 's2member-x').'</p>';
             echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_post_ids').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., 123, 345, 789, 3492', 's2member-x').'" value="'.esc_attr(implode(', ', $current_post_ids)).'"></p>';
         }
-        echo    '<p>'.__('<strong>Note:</strong> Protecting a Post (of any type, including Pages) will protect the permalink leading to that Post. It will also protect any other child Posts in a hierarchy. For instance, protecting a parent Page also protects any child Pages. Protecting a bbPress Forum also protects all topics/replies in that Forum. This works for any type of Post in WordPress, including <a href="https://developer.wordpress.org/plugins/post-types/" target="_blank">Custom Post Types</a>.', 's2member-x').'</p>';
+        echo    '<p>'.__('<strong>Note:</strong> Protecting a Post of any type (e.g., Post, Page, Product) will protect the permalink leading to that Post. It will also protect any other child Posts in a hierarchy. For instance, protecting a parent Page also protects any child Pages, and protecting a bbPress Forum also protects all Topics/Replies in that Forum. This works for any type of Post in WordPress, including <a href="https://developer.wordpress.org/plugins/post-types/" target="_blank">Custom Post Types</a>.', 's2member-x').'</p>';
 
         echo '</div>';
     }
@@ -620,9 +639,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         $post_id = (int) $post_id; // Force integer.
 
-        foreach (['post_ids', 'post_types', 'tax_term_ids', 'author_ids', 'roles', 'ccaps', 'uri_patterns'] as $_meta_key) {
+        foreach ($this->meta_keys as $_meta_key) {
             $_split_regex        = $_meta_key === 'uri_patterns' ? '/['."\r\n".']+/' : '/[\s,]+/';
-            $_array_map_callback = in_array($_meta_key, ['post_ids', 'author_ids'], true) ? 'intval' : 'strval';
+            $_array_map_callback = in_array($_meta_key, $this->int_meta_keys, true) ? 'intval' : 'strval';
 
             $_meta_values = c::unslash($_REQUEST[$this->post_type.'_'.$_meta_key] ?? []);
             $_meta_values = is_string($_meta_values) ? preg_split($_split_regex, $_meta_values, -1, PREG_SPLIT_NO_EMPTY) : $_meta_values;
@@ -631,6 +650,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
             $this->updateMeta($post_id, $_meta_key, $_meta_values);
         } // unset($_meta_key, $_split_regex, $_array_map_callback, $_meta_values); // Housekeeping.
+
+        a::clearRestrictionsCache(); // Clear the cache now.
     }
 
     /**

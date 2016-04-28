@@ -27,49 +27,22 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class SecurityGate extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Required post IDs.
+     * What's required?
      *
      * @since 16xxxx Security gate.
      *
-     * @type int[] Post IDs.
+     * @type array[]
      */
-    protected $required_post_ids;
+    protected $requires;
 
     /**
-     * Required post types.
+     * Accessing what?
      *
      * @since 16xxxx Security gate.
      *
-     * @type string[] Post types.
+     * @type array[]
      */
-    protected $required_post_types;
-
-    /**
-     * Required tax:term IDs.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type string[] Tax:term IDs.
-     */
-    protected $required_tax_term_ids;
-
-    /**
-     * Required author IDs.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type int[] Author IDs.
-     */
-    protected $required_author_ids;
-
-    /**
-     * Required URIs.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type string[] URIs.
-     */
-    protected $required_uris;
+    protected $accessing;
 
     /**
      * Class constructor.
@@ -82,11 +55,8 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->required_post_ids     = [];
-        $this->required_post_types   = [];
-        $this->required_tax_term_ids = [];
-        $this->required_author_ids   = [];
-        $this->required_uris         = [];
+        $this->requires  = a::restrictionsByMetaKey();
+        $this->accessing = array_fill_keys(a::restrictionMetaKeys(), []);
     }
 
     /**
@@ -110,7 +80,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      */
     protected function guardUriAccess()
     {
-        $this->required_uris[] = c::currentUri();
+        $this->accessing['uri_patterns'][] = c::currentUri();
     }
 
     /**
@@ -128,9 +98,9 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         if (!($post = $wp_the_query->queried_object())) {
             return; // Not possible.
         }
-        $this->required_post_ids[]   = $post->ID;
-        $this->required_post_types[] = $post->post_type;
-        $this->required_author_ids[] = $post->post_author;
+        $this->accessing['post_ids'][]   = $post->ID;
+        $this->accessing['post_types'][] = $post->post_type;
+        $this->accessing['author_ids'][] = $post->post_author;
 
         foreach (get_post_taxonomies($post) as $_taxonomy) {
             $_terms = wp_get_post_terms($post->ID, $_taxonomy);
@@ -138,9 +108,9 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
                 continue; // No terms.
             }
             foreach ($_terms as $_term) {
-                $this->required_tax_term_ids[] = $_taxonomy.':'.$_term->term_id;
+                $this->accessing['tax_term_ids'][] = $_taxonomy.':'.$_term->term_id;
                 foreach (get_ancestors($_term->term_id, $_taxonomy) as $_ancestor_term_id) {
-                    $this->required_tax_term_ids[] = $_taxonomy.':'.$_ancestor_term_id;
+                    $this->accessing['tax_term_ids'][] = $_taxonomy.':'.$_ancestor_term_id;
                 } // unset($_ancestor_term_id);
             } // unset($_term); // Housekeeping.
         } // unset($_taxonomy, $_terms); // Housekeeping.
@@ -149,9 +119,9 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
             if (!($_ancestor_post = get_post($_ancestor_post_id))) {
                 continue; // Nothing to do.
             }
-            $this->required_post_ids[]   = $_ancestor_post->ID;
-            $this->required_post_types[] = $_ancestor_post->post_type;
-            $this->required_author_ids[] = $_ancestor_post->post_author;
+            $this->accessing['post_ids'][]   = $_ancestor_post->ID;
+            $this->accessing['post_types'][] = $_ancestor_post->post_type;
+            $this->accessing['author_ids'][] = $_ancestor_post->post_author;
 
             foreach (get_post_taxonomies($_ancestor_post) as $_taxonomy) {
                 $_terms = wp_get_post_terms($_ancestor_post->ID, $_taxonomy);
@@ -159,9 +129,9 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
                     continue; // No terms.
                 }
                 foreach ($_terms as $_term) {
-                    $this->required_tax_term_ids[] = $_taxonomy.':'.$_term->term_id;
+                    $this->accessing['tax_term_ids'][] = $_taxonomy.':'.$_term->term_id;
                     foreach (get_ancestors($_term->term_id, $_taxonomy) as $_ancestor_term_id) {
-                        $this->required_tax_term_ids[] = $_taxonomy.':'.$_ancestor_term_id;
+                        $this->accessing['tax_term_ids'][] = $_taxonomy.':'.$_ancestor_term_id;
                     } // unset($_ancestor_term_id);
                 } // unset($_term); // Housekeeping.
             } // unset($_taxonomy, $_terms); // Housekeeping.
