@@ -73,11 +73,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
 
         $this->alwaysGuardUriAccess();
         $this->maybeGuardSingularAccess();
-
-        foreach ($this->accessing as $_meta_key => &$_accessing) {
-            $_accessing = array_unique(c::removeEmptys($_accessing));
-        } // Must unset temp variable by reference.
-        unset($_meta_key, $_accessing); // Housekeeping.
+        $this->sanitizeComparisonData();
     }
 
     /**
@@ -143,6 +139,19 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
                 } // unset($_term); // Housekeeping.
             } // unset($_taxonomy, $_terms); // Housekeeping.
         } // unset($_ancestor_post_id, $_ancestor_post); // Housekeeping.
+    }
+
+    /**
+     * Sanitize comparison data.
+     *
+     * @since 16xxxx Security gate.
+     */
+    protected function sanitizeComparisonData()
+    {
+        foreach ($this->accessing as $_meta_key => &$_accessing) {
+            $_accessing = array_unique(c::removeEmptys($_accessing));
+        } // Must unset temp variable by reference.
+        unset($_meta_key, $_accessing); // Housekeeping.
     }
 
     /**
