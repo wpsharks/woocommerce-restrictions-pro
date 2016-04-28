@@ -27,15 +27,6 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class Restriction extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Icon.
-     *
-     * @since 16xxxx
-     *
-     * @type string
-     */
-    public $icon;
-
-    /**
      * Post type.
      *
      * @since 16xxxx
@@ -82,11 +73,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->icon               = file_get_contents(dirname(__FILE__, 4).'/client-s/images/admin/icon.svg');
-        $this->post_type          = 'restriction'; // New post type (unprefixed in this case).
+        $this->post_type          = 'restriction';
         $this->client_side_prefix = 'fdbmjuxwzjfjtaucytprkbcqfpftudyg';
-
-        $this->screen = $this->screen_is_mobile = null; // See `onCurrentScreen()`.
+        $this->screen             = $this->screen_is_mobile             = null;
     }
 
     /**
@@ -115,7 +104,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                 'delete_with_user' => false,
 
                 'menu_position' => null,
-                'menu_icon'     => 'data:image/svg+xml;base64,'.base64_encode($this->icon),
+                'menu_icon'     => 'dashicons-lock',
                 'description'   => __('Content Restriction', 's2member-x'),
 
                 'labels' => [ // See: <http://jas.xyz/244m2Sd>
@@ -269,9 +258,10 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             $this->client_side_prefix.'-about'        => ['title' => __('About Restrictions', 's2member-x'), 'callback' => 'aboutRestrictionsMetaBox'],
             $this->client_side_prefix.'-post-ids'     => ['title' => __('Protected Posts/Pages', 's2member-x'), 'callback' => 'restrictsPostIdsMetaBox'],
             $this->client_side_prefix.'-post-types'   => ['title' => __('Protected Post Types', 's2member-x'), 'callback' => 'restrictsPostTypesMetaBox'],
-            $this->client_side_prefix.'-tax-term-ids' => ['title' => __('Protected Catgs., Tags (Terms)', 's2member-x'), 'callback' => 'restrictsTaxTermIdsMetaBox'],
+            $this->client_side_prefix.'-author-ids'   => ['title' => __('Protected Authors', 's2member-x'), 'callback' => 'restrictsAuthorIdsMetaBox'],
+            $this->client_side_prefix.'-tax-term-ids' => ['title' => __('Protected Categories/Tags', 's2member-x'), 'callback' => 'restrictsTaxTermIdsMetaBox'],
             $this->client_side_prefix.'-roles'        => ['title' => __('Protected Role Capabilities', 's2member-x'), 'callback' => 'restrictsRolesMetaBox'],
-            $this->client_side_prefix.'-ccaps'        => ['title' => __('Protected Capabilities (Custom)', 's2member-x'), 'callback' => 'restrictsCcapsMetaBox'],
+            $this->client_side_prefix.'-ccaps'        => ['title' => __('Protected Custom Capabilities', 's2member-x'), 'callback' => 'restrictsCcapsMetaBox'],
             $this->client_side_prefix.'-uri-patterns' => ['title' => __('Protected URI Patterns', 's2member-x'), 'callback' => 'restrictsUriPatternsMetaBox'],
         ];
         $closed_meta_boxes = get_user_option('closedpostboxes_'.$this->post_type);
@@ -355,10 +345,10 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         echo    '<h4>'.__('A Restriction Serves Two Purposes', 's2member-x').'</h4>';
         echo    '<ol>';
-        echo        '<li>'.__('It protects content in WordPress. Each individual Restriction that you add can protect multiple Post/Pages/etc.', 's2member-x').'</li>';
-        echo        '<li>'.__('It can grant access to the content you\'ve protected; i.e., you can associate each Restriction with a unique ID/Slug and then sell (or otherwise allow) access to what a Restriction protects.', 's2member-x').'</li>';
+        echo        '<li>'.__('It allows you to protect content in WordPress. A single Restriction can protect multiple Posts, Pages, and more.', 's2member-x').'</li>';
+        echo        '<li>'.__('It can also grant access to the content you\'ve protected, because you can sell, or allow, access to what a Restriction protects.', 's2member-x').'</li>';
         echo    '</ol>';
-        echo    '<p><em>'.__('Therefore, it helps to think about Restrictions as both a form of protection and also as a way to prepare packages that can be accessed by others.', 's2member-x').'</em></p>';
+        echo    '<p><em>'.__('Therefore, you should think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others.', 's2member-x').'</em></p>';
 
         echo '</div>';
     }
@@ -392,9 +382,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
             echo '<p class="-heading -input-heading">'.__('Post IDs to Restrict (WordPress Post IDs, comma-delimited):', 's2member-x').'</p>';
-            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_post_ids').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., 123, 345, 789, 3492', 's2member-x').'" value="'.esc_attr(implode(',', $current_post_ids)).'"></p>';
+            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_post_ids').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., 123, 345, 789, 3492', 's2member-x').'" value="'.esc_attr(implode(', ', $current_post_ids)).'"></p>';
         }
-        echo    '<p>'.__('<strong>Note:</strong> Protecting a Post will protect the permalink leading to that Post. However, it does not protect any excerpts presented by your theme in archive views. In most cases, that is desirable, since excerpts are often used as teasers. However, if you do want to protect archive views, please use Category/Tag protections and/or URI Patterns to cover those additional areas.', 's2member-x').'</p>';
+        echo    '<p>'.__('<strong>Note:</strong> Protecting a Post (of any type, including Pages) will protect the permalink leading to that Post. It will also protect any other child Posts in a hierarchy. For instance, protecting a parent Page also protects any child Pages. Protecting a bbPress Forum also protects all topics/replies in that Forum. This works for any type of Post in WordPress, including <a href="https://developer.wordpress.org/plugins/post-types/" target="_blank">Custom Post Types</a>.', 's2member-x').'</p>';
 
         echo '</div>';
     }
@@ -426,9 +416,45 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
             echo '<p class="-heading -input-heading">'.__('Post Types to Restrict (WordPress Post Types, comma-delimited):', 's2member-x').'</p>';
-            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_post_types').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., post, article, movie, book', 's2member-x').'" value="'.esc_attr(implode(',', $current_post_types)).'"></p>';
+            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_post_types').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., post, article, movie, book', 's2member-x').'" value="'.esc_attr(implode(', ', $current_post_types)).'"></p>';
         }
-        echo    '<p>'.__('<strong>Note:</strong> Protecting a Post Type will automatically protect <em>all</em> Post permalinks associated with that Type. However, it does not protect any excerpts presented by your theme in archive views. In most cases, that is desirable, since excerpts are often used as teasers. However, if you do want to protect archive views, please use Category/Tag protections and/or URI Patterns to cover those additional areas.', 's2member-x').'</p>';
+        echo    '<p>'.__('<strong>Note:</strong> Protecting a Post Type will automatically protect <em>all</em> Post permalinks associated with that Type.', 's2member-x').'</p>';
+
+        echo '</div>';
+    }
+
+    /**
+     * Author IDs meta box.
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @param \WP_Post $post Post object.
+     * @param array    $args Callback args, if any.
+     */
+    public function restrictsAuthorIdsMetaBox(\WP_Post $post, array $args = [])
+    {
+        $current_author_ids = $this->getMeta($post->ID, 'author_ids');
+
+        $author_id_select_options = s::userSelectOptions(
+            s::applyFilters('restriction_ui_author_id_select_option_args', [
+                'allow_empty' => false,
+                'filters'     => [
+                    'orderby'  => 'display_name',
+                    'role__in' => ['administrator', 'editor', 'author', 'contributor'],
+                ],
+                'current_user_ids' => $current_author_ids,
+            ])
+        );
+        echo '<div class="-meta -author-ids">';
+
+        if ($author_id_select_options) {
+            echo '<p class="-field -select-field"><select name="'.esc_attr($this->post_type.'_author_ids[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$author_id_select_options.'</select></p>';
+            echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
+        } else {
+            echo '<p class="-heading -input-heading">'.__('Author IDs to Restrict (WordPress User IDs, comma-delimited):', 's2member-x').'</p>';
+            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_author_ids').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., 5, 239, 42', 's2member-x').'" value="'.esc_attr(implode(', ', $current_author_ids)).'"></p>';
+        }
+        echo    '<p>'.__('<strong>Note:</strong> Protecting an Author will protect all permalinks leading to Posts (of any type) that were written by that Author.', 's2member-x').'</p>';
 
         echo '</div>';
     }
@@ -459,9 +485,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
             echo '<p class="-heading -input-heading">'.__('Taxonomy Terms to Restrict (<em style="font-style:normal; font-family:monospace;">[taxonomy]:[term ID]</em>s, comma-delimited):', 's2member-x').'</p>';
-            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_tax_term_ids').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., category:123, post_tag:456, product_cat:678, product_tag:789', 's2member-x').'" value="'.esc_attr(implode(',', $current_tax_term_ids)).'"></p>';
+            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_tax_term_ids').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., category:123, post_tag:456, product_cat:678, product_tag:789', 's2member-x').'" value="'.esc_attr(implode(', ', $current_tax_term_ids)).'"></p>';
         }
-        echo    '<p>'.__('<strong>Note:</strong> Protecting a Taxonomy Term (i.e., a Category, Tag, etc.) will protect all archive views associated with that Term (including any child Terms in a hierarchy). It also protects all permalinks leading to Posts associated with the Term (e.g., if a Post has a Tag that you protect, or it\'s in a Category that you protect, it is protected automatically also). However, this may not protect every single excerpt presented by your theme; e.g., date-based and/or author-based archives, search results, etc. If you want to protect all excerpts presented by your theme, you can use URI Patterns to cover any additional areas.', 's2member-x').'</p>';
+        echo    '<p>'.__('<strong>Note:</strong> Protecting a Taxonomy Term of any type (e.g., Category, Tag) protects permalinks leading to Posts that are associated with that Term. For instance, a Post will be restricted automatically (now or in the future) if it\'s given a Tag that you\'ve protected. Or, if it\'s put into a Category that you\'ve protected (or into a child Category of a parent Category you\'ve protected).', 's2member-x').'</p>';
 
         echo '</div>';
     }
@@ -493,8 +519,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
             echo '<p class="-heading -input-heading">'.__('<a href="https://developer.wordpress.org/plugins/users/roles-and-capabilities/" target="_blank">WordPress Roles</a> in comma-delimited format. See also: <a href="https://wordpress.org/plugins/user-role-editor/" target="_blank">Role Editor</a>', 's2member-x').'</p>';
+            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_roles').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., contributor, pro_member, participant', 's2member-x').'" value="'.esc_attr(implode(', ', $current_roles)).'"></p>';
         }
-        echo    '<p>'.sprintf(__('<strong>Note:</strong> Protecting a Role is to protect the Capabilities associated with that Role. If a customer purchases access to a Restriction that protects a Role, they don\'t actually acquire the Role itself. They acquire the Capabilities of that Role. Note also, there are some Roles that are "reserved" internally and cannot be associated with a Restriction. These include: <em>%1$s</em>', 's2member-x'), esc_html(implode(', ', a::systematicRoleIds()))).'</p>';
+        echo    '<p>'.sprintf(__('<strong>Note:</strong> Protecting a Role is to package the Capabilities associated with that Role. If a customer purchases access to a Restriction that protects a Role, they don\'t actually acquire the Role itself, but they do acquire the Capabilities provided by that Role; i.e., any Capabilities in the Role that a user doesn\'t already have, they acquire. Note also, there are some Roles that are "reserved" internally and cannot be associated with a Restriction. These include: <em>%1$s</em>.', 's2member-x'), esc_html(implode(', ', a::systematicRoleIds()))).'</p>';
 
         echo '</div>';
     }
@@ -515,7 +542,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo '<div class="-meta -ccaps">';
 
         echo    '<p class="-heading -input-heading">'.__('CCAPs (<a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank">Custom Capabilities</a>) in comma-delimited format:', 's2member-x').'</p>';
-        echo    '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_ccaps').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., members_area, pro_membership, premium_content', 's2member-x').'" value="'.esc_attr(implode(',', $current_ccaps)).'"></p>';
+        echo    '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->post_type.'_ccaps').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., members_area, pro_membership, premium_content', 's2member-x').'" value="'.esc_attr(implode(', ', $current_ccaps)).'"></p>';
         echo    '<p class="-tip -input-tip">'.sprintf(__('<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%1$s<code style="padding:0;">something</code>\')</a>', 's2member-x'), esc_html($auto_prefix)).'</p>';
 
         echo '</div>';
@@ -536,43 +563,46 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         echo '<div class="-meta -uri-patterns">';
 
-        echo    '<p class="-heading -textarea-heading">'.__('URI Patterns in line-delmited format (i.e., one per line):', 's2member-x').'</p>';
-        echo    '<p class="-field -textarea-field"><textarea name="'.esc_attr($this->post_type.'_uri_patterns').'" autocomplete="off" spellcheck="false" wrap="soft" placeholder="'.__('e.g., /path/to/members-only/**', 's2member-x').'">'.esc_textarea(implode("\n", $current_uri_patterns)).'</textarea></p>';
-        echo    '<p class="-tip -input-tip">'.__('<strong>Tip:</strong> This allows you to protect <em>any</em> location that is served by WordPress, even if it doesn\'t have a formal WordPress content-type.', 's2member-x').'</p>';
+        echo    '<p class="-heading -textarea-heading">'.__('URI Patterns (line-delmited; i.e., one on each line):', 's2member-x').'</p>';
+        echo    '<p class="-field -textarea-field"><textarea name="'.esc_attr($this->post_type.'_uri_patterns').'" autocomplete="off" spellcheck="false" wrap="off" placeholder="'.__('e.g., /path/to/members-only/**', 's2member-x').'">'.esc_textarea(implode("\n", $current_uri_patterns)).'</textarea></p>';
+        echo    '<p class="-tip -input-tip" style="margin-bottom:0;">'.__('<strong>Tip:</strong> This allows you to protect almost <em>any</em> other location that is served by WordPress. &nbsp; <a href="#" data-toggle=".-uri-patterns .-hidden.-instructions.-section"><span class="dashicons dashicons-visibility"></span> toggle instructions</a>', 's2member-x').'</p>';
 
-        echo    '<h4>'.__('A "URI" is everything after the domain name in a URL:', 's2member-x').'</h4>';
-        echo    '<ul class="-syntax-examples"><li>'.sprintf(__('http://example.com<code>/this/is/the/URI/part/in/a/location%1$s</code>', 's2member-x'), $wp_rewrite->use_trailing_slashes ? '/' : '').'</li></ul>';
+        echo    '<div class="-hidden -instructions -section">';
+        echo        '<h4>'.__('A "URI" (what you protect) is everything after the domain name in a URL:', 's2member-x').'</h4>';
+        echo        '<ul class="-syntax-examples"><li>'.sprintf(__('http://example.com<code>/this/is/the/URI/part/in/a/location%1$s</code>', 's2member-x'), $wp_rewrite->use_trailing_slashes ? '/' : '').'</li></ul>';
 
-        echo    '<h4>'.__('WRegx™ (Watered-Down Regex) can be used in your patterns:', 's2member-x').'</h4>';
-        echo    '<ul class="-syntax-examples">'; // Expects the use of an wregx (watered-down regex) syntax.
-        echo        '<li>'.__('<code>*</code> Matches zero or more characters that are not a <em><strong>/</strong></em>', 's2member-x').'</li>';
-        echo        '<li>'.__('<code>**</code> Matches zero or more characters of any kind.', 's2member-x').'</li>';
-        echo        '<li>'.__('<code>?</code> Matches exactly one character that is not a <em><strong>/</strong></em>', 's2member-x').'</li>';
-        echo        '<li>'.__('<code>??</code> Matches exactly one character of any kind.', 's2member-x').'</li>';
-        echo        '<li>'.__('<code>[abc]</code> Matches exactly one character: <em>a</em>, <em>b</em>, or <em>c</em>.', 's2member-x').'</li>';
-        echo        '<li>'.__('<code>[a-z0-9]</code> Matches exactly one character: <em>a</em> thru <em>z</em> or <em>0</em> thru <em>9</em>.', 's2member-x').'</li>';
-        echo        '<li>'.__('<code>[!abc]</code> A leading <em>!</em> inside <em>[]</em> negates; i.e., anything that is not: <em>a</em>, <em>b</em>, or <em>c</em>.', 's2member-x').'</li>';
-        echo        '<li>'.__('<code>{abc,def}</code> Matches the fragment <em>abc</em> or <em>def</em> (one or the other).', 's2member-x').'</li>';
-        echo        '<li>'.__('<code>{abc,def,}</code> Matches <em>abc</em>, <em>def</em> or nothing; i.e., an optional match.', 's2member-x').'</li>';
-        echo        '<li>'.__('<code>{/**,}</code> Matches a <em>/</em> followed by zero or more characters. Or nothing.', 's2member-x').'</li>';
-        echo        '<li>'.__('<code>[*?[]!{},]</code> Matches a literal special character. One of: <em>*?[]!{},</em> explicitly.', 's2member-x').'</li>';
-        echo    '</ul>';
+        echo        '<h4>'.__('WRegx™ (Watered-Down Regex) can be used in your patterns:', 's2member-x').'</h4>';
+        echo        '<ul class="-syntax-examples">'; // Expects the use of an wregx (watered-down regex) syntax.
+        echo            '<li>'.__('<code>*</code> Matches zero or more characters that are not a <em><strong>/</strong></em>', 's2member-x').'</li>';
+        echo            '<li>'.__('<code>**</code> Matches zero or more characters of any kind.', 's2member-x').'</li>';
+        echo            '<li>'.__('<code>?</code> Matches exactly one character that is not a <em><strong>/</strong></em>', 's2member-x').'</li>';
+        echo            '<li>'.__('<code>??</code> Matches exactly one character of any kind.', 's2member-x').'</li>';
+        echo            '<li>'.__('<code>[abc]</code> Matches exactly one character: <em>a</em>, <em>b</em>, or <em>c</em>.', 's2member-x').'</li>';
+        echo            '<li>'.__('<code>[a-z0-9]</code> Matches exactly one character: <em>a</em> thru <em>z</em> or <em>0</em> thru <em>9</em>.', 's2member-x').'</li>';
+        echo            '<li>'.__('<code>[!abc]</code> A leading <em>!</em> inside <em>[]</em> negates; i.e., anything that is not: <em>a</em>, <em>b</em>, or <em>c</em>.', 's2member-x').'</li>';
+        echo            '<li>'.__('<code>{abc,def}</code> Matches the fragment <em>abc</em> or <em>def</em> (one or the other).', 's2member-x').'</li>';
+        echo            '<li>'.__('<code>{abc,def,}</code> Matches <em>abc</em>, <em>def</em> or nothing; i.e., an optional match.', 's2member-x').'</li>';
+        echo            '<li>'.__('<code>{/**,}</code> Matches a <em>/</em> followed by zero or more characters. Or nothing.', 's2member-x').'</li>';
+        echo            '<li>'.__('<code>[*?[]!{},]</code> Matches a literal special character. One of: <em>*?[]!{},</em> explicitly.', 's2member-x').'</li>';
+        echo        '</ul>';
 
-        echo    '<h4>'.__('Other important details to be aware of:', 's2member-x').'</h4>';
-        echo    '<ul class="-syntax-tips">'; // Expects the use of an wregx (watered-down regex) syntax.
-        echo        '<li>'.__('Comparison is always caSe-insensitive (case does not matter).', 's2member-x').'</li>';
-        echo        '<li>'.__('Your pattern must match an entire URI (beginning to end). Not just a small portion of it.', 's2member-x').'</li>';
-        echo        '<li>'.sprintf(__('A URI always starts with a slash (e.g., <em>/example-post%1$s</em>). The smallest possible URI (the home page) is: <em>/</em>', 's2member-x'), $wp_rewrite->use_trailing_slashes ? '/' : '').'</li>';
+        echo        '<h4>'.__('Other important details to be aware of:', 's2member-x').'</h4>';
+        echo        '<ul class="-syntax-tips">'; // Expects the use of an wregx (watered-down regex) syntax.
+        echo            '<li>'.__('Comparison is always caSe-insensitive (i.e., case does not matter).', 's2member-x').'</li>';
+        echo            '<li>'.__('Your pattern must match an entire URI (beginning to end). Not just a small portion.', 's2member-x').'</li>';
+        echo            '<li>'.sprintf(__('A URI always starts with a slash (e.g., <em>/example-post%1$s</em>). The smallest possible URI (the home page) is: <em>/</em>', 's2member-x'), $wp_rewrite->use_trailing_slashes ? '/' : '').'</li>';
         if ($wp_rewrite->use_trailing_slashes) {
-            echo '<li>'.__('Your Permalink Settings in WordPress indicate that all URIs on this site will have a trailing slash on the end. You must match that trailing slash in your patterns.').'</li>';
+            echo        '<li>'.__('Your current Permalink Settings in WordPress indicate that all URIs on this site will have a trailing slash on the end. You must match that trailing slash in your patterns.', 's2member-x').'</li>';
         } else {
-            echo '<li>'.__('Your Permalink Settings in WordPress indicate that URIs on this site will not end with a trailing slash. You should not expect a trailing slash in your patterns.').'</li>';
+            echo        '<li>'.__('Your current Permalink Settings in WordPress indicate that URIs on this site will not end with a trailing slash. Your patterns should not depend on a trailing slash.', 's2member-x').'</li>';
         }
-        echo        '<li>'.sprintf(__('In WordPress it is quite common for any given URI to accept additional endpoint directives. For instance, paginated locations: <em>/example-post/page/2%1$s</em>, <em>/example-post/comments-page/2%1$s</em>. It is good idea to configure a pattern that covers all possible endpoint variations. For instance: <em>/example-post{/**,}</em> will match the base URI by itself, and also match a possible trailing slash with any endpoint directives it may accept.'), $wp_rewrite->use_trailing_slashes ? '/' : '').'</li>';
-        echo        '<li>'.__('Any query string variables on the end of a URI (e.g., <em>?p=123&amp;key=value</em>) are stripped before comparison so you won\'t need to worry about them. However, if your pattern includes <em>[?]</em> (a literal <em>?</em> indicating that you DO want to check the query string), then they are NOT stripped away when comparing, and the pattern you give will be capable of matching. Just remember that query string variables can appear in any order, as entered by a user. If you check for query strings, use <em>**</em> around the key/value pair. For instance: <em>/example-post{/**,}[?]**key=value**</em>', 's2member-x').'</li>';
-        echo        '<li>'.__('There are a few Systematic URIs on your site that are "reserved" internally and cannot be associated with a Restriction:', 's2member-x').'<ul class="-syntax-tips" style="list-style-type:none;"><li style="margin:0;"><em>'.implode('</em></li><li style="margin:0;"><em>', array_map('esc_html', a::systematicUriPatterns())).'</em></li></ul></li>';
-        echo        '<li>'.__('It is possible to restrict access to everything on the entire site (if that\'s desirable) using the pattern <em>/**</em> as a catch-all. In this scenario, everything is off-limits, except for the Systematic URIs listed above. Having said that, please be careful when using a catch-all pattern. Everything (yes, everything) will be off-limits, including your home page! We suggest this as a last resort only. Instead, restrict Posts, Pages, Categories, Tags and/or other specific URIs. Generally speaking, it is best to restrict only portions of a site from public access.').'</li>';
-        echo    '</ul>';
+        echo            '<li>'.sprintf(__('In WordPress it is common for any given URI to accept additional endpoint directives. For instance, paginated locations: <em>/example-post/page/2%1$s</em>, <em>/example-post/comments-page/2%1$s</em>. Therefore, we suggest a pattern that covers all possible endpoint variations. For instance: <em>/example-post{/**,}</em> will match the base URI by itself, and also match a possible trailing slash with any endpoint directives it may accept.', 's2member-x'), $wp_rewrite->use_trailing_slashes ? '/' : '').'</li>';
+        echo            '<li>'.__('Any query string variables on the end of a URI (example: <em>?p=123&amp;key=value</em>) are stripped before comparison so you don\'t need to worry about them. However, if your pattern contains: <em>[?]</em> ... (literally, a <em>?</em> question mark in <em>[?]</em> square brackets) it indicates that you DO want to check the query string, so they are NOT stripped away in that case; and the pattern you give will be capable of matching. Just remember that query string variables can appear in any order, as entered by a user. If you check for query strings, please use <em>**</em> wildcards around the key/value pair you\'re looking for. For instance: <em>/example-post{/**,}[?]**key=value**</em>', 's2member-x').'</li>';
+        echo            '<li>'.__('There are a few Systematic URIs on your site that are "reserved" internally and cannot be associated with a Restriction:', 's2member-x').'<ul class="-syntax-tips" style="list-style-type:none;"><li style="margin:0;"><em>'.implode('</em></li><li style="margin:0;"><em>', array_map('esc_html', a::systematicUriPatterns())).'</em></li></ul></li>';
+        echo            '<li>'.__('It is possible to restrict access to every page on the entire site using the pattern <em>/**</em> as a catch-all. In this scenario, everything is off-limits, except for the Systematic URIs listed above. Having said that, please be careful when using a catch-all pattern. Everything (yes, everything) will be off-limits, including your home page! We suggest this as a last resort only. Instead, restrict Posts, Pages, Categories, Tags and/or other specific URIs. Generally speaking, it is best to restrict only portions of a site from public access.', 's2member-x').'</li>';
+        echo            '<li>'.__('Restrictions rely upon PHP as a server-side scripting language. Therefore, you can protect any location (page) served by WordPress via PHP, but you can\'t protect static files. For instance: <em>.jpg</em>, <em>.pdf</em>, and <em>.zip</em> are static. Generally speaking, if you upload it to the Media Library, it\'s a static asset. It cannot be protected here. Instead, configure a "Downloadable Product" with WooCommerce.', 's2member-x').'</li>';
+        echo        '</ul>';
+        echo    '</div>';
 
         echo '</div>';
     }
@@ -590,9 +620,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         $post_id = (int) $post_id; // Force integer.
 
-        foreach (['post_ids', 'post_types', 'tax_term_ids', 'roles', 'ccaps', 'uri_patterns'] as $_meta_key) {
+        foreach (['post_ids', 'post_types', 'tax_term_ids', 'author_ids', 'roles', 'ccaps', 'uri_patterns'] as $_meta_key) {
             $_split_regex        = $_meta_key === 'uri_patterns' ? '/['."\r\n".']+/' : '/[\s,]+/';
-            $_array_map_callback = $_meta_key === 'post_ids' ? 'intval' : 'strval';
+            $_array_map_callback = in_array($_meta_key, ['post_ids', 'author_ids'], true) ? 'intval' : 'strval';
 
             $_meta_values = c::unslash($_REQUEST[$this->post_type.'_'.$_meta_key] ?? []);
             $_meta_values = is_string($_meta_values) ? preg_split($_split_regex, $_meta_values, -1, PREG_SPLIT_NO_EMPTY) : $_meta_values;

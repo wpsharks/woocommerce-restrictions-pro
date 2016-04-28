@@ -4,10 +4,17 @@
 @import '../bourbon/bourbon';
 @import '../../../vendor/websharks/sharkicons/src/sharkicons';
 @include sharkicons-font('../../../vendor/websharks/sharkicons/src');
+@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/links';
 @import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/lists';
 @import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/colors/fields';
 @import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/fields';
+@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/dashicons';
 @import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/jquery-chosen/fields';
+
+/*
+ * Built-in meta box.
+ */
+$hidden-div-border-color: #ececec;
 
 /*
  * Built-in meta box.
@@ -33,29 +40,40 @@
   }
 
   > .inside {
+    > .-about {
+      @include wp-admin-dashicon(info);
+
+      &::before {
+        float:                right;
+        font-size:            5em;
+      }
+    }
+
     > .-about,
     > .-meta {
-      @include wp-admin-list-enable('>');
+      &,
+      .-section {
+        @include wp-admin-list-enable('>');
 
-      > h4,
-      > p,
-      > ul {
-        margin:               1em 0;
+        > h4,
+        > p,
+        > ol,
+        > ul {
+          @include wp-admin-links;
 
-        &:first-child {
-          margin-top:         0;
-        }
+          margin:             1em 0;
 
-        &:last-child {
-          margin-bottom:      0;
+          &:first-child {
+            margin-top:       0;
+          }
+
+          &:last-child {
+            margin-bottom:    0;
+          }
         }
       }
 
-      a {
-        text-decoration:      none;
-      }
-
-      > .-heading {
+      .-heading {
         margin-bottom:        0;
 
         + .-field {
@@ -63,20 +81,19 @@
         }
       }
 
-      > .-field {
+      .-field {
         @include wp-admin-field-standards('>');
         @include jquery-chosen-wp-admin-field-standards;
 
         > textarea {
           white-space:        pre;
-          word-wrap:          normal;
-          overflow-x:         scroll;
+          overflow:           auto;
         }
       }
 
       &.-uri-patterns {
-        > .-syntax-examples,
-        > .-syntax-tips {
+        .-syntax-examples,
+        .-syntax-tips {
           ul {
             margin-top:      .5em;
           }
@@ -89,10 +106,20 @@
           }
         }
 
-        > .-syntax-examples {
+        .-syntax-examples {
           padding-left:       0;
           margin-left:       .5em;
           list-style-type:    none;
+        }
+      }
+
+      .-hidden {
+        display:              none;
+
+        &.-section {
+          margin-top:         1em;
+          padding-top:        1em;
+          border-top:         1px solid $hidden-div-border-color;
         }
       }
     }

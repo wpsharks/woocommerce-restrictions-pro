@@ -27,6 +27,51 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class SecurityGate extends SCoreClasses\SCore\Base\Core
 {
     /**
+     * Required post IDs.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @type int[] Post IDs.
+     */
+    protected $required_post_ids;
+
+    /**
+     * Required post types.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @type string[] Post types.
+     */
+    protected $required_post_types;
+
+    /**
+     * Required tax:term IDs.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @type string[] Tax:term IDs.
+     */
+    protected $required_tax_term_ids;
+
+    /**
+     * Required author IDs.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @type int[] Author IDs.
+     */
+    protected $required_author_ids;
+
+    /**
+     * Required URIs.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @type string[] URIs.
+     */
+    protected $required_uris;
+
+    /**
      * Class constructor.
      *
      * @since 16xxxx Security gate.
@@ -36,6 +81,12 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     public function __construct(Classes\App $App)
     {
         parent::__construct($App);
+
+        $this->required_post_ids     = [];
+        $this->required_post_types   = [];
+        $this->required_tax_term_ids = [];
+        $this->required_author_ids   = [];
+        $this->required_uris         = [];
     }
 
     /**
@@ -48,15 +99,22 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         if (c::isCli()) {
             return; // Not applicable.
         }
+        $this->guardUriAccess();
         $this->maybeGuardSingularAccess();
-        $this->maybeGuardCategoryArchiveAccess();
-        $this->maybeGuardTagArchiveAccess();
-        $this->maybeGuardTaxArchiveAccess();
-        $this->maybeGuardOtherUriAccess();
     }
 
     /**
-     * Singular.
+     * Guard URI access.
+     *
+     * @since 16xxxx Security gate.
+     */
+    protected function guardUriAccess()
+    {
+        $this->required_uris[] = c::currentUri();
+    }
+
+    /**
+     * Maybe guard singular access.
      *
      * @since 16xxxx Security gate.
      */
@@ -64,64 +122,50 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     {
         global $wp_the_query;
 
-        if (!$wp_the_query->is_singular()) {
+        if (!$wp_the_query->is_singular) {
             return; // Not applicable.
         }
-    }
-
-    /**
-     * Category archive.
-     *
-     * @since 16xxxx Security gate.
-     */
-    protected function maybeGuardCategoryArchiveAccess()
-    {
-        global $wp_the_query;
-
-        if (!$wp_the_query->is_category()) {
-            return; // Not applicable.
+        if (!($post = $wp_the_query->queried_object())) {
+            return; // Not possible.
         }
-    }
+        $this->required_post_ids[]   = $post->ID;
+        $this->required_post_types[] = $post->post_type;
+        $this->required_author_ids[] = $post->post_author;
 
-    /**
-     * Tag archive.
-     *
-     * @since 16xxxx Security gate.
-     */
-    protected function maybeGuardTagArchiveAccess()
-    {
-        global $wp_the_query;
+        foreach (get_post_taxonomies($post) as $_taxonomy) {
+            $_terms = wp_get_post_terms($post->ID, $_taxonomy);
+            if (!$_terms || !is_array($_terms)) {
+                continue; // No terms.
+            }
+            foreach ($_terms as $_term) {
+                $this->required_tax_term_ids[] = $_taxonomy.':'.$_term->term_id;
+                foreach (get_ancestors($_term->term_id, $_taxonomy) as $_ancestor_term_id) {
+                    $this->required_tax_term_ids[] = $_taxonomy.':'.$_ancestor_term_id;
+                } // unset($_ancestor_term_id);
+            } // unset($_term); // Housekeeping.
+        } // unset($_taxonomy, $_terms); // Housekeeping.
 
-        if (!$wp_the_query->is_tag()) {
-            return; // Not applicable.
-        }
-    }
+        foreach (get_post_ancestors($post) as $_ancestor_post_id) {
+            if (!($_ancestor_post = get_post($_ancestor_post_id))) {
+                continue; // Nothing to do.
+            }
+            $this->required_post_ids[]   = $_ancestor_post->ID;
+            $this->required_post_types[] = $_ancestor_post->post_type;
+            $this->required_author_ids[] = $_ancestor_post->post_author;
 
-    /**
-     * Custom taxonomy archive.
-     *
-     * @since 16xxxx Security gate.
-     */
-    protected function maybeGuardTaxArchiveAccess()
-    {
-        global $wp_the_query;
-
-        if (!$wp_the_query->is_tax()) {
-            return; // Not applicable.
-        }
-    }
-
-    /**
-     * Anything else; e.g., URIs.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @note `is_date()`, `is_author()`, `is_search()`, `is_feed()`, `is_comment_feed()` should be covered here.
-     *  i.e., If a site owner wants to protect these areas (or anything else) they will need URI patterns.
-     */
-    protected function maybeGuardOtherUriAccess()
-    {
-        global $wp_the_query;
+            foreach (get_post_taxonomies($_ancestor_post) as $_taxonomy) {
+                $_terms = wp_get_post_terms($_ancestor_post->ID, $_taxonomy);
+                if (!$_terms || !is_array($_terms)) {
+                    continue; // No terms.
+                }
+                foreach ($_terms as $_term) {
+                    $this->required_tax_term_ids[] = $_taxonomy.':'.$_term->term_id;
+                    foreach (get_ancestors($_term->term_id, $_taxonomy) as $_ancestor_term_id) {
+                        $this->required_tax_term_ids[] = $_taxonomy.':'.$_ancestor_term_id;
+                    } // unset($_ancestor_term_id);
+                } // unset($_term); // Housekeeping.
+            } // unset($_taxonomy, $_terms); // Housekeeping.
+        } // unset($_ancestor_post_id, $_ancestor_post); // Housekeeping.
     }
 
     /**

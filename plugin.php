@@ -4,7 +4,7 @@
  *
  * @wp-plugin
  *
- * Version: 160425
+ * Version: 160428
  * Text Domain: s2member-x
  * Plugin Name: s2Member X Pro
  *
