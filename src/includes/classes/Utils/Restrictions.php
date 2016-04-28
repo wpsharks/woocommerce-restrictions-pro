@@ -64,8 +64,8 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
         } // unset($_meta_key); // Housekeeping.
 
         $by_meta_key = [
-            'restrictions'     => array_fill_keys($meta_keys, []),
-            'restrictions_ids' => array_fill_keys($meta_keys, []),
+            'restrictions'    => array_fill_keys($meta_keys, []),
+            'restriction_ids' => array_fill_keys($meta_keys, []),
         ];
         $sql_post_ids_sub_query = // Restrictions.
             'SELECT `ID` FROM `'.esc_sql($WpDb->posts).'`'.
@@ -87,20 +87,23 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
             $by_meta_key['restriction_ids'][$_meta_key][$_meta_value][] = (int) $_result->post_id;
         } // unset($_result, $_meta_key, $_meta_value); // Housekeeping.
 
-        foreach ($by_meta_key['restrictions'] as &$_restrictions) {
+        foreach ($by_meta_key['restrictions'] as $_meta_key => &$_restrictions) {
             $_restrictions = array_unique(c::removeEmptys($_restrictions));
-        } // Must unset temp variable by reference.
-        unset($_restrictions); // Housekeeping.
+        } // Must unset temp reference variable.
+        unset($_meta_key, $_restrictions);
 
-        foreach ($by_meta_key['restriction_ids'] as &$_restriction_ids) {
-            $_restriction_ids = array_unique(c::removeEmptys($_restriction_ids));
-        } // Must unset temp variable by reference.
-        unset($_restriction_ids); // Housekeeping.
+        foreach ($by_meta_key['restriction_ids'] as $_meta_key => &$_restrictions) {
+            foreach ($_restrictions as $_restriction => &$_restriction_ids) {
+                $_restriction_ids = array_unique(c::removeEmptys($_restriction_ids));
+            } // Must unset temp reference variable.
+            unset($_restriction, $_restriction_ids);
+        } // Must unset temp reference variable.
+        unset($_meta_key, $_restrictions);
 
-        foreach ($by_meta_key['restrictions']['uri_patterns'] as &$_uri_pattern) {
+        foreach ($by_meta_key['restrictions']['uri_patterns'] as $_key => &$_uri_pattern) {
             $_uri_pattern = [$_uri_pattern => c::wRegx($_uri_pattern, '/', true)];
-        } // Must unset temp variable by reference.
-        unset($_uri_pattern); // Housekeeping.
+        } // Must unset temp reference variable.
+        unset($_key, $_uri_pattern);
 
         s::setTransient($transient_cache_key, $by_meta_key, HOUR_IN_SECONDS);
 
