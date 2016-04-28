@@ -74,6 +74,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         $this->alwaysGuardUriAccess();
         $this->maybeGuardSingularAccess();
         $this->sanitizeComparisonData();
+        $this->whitelistSystematics();
     }
 
     /**
@@ -152,6 +153,17 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
             $_accessing = array_unique(c::removeEmptys($_accessing));
         } // Must unset temp variable by reference.
         unset($_meta_key, $_accessing); // Housekeeping.
+    }
+
+    /**
+     * Whitelist systematics.
+     *
+     * @since 16xxxx Security gate.
+     */
+    protected function whitelistSystematics()
+    {
+        // @TODO If anything being accessed is systematic, no restrictions apply.
+        // $this->requires = [];
     }
 
     /**

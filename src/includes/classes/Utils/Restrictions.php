@@ -27,36 +27,13 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class Restrictions extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Transient cache key.
-     *
-     * @since 16xxxx Restrictions.
-     *
-     * @type string
-     */
-    protected $transient_cache_key;
-
-    /**
-     * Class constructor.
-     *
-     * @since 16xxxx Restrictions.
-     *
-     * @param Classes\App $App Instance.
-     */
-    public function __construct(Classes\App $App)
-    {
-        parent::__construct($App);
-
-        $this->transient_cache_key = 'restrictions';
-    }
-
-    /**
      * Clear cache.
      *
      * @since 16xxxx Restrictions.
      */
     public function clearCache()
     {
-        s::deleteTransient($this->transient_cache_key);
+        s::deleteTransient('restrictions_by_meta_key');
     }
 
     /**
@@ -66,15 +43,16 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
      *
      * @param bool|null $no_cache Bypass cache?
      *
-     * @return array[] By meta key.
+     * @return array `['restrictions' => [], 'restriction_ids' => []]`
      */
     public function byMetaKey(bool $no_cache = null): array
     {
-        $WpDb = $this->s::wpDb();
+        $WpDb                = $this->s::wpDb();
+        $transient_cache_key = 'restrictions_by_meta_key';
 
         $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-        if (!$no_cache && is_array($restrictions = s::getTransient($this->transient_cache_key))) {
-            return $restrictions; // Cached already.
+        if (!$no_cache && is_array($by_meta_key = s::getTransient($transient_cache_key))) {
+            return $by_meta_key; // Cached already.
         }
         $post_type     = a::restrictionPostType();
         $meta_keys     = a::restrictionMetaKeys();
@@ -82,10 +60,13 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
 
         $full_meta_keys = []; // Initialize.
         foreach ($meta_keys as $_meta_key) {
-            $full_meta_keys[] = $post_type.'_'.$_meta_key;
-        }
-        $restrictions = array_fill_keys($meta_keys, []);
+            $full_meta_keys[] = 'restriction_'.$_meta_key;
+        } // unset($_meta_key); // Housekeeping.
 
+        $by_meta_key = [
+            'restrictions'     => array_fill_keys($meta_keys, []),
+            'restrictions_ids' => array_fill_keys($meta_keys, []),
+        ];
         $sql_post_ids_sub_query = // Restrictions.
             'SELECT `ID` FROM `'.esc_sql($WpDb->posts).'`'.
                 " WHERE `post_type` = %s AND `post_status` = 'publish'";
@@ -96,27 +77,34 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
                 ' AND `meta_key` IN('.c::quoteSqlIn($full_meta_keys).')';// Restriction keys.
 
         if (!($results = $WpDb->get_results($sql))) {
-            s::setTransient($this->transient_cache_key, $restrictions, HOUR_IN_SECONDS);
-            return $restrictions; // Nothing.
+            s::setTransient($transient_cache_key, $by_meta_key, HOUR_IN_SECONDS);
+            return $by_meta_key; // Nothing.
         }
         foreach ($results as $_result) {
-            $_meta_key                  = preg_replace('/^'.preg_quote($post_type.'_', '/').'/ui', '', $_result->full_meta_key);
-            $_meta_value                = in_array($_meta_key, $int_meta_keys, true) ? (int) $_result->meta_value : (string) $_result->meta_value;
-            $restrictions[$_meta_key][] = $_meta_value;
+            $_meta_key                                                  = preg_replace('/^restriction_/u', '', $_result->full_meta_key);
+            $_meta_value                                                = in_array($_meta_key, $int_meta_keys, true) ? (int) $_result->meta_value : (string) $_result->meta_value;
+            $by_meta_key['restrictions'][$_meta_key][]                  = $_meta_value;
+            $by_meta_key['restriction_ids'][$_meta_key][$_meta_value][] = (int) $_result->post_id;
         } // unset($_result, $_meta_key, $_meta_value); // Housekeeping.
 
-        foreach ($restrictions as $_meta_key => &$_restrictions) {
+        foreach ($by_meta_key['restrictions'] as &$_restrictions) {
             $_restrictions = array_unique(c::removeEmptys($_restrictions));
         } // Must unset temp variable by reference.
-        unset($_meta_key, $_restrictions); // Housekeeping.
+        unset($_restrictions); // Housekeeping.
 
-        foreach ($restrictions['uri_patterns'] as $_key => &$_uri_pattern) {
-            $_uri_pattern = c::wRegx($_uri_pattern, '/', true);
+        foreach ($by_meta_key['restriction_ids'] as &$_restriction_ids) {
+            $_restriction_ids = array_map('intval', $_restriction_ids);
+            $_restriction_ids = array_unique(c::removeEmptys($_restriction_ids));
         } // Must unset temp variable by reference.
-        unset($_key, $_uri_pattern); // Housekeeping.
+        unset($_restriction_ids); // Housekeeping.
 
-        s::setTransient($this->transient_cache_key, $restrictions, HOUR_IN_SECONDS);
+        foreach ($by_meta_key['restrictions']['uri_patterns'] as &$_uri_pattern) {
+            $_uri_pattern = [$_uri_pattern => c::wRegx($_uri_pattern, '/', true)];
+        } // Must unset temp variable by reference.
+        unset($_uri_pattern); // Housekeeping.
 
-        return $restrictions; // Associative.
+        s::setTransient($transient_cache_key, $by_meta_key, HOUR_IN_SECONDS);
+
+        return $by_meta_key;
     }
 }

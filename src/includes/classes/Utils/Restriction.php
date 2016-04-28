@@ -365,9 +365,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo    '<h4>'.__('A Restriction Serves Two Purposes', 's2member-x').'</h4>';
         echo    '<ol>';
         echo        '<li>'.__('It allows you to protect content in WordPress. A single Restriction can protect multiple Posts, Pages, and more.', 's2member-x').'</li>';
-        echo        '<li>'.__('It can also grant access to the content you\'ve protected, because you can sell, or allow, access to what a Restriction protects.', 's2member-x').'</li>';
+        echo        '<li>'.__('It can also grant access to the content you\'ve protected, because you can sell, or otherwise allow, access to what a Restriction protects. This part is optional though; e.g., there might be some content that you only want to protect and never allow access to. If that\'s the case, separate the items you\'re protecting into multiple Restrictions and then only allow access to some of those Restrictions and not others.', 's2member-x').'</li>';
         echo    '</ol>';
-        echo    '<p><em>'.__('Therefore, you should think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others.', 's2member-x').'</em></p>';
+        echo    '<p><em>'.__('In summary, you should think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others.', 's2member-x').'</em></p>';
 
         echo '</div>';
     }
