@@ -80,12 +80,12 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
             s::setTransient($transient_cache_key, $by_meta_key, HOUR_IN_SECONDS);
             return $by_meta_key; // Nothing.
         }
-        foreach ($results as $_result) {
+        foreach ($results as $_key => $_result) {
             $_meta_key                                                  = preg_replace('/^restriction_/u', '', $_result->full_meta_key);
             $_meta_value                                                = in_array($_meta_key, $int_meta_keys, true) ? (int) $_result->meta_value : (string) $_result->meta_value;
             $by_meta_key['restrictions'][$_meta_key][]                  = $_meta_value;
             $by_meta_key['restriction_ids'][$_meta_key][$_meta_value][] = (int) $_result->post_id;
-        } // unset($_result, $_meta_key, $_meta_value); // Housekeeping.
+        } // unset($_key, $_result, $_meta_key, $_meta_value); // Housekeeping.
 
         foreach ($by_meta_key['restrictions'] as $_meta_key => &$_restrictions) {
             $_restrictions = array_unique(c::removeEmptys($_restrictions));
