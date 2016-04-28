@@ -33,7 +33,16 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      *
      * @type array[]
      */
-    protected $requires;
+    protected $restrictions;
+
+    /**
+     * Required by what?
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @type array[]
+     */
+    protected $restriction_ids;
 
     /**
      * Accessing what?
@@ -55,8 +64,10 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->requires  = a::restrictionsByMetaKey();
-        $this->accessing = array_fill_keys(a::restrictionMetaKeys(), []);
+        $by_meta_key           = a::restrictionsByMetaKey();
+        $this->restrictions    = $by_meta_key['restrictions'];
+        $this->restriction_ids = $by_meta_key['restriction_ids'];
+        $this->accessing       = array_fill_keys(a::restrictionMetaKeys(), []);
     }
 
     /**
@@ -69,8 +80,9 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         if (c::isCli()) {
             return; // Not applicable.
         }
-        // This checks admin areas too!
-
+        if (is_admin()) {
+            return; // Not applicable.
+        }
         $this->alwaysGuardUriAccess();
         $this->maybeGuardSingularAccess();
         $this->sanitizeComparisonData();

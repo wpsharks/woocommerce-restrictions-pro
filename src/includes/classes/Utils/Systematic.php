@@ -133,6 +133,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         $wc_urls             = $this->collectWcUrls($no_cache);
         $bp_urls             = $this->collectBpUrls($no_cache);
 
+        $uri_patterns[] = '/wp-admin{/**,}'; // WP admin.
         $uri_patterns[] = '/{wp-*,xmlrpc}.php{/**,}'; // WP root files.
 
         if (!empty($wp_login_url['path']) && $wp_login_url['path'] !== '/') {
