@@ -93,7 +93,6 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
         unset($_restrictions); // Housekeeping.
 
         foreach ($by_meta_key['restriction_ids'] as &$_restriction_ids) {
-            $_restriction_ids = array_map('intval', $_restriction_ids);
             $_restriction_ids = array_unique(c::removeEmptys($_restriction_ids));
         } // Must unset temp variable by reference.
         unset($_restriction_ids); // Housekeeping.
