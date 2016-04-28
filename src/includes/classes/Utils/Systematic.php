@@ -133,11 +133,8 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         $wc_urls             = $this->collectWcUrls($no_cache);
         $bp_urls             = $this->collectBpUrls($no_cache);
 
-        // @TODO These assume WP is installed in a root directory.
-        // We need to determine the current base directory before building these.
-
-        $uri_patterns[] = '/wp-admin{/**,}'; // WP admin.
-        $uri_patterns[] = '/{wp-*,xmlrpc}.php{/**,}'; // WP root files.
+        $uri_patterns[] = '**/wp-admin{/**,}';
+        $uri_patterns[] = '**/{wp-*,xmlrpc}.php{/**,}';
 
         if (!empty($wp_login_url['path']) && $wp_login_url['path'] !== '/') {
             $uri_patterns[] = '/'.c::mbTrim($wp_login_url['path'], '/').'{/**,}';
