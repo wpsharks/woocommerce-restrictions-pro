@@ -87,28 +87,28 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * Role IDs.
+     * Roles.
      *
      * @since 16xxxx Initial release.
      *
      * @param bool|null $no_cache Bypass cache?
      *
-     * @return string[] Array of role IDs.
+     * @return string[] Array of roles.
      */
-    public function roleIds(bool $no_cache = null): array
+    public function roles(bool $no_cache = null): array
     {
         $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-        if (($role_ids = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
-            return $role_ids; // Cached already.
+        if (($roles = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
+            return $roles; // Cached already.
         }
-        $role_ids = [
+        $roles = [
             'administrator', 'editor',
             'bbp_keymaster', 'bbp_blocked',
             'customer', 'shop_manager',
         ];
-        $role_ids = array_unique(c::removeEmptys($role_ids));
+        $roles = array_unique(c::removeEmptys($roles));
 
-        return $role_ids;
+        return $roles;
     }
 
     /**
@@ -156,7 +156,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         $uri_patterns = array_unique(c::removeEmptys($uri_patterns));
 
         if ($as_regex) { // Conver to regex?
-            $uri_patterns = c::wregx($uri_patterns);
+            $uri_patterns = c::wregx($uri_patterns, '/', true);
         }
         return $uri_patterns;
     }

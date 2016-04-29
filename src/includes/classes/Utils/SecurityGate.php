@@ -54,6 +54,15 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     protected $accessing;
 
     /**
+     * Is systematic?
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @type bool
+     */
+    protected $is_systematic;
+
+    /**
      * Class constructor.
      *
      * @since 16xxxx Security gate.
@@ -67,7 +76,12 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         $by_meta_key           = a::restrictionsByMetaKey();
         $this->restrictions    = $by_meta_key['restrictions'];
         $this->restriction_ids = $by_meta_key['restriction_ids'];
-        $this->accessing       = array_fill_keys(a::restrictionMetaKeys(), []);
+
+        $this->accessing = array_fill_keys(a::restrictionMetaKeys(), []);
+        unset($this->accessing['uri_patterns']); // Ditch this meta key.
+        $this->accessing['uris'] = []; // in favor of this more-appropriate key.
+
+        $this->is_systematic = false; // Initialize.
     }
 
     /**
@@ -86,7 +100,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         $this->alwaysGuardUriAccess();
         $this->maybeGuardSingularAccess();
         $this->sanitizeComparisonData();
-        $this->whitelistSystematics();
+        $this->checkIfIsSystematic();
     }
 
     /**
@@ -96,7 +110,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      */
     protected function alwaysGuardUriAccess()
     {
-        $this->accessing['uri_patterns'][] = c::currentUri();
+        $this->accessing['uris'][] = c::currentUri();
     }
 
     /**
@@ -171,14 +185,44 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * Whitelist systematics.
+     * Check systematics.
      *
      * @since 16xxxx Security gate.
      */
-    protected function whitelistSystematics()
+    protected function checkIfIsSystematic()
     {
-        // @TODO If anything being accessed is systematic, no restrictions apply.
-        // $this->requires = [];
+        $systematic_post_ids = a::systematicPostIds();
+        foreach ($this->accessing['post_ids'] as $_post_id) {
+            if (in_array($_post_id, $systematic_post_ids, true)) {
+                $this->is_systematic = true;
+                return; // Done here.
+            }
+        } // unset($_post_id); // Housekeeping.
+
+        $systematic_post_types = a::systematicPostTypes();
+        foreach ($this->accessing['post_types'] as $_post_type) {
+            if (in_array($_post_type, $systematic_post_types, true)) {
+                $this->is_systematic = true;
+                return; // Done here.
+            }
+        } // unset($_post_type); // Housekeeping.
+
+        $systematic_roles = a::systematicRoles();
+        $current_user     = wp_get_current_user();
+        foreach ($this->accessing['roles'] as $_role) {
+            if (in_array($_role, $current_user->roles, true)) {
+                $this->is_systematic = true;
+                return; // Done here.
+            }
+        } // unset($_role); // Housekeeping.
+
+        $systematic_uri_patterns_as_regex = a::systematicUriPatterns(null, true);
+        foreach ($this->accessing['uris'] as $_uri) {
+            if (preg_grep($systematic_uri_patterns_as_regex, $this->accessing['uris'])) {
+                $this->is_systematic = true;
+                return; // Done here.
+            }
+        } // unset($_uri); // Housekeeping.
     }
 
     /**

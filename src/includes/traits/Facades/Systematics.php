@@ -40,9 +40,9 @@ trait Systematics
     /**
      * @since 16xxxx Initial release.
      */
-    public static function systematicRoleIds(...$args)
+    public static function systematicRoles(...$args)
     {
-        return $GLOBALS[static::class]->Utils->Systematic->roleIds(...$args);
+        return $GLOBALS[static::class]->Utils->Systematic->roles(...$args);
     }
 
     /**

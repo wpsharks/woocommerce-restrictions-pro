@@ -525,7 +525,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         $role_select_options = s::roleSelectOptions(
             s::applyFilters('restriction_ui_role_select_option_args', [
-                'exclude'       => a::systematicRoleIds(),
+                'exclude'       => a::systematicRoles(),
                 'allow_empty'   => false,
                 'current_roles' => $current_roles,
             ])
