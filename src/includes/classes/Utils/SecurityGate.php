@@ -27,40 +27,13 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class SecurityGate extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * What's required?
+     * Restriction-related data.
      *
      * @since 16xxxx Security gate.
      *
-     * @type array[]
+     * @type array See {@link SecurityCheck{}).
      */
-    protected $restrictions;
-
-    /**
-     * Required by what?
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array[]
-     */
-    protected $restriction_ids;
-
-    /**
-     * Accessing what?
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array[]
-     */
-    protected $accessing;
-
-    /**
-     * Is systematic?
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type bool
-     */
-    protected $is_systematic;
+    protected $data; // See {@link SecurityCheck{}).
 
     /**
      * Class constructor.
@@ -73,15 +46,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $by_meta_key           = a::restrictionsByMetaKey();
-        $this->restrictions    = $by_meta_key['restrictions'];
-        $this->restriction_ids = $by_meta_key['restriction_ids'];
-
-        $this->accessing = array_fill_keys(a::restrictionMetaKeys(), []);
-        unset($this->accessing['uri_patterns']); // Ditch this meta key.
-        $this->accessing['uris'] = []; // in favor of this more-appropriate key.
-
-        $this->is_systematic = false; // Initialize.
+        $this->data = []; // Initialize.
     }
 
     /**
@@ -95,134 +60,58 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
             return; // Not applicable.
         }
         if (is_admin()) {
-            return; // Not applicable.
+            if ($this->restrictionsApply()) {
+                $this->denyRedirect();
+            }
+        } else { // Wait until the main query is ready.
+            add_action('wp', [$this, 'onWpGuardRestrictions'], -PHP_INT_MAX);
         }
-        $this->alwaysGuardUriAccess();
-        $this->maybeGuardSingularAccess();
-        $this->sanitizeComparisonData();
-        $this->checkIfIsSystematic();
     }
 
     /**
-     * Guard URI access.
+     * Guard restrictions.
      *
      * @since 16xxxx Security gate.
+     *
+     * @param \WP $WP WordPress base instance.
      */
-    protected function alwaysGuardUriAccess()
+    public function onWpGuardRestrictions(\WP $WP)
     {
-        $this->accessing['uris'][] = c::currentUri();
+        // This should fire once only, so let's remove it.
+        remove_action('wp', [$this, 'onWpGuardRestrictions'], -PHP_INT_MAX);
+
+        if ($this->restrictionsApply()) {
+            $this->denyRedirect();
+        }
     }
 
     /**
-     * Maybe guard singular access.
+     * Do restrictions apply?
      *
      * @since 16xxxx Security gate.
+     *
+     * @return array See {@link SecurityCheck{}).
      */
-    protected function maybeGuardSingularAccess()
+    protected function restrictionsApply(): array
     {
         global $wp_the_query;
 
-        if (!$wp_the_query->is_singular) {
-            return; // Not applicable.
+        if (is_admin()) {
+            $post_id = 0;
+            $uri     = c::currentUri();
+        } else {
+            if (!$wp_the_query->is_singular) {
+                return []; // Not applicable.
+            }
+            if (!($post = $wp_the_query->get_queried_object())) {
+                return []; // Not possible.
+            }
+            $post_id = $post->ID;
+            $uri     = c::currentUri();
         }
-        if (!($post = $wp_the_query->queried_object())) {
-            return; // Not possible.
-        }
-        $this->accessing['post_ids'][]   = $post->ID;
-        $this->accessing['post_types'][] = $post->post_type;
-        $this->accessing['author_ids'][] = $post->post_author;
+        $WP_User = wp_get_current_user();
 
-        foreach (get_post_taxonomies($post) as $_taxonomy) {
-            $_terms = wp_get_post_terms($post->ID, $_taxonomy);
-            if (!$_terms || !is_array($_terms)) {
-                continue; // No terms.
-            }
-            foreach ($_terms as $_term) {
-                $this->accessing['tax_term_ids'][] = $_taxonomy.':'.$_term->term_id;
-                foreach (get_ancestors($_term->term_id, $_taxonomy) as $_ancestor_term_id) {
-                    $this->accessing['tax_term_ids'][] = $_taxonomy.':'.$_ancestor_term_id;
-                } // unset($_ancestor_term_id);
-            } // unset($_term); // Housekeeping.
-        } // unset($_taxonomy, $_terms); // Housekeeping.
-
-        foreach (get_post_ancestors($post) as $_ancestor_post_id) {
-            if (!($_ancestor_post = get_post($_ancestor_post_id))) {
-                continue; // Nothing to do.
-            }
-            $this->accessing['post_ids'][]   = $_ancestor_post->ID;
-            $this->accessing['post_types'][] = $_ancestor_post->post_type;
-            $this->accessing['author_ids'][] = $_ancestor_post->post_author;
-
-            foreach (get_post_taxonomies($_ancestor_post) as $_taxonomy) {
-                $_terms = wp_get_post_terms($_ancestor_post->ID, $_taxonomy);
-                if (!$_terms || !is_array($_terms)) {
-                    continue; // No terms.
-                }
-                foreach ($_terms as $_term) {
-                    $this->accessing['tax_term_ids'][] = $_taxonomy.':'.$_term->term_id;
-                    foreach (get_ancestors($_term->term_id, $_taxonomy) as $_ancestor_term_id) {
-                        $this->accessing['tax_term_ids'][] = $_taxonomy.':'.$_ancestor_term_id;
-                    } // unset($_ancestor_term_id);
-                } // unset($_term); // Housekeeping.
-            } // unset($_taxonomy, $_terms); // Housekeeping.
-        } // unset($_ancestor_post_id, $_ancestor_post); // Housekeeping.
-    }
-
-    /**
-     * Sanitize comparison data.
-     *
-     * @since 16xxxx Security gate.
-     */
-    protected function sanitizeComparisonData()
-    {
-        $int_meta_keys = a::restrictionIntMetaKeys();
-
-        foreach ($this->accessing as $_meta_key => &$_accessing) {
-            $_accessing = array_map(in_array($_meta_key, $int_meta_keys, true) ? 'intval' : 'strval', $_accessing);
-            $_accessing = array_unique(c::removeEmptys($_accessing));
-        } // Must unset temp variable by reference.
-        unset($_meta_key, $_accessing); // Housekeeping.
-    }
-
-    /**
-     * Check systematics.
-     *
-     * @since 16xxxx Security gate.
-     */
-    protected function checkIfIsSystematic()
-    {
-        $systematic_post_ids = a::systematicPostIds();
-        foreach ($this->accessing['post_ids'] as $_post_id) {
-            if (in_array($_post_id, $systematic_post_ids, true)) {
-                $this->is_systematic = true;
-                return; // Done here.
-            }
-        } // unset($_post_id); // Housekeeping.
-
-        $systematic_post_types = a::systematicPostTypes();
-        foreach ($this->accessing['post_types'] as $_post_type) {
-            if (in_array($_post_type, $systematic_post_types, true)) {
-                $this->is_systematic = true;
-                return; // Done here.
-            }
-        } // unset($_post_type); // Housekeeping.
-
-        $systematic_roles = a::systematicRoles();
-        $current_user     = wp_get_current_user();
-        foreach ($this->accessing['roles'] as $_role) {
-            if (in_array($_role, $current_user->roles, true)) {
-                $this->is_systematic = true;
-                return; // Done here.
-            }
-        } // unset($_role); // Housekeeping.
-
-        $systematic_uri_patterns_as_regex = a::systematicUriPatterns(null, true);
-        foreach ($this->accessing['uris'] as $_uri) {
-            if (preg_grep($systematic_uri_patterns_as_regex, $this->accessing['uris'])) {
-                $this->is_systematic = true;
-                return; // Done here.
-            }
-        } // unset($_uri); // Housekeeping.
+        return $this->data = a::restrictionsApply($post_id, $uri, $WP_User);
     }
 
     /**
@@ -230,16 +119,63 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Security gate.
      */
-    protected function denyWithRedirection()
+    protected function denyRedirect()
     {
-        $redirects_to_post_id  = (int) s::getOption('security_gate_redirects_to_post_id');
-        $redirect_to_url       = $redirects_to_post_id ? get_permalink($redirects_to_post_id) : home_url('/');
-        $redirect_to_url_parts = $redirect_to_url ? parse_url($redirect_to_url) : [];
+        $redirect_to_post_id = (int) s::getOption('security_gate_redirects_to_post_id');
+        $redirect_to         = $redirect_to_post_id ? get_permalink($redirect_to_post_id) : wp_login_url();
+        $redirect_to         = !$redirect_to ? wp_login_url() : $redirect_to;
 
-        $redirect_to = !$redirect_to_url_parts || $redirect_to_url_parts['uri'] === c::currentUri()
-            ? wp_login_url() : $redirect_to_url; // Try hard to avoid loops.
+        $redirect_to = $this->maybeAddRedirectArgs($redirect_to);
+        $redirect_to = s::applyFilters('security_gate_redirect_to', $redirect_to);
 
         wp_redirect($redirect_to, 307);
         exit; // Stop here.
+    }
+
+    /**
+     * Maybe add redirect args.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @param string $redirect_to URL.
+     *
+     * @return string URL w/ possible redirect args.
+     */
+    protected function maybeAddRedirectArgs(string $redirect_to): string
+    {
+        if (!s::getOption('security_gate_redirect_to_args_enable')) {
+            return $redirect_to; // Not applicable.
+        }
+        $args = $restriction_ids = []; // Initialize.
+
+        foreach ($this->data['restricted_by'] as $_meta_key => $_restriction_ids) {
+            $restriction_ids = array_merge($restriction_ids, $_restriction_ids);
+        } // unset($_meta_key, $_restriction_ids); // Housekeeping.
+
+        if (($restriction_ids = array_unique($restriction_ids))) {
+            $args[$this->redirectArg('requires')] = implode('.', $restriction_ids);
+        }
+        $redirect_to = c::addUrlQueryArgs($args, $redirect_to);
+
+        return $redirect_to;
+    }
+
+    /**
+     * Redirect argument.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @param string $type Type of argument.
+     *
+     * @return string Query string argument name.
+     */
+    public function redirectArg(string $type): string
+    {
+        if ($type === 'requires') {
+            $default = 'requires';
+        } else {
+            $default = $type; // Future consideration.
+        }
+        return s::applyFilters('security_gate_redirect_arg_'.$type, $default);
     }
 }

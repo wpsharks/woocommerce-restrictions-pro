@@ -101,7 +101,8 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
         unset($_meta_key, $_restrictions);
 
         foreach ($by_meta_key['restrictions']['uri_patterns'] as $_key => &$_uri_pattern) {
-            $_uri_pattern = [$_uri_pattern => c::wRegx($_uri_pattern, '/', true)];
+            $_against     = preg_match('/\[[?&]+\]/u', $_uri_pattern) ? 'uri' : 'uri_path';
+            $_uri_pattern = ['against' => $_against, 'wregx' => $_uri_pattern, 'regex' => c::wRegx($_uri_pattern, '/', true).'i'];
         } // Must unset temp reference variable.
         unset($_key, $_uri_pattern);
 

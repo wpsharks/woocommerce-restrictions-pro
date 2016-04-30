@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160428'; //v//
+    const VERSION = '160429'; //v//
 
     /**
      * Constructor.
@@ -51,15 +51,14 @@ class App extends SCoreClasses\App
                     ],
                 ],
             ],
-
             '§pro_option_keys' => [
-                'restricted_ccaps_auto_prefix',
                 'restriction_categories_enable',
+                'security_gate_redirect_to_args_enable',
             ],
             '§default_options' => [
-                'restricted_ccaps_auto_prefix'       => 'access_',
-                'restriction_categories_enable'      => '0',
-                'security_gate_redirects_to_post_id' => '',
+                'restriction_categories_enable'         => '0',
+                'security_gate_redirects_to_post_id'    => '',
+                'security_gate_redirect_to_args_enable' => '1',
             ],
             // @TODO Require WooCommerce.
             // @TODO Require fancy permalinks.

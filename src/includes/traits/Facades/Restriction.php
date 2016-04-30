@@ -56,6 +56,14 @@ trait Restriction
     /**
      * @since 16xxxx Initial release.
      */
+    public static function restrictionCcapsPrefix()
+    {
+        return $GLOBALS[static::class]->Utils->Restriction->ccaps_prefix;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
     public static function getRestrictionMeta(...$args)
     {
         return $GLOBALS[static::class]->Utils->Restriction->getMeta(...$args);

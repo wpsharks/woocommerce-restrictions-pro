@@ -36,6 +36,15 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public $post_type;
 
     /**
+     * CCAPs prefix.
+     *
+     * @since 16xxxx
+     *
+     * @type string
+     */
+    public $ccaps_prefix;
+
+    /**
      * Client-side prefix.
      *
      * @since 16xxxx
@@ -91,10 +100,15 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->post_type          = 'restriction';
+        $this->post_type = 'restriction'; // Default post type var.
+        $this->post_type = s::applyFilters('restriction_post_type', $this->post_type);
+
+        $this->ccaps_prefix       = s::applyFilters('restriction_ccaps_prefix', 'access_');
+        $this->ccaps_prefix       = $this->ccaps_prefix ?: 'access_'; // Cannot be empty!
         $this->client_side_prefix = 'fdbmjuxwzjfjtaucytprkbcqfpftudyg';
-        $this->meta_keys          = ['post_ids', 'post_types', 'tax_term_ids', 'author_ids', 'roles', 'ccaps', 'uri_patterns'];
-        $this->int_meta_keys      = ['post_ids', 'author_ids']; // Integer data type.
+
+        $this->meta_keys     = ['post_ids', 'post_types', 'tax_term_ids', 'author_ids', 'roles', 'ccaps', 'uri_patterns'];
+        $this->int_meta_keys = ['post_ids', 'author_ids']; // Integer data type.
     }
 
     /**
@@ -540,7 +554,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             echo '<p class="-heading -input-heading">'.__('<a href="https://developer.wordpress.org/plugins/users/roles-and-capabilities/" target="_blank">WordPress Roles</a> in comma-delimited format. See also: <a href="https://wordpress.org/plugins/user-role-editor/" target="_blank">Role Editor</a>', 's2member-x').'</p>';
             echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->client_side_prefix.'_roles').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., contributor, pro_member, participant', 's2member-x').'" value="'.esc_attr(implode(', ', $current_roles)).'"></p>';
         }
-        echo    '<p>'.sprintf(__('<strong>Note:</strong> Protecting a Role is to package the Capabilities associated with that Role. If a customer purchases access to a Restriction that protects a Role, they don\'t actually acquire the Role itself, but they do acquire the Capabilities provided by that Role; i.e., any Capabilities in the Role that a user doesn\'t already have, they acquire. Note also, there are some Roles that are "reserved" internally and cannot be associated with a Restriction. These include: <em>%1$s</em>.', 's2member-x'), esc_html(implode(', ', a::systematicRoleIds()))).'</p>';
+        echo    '<p>'.sprintf(__('<strong>Note:</strong> Protecting a Role is to package the Capabilities associated with that Role. If a customer purchases access to a Restriction that protects a Role, they don\'t actually acquire the Role itself, but they do acquire the Capabilities provided by that Role; i.e., any Capabilities in the Role that a user doesn\'t already have, they acquire. Note also: There are a few Systematic Roles with special internal permissions and they cannot be associated with a Restriction. These include: <em>%1$s</em>.', 's2member-x'), esc_html(implode(', ', a::systematicRoles()))).'</p>';
 
         echo '</div>';
     }
@@ -556,13 +570,12 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public function restrictsCcapsMetaBox(\WP_Post $post, array $args = [])
     {
         $current_ccaps = $this->getMeta($post->ID, 'ccaps');
-        $auto_prefix   = s::getOption('restricted_ccaps_auto_prefix');
 
         echo '<div class="-meta -ccaps">';
 
         echo    '<p class="-heading -input-heading">'.__('CCAPs (<a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank">Custom Capabilities</a>) in comma-delimited format:', 's2member-x').'</p>';
         echo    '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->client_side_prefix.'_ccaps').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., members_area, pro_membership, premium_content', 's2member-x').'" value="'.esc_attr(implode(', ', $current_ccaps)).'"></p>';
-        echo    '<p class="-tip -input-tip">'.sprintf(__('<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%1$s<code style="padding:0;">something</code>\')</a>', 's2member-x'), esc_html($auto_prefix)).'</p>';
+        echo    '<p class="-tip -input-tip">'.sprintf(__('<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%1$s<code style="padding:0;">something</code>\')</a>', 's2member-x'), esc_html($this->ccaps_prefix)).'</p>';
 
         echo '</div>';
     }
@@ -609,17 +622,25 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo        '<ul class="-syntax-tips">'; // Expects the use of an wregx (watered-down regex) syntax.
         echo            '<li>'.__('Comparison is always caSe-insensitive (i.e., case does not matter).', 's2member-x').'</li>';
         echo            '<li>'.__('Your pattern must match an entire URI (beginning to end). Not just a small portion.', 's2member-x').'</li>';
-        echo            '<li>'.sprintf(__('A URI always starts with a slash (e.g., <em>/example-post%1$s</em>). The smallest possible URI (the home page) is: <em>/</em>', 's2member-x'), $wp_rewrite->use_trailing_slashes ? '/' : '').'</li>';
+        echo            '<li>'.sprintf(__('A URI always starts with a slash (e.g., <em>/example-post%1$s</em>). The smallest possible URI (the home page) is: <em><strong>/</strong></em>', 's2member-x'), $wp_rewrite->use_trailing_slashes ? '/' : '').'</li>';
         if ($wp_rewrite->use_trailing_slashes) {
             echo        '<li>'.__('Your current Permalink Settings in WordPress indicate that all URIs on this site will have a trailing slash on the end. You must match that trailing slash in your patterns.', 's2member-x').'</li>';
         } else {
-            echo        '<li>'.__('Your current Permalink Settings in WordPress indicate that URIs on this site will not end with a trailing slash. Your patterns should not depend on a trailing slash.', 's2member-x').'</li>';
+            echo        '<li>'.__('Your current Permalink Settings in WordPress indicate that URIs on this site will not end with a trailing slash. Your patterns should not depend on there always being a trailing slash.', 's2member-x').'</li>';
         }
         echo            '<li>'.sprintf(__('In WordPress it is common for any given URI to accept additional endpoint directives. For instance, paginated locations: <em>/example-post/page/2%1$s</em>, <em>/example-post/comments-page/2%1$s</em>. Therefore, we suggest a pattern that covers all possible endpoint variations. For instance: <em>/example-post{/**,}</em> will match the base URI by itself, and also match a possible trailing slash with any endpoint directives it may accept.', 's2member-x'), $wp_rewrite->use_trailing_slashes ? '/' : '').'</li>';
-        echo            '<li>'.__('Any query string variables on the end of a URI (example: <em>?p=123&amp;key=value</em>) are stripped before comparison so you don\'t need to worry about them. However, if your pattern contains: <em>[?]</em> ... (literally, a <em>?</em> question mark in <em>[?]</em> square brackets) it indicates that you DO want to check the query string, so they are NOT stripped away in that case; and the pattern you give will be capable of matching. Just remember that query string variables can appear in any order, as entered by a user. If you check for query strings, please use <em>**</em> wildcards around the key/value pair you\'re looking for. For instance: <em>/example-post{/**,}[?]**key=value**</em>', 's2member-x').'</li>';
-        echo            '<li>'.__('There are a few Systematic URIs on your site that are "reserved" internally and cannot be associated with a Restriction:', 's2member-x').'<ul class="-syntax-tips" style="list-style-type:none;"><li style="margin:0;"><em>'.implode('</em></li><li style="margin:0;"><em>', array_map('esc_html', a::systematicUriPatterns())).'</em></li></ul></li>';
-        echo            '<li>'.__('It is possible to restrict access to every page on the entire site using the pattern <em>/**</em> as a catch-all. In this scenario, everything is off-limits (including all <em>/wp-admin/</em> areas), except for the Systematic URIs listed above. Having said that, please be careful when using a catch-all pattern. Everything (yes, everything) will be off-limits, including your home page! We suggest this as a last resort only. Instead, restrict Posts, Pages, Categories, Tags and/or other specific URIs. Generally speaking, it is best to restrict only portions of a site from public access.', 's2member-x').'</li>';
-        echo            '<li>'.__('Restrictions rely upon PHP as a server-side scripting language. Therefore, you can protect any location (page) served by WordPress via PHP, but you can\'t protect static files. For instance: <em>.jpg</em>, <em>.pdf</em>, and <em>.zip</em> are static. Generally speaking, if you upload it to the Media Library, it\'s a static asset. It cannot be protected here. Instead, configure a "Downloadable Product" with WooCommerce.', 's2member-x').'</li>';
+        echo            '<li>'.__('Any query string variables on the end of a URI (example: <em>?p=123&amp;key=value</em>) are stripped before comparison so you don\'t need to worry about them. However, if your pattern contains: <em>[?]</em> (literally, a <em>?</em> question mark in square brackets) it indicates that you DO want to check the query string, and they are NOT stripped away in that case; so your pattern will be capable of matching. Just remember that query string variables can appear in any order, as entered by a user. If you check for query strings, use <em>{**&,}</em> and <em>{&**,}</em> around the key=value pair you\'re looking for. For instance: <em>/example-post{/**,}[?]{**&,}key=value{&**,}</em>. If you\'re forced to look for multiple variables, the best you can do is: <em>{**&,}key=value{&**&,&,}another=value{&**,}</em>. This still expects <em>key=value</em> to be first, but <em>{&**&,&,}</em> helps some.', 's2member-x').'</li>';
+        echo            '<li>'.__('It is possible to protect (and grant) access to portions of <em>/wp-admin/</em> with URI Patterns too. However, please remember that in order for a user to actually do anything inside the admin panel they will also need to have Capabilities which grant them additional permissions; such as the ability to <em>edit_posts</em>. See: <strong>Role Capabilities</strong> as a form of protection if you\'d like more information.', 's2member-x').'</li>';
+        echo            '<li>'.__('It is possible to restrict access to every page on the entire site using the pattern <em>/**</em> as a catch-all. In this scenario, everything is off-limits (including all <em>/wp-admin/</em> areas), except for the Systematic URIs listed below. Having said that, please be careful when using a catch-all pattern. Everything (yes, everything) will be off-limits, including your home page! We suggest this as a last resort only. Instead, restrict Posts, Pages, Categories, Tags and/or other specific URIs. Generally speaking, it is best to restrict only portions of a site from public access.', 's2member-x').'</li>';
+        echo            '<li>'.__('Restrictions rely upon PHP as a server-side scripting language. Therefore, you can protect any location (page) served by WordPress via PHP, but you can\'t protect static files. For instance: <em>.jpg</em>, <em>.pdf</em>, and <em>.zip</em> are static. Generally speaking, if you upload something to the Media Library, it\'s a static asset. It cannot be protected here. Instead, configure a "Downloadable Product" with WooCommerce.', 's2member-x').'</li>';
+        echo            '<li>'.__('There are a few Systematic URIs on your site that cannot be associated with a Restriction. It\'s OK if one of your patterns overlaps with these, but any URI matching one of these will simply not be allowed to have any additional Restrictions applied to it whatsoever. In other words, these are automatically excluded (internally), because they are associated with special functionality.', 's2member-x').
+                            '<ul class="-syntax-tips">'.
+                                '<li style="margin:0;"><strong>URI:</strong> <em>'.implode('</em></li><li style="margin:0;"><strong>URI:</strong> <em>', array_map('esc_html', a::systematicUriPatterns(null, false))).'</em></li>'.
+                                '<li style="margin:0;"><strong>Post (aka: Page) IDs:</strong> <em>'.implode(',', array_map('esc_html', a::systematicPostIds())).'</em></li>'.
+                                '<li style="margin:0;"><strong>Post Types:</strong> <em>'.implode(',', array_map('esc_html', a::systematicPostTypes())).'</em></li>'.
+                                '<li style="margin:0;"><strong>Users w/ Role:</strong> <em>'.implode(',', array_map('esc_html', a::systematicRoles())).'</em></li>'.
+                            '</ul>'.
+                        '</li>';
         echo        '</ul>';
         echo    '</div>';
 

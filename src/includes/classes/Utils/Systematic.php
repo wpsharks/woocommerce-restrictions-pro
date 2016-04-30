@@ -59,7 +59,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         $post_ids = array_merge($post_ids, $this->collectBpPostIds($no_cache));
         $post_ids = array_unique(c::removeEmptys($post_ids));
 
-        return $post_ids;
+        return $post_ids = s::applyFilters('systematic_post_ids', $post_ids);
     }
 
     /**
@@ -83,7 +83,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         $post_types = array_merge($post_types, ['shop_order', 'shop_coupon', 'shop_webhook']);
         $post_types = array_unique(c::removeEmptys($post_types));
 
-        return $post_types;
+        return $post_types = s::applyFilters('systematic_post_types', $post_types);
     }
 
     /**
@@ -108,7 +108,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         ];
         $roles = array_unique(c::removeEmptys($roles));
 
-        return $roles;
+        return $roles = s::applyFilters('systematic_roles', $roles);
     }
 
     /**
@@ -117,46 +117,51 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      * @since 16xxxx Initial release.
      *
      * @param bool|null $no_cache Bypass cache?
-     * @param bool      $as_regex As a regex pattern?
+     * @param bool      $compile  Compile into arrays?
      *
-     * @return string[]|string Array of URI patterns.
+     * @return array Array of URI patterns.
      */
-    public function uriPatterns(bool $no_cache = null, bool $as_regex = false)
+    public function uriPatterns(bool $no_cache = null, bool $compile = true)
     {
         $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-        if (($uri_patterns = &$this->cacheKey(__FUNCTION__, $as_regex)) !== null && !$no_cache) {
+        if (($uri_patterns = &$this->cacheKey(__FUNCTION__, $compile)) !== null && !$no_cache) {
             return $uri_patterns; // Cached already.
         }
-        $uri_patterns        = []; // Initialize.
-        $wp_login_url        = c::parseUrl(wp_login_url());
-        $wp_registration_url = c::parseUrl(wp_registration_url());
-        $wc_urls             = $this->collectWcUrls($no_cache);
-        $bp_urls             = $this->collectBpUrls($no_cache);
+        $uri_patterns = []; // Initialize.
 
-        $uri_patterns[] = '**/wp-admin{/**,}';
         $uri_patterns[] = '**/{wp-*,xmlrpc}.php{/**,}';
 
-        if (!empty($wp_login_url['path']) && $wp_login_url['path'] !== '/') {
-            $uri_patterns[] = '/'.c::mbTrim($wp_login_url['path'], '/').'{/**,}';
+        $uri_patterns[] = c::urlToWRegxUriPattern(wp_login_url());
+        $uri_patterns[] = c::urlToWRegxUriPattern(wp_registration_url());
+
+        if (is_multisite()) { // There is a network admin panel?
+            $uri_patterns[] = c::urlToWRegxUriPattern(network_admin_url());
         }
-        if (!empty($wp_registration_url['path']) && $wp_registration_url['path'] !== '/') {
-            $uri_patterns[] = '/'.c::mbTrim($wp_registration_url['path'], '/').'{/**,}';
-        }
-        foreach ($wc_urls as $_wc_url) { // WooCommerce systematics.
-            if (($_wc_url = c::parseUrl($_wc_url))  && $_wc_url['path'] && $_wc_url['path'] !== '/') {
-                $uri_patterns[] = '/'.c::mbTrim($_wc_url['path'], '/').'{/**,}';
-            }
+        foreach ($this->collectWcUrls($no_cache) as $_wc_url) {
+            $uri_patterns[] = c::urlToWRegxUriPattern($_wc_url);
         } // unset($_wc_url); // Housekeeping.
-        foreach ($bp_urls as $_bp_url) { // WooCommerce systematics.
-            if (($_bp_url = c::parseUrl($_bp_url))  && $_bp_url['path'] && $_bp_url['path'] !== '/') {
-                $uri_patterns[] = '/'.c::mbTrim($_bp_url['path'], '/').'{/**,}';
-            }
+
+        foreach ($this->collectBpUrls($no_cache) as $_bp_url) {
+            $uri_patterns[] = c::urlToWRegxUriPattern($_bp_url);
         } // unset($_bp_url); // Housekeeping.
 
-        $uri_patterns = array_unique(c::removeEmptys($uri_patterns));
+        foreach ($uri_patterns as $_key => $_uri_pattern) {
+            if (!$_uri_pattern) { // Quite possible.
+                unset($uri_patterns[$_key]); // Exclude empties.
+            } elseif (preg_match('/\/wp\-[a-z0-9]+?\.php/ui', $_uri_pattern)) {
+                unset($uri_patterns[$_key]); // Already covered these.
+            }
+        } // unset($_key, $_uri_pattern); // Housekeeping.
 
-        if ($as_regex) { // Conver to regex?
-            $uri_patterns = c::wregx($uri_patterns, '/', true);
+        $uri_patterns = array_unique(c::removeEmptys($uri_patterns));
+        $uri_patterns = s::applyFilters('systematic_uri_patterns', $uri_patterns);
+
+        if ($compile) { // Compile into arrays?
+            foreach ($uri_patterns as $_key => &$_uri_pattern) {
+                $_against     = preg_match('/\[[?&]+\]/u', $_uri_pattern) ? 'uri' : 'uri_path';
+                $_uri_pattern = ['against' => $_against, 'wregx' => $_uri_pattern, 'regex' => c::wRegx($_uri_pattern, '/', true).'i'];
+            } // Must unset temp reference variable.
+            unset($_key, $_uri_pattern);
         }
         return $uri_patterns;
     }
