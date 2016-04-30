@@ -33,28 +33,109 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
      */
     public function clearCache()
     {
+        $this->cacheClear(); // Object cache.
+        s::deleteTransient('restrictions_by_slug');
         s::deleteTransient('restrictions_by_meta_key');
     }
 
     /**
-     * By meta key.
+     * Restriction slug to ID.
      *
      * @since 16xxxx Restrictions.
      *
-     * @param bool|null $no_cache Bypass cache?
+     * @param string $slug A slug.
+     *
+     * @return int ID; else `0` on failure.
+     */
+    public function slugToId(string $slug): int
+    {
+        $by_slug = $this->bySlug();
+        return !empty($by_slug[$slug]) ? $by_slug[$slug] : 0;
+    }
+
+    /**
+     * Restriction IDs for slugs.
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @param array $slugs One or more slugs/IDs.
+     * @note It's OK if the array also contains IDs.
+     *
+     * @return array An array of IDs (keys are slugs).
+     */
+    public function slugsToIds(array $slugs): array
+    {
+        $ids     = []; // Initialize.
+        $by_slug = $this->bySlug();
+
+        foreach ($slugs as $_slug) {
+            if ($_slug && is_int($_slug)) {
+                $_slug = array_search($_slug, $by_slug, true);
+            }
+            if ($_slug && is_string($_slug) && !empty($by_slug[$_slug])) {
+                $ids[$_slug] = $by_slug[$_slug];
+            }
+        } // unset($_slug); // Housekeeping.
+
+        return $ids;
+    }
+
+    /**
+     * Restriction IDs by slug.
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @return array IDs; keys are slugs.
+     */
+    public function bySlug(): array
+    {
+        $transient_cache_key = 'restrictions_by_slug';
+        $post_type           = a::restrictionPostType();
+
+        $no_cache = s::isMenuPageForPostType($post_type);
+        if (!$no_cache && is_array($by_slug = s::getTransient($transient_cache_key))) {
+            return $by_slug; // Cached already.
+        }
+        $WpDb = $this->s::wpDb(); // DB object instance.
+
+        $by_slug = []; // Initialize array.
+
+        $sql = // Restrictions from the posts table.
+            'SELECT `ID`, `post_name` AS `slug` FROM `'.esc_sql($WpDb->posts).'`'.
+                " WHERE `post_type` = %s AND `post_status` = 'publish'";
+        $sql = $WpDb->prepare($sql, $post_type);
+
+        if (!($results = $WpDb->get_results($sql))) {
+            s::setTransient($transient_cache_key, $by_slug, MINUTE_IN_SECONDS * 15);
+            return $by_slug; // Nothing.
+        }
+        foreach ($results as $_key => $_result) {
+            $by_slug[$_result->slug] = (int) $_result->ID;
+        } // unset($_key, $_result); // Housekeeping.
+
+        s::setTransient($transient_cache_key, $by_slug, MINUTE_IN_SECONDS * 15);
+
+        return $by_slug;
+    }
+
+    /**
+     * Restrictions by meta key.
+     *
+     * @since 16xxxx Restrictions.
      *
      * @return array `['restrictions' => [], 'restriction_ids' => []]`
      */
-    public function byMetaKey(bool $no_cache = null): array
+    public function byMetaKey(): array
     {
-        $WpDb                = $this->s::wpDb();
         $transient_cache_key = 'restrictions_by_meta_key';
+        $post_type           = a::restrictionPostType();
 
-        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
+        $no_cache = s::isMenuPageForPostType($post_type);
         if (!$no_cache && is_array($by_meta_key = s::getTransient($transient_cache_key))) {
             return $by_meta_key; // Cached already.
         }
-        $post_type     = a::restrictionPostType();
+        $WpDb = $this->s::wpDb(); // DB object instance.
+
         $meta_keys     = a::restrictionMetaKeys();
         $int_meta_keys = a::restrictionIntMetaKeys();
 
@@ -63,7 +144,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
             $full_meta_keys[] = 'restriction_'.$_meta_key;
         } // unset($_meta_key); // Housekeeping.
 
-        $by_meta_key = [
+        $by_meta_key = [ // Initialize array; by meta key.
             'restrictions'    => array_fill_keys($meta_keys, []),
             'restriction_ids' => array_fill_keys($meta_keys, []),
         ];
@@ -77,7 +158,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
                 ' AND `meta_key` IN('.c::quoteSqlIn($full_meta_keys).')';// Restriction keys.
 
         if (!($results = $WpDb->get_results($sql))) {
-            s::setTransient($transient_cache_key, $by_meta_key, HOUR_IN_SECONDS);
+            s::setTransient($transient_cache_key, $by_meta_key, MINUTE_IN_SECONDS * 15);
             return $by_meta_key; // Nothing.
         }
         foreach ($results as $_key => $_result) {
@@ -106,7 +187,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
         } // Must unset temp reference variable.
         unset($_key, $_uri_pattern);
 
-        s::setTransient($transient_cache_key, $by_meta_key, HOUR_IN_SECONDS);
+        s::setTransient($transient_cache_key, $by_meta_key, MINUTE_IN_SECONDS * 15);
 
         return $by_meta_key;
     }

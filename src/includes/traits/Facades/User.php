@@ -19,45 +19,29 @@ use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 
-trait Restrictions
+trait User
 {
     /**
      * @since 16xxxx Initial release.
      */
-    public static function clearRestrictionsCache(...$args)
+    public static function currentUserHas(...$args)
     {
-        return $GLOBALS[static::class]->Utils->Restrictions->clearCache(...$args);
+        return $GLOBALS[static::class]->Utils->User->currentHasAccessToRestrictions(...$args);
     }
 
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionSlugToId(...$args)
+    public static function userHas(...$args)
     {
-        return $GLOBALS[static::class]->Utils->Restrictions->slugToId(...$args);
+        return $GLOBALS[static::class]->Utils->User->hasAccessToRestrictions(...$args);
     }
 
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionSlugsToIds(...$args)
+    public static function userAccessibleRestrictionIds(...$args)
     {
-        return $GLOBALS[static::class]->Utils->Restrictions->slugsToIds(...$args);
-    }
-
-    /**
-     * @since 16xxxx Initial release.
-     */
-    public static function restrictionsBySlug(...$args)
-    {
-        return $GLOBALS[static::class]->Utils->Restrictions->bySlug(...$args);
-    }
-
-    /**
-     * @since 16xxxx Initial release.
-     */
-    public static function restrictionsByMetaKey(...$args)
-    {
-        return $GLOBALS[static::class]->Utils->Restrictions->byMetaKey(...$args);
+        return $GLOBALS[static::class]->Utils->User->accessibleRestrictionIds(...$args);
     }
 }

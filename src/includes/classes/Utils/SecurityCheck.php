@@ -342,7 +342,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
                 }
                 $_by_restriction_ids = $this->restriction_ids[$_meta_key][$_restriction];
 
-                if (!$WP_User || !$WP_User->exists()) { // @TODO Check user access.
+                if (!$WP_User || !a::userHas($WP_User->ID, $_by_restriction_ids, 'any')) {
                     $is_restricted             = true;
                     $restricted[$_meta_key][]  = $_restriction;
                     $restricted_by[$_meta_key] = array_merge(

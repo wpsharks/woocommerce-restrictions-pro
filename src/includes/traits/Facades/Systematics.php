@@ -24,6 +24,14 @@ trait Systematics
     /**
      * @since 16xxxx Initial release.
      */
+    public static function clearSystematicCache(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->Systematic->clearCache(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
     public static function systematicPostIds(...$args)
     {
         return $GLOBALS[static::class]->Utils->Systematic->postIds(...$args);

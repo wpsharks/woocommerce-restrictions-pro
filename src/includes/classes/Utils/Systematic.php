@@ -27,15 +27,15 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class Systematic extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Class constructor.
+     * Clear cache.
      *
      * @since 16xxxx Restrictions.
-     *
-     * @param Classes\App $App Instance.
      */
-    public function __construct(Classes\App $App)
+    public function clearCache()
     {
-        parent::__construct($App);
+        $this->cacheClear(); // Object cache.
+        s::deleteTransient('systematic_wc_urls');
+        s::deleteTransient('systematic_bp_urls');
     }
 
     /**
@@ -43,20 +43,17 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Initial release.
      *
-     * @param bool|null $no_cache Bypass cache?
-     *
      * @return int[] Array of post IDs.
      */
-    public function postIds(bool $no_cache = null): array
+    public function postIds(): array
     {
-        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-        if (($post_ids = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
+        if (($post_ids = &$this->cacheKey(__FUNCTION__)) !== null) {
             return $post_ids; // Cached already.
         }
         $post_ids = []; // Initialize.
         $post_ids = array_merge($post_ids, [(int) s::getOption('security_gate_redirects_to_post_id')]);
-        $post_ids = array_merge($post_ids, $this->collectWcPostIds($no_cache));
-        $post_ids = array_merge($post_ids, $this->collectBpPostIds($no_cache));
+        $post_ids = array_merge($post_ids, $this->collectWcPostIds());
+        $post_ids = array_merge($post_ids, $this->collectBpPostIds());
         $post_ids = array_unique(c::removeEmptys($post_ids));
 
         return $post_ids = s::applyFilters('systematic_post_ids', $post_ids);
@@ -67,14 +64,11 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Initial release.
      *
-     * @param bool|null $no_cache Bypass cache?
-     *
      * @return int[] Array of post IDs.
      */
-    public function postTypes(bool $no_cache = null): array
+    public function postTypes(): array
     {
-        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-        if (($post_types = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
+        if (($post_types = &$this->cacheKey(__FUNCTION__)) !== null) {
             return $post_types; // Cached already.
         }
         $post_types = []; // Initialize.
@@ -91,14 +85,11 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Initial release.
      *
-     * @param bool|null $no_cache Bypass cache?
-     *
      * @return string[] Array of roles.
      */
-    public function roles(bool $no_cache = null): array
+    public function roles(): array
     {
-        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-        if (($roles = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
+        if (($roles = &$this->cacheKey(__FUNCTION__)) !== null) {
             return $roles; // Cached already.
         }
         $roles = [
@@ -116,15 +107,13 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Initial release.
      *
-     * @param bool|null $no_cache Bypass cache?
-     * @param bool      $compile  Compile into arrays?
+     * @param bool $compile Compile into arrays?
      *
      * @return array Array of URI patterns.
      */
-    public function uriPatterns(bool $no_cache = null, bool $compile = true)
+    public function uriPatterns(bool $compile = true)
     {
-        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-        if (($uri_patterns = &$this->cacheKey(__FUNCTION__, $compile)) !== null && !$no_cache) {
+        if (($uri_patterns = &$this->cacheKey(__FUNCTION__, $compile)) !== null) {
             return $uri_patterns; // Cached already.
         }
         $uri_patterns = []; // Initialize.
@@ -137,11 +126,11 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         if (is_multisite()) { // There is a network admin panel?
             $uri_patterns[] = c::urlToWRegxUriPattern(network_admin_url());
         }
-        foreach ($this->collectWcUrls($no_cache) as $_wc_url) {
+        foreach ($this->collectWcUrls() as $_wc_url) {
             $uri_patterns[] = c::urlToWRegxUriPattern($_wc_url);
         } // unset($_wc_url); // Housekeeping.
 
-        foreach ($this->collectBpUrls($no_cache) as $_bp_url) {
+        foreach ($this->collectBpUrls() as $_bp_url) {
             $uri_patterns[] = c::urlToWRegxUriPattern($_bp_url);
         } // unset($_bp_url); // Housekeeping.
 
@@ -171,14 +160,11 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Initial release.
      *
-     * @param bool|null $no_cache Bypass cache?
-     *
      * @return int[] Array of post IDs.
      */
-    protected function collectWcPostIds(bool $no_cache = null): array
+    protected function collectWcPostIds(): array
     {
-        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-        if (($wc_post_ids = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
+        if (($wc_post_ids = &$this->cacheKey(__FUNCTION__)) !== null) {
             return $wc_post_ids; // Cached already.
         }
         $wc_post_ids = []; // Initialize.
@@ -197,15 +183,14 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Initial release.
      *
-     * @param bool|null $no_cache Bypass cache?
-     *
      * @return string[] Array of URLs.
      */
-    protected function collectWcUrls(bool $no_cache = null): array
+    protected function collectWcUrls(): array
     {
         $transient_cache_key = 'systematic_wc_urls';
+        $post_type           = a::restrictionPostType();
 
-        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
+        $no_cache = s::isMenuPageForPostType($post_type);
         if (!$no_cache && is_array($wc_urls = s::getTransient($transient_cache_key))) {
             return $wc_urls; // Cached already.
         }
@@ -218,7 +203,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
             }
         } // unset($_wc_page, $_wc_page_url); // Housekeeping.
 
-        s::setTransient($transient_cache_key, $wc_urls, HOUR_IN_SECONDS);
+        s::setTransient($transient_cache_key, $wc_urls, MINUTE_IN_SECONDS * 15);
 
         return $wc_urls;
     }
@@ -228,14 +213,11 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Initial release.
      *
-     * @param bool|null $no_cache Bypass cache?
-     *
      * @return int[] Array of post IDs.
      */
-    protected function collectBpPostIds(bool $no_cache = null): array
+    protected function collectBpPostIds(): array
     {
-        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
-        if (($bp_post_ids = &$this->cacheKey(__FUNCTION__)) !== null && !$no_cache) {
+        if (($bp_post_ids = &$this->cacheKey(__FUNCTION__)) !== null) {
             return $bp_post_ids; // Cached already.
         }
         $bp_post_ids = []; // Initialize.
@@ -257,15 +239,14 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Initial release.
      *
-     * @param bool|null $no_cache Bypass cache?
-     *
      * @return string[] Array of URLs.
      */
-    protected function collectBpUrls(bool $no_cache = null): array
+    protected function collectBpUrls(): array
     {
         $transient_cache_key = 'systematic_bp_urls';
+        $post_type           = a::restrictionPostType();
 
-        $no_cache = !isset($no_cache) && is_admin() ? true : (bool) $no_cache;
+        $no_cache = s::isMenuPageForPostType($post_type);
         if (!$no_cache && is_array($bp_urls = s::getTransient($transient_cache_key))) {
             return $bp_urls; // Cached already.
         }
@@ -280,7 +261,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         if (($bp_activation_page_url = bp_get_activation_page())) {
             $bp_urls[] = $bp_activation_page_url;
         }
-        s::setTransient($transient_cache_key, $bp_urls, HOUR_IN_SECONDS);
+        s::setTransient($transient_cache_key, $bp_urls, MINUTE_IN_SECONDS * 15);
 
         return $bp_urls;
     }

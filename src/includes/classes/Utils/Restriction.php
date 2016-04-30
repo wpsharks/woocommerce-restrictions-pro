@@ -31,25 +31,34 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx
      *
-     * @type string
+     * @type string Post type.
      */
     public $post_type;
 
     /**
-     * CCAPs prefix.
+     * Access rstr prefix.
      *
      * @since 16xxxx
      *
-     * @type string
+     * @type string Access rstr prefix.
      */
-    public $ccaps_prefix;
+    public $access_rstr_prefix;
+
+    /**
+     * Access CCAP prefix.
+     *
+     * @since 16xxxx
+     *
+     * @type string Access CCAP prefix.
+     */
+    public $access_ccap_prefix;
 
     /**
      * Client-side prefix.
      *
      * @since 16xxxx
      *
-     * @type string
+     * @type string Client-side prefix.
      */
     public $client_side_prefix;
 
@@ -58,7 +67,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx
      *
-     * @type array
+     * @type array Meta keys.
      */
     public $meta_keys;
 
@@ -67,7 +76,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx
      *
-     * @type array
+     * @type array Meta keys.
      */
     public $int_meta_keys;
 
@@ -76,7 +85,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx
      *
-     * @type \WP_Screen|null
+     * @type \WP_Screen|null Screen.
      */
     public $screen;
 
@@ -85,7 +94,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx
      *
-     * @type bool
+     * @type bool Is screen mobile?
      */
     public $screen_is_mobile;
 
@@ -103,9 +112,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         $this->post_type = 'restriction'; // Default post type var.
         $this->post_type = s::applyFilters('restriction_post_type', $this->post_type);
 
-        $this->ccaps_prefix       = s::applyFilters('restriction_ccaps_prefix', 'access_');
-        $this->ccaps_prefix       = $this->ccaps_prefix ?: 'access_'; // Cannot be empty!
-        $this->client_side_prefix = 'fdbmjuxwzjfjtaucytprkbcqfpftudyg';
+        $this->access_rstr_prefix = s::applyFilters('restriction_rstr_prefix', 'access_rstr_');
+        $this->access_ccap_prefix = s::applyFilters('restriction_ccap_prefix', 'access_ccap_');
+        $this->client_side_prefix = 'fdbmjuxwzjfjtaucytprkbcqfpftudyg'; // JS, CSS, forms, etc.
 
         $this->meta_keys     = ['post_ids', 'post_types', 'tax_term_ids', 'author_ids', 'roles', 'ccaps', 'uri_patterns'];
         $this->int_meta_keys = ['post_ids', 'author_ids']; // Integer data type.
@@ -379,9 +388,10 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo    '<h4>'.__('A Restriction Serves Two Purposes', 's2member-x').'</h4>';
         echo    '<ol>';
         echo        '<li>'.__('It allows you to protect content in WordPress. A single Restriction can protect multiple Posts, Pages, and more.', 's2member-x').'</li>';
-        echo        '<li>'.__('It can also grant access to the content you\'ve protected, because you can sell, or otherwise allow, access to what a Restriction protects. This part is optional though; e.g., there might be some content that you only want to protect and never allow access to. If that\'s the case, separate the items you\'re protecting into multiple Restrictions and then only allow access to some of those Restrictions and not others.', 's2member-x').'</li>';
+        echo        '<li>'.__('It can also grant access to the content you\'ve protected, because you can sell, or otherwise allow, access to what a Restriction protects. Providing access to a Restriction is optional. There might be some content that you only want to protect and never allow access to. If that\'s the case, separate the items you\'re protecting into multiple Restrictions and then only grant access to some of those Restrictions and not others.', 's2member-x').'</li>';
         echo    '</ol>';
-        echo    '<p><em>'.__('In summary, you should think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others.', 's2member-x').'</em></p>';
+        echo    '<p>'.__('In summary, you should think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others.', 's2member-x').'</p>';
+        echo    '<p><span class="dashicons dashicons-book"></span> '.sprintf(__('You can learn more about Restrictions by browsing our <a href="%1$s" target="_blank">Knowledge Base</a>', 's2member-x'), esc_url(s::brandUrl('/kb'))).'</p>';
 
         echo '</div>';
     }
@@ -575,7 +585,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         echo    '<p class="-heading -input-heading">'.__('CCAPs (<a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank">Custom Capabilities</a>) in comma-delimited format:', 's2member-x').'</p>';
         echo    '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->client_side_prefix.'_ccaps').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., members_area, pro_membership, premium_content', 's2member-x').'" value="'.esc_attr(implode(', ', $current_ccaps)).'"></p>';
-        echo    '<p class="-tip -input-tip">'.sprintf(__('<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%1$s<code style="padding:0;">something</code>\')</a>', 's2member-x'), esc_html($this->ccaps_prefix)).'</p>';
+        echo    '<p class="-tip -input-tip">'.sprintf(__('<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%1$s<code style="padding:0;">something</code>\')</a>', 's2member-x'), esc_html($this->access_ccap_prefix)).'</p>';
 
         echo '</div>';
     }
@@ -635,7 +645,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo            '<li>'.__('Restrictions rely upon PHP as a server-side scripting language. Therefore, you can protect any location (page) served by WordPress via PHP, but you can\'t protect static files. For instance: <em>.jpg</em>, <em>.pdf</em>, and <em>.zip</em> are static. Generally speaking, if you upload something to the Media Library, it\'s a static asset. It cannot be protected here. Instead, configure a "Downloadable Product" with WooCommerce.', 's2member-x').'</li>';
         echo            '<li>'.__('There are a few Systematic URIs on your site that cannot be associated with a Restriction. It\'s OK if one of your patterns overlaps with these, but any URI matching one of these will simply not be allowed to have any additional Restrictions applied to it whatsoever. In other words, these are automatically excluded (internally), because they are associated with special functionality.', 's2member-x').
                             '<ul class="-syntax-tips">'.
-                                '<li style="margin:0;"><strong>URI:</strong> <em>'.implode('</em></li><li style="margin:0;"><strong>URI:</strong> <em>', array_map('esc_html', a::systematicUriPatterns(null, false))).'</em></li>'.
+                                '<li style="margin:0;"><strong>URI:</strong> <em>'.implode('</em></li><li style="margin:0;"><strong>URI:</strong> <em>', array_map('esc_html', a::systematicUriPatterns(false))).'</em></li>'.
                                 '<li style="margin:0;"><strong>Post (aka: Page) IDs:</strong> <em>'.implode(',', array_map('esc_html', a::systematicPostIds())).'</em></li>'.
                                 '<li style="margin:0;"><strong>Post Types:</strong> <em>'.implode(',', array_map('esc_html', a::systematicPostTypes())).'</em></li>'.
                                 '<li style="margin:0;"><strong>Users w/ Role:</strong> <em>'.implode(',', array_map('esc_html', a::systematicRoles())).'</em></li>'.
@@ -672,6 +682,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             $this->updateMeta($post_id, $_meta_key, $_meta_values);
         } // unset($_meta_key, $_split_regex, $_array_map_callback, $_meta_values); // Housekeeping.
 
+        a::clearSystematicCache(); // Clear the cache now.
         a::clearRestrictionsCache(); // Clear the cache now.
     }
 

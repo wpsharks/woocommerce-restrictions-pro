@@ -56,9 +56,25 @@ trait Restriction
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionCcapsPrefix()
+    public static function restrictionAccessRstrPrefix()
     {
-        return $GLOBALS[static::class]->Utils->Restriction->ccaps_prefix;
+        return $GLOBALS[static::class]->Utils->Restriction->access_rstr_prefix;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function restrictionAccessCcapPrefix()
+    {
+        return $GLOBALS[static::class]->Utils->Restriction->access_ccap_prefix;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function restrictionClientSidePrefix()
+    {
+        return $GLOBALS[static::class]->Utils->Restriction->client_side_prefix;
     }
 
     /**

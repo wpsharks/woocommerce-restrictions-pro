@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160429'; //v//
+    const VERSION = '160430'; //v//
 
     /**
      * Constructor.
@@ -103,6 +103,10 @@ class App extends SCoreClasses\App
             add_action('save_post_'.$this->Utils->Restriction->post_type, [$this->Utils->Restriction, 'onSavePost'], 10, 3);
 
             add_action('admin_enqueue_scripts', [$this->Utils->Restriction, 'onAdminEnqueueScripts']);
+
+            # User-related hooks; including role/capability filters.
+
+            add_filter('user_has_cap', [$this->Utils->User, 'onUserHasCap'], 1000, 4);
 
             # Security gate; always after the `restriction` post type registration.
 
