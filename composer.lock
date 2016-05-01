@@ -61,12 +61,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-sharks-core-rv.git",
-                "reference": "f3c82dc8964ea1addf140a8bf2d5dbce82e375c2"
+                "reference": "f46b1e6575476928d24eb3325b7155712d40d89d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/f3c82dc8964ea1addf140a8bf2d5dbce82e375c2",
-                "reference": "f3c82dc8964ea1addf140a8bf2d5dbce82e375c2",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/f46b1e6575476928d24eb3325b7155712d40d89d",
+                "reference": "f46b1e6575476928d24eb3325b7155712d40d89d",
                 "shasum": ""
             },
             "require": {
@@ -99,9 +99,9 @@
             "keywords": [
                 "websharks",
                 "wordpress",
-                "wp sharks"
+                "wpsharks"
             ],
-            "time": "2016-04-21 05:25:31"
+            "time": "2016-05-01 06:50:51"
         }
     ],
     "packages-dev": [
@@ -870,12 +870,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/core.git",
-                "reference": "9507d869511c1c65070797aaeb79fa73429f6fce"
+                "reference": "adf3e208d1b70054e7a3610663ed2e113e20014a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/core/zipball/9507d869511c1c65070797aaeb79fa73429f6fce",
-                "reference": "9507d869511c1c65070797aaeb79fa73429f6fce",
+                "url": "https://api.github.com/repos/websharks/core/zipball/adf3e208d1b70054e7a3610663ed2e113e20014a",
+                "reference": "adf3e208d1b70054e7a3610663ed2e113e20014a",
                 "shasum": ""
             },
             "require": {
@@ -985,7 +985,7 @@
             "keywords": [
                 "websharks"
             ],
-            "time": "2016-04-29 23:11:05"
+            "time": "2016-04-30 17:31:44"
         },
         {
             "name": "websharks/dicer",

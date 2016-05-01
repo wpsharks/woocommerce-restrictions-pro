@@ -646,7 +646,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo            '<li>'.__('There are a few Systematic URIs on your site that cannot be associated with a Restriction. It\'s OK if one of your patterns overlaps with these, but any URI matching one of these will simply not be allowed to have any additional Restrictions applied to it whatsoever. In other words, these are automatically excluded (internally), because they are associated with special functionality.', 's2member-x').
                             '<ul class="-syntax-tips">'.
                                 '<li style="margin:0;"><strong>URI:</strong> <em>'.implode('</em></li><li style="margin:0;"><strong>URI:</strong> <em>', array_map('esc_html', a::systematicUriPatterns(false))).'</em></li>'.
-                                '<li style="margin:0;"><strong>Post (aka: Page) IDs:</strong> <em>'.implode(',', array_map('esc_html', a::systematicPostIds())).'</em></li>'.
+                                '<li style="margin:0;"><strong>Post/Page IDs:</strong> <em>'.implode(',', array_map('esc_html', a::systematicPostIds())).'</em></li>'.
                                 '<li style="margin:0;"><strong>Post Types:</strong> <em>'.implode(',', array_map('esc_html', a::systematicPostTypes())).'</em></li>'.
                                 '<li style="margin:0;"><strong>Users w/ Role:</strong> <em>'.implode(',', array_map('esc_html', a::systematicRoles())).'</em></li>'.
                             '</ul>'.
