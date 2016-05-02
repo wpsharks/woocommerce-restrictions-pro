@@ -61,12 +61,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-sharks-core-rv.git",
-                "reference": "baed053feea8bf458102643e59f93ae731b714ab"
+                "reference": "6149fb6704eb85c15a2bb7c92270675a352024b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/baed053feea8bf458102643e59f93ae731b714ab",
-                "reference": "baed053feea8bf458102643e59f93ae731b714ab",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/6149fb6704eb85c15a2bb7c92270675a352024b2",
+                "reference": "6149fb6704eb85c15a2bb7c92270675a352024b2",
                 "shasum": ""
             },
             "require": {
@@ -101,7 +101,7 @@
                 "wordpress",
                 "wpsharks"
             ],
-            "time": "2016-05-01 07:30:19"
+            "time": "2016-05-02 13:53:44"
         }
     ],
     "packages-dev": [
@@ -1095,12 +1095,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-sharks-core.git",
-                "reference": "8c262c59f12d634d7e74083c65c551aa57fbddaa"
+                "reference": "7ef388f764b0883a522166dff772f1791ae711c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-sharks-core/zipball/8c262c59f12d634d7e74083c65c551aa57fbddaa",
-                "reference": "8c262c59f12d634d7e74083c65c551aa57fbddaa",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core/zipball/7ef388f764b0883a522166dff772f1791ae711c0",
+                "reference": "7ef388f764b0883a522166dff772f1791ae711c0",
                 "shasum": ""
             },
             "require": {
@@ -1145,7 +1145,7 @@
                 "wordpress",
                 "wp sharks"
             ],
-            "time": "2016-04-30 00:40:55"
+            "time": "2016-05-02 13:55:37"
         }
     ],
     "aliases": [],

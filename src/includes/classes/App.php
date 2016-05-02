@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160501'; //v//
+    const VERSION = '160502'; //v//
 
     /**
      * Constructor.
@@ -60,8 +60,15 @@ class App extends SCoreClasses\App
                 'security_gate_redirects_to_post_id'    => '',
                 'security_gate_redirect_to_args_enable' => '1',
             ],
-            // @TODO Require WooCommerce.
-            // @TODO Require fancy permalinks.
+            '§dependencies' => [
+                '§plugins' => [
+                    'woocommerce' => [
+                        'name'  => 'WooCommerce',
+                        'url'   => 'https://wordpress.org/plugins/woocommerce/',
+                        'in_wp' => true,
+                    ],
+                ],
+            ],
         ];
         parent::__construct($instance_base, $instance);
     }
