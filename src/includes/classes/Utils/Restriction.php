@@ -171,8 +171,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                     'filter_items_list'     => __('Filter Restrictions List', 's2member-x'),
                     'items_list_navigation' => __('Restrictions List Navigation', 's2member-x'),
                     'items_list'            => __('Restrictions List', 's2member-x'),
-                    'menu_name'             => __('Restrictions', 's2member-x'),
                     'name_admin_bar'        => __('Restriction', 's2member-x'),
+                    'menu_name'             => sprintf(__('%1$s Restrictions', 's2member-x'), $this->App->Config->©brand['abbr_display_prefix']),
                 ],
 
                 'map_meta_cap'    => true,
@@ -223,8 +223,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                         'no_terms'                   => __('No Categories', 's2member-x'),
                         'items_list_navigation'      => __('Categories List Navigation', 's2member-x'),
                         'items_list'                 => __('Categories List', 's2member-x'),
-                        'menu_name'                  => __('Categories', 's2member-x'),
                         'name_admin_bar'             => __('Category', 's2member-x'),
+                        'menu_name'                  => __('Categories', 's2member-x'),
                         'archives'                   => __('All Categories', 's2member-x'),
                     ],
 

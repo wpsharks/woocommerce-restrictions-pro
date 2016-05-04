@@ -52,7 +52,18 @@ class App extends SCoreClasses\App
                 ],
             ],
             '©brand' => [
-                '©name' => 's2Member X',
+                '©name'        => 's2Member X',
+                '©text_domain' => 's2member-x',
+                '©slug'        => 's2member-x',
+                '©var'         => 's2member_x',
+                '©name'        => 's2Member X',
+                '©acronym'     => 'S2MX',
+                '©prefix'      => 's2mx',
+
+                '§domain'      => 'wpsharks.com',
+                '§domain_path' => '/product/s2member-x',
+
+                'abbr_display_prefix' => 's2',
             ],
             '§pro_option_keys' => [
                 'restriction_categories_enable',
