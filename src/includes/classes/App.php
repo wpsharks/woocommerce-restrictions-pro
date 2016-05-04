@@ -90,6 +90,19 @@ class App extends SCoreClasses\App
                     ],
                 ],
             ],
+            '§notices' => [
+                '§on_install' => function (array $installion_history) {
+                    return [
+                        'is_transient' => true,
+                        'markup'       => sprintf(
+                            __('<strong>%1$s</strong> v%2$s installed successfully.<br />You can get started by <a href="%3$s">creating your first \'Restriction\'</a>', 's2member-x'),
+                            esc_html($this->Config->©brand['©name']),
+                            esc_html($this->c::version()),
+                            esc_url(a::createRestrictionUrl())
+                        ),
+                    ];
+                },
+            ],
         ];
         parent::__construct($instance_base, $instance);
     }

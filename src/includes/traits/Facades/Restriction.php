@@ -100,4 +100,12 @@ trait Restriction
     {
         return $GLOBALS[static::class]->Utils->Restriction->deleteMeta(...$args);
     }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function createRestrictionUrl(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->Restriction->createUrl(...$args);
+    }
 }

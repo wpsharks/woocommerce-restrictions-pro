@@ -778,4 +778,16 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         delete_post_meta($post_id, 'restriction_'.$key);
     }
+
+    /**
+     * Create restriction URL.
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @return string Create restriction URL.
+     */
+    public function createUrl(): string
+    {
+        return admin_url('/post-new.php?post_type='.urlencode($this->post_type));
+    }
 }
