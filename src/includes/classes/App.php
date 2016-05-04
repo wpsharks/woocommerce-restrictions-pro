@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160502'; //v//
+    const VERSION = '160504'; //v//
 
     /**
      * Constructor.
@@ -51,6 +51,9 @@ class App extends SCoreClasses\App
                     ],
                 ],
             ],
+            '©brand' => [
+                '©name' => 's2Member X',
+            ],
             '§pro_option_keys' => [
                 'restriction_categories_enable',
                 'security_gate_redirect_to_args_enable',
@@ -63,9 +66,27 @@ class App extends SCoreClasses\App
             '§dependencies' => [
                 '§plugins' => [
                     'woocommerce' => [
-                        'name'  => 'WooCommerce',
-                        'url'   => 'https://wordpress.org/plugins/woocommerce/',
-                        'in_wp' => true,
+                        'in_wp'       => true,
+                        'name'        => 'WooCommerce',
+                        'url'         => 'https://wordpress.org/plugins/woocommerce/',
+                        'archive_url' => 'https://wordpress.org/plugins/woocommerce/developers/',
+                    ],
+                ],
+                '§others' => [
+                    'fancy_permalinks' => [
+                        'name'        => __('Fancy Permalinks', 's2member-x'),
+                        'description' => __('a Permalink Structure other than <em>plain</em>', 's2member-x'),
+
+                        'test' => function (string $key) {
+                            if (get_option('permalink_structure')) {
+                                return true; // No problem.
+                            } else {
+                                return [
+                                    'how_to_resolve' => sprintf(__('<a href="%1$s">change your Permalink settings</a> to anything but <em>plain</em>', 's2member-x'), esc_url(admin_url('/options-permalink.php'))),
+                                    'cap_to_resolve' => 'manage_options',
+                                ];
+                            }
+                        },
                     ],
                 ],
             ],

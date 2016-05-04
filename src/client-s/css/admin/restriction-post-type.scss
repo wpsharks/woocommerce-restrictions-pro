@@ -4,43 +4,25 @@
 @import '../bourbon/bourbon';
 @import '../../../vendor/websharks/sharkicons/src/sharkicons';
 @include sharkicons-font('../../../vendor/websharks/sharkicons/src');
-@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/links';
-@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/lists';
-@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/colors/fields';
-@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/fields';
 @import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/dashicons';
-@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/jquery-chosen/fields';
+@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/meta-boxes';
 
 /*
  * Built-in meta box.
  */
-$hidden-div-border-color: #ececec;
+@include wp-admin-meta-boxes('#slugdiv');
 
 /*
- * Built-in meta box.
+ * Prefixed meta boxes.
  */
-#slugdiv.postbox {
-  > .hndle .-label {
-    float:                    right;
-    opacity:                  0.5;
-  }
-
-  > .inside {
-    @include wp-admin-field-standards('>');
-  }
-}
+@include wp-admin-meta-boxes('[id^=fdbmjuxwzjfjtaucytprkbcqfpftudyg]');
 
 /*
  * Prefixed meta boxes.
  */
 .postbox[id^='fdbmjuxwzjfjtaucytprkbcqfpftudyg'] {
-  > .hndle .-label {
-    float:                    right;
-    opacity:                  0.5;
-  }
-
   > .inside {
-    > .-about {
+    > .-about.-section {
       @include wp-admin-dashicon(info);
 
       &::before {
@@ -49,78 +31,30 @@ $hidden-div-border-color: #ececec;
       }
     }
 
-    > .-about,
-    > .-meta {
-      &,
-      .-section {
-        @include wp-admin-list-enable('>');
+    > .-uri-patterns.-section {
+      > .-field > textarea {
+        white-space:          pre;
+        overflow:             auto;
+      }
 
-        > h4,
-        > p,
-        > ol,
-        > ul {
-          @include wp-admin-links;
+      .-syntax-examples,
+      .-syntax-tips {
+        ul {
+          margin-top:        .5em;
+        }
 
-          margin:             1em 0;
-
-          &:first-child {
-            margin-top:       0;
-          }
-
-          &:last-child {
-            margin-bottom:    0;
-          }
+        em {
+          font-size:          105%;
+          font-weight:        500;
+          font-style:         normal;
+          font-family:        monospace;
         }
       }
 
-      .-heading {
-        margin-bottom:        0;
-
-        + .-field {
-          margin-top:         0;
-        }
-      }
-
-      .-field {
-        @include wp-admin-field-standards('>');
-        @include jquery-chosen-wp-admin-field-standards;
-
-        > textarea {
-          white-space:        pre;
-          overflow:           auto;
-        }
-      }
-
-      &.-uri-patterns {
-        .-syntax-examples,
-        .-syntax-tips {
-          ul {
-            margin-top:      .5em;
-          }
-
-          em {
-            font-size:        105%;
-            font-weight:      500;
-            font-style:       normal;
-            font-family:      monospace;
-          }
-        }
-
-        .-syntax-examples {
-          padding-left:       0;
-          margin-left:       .5em;
-          list-style-type:    none;
-        }
-      }
-
-      .-hidden {
-        display:              none;
-
-        &.-section {
-          margin-top:         1em;
-          padding-top:        1em;
-          border-top:         1px solid $hidden-div-border-color;
-        }
+      .-syntax-examples {
+        padding-left:         0;
+        margin-left:         .5em;
+        list-style-type:      none;
       }
     }
   }

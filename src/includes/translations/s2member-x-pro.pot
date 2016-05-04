@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the s2Member X Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: s2Member X Pro 160502\n"
+"Project-Id-Version: s2Member X Pro 160504\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/s2member-x-pro\n"
-"POT-Creation-Date: 2016-05-02 13:57:20+00:00\n"
+"POT-Creation-Date: 2016-05-04 07:33:43+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -267,8 +267,6 @@ msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:333
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:333
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:388
-#: src/includes/classes/Utils/Restriction.php:388
 msgid "A Restriction Serves Two Purposes"
 msgstr ""
 
@@ -281,8 +279,6 @@ msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:336
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:336
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:391
-#: src/includes/classes/Utils/Restriction.php:391
 msgid "It can also grant access to the content you've protected, because you can sell, or otherwise allow, access to what a Restriction protects. Providing access to a Restriction is optional. There might be some content that you only want to protect and never allow access to. If that's the case, separate the items you're protecting into multiple Restrictions and then only grant access to some of those Restrictions and not others."
 msgstr ""
 
@@ -295,8 +291,6 @@ msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:339
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:339
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:394
-#: src/includes/classes/Utils/Restriction.php:394
 msgid "You can learn more about Restrictions by browsing our <a href=\"%1$s\" target=\"_blank\">Knowledge Base</a>"
 msgstr ""
 
@@ -310,353 +304,364 @@ msgstr ""
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:440
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:473
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:507
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:425
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:459
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:495
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:528
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:562
-#: src/includes/classes/Utils/Restriction.php:425
-#: src/includes/classes/Utils/Restriction.php:459
-#: src/includes/classes/Utils/Restriction.php:495
-#: src/includes/classes/Utils/Restriction.php:528
-#: src/includes/classes/Utils/Restriction.php:562
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:429
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:469
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:511
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:550
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:590
+#: src/includes/classes/Utils/Restriction.php:429
+#: src/includes/classes/Utils/Restriction.php:469
+#: src/includes/classes/Utils/Restriction.php:511
+#: src/includes/classes/Utils/Restriction.php:550
+#: src/includes/classes/Utils/Restriction.php:590
 msgid "<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:372
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:372
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:427
-#: src/includes/classes/Utils/Restriction.php:427
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:432
+#: src/includes/classes/Utils/Restriction.php:432
 msgid "Post IDs to Restrict (WordPress Post IDs, comma-delimited):"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:373
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:373
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:428
-#: src/includes/classes/Utils/Restriction.php:428
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:433
+#: src/includes/classes/Utils/Restriction.php:433
 msgid "e.g., 123, 345, 789, 3492"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:375
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:375
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:430
-#: src/includes/classes/Utils/Restriction.php:430
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:436
+#: src/includes/classes/Utils/Restriction.php:436
 msgid "<strong>Note:</strong> Protecting a Post of any type (e.g., Post, Page, Product) will protect the permalink leading to that Post. It will also protect any other child Posts in a hierarchy. For instance, protecting a parent Page also protects any child Pages, and protecting a bbPress Forum also protects all Topics/Replies in that Forum. This works for any type of Post in WordPress, including <a href=\"https://developer.wordpress.org/plugins/post-types/\" target=\"_blank\">Custom Post Types</a>."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:406
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:406
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:461
-#: src/includes/classes/Utils/Restriction.php:461
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:472
+#: src/includes/classes/Utils/Restriction.php:472
 msgid "Post Types to Restrict (WordPress Post Types, comma-delimited):"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:407
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:407
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:462
-#: src/includes/classes/Utils/Restriction.php:462
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:473
+#: src/includes/classes/Utils/Restriction.php:473
 msgid "e.g., post, article, movie, book"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:409
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:409
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:464
-#: src/includes/classes/Utils/Restriction.php:464
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:476
+#: src/includes/classes/Utils/Restriction.php:476
 msgid "<strong>Note:</strong> Protecting a Post Type will automatically protect <em>all</em> Post permalinks associated with that Type."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:442
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:442
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:497
-#: src/includes/classes/Utils/Restriction.php:497
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:514
+#: src/includes/classes/Utils/Restriction.php:514
 msgid "Author IDs to Restrict (WordPress User IDs, comma-delimited):"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:443
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:443
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:498
-#: src/includes/classes/Utils/Restriction.php:498
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:515
+#: src/includes/classes/Utils/Restriction.php:515
 msgid "e.g., 5, 239, 42"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:445
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:445
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:500
-#: src/includes/classes/Utils/Restriction.php:500
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:518
+#: src/includes/classes/Utils/Restriction.php:518
 msgid "<strong>Note:</strong> Protecting an Author will protect all permalinks leading to Posts (of any type) that were written by that Author."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:475
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:475
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:530
-#: src/includes/classes/Utils/Restriction.php:530
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:553
+#: src/includes/classes/Utils/Restriction.php:553
 msgid "Taxonomy Terms to Restrict (<em style=\"font-style:normal; font-family:monospace;\">[taxonomy]:[term ID]</em>s, comma-delimited):"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:476
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:476
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:531
-#: src/includes/classes/Utils/Restriction.php:531
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:554
+#: src/includes/classes/Utils/Restriction.php:554
 msgid "e.g., category:123, post_tag:456, product_cat:678, product_tag:789"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:478
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:478
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:533
-#: src/includes/classes/Utils/Restriction.php:533
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:557
+#: src/includes/classes/Utils/Restriction.php:557
 msgid "<strong>Note:</strong> Protecting a Taxonomy Term of any type (e.g., Category, Tag) protects permalinks leading to Posts that are associated with that Term. For instance, a Post will be restricted automatically (now or in the future) if it's given a Tag that you've protected. Or, if it's put into a Category that you've protected (or into a child Category of a parent Category you've protected)."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:505
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:505
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:560
-#: src/includes/classes/Utils/Restriction.php:560
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:587
+#: src/includes/classes/Utils/Restriction.php:587
 msgid "A <a href=\"https://developer.wordpress.org/plugins/users/roles-and-capabilities/\" target=\"_blank\">WordPress Role</a> is a predefined list of Capabilities. See also: <a href=\"https://wordpress.org/plugins/user-role-editor/\" target=\"_blank\">Role Editor</a>"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:509
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:509
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:564
-#: src/includes/classes/Utils/Restriction.php:564
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:593
+#: src/includes/classes/Utils/Restriction.php:593
 msgid "<a href=\"https://developer.wordpress.org/plugins/users/roles-and-capabilities/\" target=\"_blank\">WordPress Roles</a> in comma-delimited format. See also: <a href=\"https://wordpress.org/plugins/user-role-editor/\" target=\"_blank\">Role Editor</a>"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:510
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:510
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:565
-#: src/includes/classes/Utils/Restriction.php:565
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:594
+#: src/includes/classes/Utils/Restriction.php:594
 msgid "e.g., contributor, pro_member, participant"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:512
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:512
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:567
-#: src/includes/classes/Utils/Restriction.php:567
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:597
+#: src/includes/classes/Utils/Restriction.php:597
 msgid "<strong>Note:</strong> Protecting a Role is to package the Capabilities associated with that Role. If a customer purchases access to a Restriction that protects a Role, they don't actually acquire the Role itself, but they do acquire the Capabilities provided by that Role; i.e., any Capabilities in the Role that a user doesn't already have, they acquire. Note also: There are a few Systematic Roles with special internal permissions and they cannot be associated with a Restriction. These include: <em>%1$s</em>."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:531
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:531
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:586
-#: src/includes/classes/Utils/Restriction.php:586
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:619
+#: src/includes/classes/Utils/Restriction.php:619
 msgid "CCAPs (<a href=\"https://developer.wordpress.org/reference/functions/current_user_can/\" target=\"_blank\">Custom Capabilities</a>) in comma-delimited format:"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:532
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:532
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:587
-#: src/includes/classes/Utils/Restriction.php:587
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:620
+#: src/includes/classes/Utils/Restriction.php:620
 msgid "e.g., members_area, pro_membership, premium_content"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:533
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:533
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:588
-#: src/includes/classes/Utils/Restriction.php:588
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:622
+#: src/includes/classes/Utils/Restriction.php:622
 msgid "<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href=\"https://developer.wordpress.org/reference/functions/current_user_can/\" target=\"_blank\" style=\"text-decoration:none;\">current_user_can('%1$s<code style=\"padding:0;\">something</code>')</a>"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:553
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:553
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:608
-#: src/includes/classes/Utils/Restriction.php:608
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:646
+#: src/includes/classes/Utils/Restriction.php:646
 msgid "URI Patterns (line-delmited; i.e., one on each line):"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:554
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:554
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:609
-#: src/includes/classes/Utils/Restriction.php:609
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:647
+#: src/includes/classes/Utils/Restriction.php:647
 msgid "e.g., /path/to/members-only/**"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:555
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:555
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:610
-#: src/includes/classes/Utils/Restriction.php:610
 msgid "<strong>Tip:</strong> This allows you to protect almost <em>any</em> other location that is served by WordPress. &nbsp; <a href=\"#\" data-toggle=\".-uri-patterns .-hidden.-instructions.-section\"><span class=\"dashicons dashicons-visibility\"></span> toggle instructions</a>"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:558
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:558
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:613
-#: src/includes/classes/Utils/Restriction.php:613
 msgid "A \"URI\" (what you protect) is everything after the domain name in a URL:"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:559
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:559
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:614
-#: src/includes/classes/Utils/Restriction.php:614
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:653
+#: src/includes/classes/Utils/Restriction.php:653
 msgid "http://example.com<code>/this/is/the/URI/part/in/a/location%1$s</code>"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:561
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:561
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:616
-#: src/includes/classes/Utils/Restriction.php:616
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:655
+#: src/includes/classes/Utils/Restriction.php:655
 msgid "WRegx™ (Watered-Down Regex) can be used in your patterns:"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:563
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:563
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:618
-#: src/includes/classes/Utils/Restriction.php:618
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:657
+#: src/includes/classes/Utils/Restriction.php:657
 msgid "<code>*</code> Matches zero or more characters that are not a <em><strong>/</strong></em>"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:564
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:564
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:619
-#: src/includes/classes/Utils/Restriction.php:619
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:658
+#: src/includes/classes/Utils/Restriction.php:658
 msgid "<code>**</code> Matches zero or more characters of any kind."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:565
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:565
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:620
-#: src/includes/classes/Utils/Restriction.php:620
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:659
+#: src/includes/classes/Utils/Restriction.php:659
 msgid "<code>?</code> Matches exactly one character that is not a <em><strong>/</strong></em>"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:566
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:566
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:621
-#: src/includes/classes/Utils/Restriction.php:621
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:660
+#: src/includes/classes/Utils/Restriction.php:660
 msgid "<code>??</code> Matches exactly one character of any kind."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:567
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:567
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:622
-#: src/includes/classes/Utils/Restriction.php:622
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:661
+#: src/includes/classes/Utils/Restriction.php:661
 msgid "<code>[abc]</code> Matches exactly one character: <em>a</em>, <em>b</em>, or <em>c</em>."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:568
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:568
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:623
-#: src/includes/classes/Utils/Restriction.php:623
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:662
+#: src/includes/classes/Utils/Restriction.php:662
 msgid "<code>[a-z0-9]</code> Matches exactly one character: <em>a</em> thru <em>z</em> or <em>0</em> thru <em>9</em>."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:569
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:569
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:624
-#: src/includes/classes/Utils/Restriction.php:624
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:663
+#: src/includes/classes/Utils/Restriction.php:663
 msgid "<code>[!abc]</code> A leading <em>!</em> inside <em>[]</em> negates; i.e., anything that is not: <em>a</em>, <em>b</em>, or <em>c</em>."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:570
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:570
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:625
-#: src/includes/classes/Utils/Restriction.php:625
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:664
+#: src/includes/classes/Utils/Restriction.php:664
 msgid "<code>{abc,def}</code> Matches the fragment <em>abc</em> or <em>def</em> (one or the other)."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:571
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:571
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:626
-#: src/includes/classes/Utils/Restriction.php:626
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:665
+#: src/includes/classes/Utils/Restriction.php:665
 msgid "<code>{abc,def,}</code> Matches <em>abc</em>, <em>def</em> or nothing; i.e., an optional match."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:572
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:572
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:627
-#: src/includes/classes/Utils/Restriction.php:627
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:666
+#: src/includes/classes/Utils/Restriction.php:666
 msgid "<code>{/**,}</code> Matches a <em>/</em> followed by zero or more characters. Or nothing."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:573
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:573
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:628
-#: src/includes/classes/Utils/Restriction.php:628
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:667
+#: src/includes/classes/Utils/Restriction.php:667
 msgid "<code>[*?[]!{},]</code> Matches a literal special character. One of: <em>*?[]!{},</em> explicitly."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:576
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:576
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:631
-#: src/includes/classes/Utils/Restriction.php:631
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:670
+#: src/includes/classes/Utils/Restriction.php:670
 msgid "Other important details to be aware of:"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:578
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:578
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:633
-#: src/includes/classes/Utils/Restriction.php:633
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:672
+#: src/includes/classes/Utils/Restriction.php:672
 msgid "Comparison is always caSe-insensitive (i.e., case does not matter)."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:579
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:579
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:634
-#: src/includes/classes/Utils/Restriction.php:634
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:673
+#: src/includes/classes/Utils/Restriction.php:673
 msgid "Your pattern must match an entire URI (beginning to end). Not just a small portion."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:580
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:580
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:635
-#: src/includes/classes/Utils/Restriction.php:635
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:674
+#: src/includes/classes/Utils/Restriction.php:674
 msgid "A URI always starts with a slash (e.g., <em>/example-post%1$s</em>). The smallest possible URI (the home page) is: <em><strong>/</strong></em>"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:582
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:582
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:637
-#: src/includes/classes/Utils/Restriction.php:637
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:676
+#: src/includes/classes/Utils/Restriction.php:676
 msgid "Your current Permalink Settings in WordPress indicate that all URIs on this site will have a trailing slash on the end. You must match that trailing slash in your patterns."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:584
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:584
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:639
-#: src/includes/classes/Utils/Restriction.php:639
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:678
+#: src/includes/classes/Utils/Restriction.php:678
 msgid "Your current Permalink Settings in WordPress indicate that URIs on this site will not end with a trailing slash. Your patterns should not depend on there always being a trailing slash."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:586
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:586
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:641
-#: src/includes/classes/Utils/Restriction.php:641
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:680
+#: src/includes/classes/Utils/Restriction.php:680
 msgid "In WordPress it is common for any given URI to accept additional endpoint directives. For instance, paginated locations: <em>/example-post/page/2%1$s</em>, <em>/example-post/comments-page/2%1$s</em>. Therefore, we suggest a pattern that covers all possible endpoint variations. For instance: <em>/example-post{/**,}</em> will match the base URI by itself, and also match a possible trailing slash with any endpoint directives it may accept."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:587
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:587
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:642
-#: src/includes/classes/Utils/Restriction.php:642
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:681
+#: src/includes/classes/Utils/Restriction.php:681
 msgid "Any query string variables on the end of a URI (example: <em>?p=123&amp;key=value</em>) are stripped before comparison so you don't need to worry about them. However, if your pattern contains: <em>[?]</em> (literally, a <em>?</em> question mark in square brackets) it indicates that you DO want to check the query string, and they are NOT stripped away in that case; so your pattern will be capable of matching. Just remember that query string variables can appear in any order, as entered by a user. If you check for query strings, use <em>{**&,}</em> and <em>{&**,}</em> around the key=value pair you're looking for. For instance: <em>/example-post{/**,}[?]{**&,}key=value{&**,}</em>. If you're forced to look for multiple variables, the best you can do is: <em>{**&,}key=value{&**&,&,}another=value{&**,}</em>. This still expects <em>key=value</em> to be first, but <em>{&**&,&,}</em> helps some."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:588
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:588
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:643
-#: src/includes/classes/Utils/Restriction.php:643
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:682
+#: src/includes/classes/Utils/Restriction.php:682
 msgid "It is possible to protect (and grant) access to portions of <em>/wp-admin/</em> with URI Patterns too. However, please remember that in order for a user to actually do anything inside the admin panel they will also need to have Capabilities which grant them additional permissions; such as the ability to <em>edit_posts</em>. See: <strong>Role Capabilities</strong> as a form of protection if you'd like more information."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:589
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:589
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:644
-#: src/includes/classes/Utils/Restriction.php:644
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:683
+#: src/includes/classes/Utils/Restriction.php:683
 msgid "It is possible to restrict access to every page on the entire site using the pattern <em>/**</em> as a catch-all. In this scenario, everything is off-limits (including all <em>/wp-admin/</em> areas), except for the Systematic URIs listed below. Having said that, please be careful when using a catch-all pattern. Everything (yes, everything) will be off-limits, including your home page! We suggest this as a last resort only. Instead, restrict Posts, Pages, Categories, Tags and/or other specific URIs. Generally speaking, it is best to restrict only portions of a site from public access."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:590
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:590
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:645
-#: src/includes/classes/Utils/Restriction.php:645
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:684
+#: src/includes/classes/Utils/Restriction.php:684
 msgid "Restrictions rely upon PHP as a server-side scripting language. Therefore, you can protect any location (page) served by WordPress via PHP, but you can't protect static files. For instance: <em>.jpg</em>, <em>.pdf</em>, and <em>.zip</em> are static. Generally speaking, if you upload something to the Media Library, it's a static asset. It cannot be protected here. Instead, configure a \"Downloadable Product\" with WooCommerce."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:591
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:591
-#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:646
-#: src/includes/classes/Utils/Restriction.php:646
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:685
+#: src/includes/classes/Utils/Restriction.php:685
 msgid "There are a few Systematic URIs on your site that cannot be associated with a Restriction. It's OK if one of your patterns overlaps with these, but any URI matching one of these will simply not be allowed to have any additional Restrictions applied to it whatsoever. In other words, these are automatically excluded (internally), because they are associated with special functionality."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/App.php:77
+#: src/includes/classes/App.php:77
+msgid "Fancy Permalinks"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/App.php:78
+#: src/includes/classes/App.php:78
+msgid "a Permalink Structure other than <em>plain</em>"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/App.php:85
+#: src/includes/classes/App.php:85
+msgid "<a href=\"%1$s\">change your Permalink settings</a> to anything but <em>plain</em>"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:204
@@ -763,6 +768,31 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:225
 #: src/includes/classes/Utils/Restriction.php:225
 msgid "Categories List"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:388
+#: src/includes/classes/Utils/Restriction.php:388
+msgid "Each 'Restriction' Serves Two Purposes"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:391
+#: src/includes/classes/Utils/Restriction.php:391
+msgid "It can also grant access to the content you've protected, because you can sell, or otherwise allow, access to what a Restriction protects."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:394
+#: src/includes/classes/Utils/Restriction.php:394
+msgid "If you'd like to learn more about Restrictions, see: <a href=\"%1$s\" target=\"_blank\">%2$s Knowledge Base</a>"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:649
+#: src/includes/classes/Utils/Restriction.php:649
+msgid "<strong>Tip:</strong> This allows you to protect almost <em>any</em> other location that is served by WordPress. &nbsp; <a href=\"#\" data-toggle=\".-uri-patterns.-section .-hidden.-instructions.-section\"><span class=\"dashicons dashicons-visibility\"></span> toggle instructions</a>"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:652
+#: src/includes/classes/Utils/Restriction.php:652
+msgid "A 'URI' is everything after the domain name in a URL:"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

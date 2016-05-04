@@ -383,15 +383,15 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function aboutRestrictionsMetaBox(\WP_Post $post, array $args = [])
     {
-        echo '<div class="-about">';
+        echo '<div class="-about -section">';
 
-        echo    '<h4>'.__('A Restriction Serves Two Purposes', 's2member-x').'</h4>';
+        echo    '<h3>'.__('Each \'Restriction\' Serves Two Purposes', 's2member-x').'</h3>';
         echo    '<ol>';
         echo        '<li>'.__('It allows you to protect content in WordPress. A single Restriction can protect multiple Posts, Pages, and more.', 's2member-x').'</li>';
-        echo        '<li>'.__('It can also grant access to the content you\'ve protected, because you can sell, or otherwise allow, access to what a Restriction protects. Providing access to a Restriction is optional. There might be some content that you only want to protect and never allow access to. If that\'s the case, separate the items you\'re protecting into multiple Restrictions and then only grant access to some of those Restrictions and not others.', 's2member-x').'</li>';
+        echo        '<li>'.__('It can also grant access to the content you\'ve protected, because you can sell, or otherwise allow, access to what a Restriction protects.', 's2member-x').'</li>';
         echo    '</ol>';
         echo    '<p>'.__('In summary, you should think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others.', 's2member-x').'</p>';
-        echo    '<p><span class="dashicons dashicons-book"></span> '.sprintf(__('You can learn more about Restrictions by browsing our <a href="%1$s" target="_blank">Knowledge Base</a>', 's2member-x'), esc_url(s::brandUrl('/kb'))).'</p>';
+        echo    '<p><span class="dashicons dashicons-book"></span> '.sprintf(__('If you\'d like to learn more about Restrictions, see: <a href="%1$s" target="_blank">%2$s Knowledge Base</a>', 's2member-x'), esc_url(s::brandUrl('/kb')), esc_html($this->App->Config->©brand['©name'])).'</p>';
 
         echo '</div>';
     }
@@ -406,6 +406,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function restrictsPostIdsMetaBox(\WP_Post $post, array $args = [])
     {
+        $field_name       = $this->client_side_prefix.'_post_ids';
+        $field_id         = 'f-'.$this->client_side_prefix.'-post-ids';
         $current_post_ids = $this->getMeta($post->ID, 'post_ids');
 
         $post_id_select_options = s::postSelectOptions(
@@ -418,14 +420,18 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                 'current_post_ids'           => $current_post_ids,
             ])
         );
-        echo '<div class="-meta -post-ids">';
+        echo '<div class="-post-ids -section">';
 
         if ($post_id_select_options) {
-            echo '<p class="-field -select-field"><select name="'.esc_attr($this->client_side_prefix.'_post_ids[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$post_id_select_options.'</select></p>';
-            echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
+            echo '<div class="-field">';
+            echo    '<select id="'.esc_attr($field_id).'" name="'.esc_attr($field_name.'[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$post_id_select_options.'</select>';
+            echo '</div>';
+            echo $this->screen_is_mobile ? '<p>'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
-            echo '<p class="-heading -input-heading">'.__('Post IDs to Restrict (WordPress Post IDs, comma-delimited):', 's2member-x').'</p>';
-            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->client_side_prefix.'_post_ids').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., 123, 345, 789, 3492', 's2member-x').'" value="'.esc_attr(implode(', ', $current_post_ids)).'"></p>';
+            echo '<div class="-field">';
+            echo    '<label for="'.esc_attr($field_id).'">'.__('Post IDs to Restrict (WordPress Post IDs, comma-delimited):', 's2member-x').'</label>';
+            echo    '<input type="text" id="'.esc_attr($field_id).'" name="'.esc_attr($field_name).'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., 123, 345, 789, 3492', 's2member-x').'" value="'.esc_attr(implode(', ', $current_post_ids)).'">';
+            echo '</div>';
         }
         echo    '<p>'.__('<strong>Note:</strong> Protecting a Post of any type (e.g., Post, Page, Product) will protect the permalink leading to that Post. It will also protect any other child Posts in a hierarchy. For instance, protecting a parent Page also protects any child Pages, and protecting a bbPress Forum also protects all Topics/Replies in that Forum. This works for any type of Post in WordPress, including <a href="https://developer.wordpress.org/plugins/post-types/" target="_blank">Custom Post Types</a>.', 's2member-x').'</p>';
 
@@ -442,6 +448,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function restrictsPostTypesMetaBox(\WP_Post $post, array $args = [])
     {
+        $field_name         = $this->client_side_prefix.'_post_types';
+        $field_id           = 'f-'.$this->client_side_prefix.'-post-types';
         $current_post_types = $this->getMeta($post->ID, 'post_types');
 
         $post_type_select_options = s::postTypeSelectOptions(
@@ -452,14 +460,18 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                 'current_post_types' => $current_post_types,
             ])
         );
-        echo '<div class="-meta -post-types">';
+        echo '<div class="-post-types -section">';
 
         if ($post_type_select_options) {
-            echo '<p class="-field -select-field"><select name="'.esc_attr($this->client_side_prefix.'_post_types[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$post_type_select_options.'</select></p>';
-            echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
+            echo '<div class="-field">';
+            echo    '<select id="'.esc_attr($field_id).'" name="'.esc_attr($field_name.'[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$post_type_select_options.'</select>';
+            echo '</div>';
+            echo $this->screen_is_mobile ? '<p>'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
-            echo '<p class="-heading -input-heading">'.__('Post Types to Restrict (WordPress Post Types, comma-delimited):', 's2member-x').'</p>';
-            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->client_side_prefix.'_post_types').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., post, article, movie, book', 's2member-x').'" value="'.esc_attr(implode(', ', $current_post_types)).'"></p>';
+            echo '<div class="-field">';
+            echo    '<label for="'.esc_attr($field_id).'">'.__('Post Types to Restrict (WordPress Post Types, comma-delimited):', 's2member-x').'</label>';
+            echo    '<input type="text" id="'.esc_attr($field_id).'" name="'.esc_attr($field_name).'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., post, article, movie, book', 's2member-x').'" value="'.esc_attr(implode(', ', $current_post_types)).'">';
+            echo '</div>';
         }
         echo    '<p>'.__('<strong>Note:</strong> Protecting a Post Type will automatically protect <em>all</em> Post permalinks associated with that Type.', 's2member-x').'</p>';
 
@@ -476,6 +488,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function restrictsAuthorIdsMetaBox(\WP_Post $post, array $args = [])
     {
+        $field_name         = $this->client_side_prefix.'_author_ids';
+        $field_id           = 'f-'.$this->client_side_prefix.'-author-ids';
         $current_author_ids = $this->getMeta($post->ID, 'author_ids');
 
         $author_id_select_options = s::userSelectOptions(
@@ -488,14 +502,18 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                 'current_user_ids' => $current_author_ids,
             ])
         );
-        echo '<div class="-meta -author-ids">';
+        echo '<div class="-author-ids -section">';
 
         if ($author_id_select_options) {
-            echo '<p class="-field -select-field"><select name="'.esc_attr($this->client_side_prefix.'_author_ids[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$author_id_select_options.'</select></p>';
-            echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
+            echo '<div class="-field">';
+            echo    '<select id="'.esc_attr($field_id).'" name="'.esc_attr($field_name.'[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$author_id_select_options.'</select>';
+            echo '</div>';
+            echo $this->screen_is_mobile ? '<p>'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
-            echo '<p class="-heading -input-heading">'.__('Author IDs to Restrict (WordPress User IDs, comma-delimited):', 's2member-x').'</p>';
-            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->client_side_prefix.'_author_ids').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., 5, 239, 42', 's2member-x').'" value="'.esc_attr(implode(', ', $current_author_ids)).'"></p>';
+            echo '<div class="-field">';
+            echo    '<label for="'.esc_attr($field_id).'">'.__('Author IDs to Restrict (WordPress User IDs, comma-delimited):', 's2member-x').'</label>';
+            echo    '<input type="text" id="'.esc_attr($field_id).'" name="'.esc_attr($field_name).'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., 5, 239, 42', 's2member-x').'" value="'.esc_attr(implode(', ', $current_author_ids)).'">';
+            echo '</div>';
         }
         echo    '<p>'.__('<strong>Note:</strong> Protecting an Author will protect all permalinks leading to Posts (of any type) that were written by that Author.', 's2member-x').'</p>';
 
@@ -512,6 +530,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function restrictsTaxTermIdsMetaBox(\WP_Post $post, array $args = [])
     {
+        $field_name           = $this->client_side_prefix.'_tax_term_ids';
+        $field_id             = 'f-'.$this->client_side_prefix.'-tax-term-ids';
         $current_tax_term_ids = $this->getMeta($post->ID, 'tax_term_ids');
 
         $tax_term_id_select_options = s::termSelectOptions(
@@ -521,14 +541,18 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                 'current_tax_term_ids'     => $current_tax_term_ids,
             ])
         );
-        echo '<div class="-meta -tax-term-ids">';
+        echo '<div class="-tax-term-ids -section">';
 
         if ($tax_term_id_select_options) {
-            echo '<p class="-field -select-field"><select name="'.esc_attr($this->client_side_prefix.'_tax_term_ids[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$tax_term_id_select_options.'</select></p>';
-            echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
+            echo '<div class="-field">';
+            echo    '<select id="'.esc_attr($field_id).'" name="'.esc_attr($field_name.'[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$tax_term_id_select_options.'</select>';
+            echo '</div>';
+            echo $this->screen_is_mobile ? '<p>'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
-            echo '<p class="-heading -input-heading">'.__('Taxonomy Terms to Restrict (<em style="font-style:normal; font-family:monospace;">[taxonomy]:[term ID]</em>s, comma-delimited):', 's2member-x').'</p>';
-            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->client_side_prefix.'_tax_term_ids').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., category:123, post_tag:456, product_cat:678, product_tag:789', 's2member-x').'" value="'.esc_attr(implode(', ', $current_tax_term_ids)).'"></p>';
+            echo '<div class="-field">';
+            echo    '<label for="'.esc_attr($field_id).'">'.__('Taxonomy Terms to Restrict (<em style="font-style:normal; font-family:monospace;">[taxonomy]:[term ID]</em>s, comma-delimited):', 's2member-x').'</label>';
+            echo    '<input type="text" id="'.esc_attr($field_id).'" name="'.esc_attr($field_name).'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., category:123, post_tag:456, product_cat:678, product_tag:789', 's2member-x').'" value="'.esc_attr(implode(', ', $current_tax_term_ids)).'">';
+            echo '</div>';
         }
         echo    '<p>'.__('<strong>Note:</strong> Protecting a Taxonomy Term of any type (e.g., Category, Tag) protects permalinks leading to Posts that are associated with that Term. For instance, a Post will be restricted automatically (now or in the future) if it\'s given a Tag that you\'ve protected. Or, if it\'s put into a Category that you\'ve protected (or into a child Category of a parent Category you\'ve protected).', 's2member-x').'</p>';
 
@@ -545,6 +569,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function restrictsRolesMetaBox(\WP_Post $post, array $args = [])
     {
+        $field_name    = $this->client_side_prefix.'_roles';
+        $field_id      = 'f-'.$this->client_side_prefix.'-roles';
         $current_roles = $this->getMeta($post->ID, 'roles');
 
         $role_select_options = s::roleSelectOptions(
@@ -554,15 +580,19 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                 'current_roles' => $current_roles,
             ])
         );
-        echo '<div class="-meta -roles">';
+        echo '<div class="-roles -section">';
 
         if ($role_select_options) {
-            echo '<p class="-heading -select-heading">'.__('A <a href="https://developer.wordpress.org/plugins/users/roles-and-capabilities/" target="_blank">WordPress Role</a> is a predefined list of Capabilities. See also: <a href="https://wordpress.org/plugins/user-role-editor/" target="_blank">Role Editor</a>', 's2member-x').'</p>';
-            echo '<p class="-field -select-field"><select name="'.esc_attr($this->client_side_prefix.'_roles[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$role_select_options.'</select></p>';
-            echo $this->screen_is_mobile ? '<p class="-tip -select-tip">'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
+            echo '<div class="-field">';
+            echo    '<label for="'.esc_attr($field_id).'">'.__('A <a href="https://developer.wordpress.org/plugins/users/roles-and-capabilities/" target="_blank">WordPress Role</a> is a predefined list of Capabilities. See also: <a href="https://wordpress.org/plugins/user-role-editor/" target="_blank">Role Editor</a>', 's2member-x').'</label>';
+            echo    '<select id="'.esc_attr($field_id).'" name="'.esc_attr($field_name.'[]').'" autocomplete="off" data-toggle="'.($this->screen_is_mobile ? '' : 'jquery-chosen').'" multiple>'.$role_select_options.'</select>';
+            echo '</div>';
+            echo $this->screen_is_mobile ? '<p>'.__('<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options.', 's2member-x').'</p>' : '';
         } else {
-            echo '<p class="-heading -input-heading">'.__('<a href="https://developer.wordpress.org/plugins/users/roles-and-capabilities/" target="_blank">WordPress Roles</a> in comma-delimited format. See also: <a href="https://wordpress.org/plugins/user-role-editor/" target="_blank">Role Editor</a>', 's2member-x').'</p>';
-            echo '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->client_side_prefix.'_roles').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., contributor, pro_member, participant', 's2member-x').'" value="'.esc_attr(implode(', ', $current_roles)).'"></p>';
+            echo '<div class="-field">';
+            echo    '<label for="'.esc_attr($field_id).'">'.__('<a href="https://developer.wordpress.org/plugins/users/roles-and-capabilities/" target="_blank">WordPress Roles</a> in comma-delimited format. See also: <a href="https://wordpress.org/plugins/user-role-editor/" target="_blank">Role Editor</a>', 's2member-x').'</label>';
+            echo    '<input type="text" id="'.esc_attr($field_id).'" name="'.esc_attr($field_name).'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., contributor, pro_member, participant', 's2member-x').'" value="'.esc_attr(implode(', ', $current_roles)).'">';
+            echo '</div>';
         }
         echo    '<p>'.sprintf(__('<strong>Note:</strong> Protecting a Role is to package the Capabilities associated with that Role. If a customer purchases access to a Restriction that protects a Role, they don\'t actually acquire the Role itself, but they do acquire the Capabilities provided by that Role; i.e., any Capabilities in the Role that a user doesn\'t already have, they acquire. Note also: There are a few Systematic Roles with special internal permissions and they cannot be associated with a Restriction. These include: <em>%1$s</em>.', 's2member-x'), esc_html(implode(', ', a::systematicRoles()))).'</p>';
 
@@ -579,13 +609,17 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function restrictsCcapsMetaBox(\WP_Post $post, array $args = [])
     {
+        $field_name    = $this->client_side_prefix.'_ccaps';
+        $field_id      = 'f-'.$this->client_side_prefix.'-ccaps';
         $current_ccaps = $this->getMeta($post->ID, 'ccaps');
 
-        echo '<div class="-meta -ccaps">';
+        echo '<div class="-ccaps -section">';
 
-        echo    '<p class="-heading -input-heading">'.__('CCAPs (<a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank">Custom Capabilities</a>) in comma-delimited format:', 's2member-x').'</p>';
-        echo    '<p class="-field -input-field"><input type="text" name="'.esc_attr($this->client_side_prefix.'_ccaps').'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., members_area, pro_membership, premium_content', 's2member-x').'" value="'.esc_attr(implode(', ', $current_ccaps)).'"></p>';
-        echo    '<p class="-tip -input-tip">'.sprintf(__('<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%1$s<code style="padding:0;">something</code>\')</a>', 's2member-x'), esc_html($this->access_ccap_prefix)).'</p>';
+        echo    '<div class="-field">';
+        echo        '<label for="'.esc_attr($field_id).'">'.__('CCAPs (<a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank">Custom Capabilities</a>) in comma-delimited format:', 's2member-x').'</label>';
+        echo        '<input type="text" id="'.esc_attr($field_id).'" name="'.esc_attr($field_name).'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., members_area, pro_membership, premium_content', 's2member-x').'" value="'.esc_attr(implode(', ', $current_ccaps)).'">';
+        echo    '</div>';
+        echo    '<p>'.sprintf(__('<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%1$s<code style="padding:0;">something</code>\')</a>', 's2member-x'), esc_html($this->access_ccap_prefix)).'</p>';
 
         echo '</div>';
     }
@@ -601,16 +635,21 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public function restrictsUriPatternsMetaBox(\WP_Post $post, array $args = [])
     {
         global $wp_rewrite; // Needed for conditionals below.
+
+        $field_name           = $this->client_side_prefix.'_uri_patterns';
+        $field_id             = 'f-'.$this->client_side_prefix.'-uri-patterns';
         $current_uri_patterns = $this->getMeta($post->ID, 'uri_patterns');
 
-        echo '<div class="-meta -uri-patterns">';
+        echo '<div class="-uri-patterns -section">';
 
-        echo    '<p class="-heading -textarea-heading">'.__('URI Patterns (line-delmited; i.e., one on each line):', 's2member-x').'</p>';
-        echo    '<p class="-field -textarea-field"><textarea name="'.esc_attr($this->client_side_prefix.'_uri_patterns').'" autocomplete="off" spellcheck="false" wrap="off" placeholder="'.__('e.g., /path/to/members-only/**', 's2member-x').'">'.esc_textarea(implode("\n", $current_uri_patterns)).'</textarea></p>';
-        echo    '<p class="-tip -input-tip" style="margin-bottom:0;">'.__('<strong>Tip:</strong> This allows you to protect almost <em>any</em> other location that is served by WordPress. &nbsp; <a href="#" data-toggle=".-uri-patterns .-hidden.-instructions.-section"><span class="dashicons dashicons-visibility"></span> toggle instructions</a>', 's2member-x').'</p>';
+        echo    '<div class="-field">';
+        echo        '<label for="'.esc_attr($field_id).'">'.__('URI Patterns (line-delmited; i.e., one on each line):', 's2member-x').'</label>';
+        echo        '<textarea id="'.esc_attr($field_id).'" name="'.esc_attr($field_name).'" autocomplete="off" spellcheck="false" wrap="off" placeholder="'.__('e.g., /path/to/members-only/**', 's2member-x').'">'.esc_textarea(implode("\n", $current_uri_patterns)).'</textarea>';
+        echo    '</div>';
+        echo    '<p style="margin-bottom:0;">'.__('<strong>Tip:</strong> This allows you to protect almost <em>any</em> other location that is served by WordPress. &nbsp; <a href="#" data-toggle=".-uri-patterns.-section .-hidden.-instructions.-section"><span class="dashicons dashicons-visibility"></span> toggle instructions</a>', 's2member-x').'</p>';
 
         echo    '<div class="-hidden -instructions -section">';
-        echo        '<h4>'.__('A "URI" (what you protect) is everything after the domain name in a URL:', 's2member-x').'</h4>';
+        echo        '<h4>'.__('A \'URI\' is everything after the domain name in a URL:', 's2member-x').'</h4>';
         echo        '<ul class="-syntax-examples"><li>'.sprintf(__('http://example.com<code>/this/is/the/URI/part/in/a/location%1$s</code>', 's2member-x'), $wp_rewrite->use_trailing_slashes ? '/' : '').'</li></ul>';
 
         echo        '<h4>'.__('WRegx™ (Watered-Down Regex) can be used in your patterns:', 's2member-x').'</h4>';
