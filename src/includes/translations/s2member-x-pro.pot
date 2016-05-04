@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: s2Member X Pro 160504\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/s2member-x-pro\n"
-"POT-Creation-Date: 2016-05-04 07:33:43+00:00\n"
+"POT-Creation-Date: 2016-05-04 08:50:59+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +26,6 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:153
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:174
 #: src/includes/classes/Utils/Restriction.php:153
-#: src/includes/classes/Utils/Restriction.php:174
 msgid "Restrictions"
 msgstr ""
 
@@ -37,7 +36,7 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:154
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:175
 #: src/includes/classes/Utils/Restriction.php:154
-#: src/includes/classes/Utils/Restriction.php:175
+#: src/includes/classes/Utils/Restriction.php:174
 msgid "Restriction"
 msgstr ""
 
@@ -631,7 +630,6 @@ msgstr ""
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:589
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:589
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:683
-#: src/includes/classes/Utils/Restriction.php:683
 msgid "It is possible to restrict access to every page on the entire site using the pattern <em>/**</em> as a catch-all. In this scenario, everything is off-limits (including all <em>/wp-admin/</em> areas), except for the Systematic URIs listed below. Having said that, please be careful when using a catch-all pattern. Everything (yes, everything) will be off-limits, including your home page! We suggest this as a last resort only. Instead, restrict Posts, Pages, Categories, Tags and/or other specific URIs. Generally speaking, it is best to restrict only portions of a site from public access."
 msgstr ""
 
@@ -650,17 +648,17 @@ msgid "There are a few Systematic URIs on your site that cannot be associated wi
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/App.php:77
-#: src/includes/classes/App.php:77
+#: src/includes/classes/App.php:88
 msgid "Fancy Permalinks"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/App.php:78
-#: src/includes/classes/App.php:78
+#: src/includes/classes/App.php:89
 msgid "a Permalink Structure other than <em>plain</em>"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/App.php:85
-#: src/includes/classes/App.php:85
+#: src/includes/classes/App.php:96
 msgid "<a href=\"%1$s\">change your Permalink settings</a> to anything but <em>plain</em>"
 msgstr ""
 
@@ -672,14 +670,14 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:207
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:226
 #: src/includes/classes/Utils/Restriction.php:207
-#: src/includes/classes/Utils/Restriction.php:226
+#: src/includes/classes/Utils/Restriction.php:227
 msgid "Categories"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:208
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:227
 #: src/includes/classes/Utils/Restriction.php:208
-#: src/includes/classes/Utils/Restriction.php:227
+#: src/includes/classes/Utils/Restriction.php:226
 msgid "Category"
 msgstr ""
 
@@ -793,6 +791,18 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:652
 #: src/includes/classes/Utils/Restriction.php:652
 msgid "A 'URI' is everything after the domain name in a URL:"
+msgstr ""
+
+#: src/includes/classes/App.php:109
+msgid "<strong>%1$s</strong> v%2$s installed successfully.<br />You can get started by <a href=\"%3$s\">creating your first 'Restriction'</a>"
+msgstr ""
+
+#: src/includes/classes/Utils/Restriction.php:175
+msgid "%1$s Restrictions"
+msgstr ""
+
+#: src/includes/classes/Utils/Restriction.php:683
+msgid "It is possible to restrict access to every page on the entire site using the pattern <em>/**</em> as a catch-all. In this scenario, everything is off-limits, except for the Systematic URIs listed below. Having said that, please be careful when using a catch-all pattern. Everything (yes, everything) will be off-limits, including your home page! We suggest this as a last resort only. Instead, restrict Posts, Pages, Categories, Tags and/or other specific URIs. Generally speaking, it is best to restrict only portions of a site from public access."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
