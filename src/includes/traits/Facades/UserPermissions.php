@@ -19,29 +19,29 @@ use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 
-trait User
+trait UserPermissions
 {
-    /**
-     * @since 16xxxx Initial release.
-     */
-    public static function currentUserHas(...$args)
-    {
-        return $GLOBALS[static::class]->Utils->User->currentHasAccessToRestrictions(...$args);
-    }
-
     /**
      * @since 16xxxx Initial release.
      */
     public static function userHas(...$args)
     {
-        return $GLOBALS[static::class]->Utils->User->hasAccessToRestrictions(...$args);
+        return $GLOBALS[static::class]->Utils->UserPermissions->hasAccessToRestrictions(...$args);
     }
 
     /**
      * @since 16xxxx Initial release.
      */
-    public static function userAccessibleRestrictionIds(...$args)
+    public static function currentUserHas(...$args)
     {
-        return $GLOBALS[static::class]->Utils->User->accessibleRestrictionIds(...$args);
+        return $GLOBALS[static::class]->Utils->UserPermissions->currentHasAccessToRestrictions(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function clearUserPermissionsCache(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->UserPermissions->clearCache(...$args);
     }
 }

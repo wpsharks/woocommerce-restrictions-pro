@@ -50,6 +50,9 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     public function slugToId(string $slug): int
     {
         $by_slug = $this->bySlug();
+        // Note that a slug in this context can contain almost anything.
+        // See: <http://wordpress.stackexchange.com/a/149192/81760>
+
         return !empty($by_slug[$slug]) ? $by_slug[$slug] : 0;
     }
 
@@ -73,6 +76,8 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
                 $_slug = array_search($_slug, $by_slug, true);
             }
             if ($_slug && is_string($_slug) && !empty($by_slug[$_slug])) {
+                // Note that a slug in this context can contain almost anything.
+                // See: <http://wordpress.stackexchange.com/a/149192/81760>
                 $ids[$_slug] = $by_slug[$_slug];
             }
         } // unset($_slug); // Housekeeping.
@@ -111,6 +116,8 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
         }
         foreach ($results as $_key => $_result) {
             $by_slug[$_result->slug] = (int) $_result->ID;
+            // Note that a slug in this context can contain almost anything.
+            // See: <http://wordpress.stackexchange.com/a/149192/81760>
         } // unset($_key, $_result); // Housekeeping.
 
         s::setTransient($transient_cache_key, $by_slug, MINUTE_IN_SECONDS * 15);

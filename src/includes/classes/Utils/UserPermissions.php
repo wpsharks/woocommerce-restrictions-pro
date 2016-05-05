@@ -20,11 +20,11 @@ use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 
 /**
- * User can utilities.
+ * User permission utilities.
  *
- * @since 16xxxx Installer.
+ * @since 16xxxx Security gate.
  */
-class User extends SCoreClasses\SCore\Base\Core
+class UserPermissions extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Restrictions by slug.
@@ -54,13 +54,13 @@ class User extends SCoreClasses\SCore\Base\Core
     protected $restriction_ids;
 
     /**
-     * Access rstr prefix.
+     * Access RES prefix.
      *
      * @since 16xxxx Security gate.
      *
-     * @type string Access rstr prefix.
+     * @type string Access RES prefix.
      */
-    protected $access_rstr_prefix;
+    protected $access_res_prefix;
 
     /**
      * Access CCAP prefix.
@@ -96,16 +96,44 @@ class User extends SCoreClasses\SCore\Base\Core
         $this->restrictions         = $by_meta_key['restrictions'];
         $this->restriction_ids      = $by_meta_key['restriction_ids'];
 
-        $this->access_rstr_prefix = a::restrictionAccessRstrPrefix();
+        $this->access_res_prefix  = a::restrictionAccessResPrefix();
         $this->access_ccap_prefix = a::restrictionAccessCcapPrefix();
 
         $this->systematic_roles = a::systematicRoles();
     }
 
     /**
+     * Clear cache.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @param string|int $user_id User ID.
+     */
+    public function onCleanUserCache($user_id)
+    {
+        $this->clearCache($user_id);
+    }
+
+    /**
+     * Clear cache.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @param string|int $user_id User ID.
+     */
+    public function clearCache($user_id)
+    {
+        if (!($user_id = (int) $user_id)) {
+            return; // Not possible.
+        }
+        $this->cacheUnset('permissions', $user_id);
+        $this->cacheUnset('accessibleRestrictionIds', $user_id);
+    }
+
+    /**
      * Current user has access to restrictions?
      *
-     * @since 16xxxx Restrictions.
+     * @since 16xxxx Security gate.
      *
      * @param string|int|string[]|int[] $restriction_ids_slugs ID(s) and/or slug(s).
      * @param string                    $satisfy               Defaults to `all` (`any` or `all`).
@@ -120,7 +148,7 @@ class User extends SCoreClasses\SCore\Base\Core
     /**
      * A user has access to restrictions?
      *
-     * @since 16xxxx Restrictions.
+     * @since 16xxxx Security gate.
      *
      * @param string|int                $user_id               User ID.
      * @param string|int|string[]|int[] $restriction_ids_slugs ID(s) and/or slug(s).
@@ -139,8 +167,6 @@ class User extends SCoreClasses\SCore\Base\Core
 
         if (!$restriction_ids || !$accessible_restriction_ids) {
             return false; // Not possible or no access.
-        } elseif ($satisfy !== 'any' && count($restriction_ids_slugs) !== count($restriction_ids)) {
-            return false; // Cannot satisfy all; counts are off.
         }
         foreach ($restriction_ids as $_restriction_id) {
             if ($satisfy === 'any') { // Any of the restrictions.
@@ -157,7 +183,7 @@ class User extends SCoreClasses\SCore\Base\Core
     /**
      * Filter user capabilities.
      *
-     * @since 16xxxx Restrictions.
+     * @since 16xxxx Security gate.
      *
      * @param array    $user_caps     {@link \WP_User::$allcaps}.
      * @param array    $required_caps Required caps, after having already run {@link map_meta_cap()}.
@@ -180,9 +206,11 @@ class User extends SCoreClasses\SCore\Base\Core
             }
         } // unset($_role, $_restriction_ids, $_role_object); // Housekeeping.
 
-        // Check for the special `access_rstr_` prefix.
-        if (mb_strpos($has_cap, $this->access_rstr_prefix) === 0) {
-            $_slug = c::strReplaceOnce($this->access_rstr_prefix, '', $has_cap);
+        // Check for the special `access_res_` prefix.
+        if (mb_strpos($has_cap, $this->access_res_prefix) === 0) {
+            $_slug = c::strReplaceOnce($this->access_res_prefix, '', $has_cap);
+            // Note that a slug in this context can contain almost anything.
+            // See: <http://wordpress.stackexchange.com/a/149192/81760>
 
             if (!empty($this->restrictions_by_slug[$_slug])) {
                 $_restriction_id = $this->restrictions_by_slug[$_slug];
@@ -208,20 +236,64 @@ class User extends SCoreClasses\SCore\Base\Core
     /**
      * Accessible restriction IDs.
      *
-     * @since 16xxxx Restrictions.
+     * @since 16xxxx Security gate.
      *
-     * @param string|int $user_id User ID.
+     * @param int $user_id User ID.
      *
-     * @return array Accessible restriction IDs.
+     * @return int[] Accessible restriction IDs.
      */
-    public function accessibleRestrictionIds($user_id): array
+    protected function accessibleRestrictionIds(int $user_id): array
     {
-        if (!($user_id = (int) $user_id)) {
-            return []; // No access.
+        if (!$user_id) { // Empty?
+            return []; // Not possible.
         }
-        $accessible_restriction_ids = get_user_meta($user_id, 'accessible_restriction_ids');
-        $accessible_restriction_ids = is_array($accessible_restriction_ids) ? $accessible_restriction_ids : [];
+        if (($accessible_restriction_ids = &$this->cacheGet(__FUNCTION__, $user_id)) !== null) {
+            return $accessible_restriction_ids; // Cached already.
+        }
+        $accessible_restriction_ids = []; // Initialize.
+
+        foreach ($this->permissions($user_id) as $_UserPermission) {
+            if (!isset($accessible_restriction_ids[$_UserPermission->data->restriction_id]) && $_UserPermission->isAllowed()) {
+                $accessible_restriction_ids[$_UserPermission->data->restriction_id] = $_UserPermission->data->restriction_id;
+            }
+        } // unset($_UserPermission); // Housekeeping.
 
         return s::applyFilters('user_accessible_restriction_ids', $accessible_restriction_ids, $user_id);
+    }
+
+    /**
+     * Permissions for a user ID.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @param int $user_id User ID.
+     *
+     * @return UserPermission[] Permissions.
+     */
+    protected function permissions(int $user_id): array
+    {
+        if (!$user_id) { // Empty?
+            return []; // Not possible.
+        }
+        if (($permissions = &$this->cacheGet(__FUNCTION__, $user_id)) !== null) {
+            return $permissions; // Cached already.
+        }
+        $WpDb = s::wpDb(); // WP database object class.
+
+        $sql = /* Query all user permissions. */ '
+            SELECT * FROM `'.esc_sql(s::dbPrefix().'user_permissions').'`
+                WHERE `user_id` = %s';
+        $sql = $WpDb->prepare($sql, $user_id);
+
+        if (!($results = $WpDb->get_results($sql))) {
+            return $permissions = []; // None.
+        }
+        $permissions = []; // Initialize.
+
+        foreach ($results as $_key => &$_data) {
+            $permissions[$_data->ID] = $this->App->Di->get(Classes\UserPermission::class, ['data' => $_data]);
+        } // unset($_key, $_data); // Housekeeping.
+
+        return s::applyFilters('user_permissions', $permissions, $user_id);
     }
 }

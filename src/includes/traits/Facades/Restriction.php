@@ -56,9 +56,9 @@ trait Restriction
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionAccessRstrPrefix()
+    public static function restrictionAccessResPrefix()
     {
-        return $GLOBALS[static::class]->Utils->Restriction->access_rstr_prefix;
+        return $GLOBALS[static::class]->Utils->Restriction->access_res_prefix;
     }
 
     /**

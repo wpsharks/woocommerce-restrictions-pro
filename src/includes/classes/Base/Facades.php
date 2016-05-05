@@ -32,5 +32,5 @@ abstract class Facades
     use Traits\Facades\SecurityChecks;
     use Traits\Facades\SecurityGate;
     use Traits\Facades\Systematics;
-    use Traits\Facades\User;
+    use Traits\Facades\UserPermissions;
 }

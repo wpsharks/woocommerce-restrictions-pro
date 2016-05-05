@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160504'; //v//
+    const VERSION = '160505'; //v//
 
     /**
      * Constructor.
@@ -48,6 +48,7 @@ class App extends SCoreClasses\App
             '©di' => [
                 '©default_rule' => [
                     'new_instances' => [
+                        UserPermission::class,
                     ],
                 ],
             ],
@@ -57,13 +58,11 @@ class App extends SCoreClasses\App
                 '©slug'        => 's2member-x',
                 '©var'         => 's2member_x',
                 '©name'        => 's2Member X',
-                '©acronym'     => 'S2MX',
-                '©prefix'      => 's2mx',
+                '©acronym'     => 's2',
+                '©prefix'      => 's2x',
 
                 '§domain'      => 'wpsharks.com',
                 '§domain_path' => '/product/s2member-x',
-
-                'abbr_display_prefix' => 's2',
             ],
             '§pro_option_keys' => [
                 'restriction_categories_enable',
@@ -158,7 +157,8 @@ class App extends SCoreClasses\App
 
             # User-related hooks; including role/capability filters.
 
-            add_filter('user_has_cap', [$this->Utils->User, 'onUserHasCap'], 1000, 4);
+            add_filter('user_has_cap', [$this->Utils->UserPermissions, 'onUserHasCap'], 1000, 4);
+            add_action('clean_user_cache', [$this->Utils->UserPermissions, 'onCleanUserCache']);
 
             # Security gate; always after the `restriction` post type registration.
 

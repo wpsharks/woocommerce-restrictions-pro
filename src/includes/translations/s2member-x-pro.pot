@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the s2Member X Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: s2Member X Pro 160504\n"
+"Project-Id-Version: s2Member X Pro 160505\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/s2member-x-pro\n"
-"POT-Creation-Date: 2016-05-04 09:00:42+00:00\n"
+"POT-Creation-Date: 2016-05-05 07:50:09+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,31 +12,31 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/App.php:87
+#: .~build/s2member-x/src/includes/classes/App.php:87
+#: .~build/s2member-x-pro/src/includes/classes/App.php:87
+#: src/includes/classes/App.php:87
+msgid "Fancy Permalinks"
+msgstr ""
+
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/App.php:88
 #: .~build/s2member-x/src/includes/classes/App.php:88
 #: .~build/s2member-x-pro/src/includes/classes/App.php:88
 #: src/includes/classes/App.php:88
-msgid "Fancy Permalinks"
-msgstr ""
-
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/App.php:89
-#: .~build/s2member-x/src/includes/classes/App.php:89
-#: .~build/s2member-x-pro/src/includes/classes/App.php:89
-#: src/includes/classes/App.php:89
 msgid "a Permalink Structure other than <em>plain</em>"
 msgstr ""
 
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/App.php:96
-#: .~build/s2member-x/src/includes/classes/App.php:96
-#: .~build/s2member-x-pro/src/includes/classes/App.php:96
-#: src/includes/classes/App.php:96
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/App.php:95
+#: .~build/s2member-x/src/includes/classes/App.php:95
+#: .~build/s2member-x-pro/src/includes/classes/App.php:95
+#: src/includes/classes/App.php:95
 msgid "<a href=\"%1$s\">change your Permalink settings</a> to anything but <em>plain</em>"
 msgstr ""
 
-#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/App.php:109
-#: .~build/s2member-x/src/includes/classes/App.php:109
-#: .~build/s2member-x-pro/src/includes/classes/App.php:109
-#: src/includes/classes/App.php:109
+#: .~build/s2member-x/.~build/s2member-x/src/includes/classes/App.php:108
+#: .~build/s2member-x/src/includes/classes/App.php:108
+#: .~build/s2member-x-pro/src/includes/classes/App.php:108
+#: src/includes/classes/App.php:108
 msgid "<strong>%1$s</strong> v%2$s installed successfully.<br />You can get started by <a href=\"%3$s\">creating your first 'Restriction'</a>"
 msgstr ""
 

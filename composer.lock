@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bec4009c40e03c1faa18ac10a835295e",
-    "content-hash": "f15881c1649540f201ca0e1ea37ad3f6",
+    "hash": "7a939a7fdee368f75e24939f5e60c5c5",
+    "content-hash": "4fb688634b74e68423af2ff8c4755751",
     "packages": [
         {
             "name": "websharks/wp-php-rv",
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-php-rv.git",
-                "reference": "238a77c1d0220202ba33fcf8aa500a03fe831158"
+                "reference": "275e387f582ca8bf96354abe0aa10c3e0d7a3fe8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-php-rv/zipball/238a77c1d0220202ba33fcf8aa500a03fe831158",
-                "reference": "238a77c1d0220202ba33fcf8aa500a03fe831158",
+                "url": "https://api.github.com/repos/websharks/wp-php-rv/zipball/275e387f582ca8bf96354abe0aa10c3e0d7a3fe8",
+                "reference": "275e387f582ca8bf96354abe0aa10c3e0d7a3fe8",
                 "shasum": ""
             },
             "require": {
@@ -53,7 +53,7 @@
                 "websharks",
                 "wordpress"
             ],
-            "time": "2016-05-04 07:14:13"
+            "time": "2016-05-05 07:44:00"
         },
         {
             "name": "websharks/wp-sharks-core-rv",
@@ -170,16 +170,16 @@
         },
         {
             "name": "embedly/embedly-php",
-            "version": "v0.5.4",
+            "version": "v0.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/embedly/embedly-php.git",
-                "reference": "461886c6ffa90aadcde4fb216ff275969d96a7f9"
+                "reference": "a2cbf6dc45c1a8d82063ef099216f74007c8ad1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/embedly/embedly-php/zipball/461886c6ffa90aadcde4fb216ff275969d96a7f9",
-                "reference": "461886c6ffa90aadcde4fb216ff275969d96a7f9",
+                "url": "https://api.github.com/repos/embedly/embedly-php/zipball/a2cbf6dc45c1a8d82063ef099216f74007c8ad1a",
+                "reference": "a2cbf6dc45c1a8d82063ef099216f74007c8ad1a",
                 "shasum": ""
             },
             "require": {
@@ -211,7 +211,7 @@
             "keywords": [
                 "embedly"
             ],
-            "time": "2014-03-17 17:30:47"
+            "time": "2015-02-05 15:06:38"
         },
         {
             "name": "erusev/parsedown",
@@ -1095,12 +1095,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-sharks-core.git",
-                "reference": "fcee680daa99fcfe6bb0fbe24e06f5976fa655a2"
+                "reference": "230f1efafbaa376974a689ed8d67515ac6a0707b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-sharks-core/zipball/fcee680daa99fcfe6bb0fbe24e06f5976fa655a2",
-                "reference": "fcee680daa99fcfe6bb0fbe24e06f5976fa655a2",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core/zipball/230f1efafbaa376974a689ed8d67515ac6a0707b",
+                "reference": "230f1efafbaa376974a689ed8d67515ac6a0707b",
                 "shasum": ""
             },
             "require": {
@@ -1145,7 +1145,7 @@
                 "wordpress",
                 "wp sharks"
             ],
-            "time": "2016-05-04 08:57:15"
+            "time": "2016-05-05 07:30:10"
         }
     ],
     "aliases": [],
@@ -1158,7 +1158,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0.4"
+        "php-64bit": ">=7.0.4"
     },
     "platform-dev": []
 }

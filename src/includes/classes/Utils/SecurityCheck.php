@@ -177,7 +177,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
      */
     protected function compilePostAccess(int $post_id, array &$accessing)
     {
-        if (!$post_id) {
+        if (!$post_id) { // Empty?
             return; // Not possible.
         }
         if (!($post = get_post($post_id))) {

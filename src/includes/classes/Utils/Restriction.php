@@ -36,13 +36,13 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public $post_type;
 
     /**
-     * Access rstr prefix.
+     * Access RES prefix.
      *
      * @since 16xxxx
      *
-     * @type string Access rstr prefix.
+     * @type string Access RES prefix.
      */
-    public $access_rstr_prefix;
+    public $access_res_prefix;
 
     /**
      * Access CCAP prefix.
@@ -112,7 +112,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         $this->post_type = 'restriction'; // Default post type var.
         $this->post_type = s::applyFilters('restriction_post_type', $this->post_type);
 
-        $this->access_rstr_prefix = s::applyFilters('restriction_rstr_prefix', 'access_rstr_');
+        $this->access_res_prefix  = s::applyFilters('restriction_res_prefix', 'access_res_');
         $this->access_ccap_prefix = s::applyFilters('restriction_ccap_prefix', 'access_ccap_');
         $this->client_side_prefix = 'fdbmjuxwzjfjtaucytprkbcqfpftudyg'; // JS, CSS, forms, etc.
 
@@ -172,7 +172,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                     'items_list_navigation' => __('Restrictions List Navigation', 's2member-x'),
                     'items_list'            => __('Restrictions List', 's2member-x'),
                     'name_admin_bar'        => __('Restriction', 's2member-x'),
-                    'menu_name'             => sprintf(__('%1$s Restrictions', 's2member-x'), $this->App->Config->©brand['abbr_display_prefix']),
+                    'menu_name'             => sprintf(__('%1$s Restrictions', 's2member-x'), $this->App->Config->©brand['©acronym']),
                 ],
 
                 'map_meta_cap'    => true,
@@ -707,8 +707,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function onSavePost($post_id, \WP_Post $post, bool $updating)
     {
-        $post_id = (int) $post_id; // Force integer.
-
+        if (!($post_id = (int) $post_id)) {
+            return; // Not possible.
+        }
         foreach ($this->meta_keys as $_meta_key) {
             $_split_regex        = $_meta_key === 'uri_patterns' ? '/['."\r\n".']+/' : '/[\s,]+/';
             $_array_map_callback = in_array($_meta_key, $this->int_meta_keys, true) ? 'intval' : 'strval';
@@ -737,8 +738,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function getMeta($post_id, string $key): array
     {
-        $post_id = (int) $post_id; // Force integer.
-
+        if (!($post_id = (int) $post_id)) {
+            return []; // Not possible.
+        }
         $values = get_post_meta($post_id, 'restriction_'.$key);
 
         return is_array($values) ? $values : [];
@@ -753,10 +755,11 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      * @param string     $key     Meta key.
      * @param array      $values  Meta values.
      */
-    public function updateMeta(int $post_id, string $key, array $values)
+    public function updateMeta($post_id, string $key, array $values)
     {
-        $post_id = (int) $post_id; // Force integer.
-
+        if (!($post_id = (int) $post_id)) {
+            return; // Not possible.
+        }
         $this->deleteMeta($post_id, /* No prefix here.*/ $key);
 
         foreach ($values as $_value) {
@@ -772,10 +775,11 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      * @param string|int $post_id Post ID.
      * @param string     $key     Meta key.
      */
-    public function deleteMeta(int $post_id, string $key)
+    public function deleteMeta($post_id, string $key)
     {
-        $post_id = (int) $post_id; // Force integer.
-
+        if (!($post_id = (int) $post_id)) {
+            return; // Not possible.
+        }
         delete_post_meta($post_id, 'restriction_'.$key);
     }
 

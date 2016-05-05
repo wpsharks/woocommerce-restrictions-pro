@@ -30,9 +30,38 @@ class Uninstaller extends SCoreClasses\SCore\Base\Core
      * Other install routines.
      *
      * @since 16xxxx Restrictions.
+     *
+     * @param int $counter Site counter.
      */
-    public function onOtherUninstallRoutines()
+    public function onOtherUninstallRoutines(int $counter)
     {
         a::removeAllRestrictionCaps();
+        $this->deleteRestrictions($counter);
+    }
+
+    /**
+     * Delete all restrictions.
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @param int $counter Site counter.
+     */
+    protected function deleteRestrictions(int $counter)
+    {
+        $WpDb = s::wpDb();
+
+        $sql = /* Restriction post IDs. */ '
+            SELECT `ID`
+                FROM `'.esc_sql($WpDb->posts).'`
+            WHERE `post_type` = %s
+        ';
+        $sql = $WpDb->prepare($sql, a::restrictionPostType());
+
+        if (!($results = $WpDb->get_results($sql))) {
+            return; // Nothing to delete.
+        }
+        foreach ($results as $_key => $_result) {
+            wp_delete_post($_result->ID, true);
+        } // unset($_key, $_result); // Housekeeping.
     }
 }
