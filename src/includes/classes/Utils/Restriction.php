@@ -388,7 +388,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo    '<h3>'.__('Each \'Restriction\' Serves Two Purposes', 's2member-x').'</h3>';
         echo    '<ol>';
         echo        '<li>'.__('It allows you to protect content in WordPress. A single Restriction can protect multiple Posts, Pages, and more.', 's2member-x').'</li>';
-        echo        '<li>'.__('It can also grant access to the content you\'ve protected, because you can sell, or otherwise allow, access to what a Restriction protects.', 's2member-x').'</li>';
+        echo        '<li>'.__('It can also grant access to the content you\'ve protected, because you can sell (via WooCommerce Products), or otherwise allow, access to what a Restriction protects.', 's2member-x').'</li>';
         echo    '</ol>';
         echo    '<p>'.__('In summary, you should think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others.', 's2member-x').'</p>';
         echo    '<p><span class="dashicons dashicons-book"></span> '.sprintf(__('If you\'d like to learn more about Restrictions, see: <a href="%1$s" target="_blank">%2$s Knowledge Base</a>', 's2member-x'), esc_url(s::brandUrl('/kb')), esc_html($this->App->Config->©brand['©name'])).'</p>';
