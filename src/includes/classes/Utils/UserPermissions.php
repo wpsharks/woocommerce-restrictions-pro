@@ -91,6 +91,8 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
+        // @TODO Improve support for `switch_to_blog()`.
+
         $by_meta_key                = a::restrictionsByMetaKey();
         $this->restrictions_by_slug = a::restrictionsBySlug();
         $this->restrictions         = $by_meta_key['restrictions'];

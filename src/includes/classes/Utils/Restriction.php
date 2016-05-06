@@ -36,6 +36,15 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public $post_type;
 
     /**
+     * Meta prefix.
+     *
+     * @since 16xxxx
+     *
+     * @type string Meta prefix.
+     */
+    public $meta_prefix;
+
+    /**
      * Access RES prefix.
      *
      * @since 16xxxx
@@ -109,8 +118,11 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->post_type = 'restriction'; // Default post type var.
+        $this->post_type = $this->App->Config->©brand['©prefix'].'_restriction';
         $this->post_type = s::applyFilters('restriction_post_type', $this->post_type);
+
+        $this->meta_prefix = $this->App->Config->©brand['©var'].'_restriction_';
+        $this->meta_prefix = s::applyFilters('restriction_meta_prefix', $this->meta_prefix);
 
         $this->access_res_prefix  = s::applyFilters('restriction_res_prefix', 'access_res_');
         $this->access_ccap_prefix = s::applyFilters('restriction_ccap_prefix', 'access_ccap_');
@@ -741,7 +753,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         if (!($post_id = (int) $post_id)) {
             return []; // Not possible.
         }
-        $values = get_post_meta($post_id, 'restriction_'.$key);
+        $values = get_post_meta($post_id, $this->meta_prefix.$key);
 
         return is_array($values) ? $values : [];
     }
@@ -763,7 +775,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         $this->deleteMeta($post_id, /* No prefix here.*/ $key);
 
         foreach ($values as $_value) {
-            add_post_meta($post_id, 'restriction_'.$key, $_value);
+            add_post_meta($post_id, $this->meta_prefix.$key, $_value);
         } // unset($_value); // Housekeeping.
     }
 
@@ -780,7 +792,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
         }
-        delete_post_meta($post_id, 'restriction_'.$key);
+        delete_post_meta($post_id, $this->meta_prefix.$key);
     }
 
     /**

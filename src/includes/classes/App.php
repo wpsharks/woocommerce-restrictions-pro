@@ -65,12 +65,16 @@ class App extends SCoreClasses\App
                 '§domain_path' => '/product/s2member-x',
             ],
             '§pro_option_keys' => [
+                'if_shortcode_expr_enable',
+                'if_shortcode_for_blog_enable',
                 'restriction_categories_enable',
                 'security_gate_redirect_to_args_enable',
             ],
             '§default_options' => [
+                'if_shortcode_expr_enable'              => '1',
+                'if_shortcode_for_blog_enable'          => '0',
                 'restriction_categories_enable'         => '0',
-                'security_gate_redirects_to_post_id'    => '',
+                'security_gate_redirects_to_post_id'    => '0',
                 'security_gate_redirect_to_args_enable' => '1',
             ],
             '§dependencies' => [
@@ -159,6 +163,16 @@ class App extends SCoreClasses\App
 
             add_filter('user_has_cap', [$this->Utils->UserPermissions, 'onUserHasCap'], 1000, 4);
             add_action('clean_user_cache', [$this->Utils->UserPermissions, 'onCleanUserCache']);
+
+            for ($_i = 0, $if_shortcode_name = a::ifShortcodeName(), $if_shortcode_names = []; $_i < 5; ++$_i) {
+                add_shortcode($if_shortcode_names[] = str_repeat('_', $_i).$if_shortcode_name, [$this->Utils->UserPermissionShortcodes, 'onIf']);
+            } // unset($_i); // Housekeeping.
+
+            add_filter('no_texturize_shortcodes', function (array $shortcodes) use ($if_shortcode_names) {
+                return array_merge($shortcodes, $if_shortcode_names);
+            }); // See: <http://jas.xyz/24AusB7> for more about this filter.
+
+            add_filter('widget_text', 'do_shortcode'); // Enable shortcodes in widgets.
 
             # Security gate; always after the `restriction` post type registration.
 

@@ -143,6 +143,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
         }
         $WpDb = $this->s::wpDb(); // DB object instance.
 
+        $meta_prefix   = a::restrictionMetaPrefix();
         $meta_keys     = a::restrictionMetaKeys();
         $int_meta_keys = a::restrictionIntMetaKeys();
 
@@ -169,7 +170,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
             return $by_meta_key; // Nothing.
         }
         foreach ($results as $_key => $_result) {
-            $_meta_key                                                  = preg_replace('/^restriction_/u', '', $_result->full_meta_key);
+            $_meta_key                                                  = preg_replace('/^'.preg_quote($meta_prefix, '/').'/u', '', $_result->full_meta_key);
             $_meta_value                                                = in_array($_meta_key, $int_meta_keys, true) ? (int) $_result->meta_value : (string) $_result->meta_value;
             $by_meta_key['restrictions'][$_meta_key][]                  = $_meta_value;
             $by_meta_key['restriction_ids'][$_meta_key][$_meta_value][] = (int) $_result->post_id;

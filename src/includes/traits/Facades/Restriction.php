@@ -40,17 +40,9 @@ trait Restriction
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionMetaKeys()
+    public static function restrictionMetaPrefix()
     {
-        return $GLOBALS[static::class]->Utils->Restriction->meta_keys;
-    }
-
-    /**
-     * @since 16xxxx Initial release.
-     */
-    public static function restrictionIntMetaKeys()
-    {
-        return $GLOBALS[static::class]->Utils->Restriction->int_meta_keys;
+        return $GLOBALS[static::class]->Utils->Restriction->meta_prefix;
     }
 
     /**
@@ -75,6 +67,22 @@ trait Restriction
     public static function restrictionClientSidePrefix()
     {
         return $GLOBALS[static::class]->Utils->Restriction->client_side_prefix;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function restrictionMetaKeys()
+    {
+        return $GLOBALS[static::class]->Utils->Restriction->meta_keys;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function restrictionIntMetaKeys()
+    {
+        return $GLOBALS[static::class]->Utils->Restriction->int_meta_keys;
     }
 
     /**
