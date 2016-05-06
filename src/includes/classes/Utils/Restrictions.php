@@ -149,7 +149,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
 
         $full_meta_keys = []; // Initialize.
         foreach ($meta_keys as $_meta_key) {
-            $full_meta_keys[] = 'restriction_'.$_meta_key;
+            $full_meta_keys[] = $meta_prefix.$_meta_key;
         } // unset($_meta_key); // Housekeeping.
 
         $by_meta_key = [ // Initialize array; by meta key.

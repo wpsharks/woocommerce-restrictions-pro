@@ -27,33 +27,6 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class UserPermissions extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Restrictions by slug.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array Restrictions by slug.
-     */
-    protected $restrictions_by_slug;
-
-    /**
-     * Restrictions.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array Restrictions.
-     */
-    protected $restrictions;
-
-    /**
-     * Restriction IDs.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array Restriction IDs.
-     */
-    protected $restriction_ids;
-
-    /**
      * Access RES prefix.
      *
      * @since 16xxxx Security gate.
@@ -72,15 +45,6 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     protected $access_ccap_prefix;
 
     /**
-     * Systematic roles.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array Systematic roles.
-     */
-    protected $systematic_roles;
-
-    /**
      * Class constructor.
      *
      * @since 16xxxx Security gate.
@@ -91,17 +55,8 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        // @TODO Improve support for `switch_to_blog()`.
-
-        $by_meta_key                = a::restrictionsByMetaKey();
-        $this->restrictions_by_slug = a::restrictionsBySlug();
-        $this->restrictions         = $by_meta_key['restrictions'];
-        $this->restriction_ids      = $by_meta_key['restriction_ids'];
-
         $this->access_res_prefix  = a::restrictionAccessResPrefix();
         $this->access_ccap_prefix = a::restrictionAccessCcapPrefix();
-
-        $this->systematic_roles = a::systematicRoles();
     }
 
     /**
@@ -128,8 +83,8 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($user_id = (int) $user_id)) {
             return; // Not possible.
         }
-        $this->cacheUnset('permissions', $user_id);
-        $this->cacheUnset('accessibleRestrictionIds', $user_id);
+        $this->cacheUnsetPattern('permissions', '*/'.$user_id);
+        $this->cacheUnsetPattern('accessibleRestrictionIds', '*/'.$user_id);
     }
 
     /**
@@ -199,10 +154,16 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($has_cap = (string) ($args[0] ?? ''))) {
             return $user_caps; // Not possible.
         }
+        $systematic_roles         = a::systematicRoles();
+        $restrictions_by_slug     = a::restrictionsBySlug();
+        $restrictions_by_meta_key = a::restrictionsByMetaKey();
+        $restrictions             = $restrictions_by_meta_key['restrictions'];
+        $restriction_ids          = $restrictions_by_meta_key['restriction_ids'];
+
         // Add role-based caps granted by restrictions the user can access.
-        foreach ($this->restriction_ids['roles'] as $_role => $_restriction_ids) {
+        foreach ($restriction_ids['roles'] as $_role => $_restriction_ids) {
             if ($this->hasAccessToRestrictions($WP_User->ID, $_restriction_ids, 'any')) {
-                if (!in_array($_role, $this->systematic_roles, true) && ($_role_object = get_role($_role))) {
+                if (!in_array($_role, $systematic_roles, true) && ($_role_object = get_role($_role))) {
                     $user_caps = array_merge($user_caps, $_role_object->capabilities);
                 }
             }
@@ -214,8 +175,8 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
             // Note that a slug in this context can contain almost anything.
             // See: <http://wordpress.stackexchange.com/a/149192/81760>
 
-            if (!empty($this->restrictions_by_slug[$_slug])) {
-                $_restriction_id = $this->restrictions_by_slug[$_slug];
+            if (!empty($restrictions_by_slug[$_slug])) {
+                $_restriction_id = $restrictions_by_slug[$_slug];
                 if ($this->hasAccessToRestrictions($WP_User->ID, [$_restriction_id])) {
                     $user_caps[$has_cap] = true;
                 }
@@ -225,8 +186,8 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         } elseif (mb_strpos($has_cap, $this->access_ccap_prefix) === 0) {
             $_ccap = c::strReplaceOnce($this->access_ccap_prefix, '', $has_cap);
 
-            if (in_array($_ccap, $this->restrictions['ccaps'], true)) {
-                $_by_restriction_ids = $this->restriction_ids['ccaps'][$ccap];
+            if (in_array($_ccap, $restrictions['ccaps'], true)) {
+                $_by_restriction_ids = $restriction_ids['ccaps'][$_ccap];
                 if ($this->hasAccessToRestrictions($WP_User->ID, $_by_restriction_ids, 'any')) {
                     $user_caps[$has_cap] = true;
                 }
@@ -246,10 +207,12 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      */
     protected function accessibleRestrictionIds(int $user_id): array
     {
+        global $blog_id; // Current blog ID.
+
         if (!$user_id) { // Empty?
             return []; // Not possible.
         }
-        if (($accessible_restriction_ids = &$this->cacheGet(__FUNCTION__, $user_id)) !== null) {
+        if (($accessible_restriction_ids = &$this->cacheGet(__FUNCTION__, $blog_id.'/'.$user_id)) !== null) {
             return $accessible_restriction_ids; // Cached already.
         }
         $accessible_restriction_ids = []; // Initialize.
@@ -274,10 +237,12 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      */
     protected function permissions(int $user_id): array
     {
+        global $blog_id; // Current blog ID.
+
         if (!$user_id) { // Empty?
             return []; // Not possible.
         }
-        if (($permissions = &$this->cacheGet(__FUNCTION__, $user_id)) !== null) {
+        if (($permissions = &$this->cacheGet(__FUNCTION__, $blog_id.'/'.$user_id)) !== null) {
             return $permissions; // Cached already.
         }
         $WpDb = s::wpDb(); // WP database object class.

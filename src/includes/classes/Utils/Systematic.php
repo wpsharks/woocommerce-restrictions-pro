@@ -47,7 +47,9 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      */
     public function postIds(): array
     {
-        if (($post_ids = &$this->cacheKey(__FUNCTION__)) !== null) {
+        global $blog_id; // Current blog ID.
+
+        if (($post_ids = &$this->cacheKey(__FUNCTION__, $blog_id)) !== null) {
             return $post_ids; // Cached already.
         }
         $post_ids = []; // Initialize.
@@ -68,7 +70,9 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      */
     public function postTypes(): array
     {
-        if (($post_types = &$this->cacheKey(__FUNCTION__)) !== null) {
+        global $blog_id; // Current blog ID.
+
+        if (($post_types = &$this->cacheKey(__FUNCTION__, $blog_id)) !== null) {
             return $post_types; // Cached already.
         }
         $post_types = []; // Initialize.
@@ -89,7 +93,9 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      */
     public function roles(): array
     {
-        if (($roles = &$this->cacheKey(__FUNCTION__)) !== null) {
+        global $blog_id; // Current blog ID.
+
+        if (($roles = &$this->cacheKey(__FUNCTION__, $blog_id)) !== null) {
             return $roles; // Cached already.
         }
         $roles = [
@@ -113,7 +119,9 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      */
     public function uriPatterns(bool $compile = true)
     {
-        if (($uri_patterns = &$this->cacheKey(__FUNCTION__, $compile)) !== null) {
+        global $blog_id; // Current blog ID.
+
+        if (($uri_patterns = &$this->cacheKey(__FUNCTION__, $blog_id, $compile)) !== null) {
             return $uri_patterns; // Cached already.
         }
         $uri_patterns = []; // Initialize.
@@ -164,11 +172,16 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      */
     protected function collectWcPostIds(): array
     {
-        if (($wc_post_ids = &$this->cacheKey(__FUNCTION__)) !== null) {
+        global $blog_id; // Current blog ID.
+
+        if (($wc_post_ids = &$this->cacheKey(__FUNCTION__, $blog_id)) !== null) {
             return $wc_post_ids; // Cached already.
         }
         $wc_post_ids = []; // Initialize.
 
+        if (!c::canCallFunc('WC')) {
+            return $wc_post_ids = []; // Not running.
+        }
         foreach (['shop', 'cart', 'terms', 'checkout', 'myaccount', 'view_order'] as $_wc_page) {
             if (($_wc_page_id = (int) wc_get_page_id($_wc_page)) > 0) {
                 $wc_post_ids[] = $_wc_page_id;
@@ -194,8 +207,12 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         if (!$no_cache && is_array($wc_urls = s::getTransient($transient_cache_key))) {
             return $wc_urls; // Cached already.
         }
-        $wc_urls  = []; // Initialize.
-        $home_url = get_home_url();
+        $wc_urls = []; // Initialize.
+
+        if (!c::canCallFunc('WC')) {
+            return $wc_urls = []; // Not running.
+        }
+        $home_url = get_home_url(); // Needed for comparison below.
 
         foreach (['shop', 'cart', 'terms', 'checkout', 'myaccount', 'view_order'] as $_wc_page) {
             if (($_wc_page_url = wc_get_page_permalink($_wc_page)) && $_wc_page_url !== $home_url) {
@@ -217,7 +234,9 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      */
     protected function collectBpPostIds(): array
     {
-        if (($bp_post_ids = &$this->cacheKey(__FUNCTION__)) !== null) {
+        global $blog_id; // Current blog ID.
+
+        if (($bp_post_ids = &$this->cacheKey(__FUNCTION__, $blog_id)) !== null) {
             return $bp_post_ids; // Cached already.
         }
         $bp_post_ids = []; // Initialize.

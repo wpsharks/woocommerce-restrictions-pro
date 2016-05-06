@@ -27,24 +27,6 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class SecurityCheck extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Restrictions.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array Restrictions.
-     */
-    protected $restrictions;
-
-    /**
-     * Restriction IDs.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array Restriction IDs.
-     */
-    protected $restriction_ids;
-
-    /**
      * Restriction meta keys.
      *
      * @since 16xxxx Security gate.
@@ -63,42 +45,6 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     protected $restriction_int_meta_keys;
 
     /**
-     * Systematic post IDs.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array Post IDs.
-     */
-    protected $systematic_post_ids;
-
-    /**
-     * Systematic post types.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array Post types.
-     */
-    protected $systematic_post_types;
-
-    /**
-     * Systematic roles.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array Roles.
-     */
-    protected $systematic_roles;
-
-    /**
-     * Systematic URI patterns.
-     *
-     * @since 16xxxx Security gate.
-     *
-     * @type array URI patterns.
-     */
-    protected $systematic_uri_patterns;
-
-    /**
      * Class constructor.
      *
      * @since 16xxxx Security gate.
@@ -109,17 +55,8 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $by_meta_key           = a::restrictionsByMetaKey();
-        $this->restrictions    = $by_meta_key['restrictions'];
-        $this->restriction_ids = $by_meta_key['restriction_ids'];
-
         $this->restriction_meta_keys     = a::restrictionMetaKeys();
         $this->restriction_int_meta_keys = a::restrictionIntMetaKeys();
-
-        $this->systematic_post_ids     = a::systematicPostIds();
-        $this->systematic_post_types   = a::systematicPostTypes();
-        $this->systematic_roles        = a::systematicRoles();
-        $this->systematic_uri_patterns = a::systematicUriPatterns();
     }
 
     /**
@@ -274,6 +211,11 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
      */
     protected function checkIfIsSystematic(array &$accessing, \WP_User $WP_User = null): bool
     {
+        $systematic_post_ids     = a::systematicPostIds();
+        $systematic_post_types   = a::systematicPostTypes();
+        $systematic_roles        = a::systematicRoles();
+        $systematic_uri_patterns = a::systematicUriPatterns();
+
         foreach (['post_ids', 'post_types', 'roles', 'uri_patterns'] as $_meta_key) {
             if ($_meta_key === 'uri_patterns') {
                 if (!$accessing['uris'] && !$accessing['uri_paths']) {
@@ -282,7 +224,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
             } elseif (!$accessing[$_meta_key]) { // Everything else.
                 continue; // Not accessing.
             }
-            foreach ($this->{'systematic_'.$_meta_key} as $_systematic) {
+            foreach (${'systematic_'.$_meta_key} as $_systematic) {
                 if ($_meta_key === 'uri_patterns') {
                     if ($_systematic['against'] === 'uri') {
                         if (preg_grep($_systematic['regex'], $accessing['uris'])) {
@@ -316,6 +258,10 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
      */
     protected function checkIfIsRestricted(array &$accessing, array &$restricted, array &$restricted_by, \WP_User $WP_User = null): bool
     {
+        $restrictions_by_meta_key = a::restrictionsByMetaKey();
+        $restrictions             = $restrictions_by_meta_key['restrictions'];
+        $restriction_ids          = $restrictions_by_meta_key['restriction_ids'];
+
         foreach (array_diff($this->restriction_meta_keys, ['roles', 'ccaps']) as $_meta_key) {
             if ($_meta_key === 'uri_patterns') {
                 if (!$accessing['uris'] && !$accessing['uri_paths']) {
@@ -324,7 +270,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
             } elseif (!$accessing[$_meta_key]) { // Everything else.
                 continue; // Not accessing.
             }
-            foreach ($this->restrictions[$_meta_key] as $_restriction) {
+            foreach ($restrictions[$_meta_key] as $_restriction) {
                 if ($_meta_key === 'uri_patterns') {
                     if ($_restriction['against'] === 'uri') {
                         if (!preg_grep($_restriction['regex'], $accessing['uris'])) {
@@ -340,7 +286,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
                 } elseif (!in_array($_restriction, $accessing[$_meta_key], true)) {
                     continue; // Not accessing.
                 }
-                $_by_restriction_ids = $this->restriction_ids[$_meta_key][$_restriction];
+                $_by_restriction_ids = $restriction_ids[$_meta_key][$_restriction];
 
                 if (!$WP_User || !a::userHas($WP_User->ID, $_by_restriction_ids, 'any')) {
                     $is_restricted             = true;
