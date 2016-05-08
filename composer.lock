@@ -870,12 +870,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/core.git",
-                "reference": "5a1a8d7978a27593ec5fbf205de3a9cc18717214"
+                "reference": "0c1bce6663ba9674bb267a4ee77ece5cc7be9f9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/core/zipball/5a1a8d7978a27593ec5fbf205de3a9cc18717214",
-                "reference": "5a1a8d7978a27593ec5fbf205de3a9cc18717214",
+                "url": "https://api.github.com/repos/websharks/core/zipball/0c1bce6663ba9674bb267a4ee77ece5cc7be9f9d",
+                "reference": "0c1bce6663ba9674bb267a4ee77ece5cc7be9f9d",
                 "shasum": ""
             },
             "require": {
@@ -985,7 +985,7 @@
             "keywords": [
                 "websharks"
             ],
-            "time": "2016-05-04 08:55:25"
+            "time": "2016-05-07 03:57:11"
         },
         {
             "name": "websharks/dicer",
@@ -1095,12 +1095,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-sharks-core.git",
-                "reference": "7a0c71a32217f6cb07d1ea2c52a6129daea223bb"
+                "reference": "b13ba9ce9476b1c095f1ffa3bd9467a0bbf5ed12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-sharks-core/zipball/7a0c71a32217f6cb07d1ea2c52a6129daea223bb",
-                "reference": "7a0c71a32217f6cb07d1ea2c52a6129daea223bb",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core/zipball/b13ba9ce9476b1c095f1ffa3bd9467a0bbf5ed12",
+                "reference": "b13ba9ce9476b1c095f1ffa3bd9467a0bbf5ed12",
                 "shasum": ""
             },
             "require": {
@@ -1145,7 +1145,7 @@
                 "wordpress",
                 "wp sharks"
             ],
-            "time": "2016-05-05 07:49:01"
+            "time": "2016-05-08 12:19:28"
         }
     ],
     "aliases": [],

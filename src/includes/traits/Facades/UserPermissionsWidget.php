@@ -1,6 +1,6 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Base;
+namespace WebSharks\WpSharks\s2MemberX\Pro\Traits\Facades;
 
 use WebSharks\WpSharks\s2MemberX\Pro\Classes;
 use WebSharks\WpSharks\s2MemberX\Pro\Interfaces;
@@ -19,20 +19,13 @@ use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 
-/**
- * Pseudo-static facades.
- *
- * @since 160227 Initial release.
- */
-abstract class Facades
+trait UserPermissionsWidget
 {
-    use Traits\Facades\Restriction;
-    use Traits\Facades\RestrictionCaps;
-    use Traits\Facades\Restrictions;
-    use Traits\Facades\SecurityChecks;
-    use Traits\Facades\SecurityGate;
-    use Traits\Facades\Systematics;
-    use Traits\Facades\UserPermissions;
-    use Traits\Facades\UserPermissionShortcodes;
-    use Traits\Facades\UserPermissionsWidget;
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function userPermsWidgetClientSidePrefix()
+    {
+        return $GLOBALS[static::class]->Utils->UserPermissionsWidget->client_side_prefix;
+    }
 }

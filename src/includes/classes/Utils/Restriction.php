@@ -96,7 +96,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @type \WP_Screen|null Screen.
      */
-    public $screen;
+    protected $screen;
 
     /**
      * Is screen mobile?
@@ -105,7 +105,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @type bool Is screen mobile?
      */
-    public $screen_is_mobile;
+    protected $screen_is_mobile;
 
     /**
      * Class constructor.
@@ -361,13 +361,13 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         if (!s::isMenuPageForPostType($this->post_type)) {
             return; // Not applicable.
         }
-        s::enqueueJQueryChosen(); // Enqueue jQuery Chosen plugin.
+        s::enqueueJQueryChosenLibs(); // Enqueue jQuery Chosen plugin.
 
-        wp_enqueue_style($this->client_side_prefix.'-post-type', c::appUrl('/client-s/css/admin/restriction-post-type.min.css'), [], $this->App::VERSION, 'all');
-        wp_enqueue_script($this->client_side_prefix.'-post-type', c::appUrl('/client-s/js/admin/restriction-post-type.min.js'), ['jquery', 'jquery-chosen'], $this->App::VERSION, true);
+        wp_enqueue_style($this->client_side_prefix.'-restriction-post-type', c::appUrl('/client-s/css/admin/restriction-post-type.min.css'), [], $this->App::VERSION, 'all');
+        wp_enqueue_script($this->client_side_prefix.'-restriction-post-type', c::appUrl('/client-s/js/admin/restriction-post-type.min.js'), ['jquery', 'jquery-chosen'], $this->App::VERSION, true);
 
         wp_localize_script(
-            $this->client_side_prefix.'-post-type',
+            $this->client_side_prefix.'-restriction-post-type',
             $this->client_side_prefix.'RestrictionPostTypeData',
             [
                 'is' => [

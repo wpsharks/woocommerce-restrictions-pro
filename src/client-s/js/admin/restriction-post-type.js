@@ -1,25 +1,29 @@
 (function ($) {
   $(document).ready(function () {
+    // Essential variables.
+
     var prefix = 'fdbmjuxwzjfjtaucytprkbcqfpftudyg';
     var data = window[prefix + 'RestrictionPostTypeData'];
-    var chosenOptions = jazssggqbtujeebgvnskynzyzwqttqqzJQueryChosenDefaults;
+    var chosenData = jazssggqbtujeebgvnskynzyzwqttqqzJQueryChosenData;
 
     var $slugMetaBox = $('#slugdiv.postbox');
     var $prefixedMetaBoxes = $('.postbox[id^="' + prefix + '"]');
-    var $aToggles = $('a[data-toggle][href="#"]');
+    var $aToggles = $prefixedMetaBoxes.find('a[data-toggle][href="#"]');
+
+    // Title and slug tweaks.
 
     $('#title-prompt-text').text(data.i18n.titlePlaceholder);
     $slugMetaBox.find('input').attr('placeholder', data.i18n.slugPlaceholder);
     $slugMetaBox.find('.hndle').append('<span class="-label">' + data.i18n.suggestedLabel + '</span>');
 
-    $prefixedMetaBoxes.find('select[data-toggle~="jquery-chosen"]').chosen(chosenOptions);
-    $prefixedMetaBoxes.not('#' + prefix + '-about').find('.hndle').append('<span class="-label">' + data.i18n.optionalLabel + '</span>');
+    // Prefixed meta boxes; jQuery Chosen, labels, toggles, etc.
 
-    $aToggles.on('click', function (e) {
-      var $this = $(this);
+    $prefixedMetaBoxes.find('select[data-toggle~="jquery-chosen"]').chosen(chosenData.defaultOptions);
+    $prefixedMetaBoxes.not('#' + prefix + '-about').find('.hndle').append('<span class="-label">' + data.i18n.optionalLabel + '</span>');
+    $prefixedMetaBoxes.find('a[data-toggle][href="#"]').on('click', function (e) {
       e.preventDefault();
       e.stopImmediatePropagation();
-      $($this.data('toggle')).toggle();
+      $($(this).data('toggle')).toggle();
     });
   });
 })(jQuery);

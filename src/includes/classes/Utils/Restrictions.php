@@ -27,6 +27,74 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class Restrictions extends SCoreClasses\SCore\Base\Core
 {
     /**
+     * Post type.
+     *
+     * @since 16xxxx
+     *
+     * @type string Post type.
+     */
+    protected $post_type;
+
+    /**
+     * Meta prefix.
+     *
+     * @since 16xxxx
+     *
+     * @type string Meta prefix.
+     */
+    protected $meta_prefix;
+
+    /**
+     * Meta keys.
+     *
+     * @since 16xxxx
+     *
+     * @type array Meta keys.
+     */
+    protected $meta_keys;
+
+    /**
+     * Full meta keys.
+     *
+     * @since 16xxxx
+     *
+     * @type array Full meta keys.
+     */
+    protected $full_meta_keys;
+
+    /**
+     * Meta keys.
+     *
+     * @since 16xxxx
+     *
+     * @type array Meta keys.
+     */
+    protected $int_meta_keys;
+
+    /**
+     * Class constructor.
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @param Classes\App $App Instance.
+     */
+    public function __construct(Classes\App $App)
+    {
+        parent::__construct($App);
+
+        $this->post_type = a::restrictionPostType();
+
+        $this->meta_prefix   = a::restrictionMetaPrefix();
+        $this->meta_keys     = a::restrictionMetaKeys();
+        $this->int_meta_keys = a::restrictionIntMetaKeys();
+
+        $this->full_meta_keys = []; // Initialize.
+        foreach ($this->meta_keys as $_meta_key) {
+            $this->full_meta_keys[] = $this->meta_prefix.$_meta_key;
+        } // unset($_meta_key); // Housekeeping.
+    }
+
+    /**
      * Clear cache.
      *
      * @since 16xxxx Restrictions.
@@ -34,8 +102,8 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     public function clearCache()
     {
         $this->cacheClear(); // Object cache.
-        s::deleteTransient('restrictions_by_slug');
         s::deleteTransient('restrictions_by_meta_key');
+        s::deleteTransient('restrictions_all_with_meta');
     }
 
     /**
@@ -49,11 +117,10 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
      */
     public function slugToId(string $slug): int
     {
-        $by_slug = $this->bySlug();
+        $ids_by_slug = $this->idsBySlug();
         // Note that a slug in this context can contain almost anything.
         // See: <http://wordpress.stackexchange.com/a/149192/81760>
-
-        return !empty($by_slug[$slug]) ? $by_slug[$slug] : 0;
+        return !empty($ids_by_slug[$slug]) ? $ids_by_slug[$slug] : 0;
     }
 
     /**
@@ -68,17 +135,17 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
      */
     public function slugsToIds(array $slugs): array
     {
-        $ids     = []; // Initialize.
-        $by_slug = $this->bySlug();
+        $ids         = []; // Initialize.
+        $ids_by_slug = $this->idsBySlug();
 
         foreach ($slugs as $_slug) {
             if ($_slug && is_int($_slug)) {
-                $_slug = array_search($_slug, $by_slug, true);
+                $_slug = array_search($_slug, $ids_by_slug, true);
             }
-            if ($_slug && is_string($_slug) && !empty($by_slug[$_slug])) {
+            if ($_slug && is_string($_slug) && !empty($ids_by_slug[$_slug])) {
                 // Note that a slug in this context can contain almost anything.
                 // See: <http://wordpress.stackexchange.com/a/149192/81760>
-                $ids[$_slug] = $by_slug[$_slug];
+                $ids[$_slug] = $ids_by_slug[$_slug];
             }
         } // unset($_slug); // Housekeeping.
 
@@ -86,117 +153,160 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     }
 
     /**
+     * Restriction titles by ID.
+     *
+     * @since 16xxxx Restriction titles.
+     *
+     * @return array Titles; keys are IDs.
+     */
+    public function titlesById(): array
+    {
+        global $blog_id; // Current blog ID.
+
+        if (($titles_by_id = &$this->cacheKey(__FUNCTION__, $blog_id)) !== null) {
+            return $titles_by_id; // Already cached these.
+        }
+        $all_restrictions_with_meta = $this->allWithMeta();
+        $titles_by_id               = []; // Initialize array.
+
+        foreach ($all_restrictions_with_meta as $_restriction) {
+            $titles_by_id[$_restriction['data']->ID] = $_restriction['data']->post_title;
+        } // unset($_restriction); // Housekeeping.
+
+        return $titles_by_id;
+    }
+
+    /**
      * Restriction IDs by slug.
      *
-     * @since 16xxxx Restrictions.
+     * @since 16xxxx Restrictions by slug.
      *
      * @return array IDs; keys are slugs.
      */
-    public function bySlug(): array
+    public function idsBySlug(): array
     {
-        $transient_cache_key = 'restrictions_by_slug';
-        $post_type           = a::restrictionPostType();
+        global $blog_id; // Current blog ID.
 
-        $no_cache = s::isMenuPageForPostType($post_type);
-        if (!$no_cache && is_array($by_slug = s::getTransient($transient_cache_key))) {
-            return $by_slug; // Cached already.
+        if (($ids_by_slug = &$this->cacheKey(__FUNCTION__, $blog_id)) !== null) {
+            return $ids_by_slug; // Already cached these.
         }
-        $WpDb = $this->s::wpDb(); // DB object instance.
+        $all_restrictions_with_meta = $this->allWithMeta();
+        $ids_by_slug                = []; // Initialize array.
 
-        $by_slug = []; // Initialize array.
-
-        $sql = // Restrictions from the posts table.
-            'SELECT `ID`, `post_name` AS `slug` FROM `'.esc_sql($WpDb->posts).'`'.
-                " WHERE `post_type` = %s AND `post_status` = 'publish'";
-        $sql = $WpDb->prepare($sql, $post_type);
-
-        if (!($results = $WpDb->get_results($sql))) {
-            s::setTransient($transient_cache_key, $by_slug, MINUTE_IN_SECONDS * 15);
-            return $by_slug; // Nothing.
-        }
-        foreach ($results as $_key => $_result) {
-            $by_slug[$_result->slug] = (int) $_result->ID;
+        foreach ($all_restrictions_with_meta as $_restriction) {
+            // Note: WordPress doesn't allow numeric slugs.
+            $ids_by_slug[$_restriction['data']->post_name] = $_restriction['data']->ID;
             // Note that a slug in this context can contain almost anything.
             // See: <http://wordpress.stackexchange.com/a/149192/81760>
-        } // unset($_key, $_result); // Housekeeping.
+        } // unset($_restriction); // Housekeeping.
 
-        s::setTransient($transient_cache_key, $by_slug, MINUTE_IN_SECONDS * 15);
-
-        return $by_slug;
+        return $ids_by_slug;
     }
 
     /**
      * Restrictions by meta key.
      *
-     * @since 16xxxx Restrictions.
+     * @since 16xxxx Restrictions by meta key.
      *
-     * @return array `['restrictions' => [], 'restriction_ids' => []]`
+     * @return array `['restrictions', 'restriction_ids']`
      */
     public function byMetaKey(): array
     {
         $transient_cache_key = 'restrictions_by_meta_key';
-        $post_type           = a::restrictionPostType();
+        $no_cache            = s::isMenuPageForPostType($this->post_type);
 
-        $no_cache = s::isMenuPageForPostType($post_type);
         if (!$no_cache && is_array($by_meta_key = s::getTransient($transient_cache_key))) {
-            return $by_meta_key; // Cached already.
+            return $by_meta_key; // Already cached these recently.
+        }
+        $all_restrictions_with_meta = $this->allWithMeta();
+        $by_meta_key                = [ // Initialize; by meta key.
+            'restrictions'    => array_fill_keys($this->meta_keys, []),
+            'restriction_ids' => array_fill_keys($this->meta_keys, []),
+        ];
+        foreach ($all_restrictions_with_meta as $_restriction) {
+            foreach ($_restriction['meta'] as $_meta_key => $_meta_values) {
+                foreach ($_meta_values as $_meta_value) {
+                    $by_meta_key['restrictions'][$_meta_key][]                  = $_meta_value;
+                    $by_meta_key['restriction_ids'][$_meta_key][$_meta_value][] = $_restriction['data']->ID;
+                } // unset($_meta_value); // Housekeeping.
+            } // unset($_meta_key, $_meta_values); // Housekeeping.
+        } // unset($_restriction); // Housekeeping.
+
+        foreach ($by_meta_key['restrictions'] as $_meta_key => $_meta_values) {
+            $by_meta_key['restrictions'][$_meta_key] = array_unique(c::removeEmptys($_meta_values));
+        } // unset($_meta_key, $_meta_values); // Housekeeping.
+
+        foreach ($by_meta_key['restriction_ids'] as $_meta_key => $_meta_values) {
+            foreach ($_meta_values as $_meta_value => $_by_restriction_ids) {
+                $by_meta_key['restriction_ids'][$_meta_key][$_meta_value] = array_unique(c::removeEmptys($_by_restriction_ids));
+            } // unset($_meta_value, $_by_restriction_ids); // Housekeeping.
+        } // unset($_meta_key, $_meta_values); // Housekeeping.
+
+        foreach ($by_meta_key['restrictions']['uri_patterns'] as $_key => $_uri_pattern) {
+            $_against                                           = preg_match('/\[[?&]+\]/u', $_uri_pattern) ? 'uri' : 'uri_path';
+            $by_meta_key['restrictions']['uri_patterns'][$_key] = [
+                'against' => $_against,
+                'wregx'   => $_uri_pattern,
+                'regex'   => c::wRegx($_uri_pattern, '/', true).'i',
+            ]; // Pre-compiles regex for each pattern.
+        } // unset($_key, $_uri_pattern, $_against); // Housekeeping.
+
+        s::setTransient($transient_cache_key, $by_meta_key, MINUTE_IN_SECONDS * 15);
+        return $by_meta_key; // All restrictions; by meta key.
+    }
+
+    /**
+     * Restrictions (all w/ meta).
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @return array All restrictions w/ meta values.
+     */
+    public function allWithMeta(): array
+    {
+        $transient_cache_key = 'restrictions_all_with_meta';
+        $no_cache            = s::isMenuPageForPostType($this->post_type);
+
+        if (!$no_cache && is_array($all = s::getTransient($transient_cache_key))) {
+            return $all; // Already cached these recently.
         }
         $WpDb = $this->s::wpDb(); // DB object instance.
 
-        $meta_prefix   = a::restrictionMetaPrefix();
-        $meta_keys     = a::restrictionMetaKeys();
-        $int_meta_keys = a::restrictionIntMetaKeys();
-
-        $full_meta_keys = []; // Initialize.
-        foreach ($meta_keys as $_meta_key) {
-            $full_meta_keys[] = $meta_prefix.$_meta_key;
-        } // unset($_meta_key); // Housekeeping.
-
-        $by_meta_key = [ // Initialize array; by meta key.
-            'restrictions'    => array_fill_keys($meta_keys, []),
-            'restriction_ids' => array_fill_keys($meta_keys, []),
-        ];
-        $sql_post_ids_sub_query = // Restrictions.
-            'SELECT `ID` FROM `'.esc_sql($WpDb->posts).'`'.
+        $sql = // Restrictions.
+            'SELECT * FROM `'.esc_sql($WpDb->posts).'`'.
                 " WHERE `post_type` = %s AND `post_status` = 'publish'";
-        $sql_post_ids_sub_query = $WpDb->prepare($sql_post_ids_sub_query, $post_type);
-
-        $sql = 'SELECT `post_id`, `meta_key` AS `full_meta_key`, `meta_value` FROM `'.esc_sql($WpDb->postmeta).'`'.
-                ' WHERE `post_id` IN('.$sql_post_ids_sub_query.')'.// For published Restrictions.
-                ' AND `meta_key` IN('.c::quoteSqlIn($full_meta_keys).')';// Restriction keys.
+        $sql = $WpDb->prepare($sql, $this->post_type);
 
         if (!($results = $WpDb->get_results($sql))) {
-            s::setTransient($transient_cache_key, $by_meta_key, MINUTE_IN_SECONDS * 15);
-            return $by_meta_key; // Nothing.
+            s::setTransient($transient_cache_key, [], MINUTE_IN_SECONDS * 15);
+            return $all = []; // Nothing.
         }
         foreach ($results as $_key => $_result) {
-            $_meta_key                                                  = preg_replace('/^'.preg_quote($meta_prefix, '/').'/u', '', $_result->full_meta_key);
-            $_meta_value                                                = in_array($_meta_key, $int_meta_keys, true) ? (int) $_result->meta_value : (string) $_result->meta_value;
-            $by_meta_key['restrictions'][$_meta_key][]                  = $_meta_value;
-            $by_meta_key['restriction_ids'][$_meta_key][$_meta_value][] = (int) $_result->post_id;
-        } // unset($_key, $_result, $_meta_key, $_meta_value); // Housekeeping.
+            $_result->ID               = (int) $_result->ID;
+            $all[$_result->ID]['data'] = $_result; // Integer ID now.
+            $all[$_result->ID]['meta'] = array_fill_keys($this->meta_keys, []);
+        } // unset($_key, $_result); // Housekeeping.
 
-        foreach ($by_meta_key['restrictions'] as $_meta_key => &$_restrictions) {
-            $_restrictions = array_unique(c::removeEmptys($_restrictions));
-        } // Must unset temp reference variable.
-        unset($_meta_key, $_restrictions);
+        $post_ids_sub_query = // Restriction IDs.
+            'SELECT `ID` FROM `'.esc_sql($WpDb->posts).'`'.
+                " WHERE `post_type` = %s AND `post_status` = 'publish'";
+        $post_ids_sub_query = $WpDb->prepare($post_ids_sub_query, $this->post_type);
 
-        foreach ($by_meta_key['restriction_ids'] as $_meta_key => &$_restrictions) {
-            foreach ($_restrictions as $_restriction => &$_restriction_ids) {
-                $_restriction_ids = array_unique(c::removeEmptys($_restriction_ids));
-            } // Must unset temp reference variable.
-            unset($_restriction, $_restriction_ids);
-        } // Must unset temp reference variable.
-        unset($_meta_key, $_restrictions);
+        $meta_sql = 'SELECT `post_id`, `meta_key` AS `full_meta_key`, `meta_value` FROM `'.esc_sql($WpDb->postmeta).'`'.
+                ' WHERE `post_id` IN('.$post_ids_sub_query.')'.// For published Restrictions.
+                ' AND `meta_key` IN('.c::quoteSqlIn($this->full_meta_keys).')';// Restriction keys.
 
-        foreach ($by_meta_key['restrictions']['uri_patterns'] as $_key => &$_uri_pattern) {
-            $_against     = preg_match('/\[[?&]+\]/u', $_uri_pattern) ? 'uri' : 'uri_path';
-            $_uri_pattern = ['against' => $_against, 'wregx' => $_uri_pattern, 'regex' => c::wRegx($_uri_pattern, '/', true).'i'];
-        } // Must unset temp reference variable.
-        unset($_key, $_uri_pattern);
-
-        s::setTransient($transient_cache_key, $by_meta_key, MINUTE_IN_SECONDS * 15);
-
-        return $by_meta_key;
+        if (($meta_results = $WpDb->get_results($meta_sql))) { // Multiple values per key.
+            foreach ($meta_results as $_key => $_result) {
+                if (empty($all[$_result->post_id])) {
+                    continue; // No matching restriction.
+                } // ↑ This can happen with stale DB rows or corruption.
+                $_meta_key                                    = preg_replace('/^'.preg_quote($this->meta_prefix, '/').'/u', '', $_result->full_meta_key);
+                $_meta_value                                  = in_array($_meta_key, $this->int_meta_keys, true) ? (int) $_result->meta_value : (string) $_result->meta_value;
+                $all[$_result->post_id]['meta'][$_meta_key][] = $_meta_value;
+            } // unset($_key, $_result, $_meta_key, $_meta_value); // Housekeeping.
+        }
+        s::setTransient($transient_cache_key, $all, MINUTE_IN_SECONDS * 15);
+        return $all; // All restrictions w/ meta.
     }
 }

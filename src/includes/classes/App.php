@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160505'; //v//
+    const VERSION = '160508'; //v//
 
     /**
      * Constructor.
@@ -144,21 +144,26 @@ class App extends SCoreClasses\App
         parent::onSetupOtherHooks(); // Core hooks.
 
         add_action('woocommerce_init', function () {
+            # Misc. variables.
+
+            $is_admin = is_admin();
+
             # Restriction-related hooks.
 
             $this->Utils->Restriction->onInitRegisterPostType();
 
-            add_action('current_screen', [$this->Utils->Restriction, 'onCurrentScreen']);
+            if ($is_admin) { // Admin areas only.
+                add_action('current_screen', [$this->Utils->Restriction, 'onCurrentScreen']);
 
-            add_filter('custom_menu_order', '__return_true'); // Enable custom order.
-            add_filter('menu_order', [$this->Utils->Restriction, 'onMenuOrder'], 1000);
+                add_filter('custom_menu_order', '__return_true'); // Enable custom order.
+                add_filter('menu_order', [$this->Utils->Restriction, 'onMenuOrder'], 1000);
 
-            add_action('add_meta_boxes', [$this->Utils->Restriction, 'onAddMetaBoxes']);
-            add_filter('default_hidden_meta_boxes', [$this->Utils->Restriction, 'onDefaultHiddenMetaBoxes'], 10, 2);
-            add_action('save_post_'.$this->Utils->Restriction->post_type, [$this->Utils->Restriction, 'onSavePost'], 10, 3);
+                add_action('add_meta_boxes', [$this->Utils->Restriction, 'onAddMetaBoxes']);
+                add_filter('default_hidden_meta_boxes', [$this->Utils->Restriction, 'onDefaultHiddenMetaBoxes'], 10, 2);
+                add_action('save_post_'.$this->Utils->Restriction->post_type, [$this->Utils->Restriction, 'onSavePost'], 10, 3);
 
-            add_action('admin_enqueue_scripts', [$this->Utils->Restriction, 'onAdminEnqueueScripts']);
-
+                add_action('admin_enqueue_scripts', [$this->Utils->Restriction, 'onAdminEnqueueScripts']);
+            }
             # User-related hooks; including role/capability filters.
 
             add_filter('user_has_cap', [$this->Utils->UserPermissions, 'onUserHasCap'], 1000, 4);
@@ -174,6 +179,14 @@ class App extends SCoreClasses\App
 
             add_filter('widget_text', 'do_shortcode'); // Enable shortcodes in widgets.
 
+            if ($is_admin) { // Admin areas only.
+                add_action('current_screen', [$this->Utils->UserPermissionsWidget, 'onCurrentScreen']);
+
+                add_action('admin_enqueue_scripts', [$this->Utils->UserPermissionsWidget, 'onAdminEnqueueScripts']);
+
+                add_action('show_user_profile', [$this->Utils->UserPermissionsWidget, 'onEditUserProfile'], 1);
+                add_action('edit_user_profile', [$this->Utils->UserPermissionsWidget, 'onEditUserProfile'], 1);
+            }
             # Security gate; always after the `restriction` post type registration.
 
             // See also: <http://jas.xyz/1WlT51u> to review the BuddyPress loading order.

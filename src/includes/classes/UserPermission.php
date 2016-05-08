@@ -65,9 +65,9 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         $this->data->product_id     = $this->data->product_id ? (int) $this->data->product_id : null;
         $this->data->restriction_id = (int) $this->data->restriction_id;
 
-        $this->data->access_time  = (int) $this->data->access_time;
-        $this->data->expire_time  = (int) $this->data->expire_time;
-        $this->data->is_suspended = (int) $this->data->is_suspended;
+        $this->data->access_time = (int) $this->data->access_time;
+        $this->data->expire_time = (int) $this->data->expire_time;
+        $this->data->is_enabled  = (int) $this->data->is_enabled;
 
         $this->data->insertion_time   = (int) $this->data->insertion_time;
         $this->data->last_update_time = (int) $this->data->last_update_time;
@@ -82,7 +82,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
      */
     public function isAllowed(): bool
     {
-        if ($this->data->is_suspended) {
+        if (!$this->data->is_enabled) {
             return false;
         }
         if ($this->data->access_time) {

@@ -2,10 +2,12 @@
  * Dependencies.
  */
 @import '../bourbon/bourbon';
-@import '../../../vendor/websharks/sharkicons/src/sharkicons';
-@include sharkicons-font('../../../vendor/websharks/sharkicons/src');
 @import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/dashicons';
 @import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/meta-boxes';
+
+// Sharkicons are not used at the moment.
+// @import '../../../vendor/websharks/sharkicons/src/sharkicons';
+// @include sharkicons-font('../../../vendor/websharks/sharkicons/src');
 
 /*
  * Built-in meta box.

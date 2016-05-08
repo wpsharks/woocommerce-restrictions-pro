@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `%%table%%` (
   `restriction_id` bigint(20) UNSIGNED NOT NULL,
   `access_time` int(10) UNSIGNED NOT NULL,
   `expire_time` int(10) UNSIGNED NOT NULL,
-  `is_suspended` int(1) UNSIGNED NOT NULL,
+  `is_enabled` int(1) UNSIGNED NOT NULL,
   `insertion_time` int(10) UNSIGNED NOT NULL,
   `last_update_time` int(10) UNSIGNED NOT NULL
 );

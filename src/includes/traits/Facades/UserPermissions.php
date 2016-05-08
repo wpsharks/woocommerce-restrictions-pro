@@ -40,6 +40,22 @@ trait UserPermissions
     /**
      * @since 16xxxx Initial release.
      */
+    public static function userAccessibleRestrictionIds(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->UserPermissions->accessibleRestrictionIds(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function userPermissions(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->UserPermissions->permissions(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
     public static function clearUserPermissionsCache(...$args)
     {
         return $GLOBALS[static::class]->Utils->UserPermissions->clearCache(...$args);

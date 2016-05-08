@@ -155,7 +155,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
             return $user_caps; // Not possible.
         }
         $systematic_roles         = a::systematicRoles();
-        $restrictions_by_slug     = a::restrictionsBySlug();
+        $restriction_ids_by_slug  = a::restrictionIdsBySlug();
         $restrictions_by_meta_key = a::restrictionsByMetaKey();
         $restrictions             = $restrictions_by_meta_key['restrictions'];
         $restriction_ids          = $restrictions_by_meta_key['restriction_ids'];
@@ -175,8 +175,8 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
             // Note that a slug in this context can contain almost anything.
             // See: <http://wordpress.stackexchange.com/a/149192/81760>
 
-            if (!empty($restrictions_by_slug[$_slug])) {
-                $_restriction_id = $restrictions_by_slug[$_slug];
+            if (!empty($restriction_ids_by_slug[$_slug])) {
+                $_restriction_id = $restriction_ids_by_slug[$_slug];
                 if ($this->hasAccessToRestrictions($WP_User->ID, [$_restriction_id])) {
                     $user_caps[$has_cap] = true;
                 }
@@ -201,15 +201,15 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Security gate.
      *
-     * @param int $user_id User ID.
+     * @param string|int $user_id User ID.
      *
      * @return int[] Accessible restriction IDs.
      */
-    protected function accessibleRestrictionIds(int $user_id): array
+    public function accessibleRestrictionIds($user_id): array
     {
         global $blog_id; // Current blog ID.
 
-        if (!$user_id) { // Empty?
+        if (!($user_id = (int) $user_id)) {
             return []; // Not possible.
         }
         if (($accessible_restriction_ids = &$this->cacheGet(__FUNCTION__, $blog_id.'/'.$user_id)) !== null) {
@@ -231,15 +231,15 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Security gate.
      *
-     * @param int $user_id User ID.
+     * @param string|int $user_id User ID.
      *
      * @return UserPermission[] Permissions.
      */
-    protected function permissions(int $user_id): array
+    public function permissions($user_id): array
     {
         global $blog_id; // Current blog ID.
 
-        if (!$user_id) { // Empty?
+        if (!($user_id = (int) $user_id)) {
             return []; // Not possible.
         }
         if (($permissions = &$this->cacheGet(__FUNCTION__, $blog_id.'/'.$user_id)) !== null) {
@@ -255,10 +255,14 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($results = $WpDb->get_results($sql))) {
             return $permissions = []; // None.
         }
-        $permissions = []; // Initialize.
+        $permissions             = []; // Initialize.
+        $restriction_ids_by_slug = a::restrictionIdsBySlug();
 
         foreach ($results as $_key => &$_data) {
-            $permissions[$_data->ID] = $this->App->Di->get(Classes\UserPermission::class, ['data' => $_data]);
+            $_data->ID = (int) $_data->ID; // Force integer.
+            if (in_array($_data->ID, $restriction_ids_by_slug, true)) {
+                $permissions[$_data->ID] = $this->App->Di->get(Classes\UserPermission::class, ['data' => $_data]);
+            }
         } // unset($_key, $_data); // Housekeeping.
 
         return s::applyFilters('user_permissions', $permissions, $user_id);

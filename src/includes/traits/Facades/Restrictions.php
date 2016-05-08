@@ -48,9 +48,17 @@ trait Restrictions
     /**
      * @since 16xxxx Initial release.
      */
-    public static function restrictionsBySlug(...$args)
+    public static function restrictionTitlesById(...$args)
     {
-        return $GLOBALS[static::class]->Utils->Restrictions->bySlug(...$args);
+        return $GLOBALS[static::class]->Utils->Restrictions->titlesById(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function restrictionIdsBySlug(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->Restrictions->idsBySlug(...$args);
     }
 
     /**
@@ -59,5 +67,13 @@ trait Restrictions
     public static function restrictionsByMetaKey(...$args)
     {
         return $GLOBALS[static::class]->Utils->Restrictions->byMetaKey(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function restrictionsAllWithMeta(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->Restrictions->allWithMeta(...$args);
     }
 }

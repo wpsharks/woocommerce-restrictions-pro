@@ -1,0 +1,24 @@
+/*
+ * Dependencies.
+ */
+@import '../bourbon/bourbon';
+@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/fields';
+@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/admin/mixins/dashicons';
+@import '../../../vendor/websharks/wp-sharks-core/src/client-s/css/jquery-plugins/jsgrid/enhancements';
+
+// Sharkicons are not used at the moment.
+// @import '../../../vendor/websharks/sharkicons/src/sharkicons';
+// @include sharkicons-font('../../../vendor/websharks/sharkicons/src');
+
+$jquery-jsgrid-insert-row-bg-color: #f1f1f1;
+
+#accrhcdehngpugpudhpcwtykbfdykarp-user-permissions-widget {
+  .-grid.jsgrid {
+    @include wp-admin-field-standards;
+    @include jquery-jsgrid-enhancements;
+
+    .jsgrid-insert-row > td {
+      background:             $jquery-jsgrid-insert-row-bg-color;
+    }
+  }
+}
