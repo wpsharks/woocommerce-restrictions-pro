@@ -186,6 +186,9 @@ class App extends SCoreClasses\App
 
                 add_action('show_user_profile', [$this->Utils->UserPermissionsWidget, 'onEditUserProfile'], 1);
                 add_action('edit_user_profile', [$this->Utils->UserPermissionsWidget, 'onEditUserProfile'], 1);
+
+                add_action('personal_options_update', [$this->Utils->UserPermissionsWidget, 'onEditUserProfileUpdate']);
+                add_action('edit_user_profile_update', [$this->Utils->UserPermissionsWidget, 'onEditUserProfileUpdate']);
             }
             # Security gate; always after the `restriction` post type registration.
 

@@ -149,7 +149,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * In user edit panel. @TODO save this.
+     * In user edit panel.
      *
      * @since 16xxxx Security gate.
      *
@@ -188,5 +188,29 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         echo '</div>';
 
         echo '<hr />'; // Before customer information by WooCommerce; e.g., billing address, shipping address, etc.
+    }
+
+    /**
+     * On update of the user.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @param string|int $user_id User ID.
+     */
+    public function onEditUserProfileUpdate($user_id)
+    {
+        $user_id = (int) $user_id; // Force integer.
+
+        if (!current_user_can('edit_users')) {
+            return; // Not applicable.
+        } elseif (!current_user_can('promote_users')) {
+            return; // Not applicable.
+        } elseif (!current_user_can('edit_user', $WP_User->ID)) {
+            return; // Not applicable.
+        } elseif (!isset($_REQUEST[$this->client_side_prefix.'_permissions'])) {
+            return; // Not applicable.
+        }
+
+        // @TODO.
     }
 }
