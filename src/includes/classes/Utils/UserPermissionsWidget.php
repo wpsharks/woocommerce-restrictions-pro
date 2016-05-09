@@ -212,5 +212,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         }
 
         // @TODO.
+        // Permissions will be submitted in their display order.
+        // Also, each permission will include a `display_order` property.
     }
 }
