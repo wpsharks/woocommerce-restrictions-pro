@@ -100,7 +100,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         s::enqueueJQueryJsGridLibs();
 
         wp_enqueue_style($this->client_side_prefix.'-user-permissions-widget', c::appUrl('/client-s/css/admin/user-permissions-widget.min.css'), [], $this->App::VERSION, 'all');
-        wp_enqueue_script($this->client_side_prefix.'-user-permissions-widget', c::appUrl('/client-s/js/admin/user-permissions-widget.min.js'), ['jquery', 'jquery-jsgrid'], $this->App::VERSION, true);
+        wp_enqueue_script($this->client_side_prefix.'-user-permissions-widget', c::appUrl('/client-s/js/admin/user-permissions-widget.min.js'), ['jquery', 'underscore', 'jquery-jsgrid', 'jquery-ui-sortable'], $this->App::VERSION, true);
 
         wp_localize_script(
             $this->client_side_prefix.'-user-permissions-widget',
@@ -110,7 +110,16 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'mobile' => $this->screen_is_mobile,
                 ],
                 'i18n' => [
-                    'restrictionIdTitle' => _x('Access', 'user-permissions-widget', 's2member-x'),
+                    'restrictionIdTitle'             => _x('Access', 'user-permissions-widget', 's2member-x'),
+                    'restrictionIdStatusIsAllowed'   => _x('Access Granted', 'user-permissions-widget', 's2member-x'),
+                    'restrictionIdStatusIsDisabled'  => _x('Temporarily Disabled', 'user-permissions-widget', 's2member-x'),
+                    'restrictionIdStatusIsScheduled' => _x('Access Scheduled', 'user-permissions-widget', 's2member-x'),
+                    'restrictionIdStatusIsExpired'   => _x('Access Expired', 'user-permissions-widget', 's2member-x'),
+
+                    'idTitle'        => _x('ID', 'user-permissions-widget', 's2member-x'),
+                    'userIdTitle'    => _x('User ID', 'user-permissions-widget', 's2member-x'),
+                    'orderIdTitle'   => _x('Order ID', 'user-permissions-widget', 's2member-x'),
+                    'productIdTitle' => _x('Product ID', 'user-permissions-widget', 's2member-x'),
 
                     'accessTimeTitle'       => _x('Starts', 'user-permissions-widget', 's2member-x'),
                     'accessDatePlaceholder' => _x('date', 'user-permissions-widget', 's2member-x'),
@@ -122,10 +131,19 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'expireTimePlaceholder' => _x('time', 'user-permissions-widget', 's2member-x'),
                     'emptyExpireDateTime'   => _x('—', 'user-permissions-widget', 's2member-x'),
 
-                    'isEnabledTitle'            => _x('Enabled', 'user-permissions-widget', 's2member-x'),
+                    'isEnabledTitle'    => _x('Enabled?', 'user-permissions-widget', 's2member-x'),
+                    'displayOrderTitle' => _x('Display Order', 'user-permissions-widget', 's2member-x'),
+
+                    'insertionTimeTitle'  => _x('Insertion Time', 'user-permissions-widget', 's2member-x'),
+                    'lastUpdateTimeTitle' => _x('Last Update Time', 'user-permissions-widget', 's2member-x'),
+
+                    'original'                  => _x('Original', 'user-permissions-widget', 's2member-x'),
                     'noDataContent'             => _x('No permissions yet.', 'user-permissions-widget', 's2member-x'),
-                    'restrictionAccessRequired' => _x('Restriction "Access" is a required field.', 'user-permissions-widget', 's2member-x'),
+                    'restrictionAccessRequired' => _x('Restriction \'Access\' is empty.', 'user-permissions-widget', 's2member-x'),
+                    'accessTimeLtExpireTime'    => _x('When both are given, \'Starts\' must come before \'Ends\'.', 'user-permissions-widget', 's2member-x'),
+                    'via'                       => _x('via', 'user-permissions-widget', 's2member-x'),
                 ],
+                'orderViewUrl=' => admin_url('/post.php?action=edit&post='),
             ]
         );
     }
@@ -160,7 +178,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
             echo    '<p>'.sprintf(__('It\'s not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
             echo '</div>';
         } else {
-            echo    '<p>'.__('<strong>Note:</strong> Start and End dates are optional. If there is no Start Date, it starts immediately. If no End Date, access is indefinite. Unchecking the Enabled box temporarily suspends access.', 's2member-x').'</p>';
+            echo    '<p style="font-style:italic;">'.__('<strong>Note:</strong> Start and End dates are optional. No Start Date = starts immediately. If no End Date, access is indefinite. Unchecking the \'Enabled\' box will suspend access.', 's2member-x').'</p>';
 
             echo    '<input class="-user-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode(a::userPermissions($WP_User->ID))).'" />';
             echo    '<input class="-restriction-titles-by-id" type="hidden" value="'.esc_attr(json_encode(a::restrictionTitlesById())).'" />';

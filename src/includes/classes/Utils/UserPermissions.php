@@ -258,9 +258,10 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         $permissions             = []; // Initialize.
         $restriction_ids_by_slug = a::restrictionIdsBySlug();
 
-        foreach ($results as $_key => &$_data) {
-            $_data->ID = (int) $_data->ID; // Force integer.
-            if (in_array($_data->ID, $restriction_ids_by_slug, true)) {
+        foreach ($results as $_key => $_data) {
+            $_data->ID             = (int) $_data->ID;
+            $_data->restriction_id = (int) $_data->restriction_id;
+            if (in_array($_data->restriction_id, $restriction_ids_by_slug, true)) {
                 $permissions[$_data->ID] = $this->App->Di->get(Classes\UserPermission::class, ['data' => $_data]);
             }
         } // unset($_key, $_data); // Housekeeping.

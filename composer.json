@@ -31,9 +31,8 @@
     "websharks/wp-php-rv": "dev-master",
     "websharks/wp-sharks-core-rv": "dev-master"
   },
-  "require-dev": {
-    "websharks/wp-sharks-core": "dev-master"
-  },
+  "require-dev": {},
+
   "minimum-stability": "dev",
   "prefer-stable": true,
 

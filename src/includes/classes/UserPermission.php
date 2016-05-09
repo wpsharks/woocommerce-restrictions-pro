@@ -36,15 +36,6 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     protected $current_time;
 
     /**
-     * Permission data.
-     *
-     * @since 16xxxx User permission.
-     *
-     * @type \StdClass Permission data.
-     */
-    public $data; // Exposed publicly.
-
-    /**
      * Class constructor.
      *
      * @since 16xxxx User permission.
@@ -57,20 +48,27 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         parent::__construct($App);
 
         $this->current_time = time();
-        $this->data         = $data;
 
-        $this->data->ID             = (int) $this->data->ID;
-        $this->data->user_id        = (int) $this->data->user_id;
-        $this->data->order_id       = $this->data->order_id ? (int) $this->data->order_id : null;
-        $this->data->product_id     = $this->data->product_id ? (int) $this->data->product_id : null;
-        $this->data->restriction_id = (int) $this->data->restriction_id;
+        $data->ID         = (int) $data->ID;
+        $data->user_id    = (int) $data->user_id;
+        $data->order_id   = (int) $data->order_id;
+        $data->product_id = (int) $data->product_id;
 
-        $this->data->access_time = (int) $this->data->access_time;
-        $this->data->expire_time = (int) $this->data->expire_time;
-        $this->data->is_enabled  = (int) $this->data->is_enabled;
+        $data->restriction_id          = (int) $data->restriction_id;
+        $data->original_restriction_id = (int) $data->original_restriction_id;
 
-        $this->data->insertion_time   = (int) $this->data->insertion_time;
-        $this->data->last_update_time = (int) $this->data->last_update_time;
+        $data->access_time          = (int) $data->access_time;
+        $data->original_access_time = (int) $data->original_access_time;
+
+        $data->expire_time          = (int) $data->expire_time;
+        $data->original_expire_time = (int) $data->original_expire_time;
+
+        $data->is_enabled = (int) $data->is_enabled;
+
+        $data->insertion_time   = (int) $data->insertion_time;
+        $data->last_update_time = (int) $data->last_update_time;
+
+        $this->overload($data, true);
     }
 
     /**
@@ -82,16 +80,16 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
      */
     public function isAllowed(): bool
     {
-        if (!$this->data->is_enabled) {
+        if (!$this->is_enabled) {
             return false;
         }
-        if ($this->data->access_time) {
-            if ($this->data->access_time > $this->current_time) {
+        if ($this->access_time) {
+            if ($this->access_time > $this->current_time) {
                 return false;
             }
         }
-        if ($this->data->expire_time) {
-            if ($this->data->expire_time <= $this->current_time) {
+        if ($this->expire_time) {
+            if ($this->expire_time <= $this->current_time) {
                 return false;
             }
         }

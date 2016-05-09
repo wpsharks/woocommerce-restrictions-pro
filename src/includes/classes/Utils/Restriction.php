@@ -364,7 +364,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         s::enqueueJQueryChosenLibs(); // Enqueue jQuery Chosen plugin.
 
         wp_enqueue_style($this->client_side_prefix.'-restriction-post-type', c::appUrl('/client-s/css/admin/restriction-post-type.min.css'), [], $this->App::VERSION, 'all');
-        wp_enqueue_script($this->client_side_prefix.'-restriction-post-type', c::appUrl('/client-s/js/admin/restriction-post-type.min.js'), ['jquery', 'jquery-chosen'], $this->App::VERSION, true);
+        wp_enqueue_script($this->client_side_prefix.'-restriction-post-type', c::appUrl('/client-s/js/admin/restriction-post-type.min.js'), ['jquery', 'underscore', 'jquery-chosen'], $this->App::VERSION, true);
 
         wp_localize_script(
             $this->client_side_prefix.'-restriction-post-type',

@@ -298,6 +298,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
 
         if (($meta_results = $WpDb->get_results($meta_sql))) { // Multiple values per key.
             foreach ($meta_results as $_key => $_result) {
+                $_result->post_id = (int) $_result->post_id;
                 if (empty($all[$_result->post_id])) {
                     continue; // No matching restriction.
                 } // ↑ This can happen with stale DB rows or corruption.
