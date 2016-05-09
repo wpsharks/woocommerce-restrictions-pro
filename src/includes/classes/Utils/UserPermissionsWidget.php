@@ -205,7 +205,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
             return; // Not applicable.
         } elseif (!current_user_can('promote_users')) {
             return; // Not applicable.
-        } elseif (!current_user_can('edit_user', $WP_User->ID)) {
+        } elseif (!current_user_can('edit_user', $user_id)) {
             return; // Not applicable.
         } elseif (!isset($_REQUEST[$this->client_side_prefix.'_permissions'])) {
             return; // Not applicable.
