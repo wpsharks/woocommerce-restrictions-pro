@@ -35,7 +35,9 @@
       paging: false, // Not compatible w/ sortable.
 
       onRefreshed: function () {
-        $grid.find('.jsgrid-grid-body > table > tbody').sortable();
+        $grid.find('.jsgrid-grid-body > table > tbody').sortable({
+          placeholder: 'ui-state-highlight'
+        });
       }, // This allows drag n' drop.
 
       fields: [
