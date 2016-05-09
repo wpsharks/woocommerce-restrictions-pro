@@ -65,6 +65,8 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
 
         $data->is_enabled = (int) $data->is_enabled;
 
+        $data->display_order = (int) $data->display_order;
+
         $data->insertion_time   = (int) $data->insertion_time;
         $data->last_update_time = (int) $data->last_update_time;
 
