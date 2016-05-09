@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: s2Member X Pro 160509\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/s2member-x-pro\n"
-"POT-Creation-Date: 2016-05-09 08:35:13+00:00\n"
+"POT-Creation-Date: 2016-05-09 13:40:33+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -826,126 +826,158 @@ msgid "Access"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:115
-#: src/includes/classes/Utils/UserPermissionsWidget.php:115
+#: src/includes/classes/Utils/UserPermissionsWidget.php:119
 msgctxt "user-permissions-widget"
 msgid "ID"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:116
-#: src/includes/classes/Utils/UserPermissionsWidget.php:116
+#: src/includes/classes/Utils/UserPermissionsWidget.php:120
 msgctxt "user-permissions-widget"
 msgid "User ID"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:117
-#: src/includes/classes/Utils/UserPermissionsWidget.php:117
+#: src/includes/classes/Utils/UserPermissionsWidget.php:121
 msgctxt "user-permissions-widget"
 msgid "Order ID"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:118
-#: src/includes/classes/Utils/UserPermissionsWidget.php:118
+#: src/includes/classes/Utils/UserPermissionsWidget.php:122
 msgctxt "user-permissions-widget"
 msgid "Product ID"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:120
-#: src/includes/classes/Utils/UserPermissionsWidget.php:120
+#: src/includes/classes/Utils/UserPermissionsWidget.php:124
 msgctxt "user-permissions-widget"
 msgid "Starts"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:121
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:126
-#: src/includes/classes/Utils/UserPermissionsWidget.php:121
-#: src/includes/classes/Utils/UserPermissionsWidget.php:126
+#: src/includes/classes/Utils/UserPermissionsWidget.php:125
+#: src/includes/classes/Utils/UserPermissionsWidget.php:130
 msgctxt "user-permissions-widget"
 msgid "date"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:122
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:127
-#: src/includes/classes/Utils/UserPermissionsWidget.php:122
-#: src/includes/classes/Utils/UserPermissionsWidget.php:127
+#: src/includes/classes/Utils/UserPermissionsWidget.php:126
+#: src/includes/classes/Utils/UserPermissionsWidget.php:131
 msgctxt "user-permissions-widget"
 msgid "time"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:123
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:128
-#: src/includes/classes/Utils/UserPermissionsWidget.php:123
-#: src/includes/classes/Utils/UserPermissionsWidget.php:128
+#: src/includes/classes/Utils/UserPermissionsWidget.php:127
+#: src/includes/classes/Utils/UserPermissionsWidget.php:132
 msgctxt "user-permissions-widget"
 msgid "—"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:125
-#: src/includes/classes/Utils/UserPermissionsWidget.php:125
+#: src/includes/classes/Utils/UserPermissionsWidget.php:129
 msgctxt "user-permissions-widget"
 msgid "Ends"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:130
-#: src/includes/classes/Utils/UserPermissionsWidget.php:130
 msgctxt "user-permissions-widget"
 msgid "Enabled"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:132
-#: src/includes/classes/Utils/UserPermissionsWidget.php:132
+#: src/includes/classes/Utils/UserPermissionsWidget.php:137
 msgctxt "user-permissions-widget"
 msgid "Insertion Time"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:133
-#: src/includes/classes/Utils/UserPermissionsWidget.php:133
+#: src/includes/classes/Utils/UserPermissionsWidget.php:138
 msgctxt "user-permissions-widget"
 msgid "Last Update Time"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:135
-#: src/includes/classes/Utils/UserPermissionsWidget.php:135
+#: src/includes/classes/Utils/UserPermissionsWidget.php:140
 msgctxt "user-permissions-widget"
 msgid "Original"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:136
-#: src/includes/classes/Utils/UserPermissionsWidget.php:136
+#: src/includes/classes/Utils/UserPermissionsWidget.php:141
 msgctxt "user-permissions-widget"
 msgid "No permissions yet."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:137
-#: src/includes/classes/Utils/UserPermissionsWidget.php:137
+#: src/includes/classes/Utils/UserPermissionsWidget.php:142
 msgctxt "user-permissions-widget"
 msgid "Restriction 'Access' is empty."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:138
-#: src/includes/classes/Utils/UserPermissionsWidget.php:138
+#: src/includes/classes/Utils/UserPermissionsWidget.php:143
 msgctxt "user-permissions-widget"
 msgid "When both are given, 'Starts' must come before 'Ends'."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:139
-#: src/includes/classes/Utils/UserPermissionsWidget.php:139
+#: src/includes/classes/Utils/UserPermissionsWidget.php:144
 msgctxt "user-permissions-widget"
 msgid "via"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:169
-#: src/includes/classes/Utils/UserPermissionsWidget.php:169
+#: src/includes/classes/Utils/UserPermissionsWidget.php:174
 msgid "Customer Permissions (<span class=\"dashicons dashicons-unlock\"></span> %1$s Restriction Access)"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:173
-#: src/includes/classes/Utils/UserPermissionsWidget.php:173
+#: src/includes/classes/Utils/UserPermissionsWidget.php:178
 msgid "It's not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href=\"%1$s\">click here</a>."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:176
-#: src/includes/classes/Utils/UserPermissionsWidget.php:176
 msgid "<strong>Note:</strong> Start and End dates are optional. If there is no Start Date, it starts immediately. If no End Date, access is indefinite. Unchecking the Enabled box temporarily suspends access."
+msgstr ""
+
+#: src/includes/classes/Utils/UserPermissionsWidget.php:114
+msgctxt "user-permissions-widget"
+msgid "Access Granted"
+msgstr ""
+
+#: src/includes/classes/Utils/UserPermissionsWidget.php:115
+msgctxt "user-permissions-widget"
+msgid "Temporarily Disabled"
+msgstr ""
+
+#: src/includes/classes/Utils/UserPermissionsWidget.php:116
+msgctxt "user-permissions-widget"
+msgid "Access Scheduled"
+msgstr ""
+
+#: src/includes/classes/Utils/UserPermissionsWidget.php:117
+msgctxt "user-permissions-widget"
+msgid "Access Expired"
+msgstr ""
+
+#: src/includes/classes/Utils/UserPermissionsWidget.php:134
+msgctxt "user-permissions-widget"
+msgid "Enabled?"
+msgstr ""
+
+#: src/includes/classes/Utils/UserPermissionsWidget.php:135
+msgctxt "user-permissions-widget"
+msgid "Display Order"
+msgstr ""
+
+#: src/includes/classes/Utils/UserPermissionsWidget.php:181
+msgid "<strong>Note:</strong> Start and End dates are optional. No Start Date = starts immediately. If no End Date, access is indefinite. Unchecking the 'Enabled' box will suspend access."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
