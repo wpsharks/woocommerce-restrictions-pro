@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS `%%table%%` (
-  `ID` bigint(20) UNSIGNED NOT NULL,
+  `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `order_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `product_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
 
   `restriction_id` bigint(20) UNSIGNED NOT NULL,
   `original_restriction_id` bigint(20) UNSIGNED NOT NULL,

@@ -99,11 +99,13 @@
             }
           },
           itemTemplate: function (value, item) {
-            var display = ''; // Initialize.
+            var display = '';
+
             var isAllowed = true,
               isDisabled = false,
               isScheduled = false,
               isExpired = false;
+
             var currentTime = parseInt(moment.utc().format('X'));
 
             if (!item.is_enabled) {
@@ -124,25 +126,25 @@
             }
             if (value && typeof restrictionTitlesById[value] === 'string') {
               if (isAllowed) {
-                display = '<span title="' + _.escape(data.i18n.restrictionIdStatusIsAllowed) + '">';
-                display += '<span class="dashicons dashicons-unlock" style="color:#49a642;"></span>';
+                display += '<span class="dashicons dashicons-unlock" style="color:#49a642;"' +
+                  ' title="' + _.escape(data.i18n.restrictionIdStatusIsAllowed) + '" data-toggle="jquery-ui-tooltip"></span>';
               } else if (isDisabled) {
-                display = '<span title="' + _.escape(data.i18n.restrictionIdStatusIsDisabled) + '">';
-                display += '<span class="dashicons dashicons-hidden" style="color:#F54D3D;"></span>';
+                display += '<span class="si si-octi-lock" style="color:#f54d3d;"' +
+                  ' title="' + _.escape(data.i18n.restrictionIdStatusIsDisabled) + '" data-toggle="jquery-ui-tooltip"></span>';
               } else if (isScheduled) {
-                display = '<span title="' + _.escape(data.i18n.restrictionIdStatusIsScheduled) + '">';
-                display += '<span class="dashicons dashicons-clock" style="color:#666666;"></span>';
+                display += '<span class="si si-calendar-check-o" style="color:#666;"' +
+                  ' title="' + _.escape(data.i18n.restrictionIdStatusIsScheduled) + '" data-toggle="jquery-ui-tooltip"></span>';
               } else if (isExpired) {
-                display = '<span title="' + _.escape(data.i18n.restrictionIdStatusIsExpired) + '">';
-                display += '<span class="dashicons dashicons-backup" style="color:#F54D3D;"></span>';
+                display += '<span class="si si-calendar-times-o" style="color:#f54d3d;"' +
+                  ' title="' + _.escape(data.i18n.restrictionIdStatusIsExpired) + '" data-toggle="jquery-ui-tooltip"></span>';
               }
-              display += ' <strong>' + _.escape(restrictionTitlesById[value]) + '</strong></span>';
+              display += ' <strong>' + _.escape(restrictionTitlesById[value]) + '</strong>';
 
               if (item.order_id) // Applied via order ID in WooCommerce?
                 display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.orderIdTitle) +
                 ' <a href="' + _.escape(data['orderViewUrl='] + encodeURIComponent(item.order_id)) + '">#' + _.escape(item.order_id) + '</a>' + '</small></em>';
             }
-            return display; // Should not be empty given the validator, but just in case.
+            return display;
           }
         }, {
           type: 'number',
@@ -262,18 +264,44 @@
         $.extend({}, jsGridData.controlDefaultOptions, {})
       ]
     }));
-
+    // Tooltips.
+    $widget.tooltip({
+      position: {
+        my: 'right center',
+        at: 'left-10 center',
+        using: function (position, feedback) {
+          $(this).css(position).addClass(feedback.vertical + ' ' + feedback.horizontal);
+        }
+      },
+      tooltipClass: prefix + '-tooltip',
+      items: '[data-toggle~="jquery-ui-tooltip"]'
+    });
     // Form submission handler.
     // This pulls together all of the data.
     $widget.closest('form').on('submit', function (e) {
-      var data = []; // Array of all items.
+      var permissions = []; // Initialize permissions.
 
-      $grid.find('.jsgrid-grid-body > table > tbody > tr').each(function (index) {
-        data.push($.extend($(this).data('JSGridItem'), {
+      // This catches a row that is still pending insertion.
+      if ($grid.find('.jsgrid-grid-header > table > tbody > tr.jsgrid-insert-row').filter(':visible').find('> td:first-child select').val()) {
+        alert(data.i18n.notReadyToSave + '\n• ' + data.i18n.stillInserting);
+        /*jshint -W030 */ // Ignore this rule and allow chaining here.
+        e.preventDefault(), e.stopImmediatePropagation();
+        return false; // Do not allow at this time.
+      }
+      // This catches a row that is still open with unsaved changes.
+      if ($grid.find('.jsgrid-grid-body > table > tbody > tr.jsgrid-edit-row').length) {
+        alert(data.i18n.notReadyToSave + '\n• ' + data.i18n.stillEditing);
+        /*jshint -W030 */ // Ignore this rule and allow chaining here.
+        e.preventDefault(), e.stopImmediatePropagation();
+        return false; // Do not allow at this time.
+      }
+      // Ready to go! Let's collect all permission items; i.e., each row in the table.
+      $grid.find('.jsgrid-grid-body > table > tbody > tr:not(.jsgrid-nodata-row)').each(function (index) {
+        permissions.push($.extend($(this).data('JSGridItem'), {
           display_order: index // Set display order.
         }));
       });
-      $widget.find('.-user-permissions').val(JSON.stringify(data));
+      $widget.find('.-user-permissions').val(JSON.stringify(permissions)); // For server-side handling.
     });
   });
 })(jQuery);

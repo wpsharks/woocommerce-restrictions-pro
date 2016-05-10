@@ -121,7 +121,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     {
         global $blog_id; // Current blog ID.
 
-        if (($uri_patterns = &$this->cacheKey(__FUNCTION__, $blog_id, $compile)) !== null) {
+        if (($uri_patterns = &$this->cacheKey(__FUNCTION__, [$blog_id, $compile])) !== null) {
             return $uri_patterns; // Cached already.
         }
         $uri_patterns = []; // Initialize.

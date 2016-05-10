@@ -5,13 +5,21 @@
 @import '../../../../../wp-sharks-core/src/client-s/css/admin/mixins/fields';
 @import '../../../../../wp-sharks-core/src/client-s/css/admin/mixins/dashicons';
 @import '../../../../../wp-sharks-core/src/client-s/css/jquery-plugins/jsgrid/enhancements';
+@import '../../../../../wp-sharks-core/src/vendor/websharks/sharkicons/src/sharkicons';
+@include sharkicons-font('../../../../../wp-sharks-core/src/vendor/websharks/sharkicons/src');
+@include sharkicon-short-classes;
 
-// Sharkicons are not used at the moment.
-// @import '../../../vendor/websharks/sharkicons/src/sharkicons';
-// @include sharkicons-font('../../../vendor/websharks/sharkicons/src');
-
+/*
+ * Color definitions.
+ */
 $jquery-jsgrid-insert-row-bg-color: #f1f1f1;
+$jquery-ui-tooltip-color: #fff;
+$jquery-ui-tooltip-bg-color: #23282d;
+$jquery-ui-tooltip-box-shadow-color: rgba(0, 0, 0, 0.5);
 
+/*
+ * Widget styles.
+ */
 #accrhcdehngpugpudhpcwtykbfdykarp-user-permissions-widget {
   .-grid.jsgrid {
     @include wp-admin-field-standards;
@@ -20,5 +28,36 @@ $jquery-jsgrid-insert-row-bg-color: #f1f1f1;
     .jsgrid-insert-row > td {
       background:             $jquery-jsgrid-insert-row-bg-color;
     }
+  }
+}
+
+/*
+ * Tooltip styles.
+ */
+.accrhcdehngpugpudhpcwtykbfdykarp-tooltip.ui-tooltip.ui-widget {
+  border:                     0;
+  font-size:                  80%;
+  color:                      $jquery-ui-tooltip-color;
+  background:                 $jquery-ui-tooltip-bg-color;
+  box-shadow:                 0 0 2px $jquery-ui-tooltip-box-shadow-color;
+
+  > .ui-tooltip-content::after {
+    width:                    0;
+    content:                  '';
+    border-style:             solid;
+    display:                  block;
+    position:                 absolute;
+    top:                      calc(50% - 8px);
+    border-color:             transparent $jquery-ui-tooltip-bg-color;
+  }
+
+  &.left > .ui-tooltip-content::after {
+    left:                    -8px;
+    border-width:             8px 8px 8px 0;
+  }
+
+  &.right > .ui-tooltip-content::after {
+    right:                   -8px;
+    border-width:             8px 0 8px 8px;
   }
 }

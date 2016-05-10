@@ -4,10 +4,9 @@
 @import '../../../../../wp-sharks-core/src/client-s/css/bourbon/bourbon';
 @import '../../../../../wp-sharks-core/src/client-s/css/admin/mixins/dashicons';
 @import '../../../../../wp-sharks-core/src/client-s/css/admin/mixins/meta-boxes';
-
-// Sharkicons are not used at the moment.
-// @import '../../../vendor/websharks/sharkicons/src/sharkicons';
-// @include sharkicons-font('../../../vendor/websharks/sharkicons/src');
+@import '../../../../../wp-sharks-core/src/vendor/websharks/sharkicons/src/sharkicons';
+@include sharkicons-font('../../../../../wp-sharks-core/src/vendor/websharks/sharkicons/src');
+@include sharkicon-short-classes;
 
 /*
  * Built-in meta box.
@@ -29,7 +28,7 @@
 
       &::before {
         float:                right;
-        font-size:            5em;
+        font-size:            3em;
       }
     }
 

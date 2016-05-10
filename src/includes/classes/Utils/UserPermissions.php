@@ -45,6 +45,24 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     protected $access_ccap_prefix;
 
     /**
+     * Access RES prefix regex.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @type string Access RES prefix regex.
+     */
+    protected $access_res_prefix_regex;
+
+    /**
+     * Access CCAP prefix regex.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @type string Access CCAP prefix regex.
+     */
+    protected $access_ccap_prefix_regex;
+
+    /**
      * Class constructor.
      *
      * @since 16xxxx Security gate.
@@ -57,6 +75,22 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
 
         $this->access_res_prefix  = a::restrictionAccessResPrefix();
         $this->access_ccap_prefix = a::restrictionAccessCcapPrefix();
+
+        // This allows us to match `access_res_a_` or a mixture like: `access-res_a`.
+        // WP slugs use `-` dashes by default. This allows site owners to type a prefix either way.
+        // For instance, if you have `pro-membership`, you might prefer to test that with `access-res-pro-membership`.
+        // Even better, change the slug to `pro_membership` and use `access_res_pro_membership` — which is possible in WP.
+
+        $this->access_res_prefix_regex  = '/^'.preg_replace('/(?:_|\\\\-)/u', '[_\\-]', c::escRegex($this->access_res_prefix)).'/u';
+        $this->access_ccap_prefix_regex = '/^'.preg_replace('/(?:_|\\\\-)/u', '[_\\-]', c::escRegex($this->access_ccap_prefix)).'/u';
+
+        // Note: For performance, slug comparisons are caSe-sensitive throughout s2Member X.
+        // In short, we make no assumption about caSe and therefore it is always caSe-sensitive.
+        // This allows for `in_array()` and `isset()` without needing caSe-comparison when testing permissions.
+
+        // However, it's a standard for WP slugs to be lowercase (they are forced to lowercase), so that is how examples should be written.
+        // As long as `has_cap()` and other conditionals are written in lowercase, there's very little chance of error.
+        // What we do allow (as seen above) is a mixture of either `_` or `-` as word separators.
     }
 
     /**
@@ -170,8 +204,8 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         } // unset($_role, $_restriction_ids, $_role_object); // Housekeeping.
 
         // Check for the special `access_res_` prefix.
-        if (mb_strpos($has_cap, $this->access_res_prefix) === 0) {
-            $_slug = c::strReplaceOnce($this->access_res_prefix, '', $has_cap);
+        if (preg_match($this->access_res_prefix_regex, $has_cap)) {
+            $_slug = preg_replace($this->access_res_prefix_regex, '', $has_cap);
             // Note that a slug in this context can contain almost anything.
             // See: <http://wordpress.stackexchange.com/a/149192/81760>
 
@@ -183,8 +217,9 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
             } // unset($_slug, $_restriction_id);
 
         // Check for the special `access_ccap_` prefix.
-        } elseif (mb_strpos($has_cap, $this->access_ccap_prefix) === 0) {
-            $_ccap = c::strReplaceOnce($this->access_ccap_prefix, '', $has_cap);
+        } elseif (preg_match($this->access_ccap_prefix_regex, $has_cap)) {
+            $_ccap = preg_replace($this->access_ccap_prefix_regex, '', $has_cap);
+            // Note that a CCAP can contain almost anything.
 
             if (in_array($_ccap, $restrictions['ccaps'], true)) {
                 $_by_restriction_ids = $restriction_ids['ccaps'][$_ccap];
@@ -233,7 +268,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      *
      * @param string|int $user_id User ID.
      *
-     * @return UserPermission[] Permissions.
+     * @return UserPermission[] Permissions (in `display_order`).
      */
     public function permissions($user_id): array
     {
@@ -249,7 +284,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
 
         $sql = /* Query all user permissions. */ '
             SELECT * FROM `'.esc_sql(s::dbPrefix().'user_permissions').'`
-                WHERE `user_id` = %s';
+                WHERE `user_id` = %s ORDER BY `display_order` ASC';
         $sql = $WpDb->prepare($sql, $user_id);
 
         if (!($results = $WpDb->get_results($sql))) {

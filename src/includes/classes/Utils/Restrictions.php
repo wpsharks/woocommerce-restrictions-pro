@@ -302,7 +302,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
                 if (empty($all[$_result->post_id])) {
                     continue; // No matching restriction.
                 } // ↑ This can happen with stale DB rows or corruption.
-                $_meta_key                                    = preg_replace('/^'.preg_quote($this->meta_prefix, '/').'/u', '', $_result->full_meta_key);
+                $_meta_key                                    = preg_replace('/^'.c::escRegex($this->meta_prefix).'/u', '', $_result->full_meta_key);
                 $_meta_value                                  = in_array($_meta_key, $this->int_meta_keys, true) ? (int) $_result->meta_value : (string) $_result->meta_value;
                 $all[$_result->post_id]['meta'][$_meta_key][] = $_meta_value;
             } // unset($_key, $_result, $_meta_key, $_meta_value); // Housekeeping.

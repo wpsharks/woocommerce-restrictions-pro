@@ -27,15 +27,6 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class UserPermission extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Current time.
-     *
-     * @since 16xxxx User permission.
-     *
-     * @type int Current time.
-     */
-    protected $current_time;
-
-    /**
      * Class constructor.
      *
      * @since 16xxxx User permission.
@@ -47,28 +38,26 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->current_time = time();
+        $data->ID         = (int) ($data->ID ?? 0);
+        $data->user_id    = (int) ($data->user_id ?? 0);
+        $data->order_id   = (int) ($data->order_id ?? 0);
+        $data->product_id = (int) ($data->product_id ?? 0);
 
-        $data->ID         = (int) $data->ID;
-        $data->user_id    = (int) $data->user_id;
-        $data->order_id   = (int) $data->order_id;
-        $data->product_id = (int) $data->product_id;
+        $data->restriction_id          = (int) ($data->restriction_id ?? 0);
+        $data->original_restriction_id = (int) ($data->original_restriction_id ?? 0);
 
-        $data->restriction_id          = (int) $data->restriction_id;
-        $data->original_restriction_id = (int) $data->original_restriction_id;
+        $data->access_time          = (int) ($data->access_time ?? 0);
+        $data->original_access_time = (int) ($data->original_access_time ?? 0);
 
-        $data->access_time          = (int) $data->access_time;
-        $data->original_access_time = (int) $data->original_access_time;
+        $data->expire_time          = (int) ($data->expire_time ?? 0);
+        $data->original_expire_time = (int) ($data->original_expire_time ?? 0);
 
-        $data->expire_time          = (int) $data->expire_time;
-        $data->original_expire_time = (int) $data->original_expire_time;
+        $data->is_enabled = (int) ($data->is_enabled ?? 0);
 
-        $data->is_enabled = (int) $data->is_enabled;
+        $data->display_order = (int) ($data->display_order ?? 0);
 
-        $data->display_order = (int) $data->display_order;
-
-        $data->insertion_time   = (int) $data->insertion_time;
-        $data->last_update_time = (int) $data->last_update_time;
+        $data->insertion_time   = (int) ($data->insertion_time ?? 0);
+        $data->last_update_time = (int) ($data->last_update_time ?? 0);
 
         $this->overload($data, true);
     }
@@ -85,16 +74,73 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         if (!$this->is_enabled) {
             return false;
         }
+        $time = time(); // Needed below.
+
         if ($this->access_time) {
-            if ($this->access_time > $this->current_time) {
+            if ($this->access_time > $time) {
                 return false;
             }
         }
         if ($this->expire_time) {
-            if ($this->expire_time <= $this->current_time) {
+            if ($this->expire_time <= $time) {
                 return false;
             }
         }
         return true;
+    }
+
+    /**
+     * Update this permission.
+     *
+     * @since 16xxxx User permission.
+     */
+    public function update()
+    {
+        $WpDb = s::wpDb();
+
+        if (!$this->user_id) { // Required!
+            throw new Exception('Missing `user_id`.');
+        }
+        if ($this->ID) { // Update existing.
+            $this->last_update_time = time();
+
+            $_update_data = $this->¤¤overload; // Overload data.
+            unset($_update_data['ID']); // Exclude primary key ID.
+
+            if ($WpDb->update(s::dbPrefix().'user_permissions', $_update_data, ['ID' => $this->ID]) === false) {
+                $this->ID = 0; // Possible race condition; e.g., ID no longer exists.
+                $this->update(); // Try inserting as a new permission.
+            }
+        } else { // Insertion of a brand new permission.
+            $this->original_restriction_id = $this->restriction_id;
+            $this->original_access_time    = $this->access_time;
+            $this->original_expire_time    = $this->expire_time;
+            $this->insertion_time          = $this->last_update_time          = time();
+
+            $_insertion_data = $this->¤¤overload; // Overload data.
+            unset($_insertion_data['ID']); // Exclude primary key ID.
+
+            if ((int) $WpDb->insert(s::dbPrefix().'user_permissions', $_insertion_data) !== 1 || !($this->ID = (int) $WpDb->insert_id)) {
+                throw new Exception(__('User permission insertion failure.', 's2member-x'));
+            }
+        }
+        a::clearUserPermissionsCache($this->user_id); // Clear permissions cache.
+    }
+
+    /**
+     * Delete this permission.
+     *
+     * @since 16xxxx User permission.
+     */
+    public function delete()
+    {
+        $WpDb = s::wpDb();
+
+        if ($this->ID) { // Update existing.
+            $WpDb->delete(s::dbPrefix().'user_permissions', ['ID' => $this->ID]);
+        }
+        if ($this->user_id) { // Belongs to a user?
+            a::clearUserPermissionsCache($this->user_id); // Clear permissions cache.
+        }
     }
 }

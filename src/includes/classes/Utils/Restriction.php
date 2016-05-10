@@ -397,12 +397,12 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         echo '<div class="-about -section">';
 
-        echo    '<h3>'.__('Each \'Restriction\' Serves Two Purposes', 's2member-x').'</h3>';
+        echo    '<h4>'.__('Each \'Restriction\' Serves Two Purposes:', 's2member-x').'</h4>';
         echo    '<ol>';
         echo        '<li>'.__('It allows you to protect content in WordPress. A single Restriction can protect multiple Posts, Pages, and more.', 's2member-x').'</li>';
-        echo        '<li>'.__('It can also grant access to the content you\'ve protected, because you can sell (via WooCommerce Products), or otherwise allow, access to what a Restriction protects.', 's2member-x').'</li>';
+        echo        '<li>'.__('It can also grant access to the content you\'ve protected; i.e., you can sell via WooCommerce Products, or otherwise allow, access to what a Restriction protects.', 's2member-x').'</li>';
         echo    '</ol>';
-        echo    '<p>'.__('In summary, you should think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others.', 's2member-x').'</p>';
+        echo    '<p style="font-style:italic;">'.__('So you can think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others.', 's2member-x').'</p>';
         echo    '<p><span class="dashicons dashicons-book"></span> '.sprintf(__('If you\'d like to learn more about Restrictions, see: <a href="%1$s" target="_blank">%2$s Knowledge Base</a>', 's2member-x'), esc_url(s::brandUrl('/kb')), esc_html($this->App->Config->©brand['©name'])).'</p>';
 
         echo '</div>';
@@ -631,7 +631,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo        '<label for="'.esc_attr($field_id).'">'.__('CCAPs (<a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank">Custom Capabilities</a>) in comma-delimited format:', 's2member-x').'</label>';
         echo        '<input type="text" id="'.esc_attr($field_id).'" name="'.esc_attr($field_name).'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., members_area, pro_membership, premium_content', 's2member-x').'" value="'.esc_attr(implode(', ', $current_ccaps)).'">';
         echo    '</div>';
-        echo    '<p>'.sprintf(__('<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%1$s<code style="padding:0;">something</code>\')</a>', 's2member-x'), esc_html($this->access_ccap_prefix)).'</p>';
+        echo    '<p>'.sprintf(__('<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%1$s<code style="padding:0;">something</code>\')</a>, where <code>something</code> is one of the CCAPs you entered here. You can also test for access to an entire Restriction (a more common use case) via <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%2$s<code style="padding:0;">slug</code>\')</a>, where <code>slug</code> is the unique identifier you assigned to a Restriction—which works with or without CCAPs.', 's2member-x'), esc_html($this->access_ccap_prefix), esc_html($this->access_res_prefix)).'</p>';
 
         echo '</div>';
     }
@@ -701,9 +701,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                                     '<li style="margin:0;"><strong>Post/Page IDs:</strong> <em>'.implode(',', array_map('esc_html', a::systematicPostIds())).'</em></li>'.
                                     '<li style="margin:0;"><strong>Post Types:</strong> <em>'.implode(',', array_map('esc_html', a::systematicPostTypes())).'</em></li>'.
                                     '<li style="margin:0;"><strong>Users w/ Role:</strong> <em>'.implode(',', array_map('esc_html', a::systematicRoles())).'</em></li>'.
-                                    '</ul>'.
-                                    '</li>';
-        echo                        '</ul>';
+                                '</ul>'.
+                            '</li>';
+        echo            '</ul>';
         echo        '</div>';
         echo    '</div>';
 

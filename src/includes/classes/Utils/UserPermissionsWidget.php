@@ -97,10 +97,11 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         } elseif (empty($GLOBALS['user_id']) || !current_user_can('edit_user', $GLOBALS['user_id'])) {
             return; // Not applicable.
         }
+        s::enqueueMomentLibs();
         s::enqueueJQueryJsGridLibs();
 
         wp_enqueue_style($this->client_side_prefix.'-user-permissions-widget', c::appUrl('/client-s/css/admin/user-permissions-widget.min.css'), [], $this->App::VERSION, 'all');
-        wp_enqueue_script($this->client_side_prefix.'-user-permissions-widget', c::appUrl('/client-s/js/admin/user-permissions-widget.min.js'), ['jquery', 'underscore', 'jquery-jsgrid', 'jquery-ui-sortable'], $this->App::VERSION, true);
+        wp_enqueue_script($this->client_side_prefix.'-user-permissions-widget', c::appUrl('/client-s/js/admin/user-permissions-widget.min.js'), ['jquery', 'jquery-jsgrid', 'jquery-ui-tooltip', 'jquery-ui-sortable', 'underscore', 'moment'], $this->App::VERSION, true);
 
         wp_localize_script(
             $this->client_side_prefix.'-user-permissions-widget',
@@ -141,6 +142,9 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'noDataContent'             => _x('No permissions yet.', 'user-permissions-widget', 's2member-x'),
                     'restrictionAccessRequired' => _x('Restriction \'Access\' is empty.', 'user-permissions-widget', 's2member-x'),
                     'accessTimeLtExpireTime'    => _x('When both are given, \'Starts\' must come before \'Ends\'.', 'user-permissions-widget', 's2member-x'),
+                    'notReadyToSave'            => _x('Not ready to save all changes yet...', 'user-permissions-widget', 's2member-x'),
+                    'stillInserting'            => _x('A Permission row is still pending insertion.', 'user-permissions-widget', 's2member-x'),
+                    'stillEditing'              => _x('A Permission row is still open for editing.', 'user-permissions-widget', 's2member-x'),
                     'via'                       => _x('via', 'user-permissions-widget', 's2member-x'),
                 ],
                 'orderViewUrl=' => admin_url('/post.php?action=edit&post='),
@@ -180,7 +184,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         } else {
             echo    '<p style="font-style:italic;">'.__('<strong>Note:</strong> Start and End dates are optional. No Start Date = starts immediately. If no End Date, access is indefinite. Unchecking the \'Enabled\' box will suspend access.', 's2member-x').'</p>';
 
-            echo    '<input class="-user-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode(a::userPermissions($WP_User->ID))).'" />';
+            echo    '<input class="-user-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode(array_values(a::userPermissions($WP_User->ID)))).'" />';
             echo    '<input class="-restriction-titles-by-id" type="hidden" value="'.esc_attr(json_encode(a::restrictionTitlesById())).'" />';
 
             echo    '<div class="-grid" data-toggle="jquery-jsgrid"></div>';
@@ -210,9 +214,38 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         } elseif (!isset($_REQUEST[$this->client_side_prefix.'_permissions'])) {
             return; // Not applicable.
         }
+        // Initialize old/new permission arrays.
 
-        // @TODO.
-        // Permissions will be submitted in their display order.
-        // Also, each permission will include a `display_order` property.
+        $old_permissions = a::userPermissions($user_id);
+        $new_permissions = []; // Initialize.
+
+        // Collect and build the array of new permissions.
+
+        $_r_permissions = stripslashes((string) $_REQUEST[$this->client_side_prefix.'_permissions']);
+        if (!is_array($_r_permissions = json_decode($_r_permissions))) {
+            return; // Corrupt form submission. Do not save.
+        }
+        foreach ($_r_permissions as $_key => &$_r_permission) {
+            if (!($_r_permission instanceof \StdClass)) {
+                return; // Corrupt form submission.
+            } elseif (empty($_r_permission->restriction_id)) {
+                return; // Corrupt form submission.
+            } // ↑ Should not happen, but better safe than sorry.
+            $_r_permission->user_id              = $user_id; // Force association.
+            $_r_permission_key                   = !empty($_r_permission->ID) ? (int) $_r_permission->ID : $_key.'_new';
+            $new_permissions[$_r_permission_key] = $this->App->Di->get(Classes\UserPermission::class, ['data' => $_r_permission]);
+        } // unset($_key, $_r_permission, $_r_permission_key); // Houskeeping.
+
+        // Delete old permissions that do not appear in the new permissions array.
+
+        foreach ($old_permissions as $_UserPermission) {
+            if (!isset($new_permissions[$_UserPermission->ID])) {
+                $_UserPermission->delete();
+            }
+        } // unset($_UserPermission); // Housekeeping.
+
+        foreach ($new_permissions as $_UserPermission) {
+            $_UserPermission->update(); // Updates existing or inserts/saves new one.
+        } // unset($_UserPermission); // Housekeeping.
     }
 }

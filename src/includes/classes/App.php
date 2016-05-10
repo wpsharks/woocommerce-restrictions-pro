@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160509'; //v//
+    const VERSION = '160510'; //v//
 
     /**
      * Constructor.
@@ -69,6 +69,7 @@ class App extends SCoreClasses\App
                 'if_shortcode_for_blog_enable',
                 'restriction_categories_enable',
                 'security_gate_redirect_to_args_enable',
+                'orders_always_grant_immediate_access',
             ],
             '§default_options' => [
                 'if_shortcode_expr_enable'              => '1',
@@ -76,6 +77,7 @@ class App extends SCoreClasses\App
                 'restriction_categories_enable'         => '0',
                 'security_gate_redirects_to_post_id'    => '0',
                 'security_gate_redirect_to_args_enable' => '1',
+                'orders_always_grant_immediate_access'  => '1',
             ],
             '§dependencies' => [
                 '§plugins' => [
@@ -184,12 +186,17 @@ class App extends SCoreClasses\App
 
                 add_action('admin_enqueue_scripts', [$this->Utils->UserPermissionsWidget, 'onAdminEnqueueScripts']);
 
-                add_action('show_user_profile', [$this->Utils->UserPermissionsWidget, 'onEditUserProfile'], 1);
-                add_action('edit_user_profile', [$this->Utils->UserPermissionsWidget, 'onEditUserProfile'], 1);
+                add_action('show_user_profile', [$this->Utils->UserPermissionsWidget, 'onEditUserProfile'], 1000);
+                add_action('edit_user_profile', [$this->Utils->UserPermissionsWidget, 'onEditUserProfile'], 1000);
 
                 add_action('personal_options_update', [$this->Utils->UserPermissionsWidget, 'onEditUserProfileUpdate']);
                 add_action('edit_user_profile_update', [$this->Utils->UserPermissionsWidget, 'onEditUserProfileUpdate']);
             }
+            # Order-related hooks; attached to WooCommerce events.
+
+            add_action('woocommerce_order_status_completed', [$this->Utils->UserWcPermissions, 'onOrderStatusComplete']);
+            add_action('woocommerce_order_status_processing', [$this->Utils->UserWcPermissions, 'onOrderStatusProcessing']);
+
             # Security gate; always after the `restriction` post type registration.
 
             // See also: <http://jas.xyz/1WlT51u> to review the BuddyPress loading order.

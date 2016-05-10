@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the s2Member X Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: s2Member X Pro 160509\n"
+"Project-Id-Version: s2Member X Pro 160510\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/s2member-x-pro\n"
-"POT-Creation-Date: 2016-05-09 13:40:33+00:00\n"
+"POT-Creation-Date: 2016-05-10 05:20:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -607,84 +607,82 @@ msgstr ""
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:615
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:615
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:682
-#: src/includes/classes/Utils/Restriction.php:682
 msgid "Other important details to be aware of:"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:617
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:617
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:684
-#: src/includes/classes/Utils/Restriction.php:684
+#: src/includes/classes/Utils/Restriction.php:685
 msgid "Comparison is always caSe-insensitive (i.e., case does not matter)."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:618
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:618
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:685
-#: src/includes/classes/Utils/Restriction.php:685
+#: src/includes/classes/Utils/Restriction.php:686
 msgid "Your pattern must match an entire URI (beginning to end). Not just a small portion."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:619
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:619
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:686
-#: src/includes/classes/Utils/Restriction.php:686
+#: src/includes/classes/Utils/Restriction.php:687
 msgid "A URI always starts with a slash (e.g., <em>/example-post%1$s</em>). The smallest possible URI (the home page) is: <em><strong>/</strong></em>"
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:621
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:621
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:688
-#: src/includes/classes/Utils/Restriction.php:688
+#: src/includes/classes/Utils/Restriction.php:689
 msgid "Your current Permalink Settings in WordPress indicate that all URIs on this site will have a trailing slash on the end. You must match that trailing slash in your patterns."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:623
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:623
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:690
-#: src/includes/classes/Utils/Restriction.php:690
+#: src/includes/classes/Utils/Restriction.php:691
 msgid "Your current Permalink Settings in WordPress indicate that URIs on this site will not end with a trailing slash. Your patterns should not depend on there always being a trailing slash."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:625
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:625
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:692
-#: src/includes/classes/Utils/Restriction.php:692
+#: src/includes/classes/Utils/Restriction.php:693
 msgid "In WordPress it is common for any given URI to accept additional endpoint directives. For instance, paginated locations: <em>/example-post/page/2%1$s</em>, <em>/example-post/comments-page/2%1$s</em>. Therefore, we suggest a pattern that covers all possible endpoint variations. For instance: <em>/example-post{/**,}</em> will match the base URI by itself, and also match a possible trailing slash with any endpoint directives it may accept."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:626
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:626
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:693
-#: src/includes/classes/Utils/Restriction.php:693
+#: src/includes/classes/Utils/Restriction.php:694
 msgid "Any query string variables on the end of a URI (example: <em>?p=123&amp;key=value</em>) are stripped before comparison so you don't need to worry about them. However, if your pattern contains: <em>[?]</em> (literally, a <em>?</em> question mark in square brackets) it indicates that you DO want to check the query string, and they are NOT stripped away in that case; so your pattern will be capable of matching. Just remember that query string variables can appear in any order, as entered by a user. If you check for query strings, use <em>{**&,}</em> and <em>{&**,}</em> around the key=value pair you're looking for. For instance: <em>/example-post{/**,}[?]{**&,}key=value{&**,}</em>. If you're forced to look for multiple variables, the best you can do is: <em>{**&,}key=value{&**&,&,}another=value{&**,}</em>. This still expects <em>key=value</em> to be first, but <em>{&**&,&,}</em> helps some."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:627
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:627
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:694
-#: src/includes/classes/Utils/Restriction.php:694
+#: src/includes/classes/Utils/Restriction.php:695
 msgid "It is possible to protect (and grant) access to portions of <em>/wp-admin/</em> with URI Patterns too. However, please remember that in order for a user to actually do anything inside the admin panel they will also need to have Capabilities which grant them additional permissions; such as the ability to <em>edit_posts</em>. See: <strong>Role Capabilities</strong> as a form of protection if you'd like more information."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:628
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:628
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:695
-#: src/includes/classes/Utils/Restriction.php:695
 msgid "It is possible to restrict access to every page on the entire site using the pattern <em>/**</em> as a catch-all. In this scenario, everything is off-limits, except for the Systematic URIs listed below. Having said that, please be careful when using a catch-all pattern. Everything (yes, everything) will be off-limits, including your home page! We suggest this as a last resort only. Instead, restrict Posts, Pages, Categories, Tags and/or other specific URIs. Generally speaking, it is best to restrict only portions of a site from public access."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:629
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:629
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:696
-#: src/includes/classes/Utils/Restriction.php:696
+#: src/includes/classes/Utils/Restriction.php:697
 msgid "Restrictions rely upon PHP as a server-side scripting language. Therefore, you can protect any location (page) served by WordPress via PHP, but you can't protect static files. For instance: <em>.jpg</em>, <em>.pdf</em>, and <em>.zip</em> are static. Generally speaking, if you upload something to the Media Library, it's a static asset. It cannot be protected here. Instead, configure a \"Downloadable Product\" with WooCommerce."
 msgstr ""
 
 #: .~build/s2member-x/.~build/s2member-x/src/includes/classes/Utils/Restriction.php:630
 #: .~build/s2member-x/src/includes/classes/Utils/Restriction.php:630
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Restriction.php:697
-#: src/includes/classes/Utils/Restriction.php:697
+#: src/includes/classes/Utils/Restriction.php:698
 msgid "There are a few Systematic URIs on your site that cannot be associated with a Restriction. It's OK if one of your patterns overlaps with these, but any URI matching one of these will simply not be allowed to have any additional Restrictions applied to it whatsoever. In other words, these are automatically excluded (internally), because they are associated with special functionality."
 msgstr ""
 
@@ -820,164 +818,189 @@ msgid "`[%1$s /]` shortcode attribute `for_blog=\"\"` not enabled on this site."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:113
-#: src/includes/classes/Utils/UserPermissionsWidget.php:113
+#: src/includes/classes/Utils/UserPermissionsWidget.php:114
 msgctxt "user-permissions-widget"
 msgid "Access"
 msgstr ""
 
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:115
-#: src/includes/classes/Utils/UserPermissionsWidget.php:119
-msgctxt "user-permissions-widget"
-msgid "ID"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:116
-#: src/includes/classes/Utils/UserPermissionsWidget.php:120
-msgctxt "user-permissions-widget"
-msgid "User ID"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:117
-#: src/includes/classes/Utils/UserPermissionsWidget.php:121
-msgctxt "user-permissions-widget"
-msgid "Order ID"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:118
-#: src/includes/classes/Utils/UserPermissionsWidget.php:122
-msgctxt "user-permissions-widget"
-msgid "Product ID"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:120
-#: src/includes/classes/Utils/UserPermissionsWidget.php:124
-msgctxt "user-permissions-widget"
-msgid "Starts"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:121
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:126
-#: src/includes/classes/Utils/UserPermissionsWidget.php:125
-#: src/includes/classes/Utils/UserPermissionsWidget.php:130
-msgctxt "user-permissions-widget"
-msgid "date"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:122
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:127
-#: src/includes/classes/Utils/UserPermissionsWidget.php:126
-#: src/includes/classes/Utils/UserPermissionsWidget.php:131
-msgctxt "user-permissions-widget"
-msgid "time"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:123
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:128
-#: src/includes/classes/Utils/UserPermissionsWidget.php:127
-#: src/includes/classes/Utils/UserPermissionsWidget.php:132
-msgctxt "user-permissions-widget"
-msgid "—"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:125
-#: src/includes/classes/Utils/UserPermissionsWidget.php:129
-msgctxt "user-permissions-widget"
-msgid "Ends"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:130
-msgctxt "user-permissions-widget"
-msgid "Enabled"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:132
-#: src/includes/classes/Utils/UserPermissionsWidget.php:137
-msgctxt "user-permissions-widget"
-msgid "Insertion Time"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:133
-#: src/includes/classes/Utils/UserPermissionsWidget.php:138
-msgctxt "user-permissions-widget"
-msgid "Last Update Time"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:135
-#: src/includes/classes/Utils/UserPermissionsWidget.php:140
-msgctxt "user-permissions-widget"
-msgid "Original"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:136
-#: src/includes/classes/Utils/UserPermissionsWidget.php:141
-msgctxt "user-permissions-widget"
-msgid "No permissions yet."
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:137
-#: src/includes/classes/Utils/UserPermissionsWidget.php:142
-msgctxt "user-permissions-widget"
-msgid "Restriction 'Access' is empty."
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:138
-#: src/includes/classes/Utils/UserPermissionsWidget.php:143
-msgctxt "user-permissions-widget"
-msgid "When both are given, 'Starts' must come before 'Ends'."
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:139
-#: src/includes/classes/Utils/UserPermissionsWidget.php:144
-msgctxt "user-permissions-widget"
-msgid "via"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:169
-#: src/includes/classes/Utils/UserPermissionsWidget.php:174
-msgid "Customer Permissions (<span class=\"dashicons dashicons-unlock\"></span> %1$s Restriction Access)"
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:173
-#: src/includes/classes/Utils/UserPermissionsWidget.php:178
-msgid "It's not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href=\"%1$s\">click here</a>."
-msgstr ""
-
-#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:176
-msgid "<strong>Note:</strong> Start and End dates are optional. If there is no Start Date, it starts immediately. If no End Date, access is indefinite. Unchecking the Enabled box temporarily suspends access."
-msgstr ""
-
-#: src/includes/classes/Utils/UserPermissionsWidget.php:114
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:114
+#: src/includes/classes/Utils/UserPermissionsWidget.php:115
 msgctxt "user-permissions-widget"
 msgid "Access Granted"
 msgstr ""
 
-#: src/includes/classes/Utils/UserPermissionsWidget.php:115
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:115
+#: src/includes/classes/Utils/UserPermissionsWidget.php:116
 msgctxt "user-permissions-widget"
 msgid "Temporarily Disabled"
 msgstr ""
 
-#: src/includes/classes/Utils/UserPermissionsWidget.php:116
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:116
+#: src/includes/classes/Utils/UserPermissionsWidget.php:117
 msgctxt "user-permissions-widget"
 msgid "Access Scheduled"
 msgstr ""
 
-#: src/includes/classes/Utils/UserPermissionsWidget.php:117
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:117
+#: src/includes/classes/Utils/UserPermissionsWidget.php:118
 msgctxt "user-permissions-widget"
 msgid "Access Expired"
 msgstr ""
 
-#: src/includes/classes/Utils/UserPermissionsWidget.php:134
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:119
+#: src/includes/classes/Utils/UserPermissionsWidget.php:120
+msgctxt "user-permissions-widget"
+msgid "ID"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:120
+#: src/includes/classes/Utils/UserPermissionsWidget.php:121
+msgctxt "user-permissions-widget"
+msgid "User ID"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:121
+#: src/includes/classes/Utils/UserPermissionsWidget.php:122
+msgctxt "user-permissions-widget"
+msgid "Order ID"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:122
+#: src/includes/classes/Utils/UserPermissionsWidget.php:123
+msgctxt "user-permissions-widget"
+msgid "Product ID"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:124
+#: src/includes/classes/Utils/UserPermissionsWidget.php:125
+msgctxt "user-permissions-widget"
+msgid "Starts"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:125
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:130
+#: src/includes/classes/Utils/UserPermissionsWidget.php:126
+#: src/includes/classes/Utils/UserPermissionsWidget.php:131
+msgctxt "user-permissions-widget"
+msgid "date"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:126
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:131
+#: src/includes/classes/Utils/UserPermissionsWidget.php:127
+#: src/includes/classes/Utils/UserPermissionsWidget.php:132
+msgctxt "user-permissions-widget"
+msgid "time"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:127
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:132
+#: src/includes/classes/Utils/UserPermissionsWidget.php:128
+#: src/includes/classes/Utils/UserPermissionsWidget.php:133
+msgctxt "user-permissions-widget"
+msgid "—"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:129
+#: src/includes/classes/Utils/UserPermissionsWidget.php:130
+msgctxt "user-permissions-widget"
+msgid "Ends"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:134
+#: src/includes/classes/Utils/UserPermissionsWidget.php:135
 msgctxt "user-permissions-widget"
 msgid "Enabled?"
 msgstr ""
 
-#: src/includes/classes/Utils/UserPermissionsWidget.php:135
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:135
+#: src/includes/classes/Utils/UserPermissionsWidget.php:136
 msgctxt "user-permissions-widget"
 msgid "Display Order"
 msgstr ""
 
-#: src/includes/classes/Utils/UserPermissionsWidget.php:181
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:137
+#: src/includes/classes/Utils/UserPermissionsWidget.php:138
+msgctxt "user-permissions-widget"
+msgid "Insertion Time"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:138
+#: src/includes/classes/Utils/UserPermissionsWidget.php:139
+msgctxt "user-permissions-widget"
+msgid "Last Update Time"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:140
+#: src/includes/classes/Utils/UserPermissionsWidget.php:141
+msgctxt "user-permissions-widget"
+msgid "Original"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:141
+#: src/includes/classes/Utils/UserPermissionsWidget.php:142
+msgctxt "user-permissions-widget"
+msgid "No permissions yet."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:142
+#: src/includes/classes/Utils/UserPermissionsWidget.php:143
+msgctxt "user-permissions-widget"
+msgid "Restriction 'Access' is empty."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:143
+#: src/includes/classes/Utils/UserPermissionsWidget.php:144
+msgctxt "user-permissions-widget"
+msgid "When both are given, 'Starts' must come before 'Ends'."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:144
+#: src/includes/classes/Utils/UserPermissionsWidget.php:148
+msgctxt "user-permissions-widget"
+msgid "via"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:174
+#: src/includes/classes/Utils/UserPermissionsWidget.php:178
+msgid "Customer Permissions (<span class=\"dashicons dashicons-unlock\"></span> %1$s Restriction Access)"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:178
+#: src/includes/classes/Utils/UserPermissionsWidget.php:182
+msgid "It's not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href=\"%1$s\">click here</a>."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:181
+#: src/includes/classes/Utils/UserPermissionsWidget.php:185
 msgid "<strong>Note:</strong> Start and End dates are optional. No Start Date = starts immediately. If no End Date, access is indefinite. Unchecking the 'Enabled' box will suspend access."
+msgstr ""
+
+#: src/includes/classes/UserPermission.php:124
+msgid "User permission insertion failure."
+msgstr ""
+
+#: src/includes/classes/Utils/Restriction.php:682
+msgid "Other details worth mentioning... <a href=\"#\" data-toggle=\".-uri-patterns.-section .-hidden.-details.-section\" style=\"font-weight:normal;\">toggle more info</a>"
+msgstr ""
+
+#: src/includes/classes/Utils/Restriction.php:696
+msgid "It is possible to restrict access to every page on the entire site using the pattern <em>/**</em> as a catch-all. In this scenario, everything is off-limits, except for the Systematic URIs listed below. Having said that, please be careful when using a catch-all pattern. Everything (yes, everything) will be off-limits, including your home page! We suggest this as a last resort only. Instead, restrict Posts, Pages, Categories, Tags and/or other specific URIs; i.e., it is best to restrict only portions of a site from public access."
+msgstr ""
+
+#: src/includes/classes/Utils/UserPermissionsWidget.php:145
+msgctxt "user-permissions-widget"
+msgid "Not ready to save all changes yet..."
+msgstr ""
+
+#: src/includes/classes/Utils/UserPermissionsWidget.php:146
+msgctxt "user-permissions-widget"
+msgid "A user permission row is still pending insertion."
+msgstr ""
+
+#: src/includes/classes/Utils/UserPermissionsWidget.php:147
+msgctxt "user-permissions-widget"
+msgid "A user permission row is still open for editing."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
