@@ -225,7 +225,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         if (!is_array($_r_permissions = json_decode($_r_permissions))) {
             return; // Corrupt form submission. Do not save.
         }
-        foreach ($_r_permissions as $_key => &$_r_permission) {
+        foreach ($_r_permissions as $_key => $_r_permission) {
             if (!($_r_permission instanceof \StdClass)) {
                 return; // Corrupt form submission.
             } elseif (empty($_r_permission->restriction_id)) {
