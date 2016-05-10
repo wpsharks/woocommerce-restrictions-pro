@@ -129,13 +129,13 @@
                 display += '<span class="dashicons dashicons-unlock" style="color:#49a642;"' +
                   ' title="' + _.escape(data.i18n.restrictionIdStatusIsAllowed) + '" data-toggle="jquery-ui-tooltip"></span>';
               } else if (isDisabled) {
-                display += '<span class="si si-octi-lock" style="color:#f54d3d;"' +
+                display += '<span class="si si-octi-lock" style="color:#666;"' +
                   ' title="' + _.escape(data.i18n.restrictionIdStatusIsDisabled) + '" data-toggle="jquery-ui-tooltip"></span>';
               } else if (isScheduled) {
                 display += '<span class="si si-calendar-check-o" style="color:#666;"' +
                   ' title="' + _.escape(data.i18n.restrictionIdStatusIsScheduled) + '" data-toggle="jquery-ui-tooltip"></span>';
               } else if (isExpired) {
-                display += '<span class="si si-calendar-times-o" style="color:#f54d3d;"' +
+                display += '<span class="si si-calendar-times-o" style="color:#666;"' +
                   ' title="' + _.escape(data.i18n.restrictionIdStatusIsExpired) + '" data-toggle="jquery-ui-tooltip"></span>';
               }
               display += ' <strong>' + _.escape(restrictionTitlesById[value]) + '</strong>';
@@ -207,6 +207,20 @@
           visible: true,
           editing: true,
           inserting: true
+        }, {
+          type: 'text',
+          align: 'center',
+          name: 'expire_time_via',
+          title: data.i18n.expireTimeViaTitle,
+
+          visible: false,
+        }, {
+          type: 'number',
+          align: 'center',
+          name: 'expire_time_via_id',
+          title: data.i18n.expireTimeViaIdTitle,
+
+          visible: false,
         }, {
           type: 'number',
           align: 'center',

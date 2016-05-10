@@ -128,6 +128,8 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'emptyAccessDateTime'   => _x('—', 'user-permissions-widget', 's2member-x'),
 
                     'expireTimeTitle'       => _x('Ends', 'user-permissions-widget', 's2member-x'),
+                    'expireTimeViaTitle'    => _x('Ends Via', 'user-permissions-widget', 's2member-x'),
+                    'expireTimeViaIdTitle'  => _x('Ends Via ID', 'user-permissions-widget', 's2member-x'),
                     'expireDatePlaceholder' => _x('date', 'user-permissions-widget', 's2member-x'),
                     'expireTimePlaceholder' => _x('time', 'user-permissions-widget', 's2member-x'),
                     'emptyExpireDateTime'   => _x('—', 'user-permissions-widget', 's2member-x'),
@@ -172,7 +174,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType())) {
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
-        echo '<hr />'; // After password-related fields on user edit page.
+        echo '<hr />'; // After other fields in the user edit page.
 
         echo '<div id="'.esc_attr($this->client_side_prefix.'-user-permissions-widget').'">';
         echo    '<h3>'.sprintf(__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> %1$s Restriction Access)', 's2member-x'), $this->App->Config->©brand['©acronym']).'</h3>';
@@ -182,7 +184,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
             echo    '<p>'.sprintf(__('It\'s not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
             echo '</div>';
         } else {
-            echo    '<p style="font-style:italic;">'.__('<strong>Note:</strong> Start and End dates are optional. No Start Date = starts immediately. If no End Date, access is indefinite. Unchecking the \'Enabled\' box will suspend access.', 's2member-x').'</p>';
+            echo    '<p style="font-style:italic;">'.__('<strong>Note:</strong> Start and End dates are optional. No Start Date = starts immediately. If no End Date, access is indefinite. Unchecking the \'Enabled\' box will temporarily suspend access.', 's2member-x').'</p>';
 
             echo    '<input class="-user-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode(array_values(a::userPermissions($WP_User->ID)))).'" />';
             echo    '<input class="-restriction-titles-by-id" type="hidden" value="'.esc_attr(json_encode(a::restrictionTitlesById())).'" />';
@@ -190,8 +192,6 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
             echo    '<div class="-grid" data-toggle="jquery-jsgrid"></div>';
         }
         echo '</div>';
-
-        echo '<hr />'; // Before customer information by WooCommerce; e.g., billing address, shipping address, etc.
     }
 
     /**

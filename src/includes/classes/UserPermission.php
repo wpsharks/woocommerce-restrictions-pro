@@ -50,6 +50,8 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         $data->original_access_time = (int) ($data->original_access_time ?? 0);
 
         $data->expire_time          = (int) ($data->expire_time ?? 0);
+        $data->expire_time_via      = (string) ($data->expire_time_via ?? '');
+        $data->expire_time_via_id   = (int) ($data->expire_time_via_id ?? 0);
         $data->original_expire_time = (int) ($data->original_expire_time ?? 0);
 
         $data->is_enabled = (int) ($data->is_enabled ?? 0);

@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS `%%table%%` (
   `original_access_time` int(10) UNSIGNED NOT NULL,
 
   `expire_time` int(10) UNSIGNED NOT NULL,
+  `expire_time_via` varchar(255) NOT NULL,
+  `expire_time_via_id` bigint(20) UNSIGNED NOT NULL,
   `original_expire_time` int(10) UNSIGNED NOT NULL,
 
   `is_enabled` int(1) UNSIGNED NOT NULL,
