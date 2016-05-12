@@ -247,6 +247,17 @@
           }
         },
 
+        // Trashed?
+        {
+          width: '10%',
+          type: 'number',
+          align: 'center',
+          name: 'is_trashed',
+          title: data.i18n.isTrashedTitle,
+
+          visible: false,
+        },
+
         // Display order.
         {
           type: 'number',

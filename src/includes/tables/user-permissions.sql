@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `%%table%%` (
   `original_expire_time` int(10) UNSIGNED NOT NULL,
 
   `is_enabled` int(1) UNSIGNED NOT NULL,
+  `is_trashed` int(1) UNSIGNED NOT NULL,
 
   `display_order` int(10) UNSIGNED NOT NULL,
 

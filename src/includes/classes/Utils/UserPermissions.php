@@ -112,13 +112,143 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      *
      * @param string|int $user_id User ID.
      */
-    public function clearCache($user_id)
+    public function clearCache($user_id = 0)
+    {
+        if (($user_id = (int) $user_id)) {
+            $this->cacheUnsetPattern('permissions', '*/'.$user_id.':*');
+            $this->cacheUnsetPattern('accessibleRestrictionIds', '*/'.$user_id.':*');
+        } else {
+            $this->cacheClear(); // Clear everything.
+        }
+    }
+
+    /**
+     * On user deletion.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param string|int $user_id User ID.
+     */
+    public function onDeleteUser($user_id)
     {
         if (!($user_id = (int) $user_id)) {
             return; // Not possible.
         }
-        $this->cacheUnsetPattern('permissions', '*/'.$user_id);
-        $this->cacheUnsetPattern('accessibleRestrictionIds', '*/'.$user_id);
+        $WpDb  = s::wpDb(); // DB instance.
+        $where = ['user_id' => $user_id];
+
+        s::doAction('before_user_permissions_delete', $where);
+        $WpDb->delete(s::dbPrefix().'user_permissions', $where);
+        s::doAction('user_permissions_deleted', $where);
+
+        $this->clearCache($user_id); // For this user.
+    }
+
+    /**
+     * On network user deletion.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param string|int $user_id User ID.
+     */
+    public function onDeleteNetworkUser($user_id)
+    {
+        if (!is_multisite()) {
+            return; // Not applicable.
+        } elseif (!($user_id = (int) $user_id)) {
+            return; // Not possible.
+        }
+        $WpDb  = s::wpDb(); // DB instance.
+        $where = ['user_id' => $user_id];
+
+        foreach (($sites = wp_get_sites()) ? $sites : [] as $_site) {
+            switch_to_blog($_site['blog_id']);
+
+            s::doAction('before_user_permissions_delete', $where);
+            $WpDb->delete(s::dbPrefix().'user_permissions', $where);
+            s::doAction('user_permissions_deleted', $where);
+
+            restore_current_blog();
+        } // unset($_site); // Housekeeping.
+
+        $this->clearCache($user_id); // For this user.
+    }
+
+    /**
+     * After a post is trashed.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param string|int $post_id Post ID.
+     */
+    public function onTrashedPost($post_id)
+    {
+        if (!($post_id = (int) $post_id)) {
+            return; // Not possible.
+        }
+        if (get_post_type($post_id) !== a::restrictionPostType()) {
+            return; // Not applicable.
+        }
+        $WpDb        = s::wpDb(); // DB instance.
+        $where       = ['restriction_id' => $post_id];
+        $update_data = ['is_trashed' => 1];
+
+        s::doAction('before_user_permissions_update', $where, $update_data);
+        $WpDb->update(s::dbPrefix().'user_permissions', $update_data, $where);
+        s::doAction('user_permissions_updated', $where, $update_data);
+
+        $this->clearCache(); // For all users.
+    }
+
+    /**
+     * After a post is restored.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param string|int $post_id Post ID.
+     */
+    public function onUntrashedPost($post_id)
+    {
+        if (!($post_id = (int) $post_id)) {
+            return; // Not possible.
+        }
+        if (get_post_type($post_id) !== a::restrictionPostType()) {
+            return; // Not applicable.
+        }
+        $WpDb        = s::wpDb(); // DB instance.
+        $where       = ['restriction_id' => $post_id];
+        $update_data = ['is_trashed' => 0];
+
+        s::doAction('before_user_permissions_update', $where, $update_data);
+        $WpDb->update(s::dbPrefix().'user_permissions', $update_data, $where);
+        s::doAction('user_permissions_updated', $where, $update_data);
+
+        $this->clearCache(); // For all users.
+    }
+
+    /**
+     * Before a post is deleted.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param string|int $post_id Post ID.
+     */
+    public function onBeforeDeletePost($post_id)
+    {
+        if (!($post_id = (int) $post_id)) {
+            return; // Not possible.
+        }
+        if (get_post_type($post_id) !== a::restrictionPostType()) {
+            return; // Not applicable.
+        }
+        $WpDb  = s::wpDb(); // DB instance.
+        $where = ['restriction_id' => $post_id];
+
+        s::doAction('before_user_permissions_delete', $where);
+        $WpDb->delete(s::dbPrefix().'user_permissions', $where);
+        s::doAction('user_permissions_deleted', $where);
+
+        $this->clearCache(); // For all users.
     }
 
     /**
@@ -247,7 +377,8 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($user_id = (int) $user_id)) {
             return []; // Not possible.
         }
-        if (($accessible_restriction_ids = &$this->cacheGet(__FUNCTION__, $blog_id.'/'.$user_id)) !== null) {
+        $cache_key = $blog_id.'/'.$user_id.':-1'; // Trash status not a consideration here.
+        if (($accessible_restriction_ids = &$this->cacheGet(__FUNCTION__, $cache_key)) !== null) {
             return $accessible_restriction_ids; // Cached already.
         }
         $accessible_restriction_ids = []; // Initialize.
@@ -266,18 +397,20 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Security gate.
      *
-     * @param string|int $user_id User ID.
+     * @param string|int $user_id       User ID.
+     * @param bool       $include_trash Include trash?
      *
      * @return UserPermission[] Permissions (in `display_order`).
      */
-    public function permissions($user_id): array
+    public function permissions($user_id, bool $include_trash = true): array
     {
         global $blog_id; // Current blog ID.
 
         if (!($user_id = (int) $user_id)) {
             return []; // Not possible.
         }
-        if (($permissions = &$this->cacheGet(__FUNCTION__, $blog_id.'/'.$user_id)) !== null) {
+        $cache_key = $blog_id.'/'.$user_id.':'.(int) $include_trash;
+        if (($permissions = &$this->cacheGet(__FUNCTION__, $cache_key)) !== null) {
             return $permissions; // Cached already.
         }
         $WpDb = s::wpDb(); // WP database object class.
@@ -301,6 +434,6 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
             }
         } // unset($_key, $_data); // Housekeeping.
 
-        return s::applyFilters('user_permissions', $permissions, $user_id);
+        return s::applyFilters('user_permissions', $permissions, $user_id, $include_trash);
     }
 }

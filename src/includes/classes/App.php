@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160510'; //v//
+    const VERSION = '160512'; //v//
 
     /**
      * Constructor.
@@ -79,6 +79,11 @@ class App extends SCoreClasses\App
                 'security_gate_redirect_to_args_enable' => '1',
                 'orders_always_grant_immediate_access'  => '1',
             ],
+            '§conflicts' => [
+                '§plugins' => [
+                    'woocommerce-membership' => 'WooCommerce Membership',
+                ], // <https://www.woothemes.com/products/woocommerce-memberships/>
+            ],
             '§dependencies' => [
                 '§plugins' => [
                     'woocommerce' => [
@@ -110,12 +115,8 @@ class App extends SCoreClasses\App
                 '§on_install' => function (array $installion_history) {
                     return [
                         'is_transient' => true,
-                        'markup'       => sprintf(
-                            __('<strong>%1$s</strong> v%2$s installed successfully.<br />You can get started by <a href="%3$s">creating your first \'Restriction\'</a>', 's2member-x'),
-                            esc_html($this->Config->©brand['©name']),
-                            esc_html($this->c::version()),
-                            esc_url(a::createRestrictionUrl())
-                        ),
+                        'markup'       => '<p>'.sprintf(__('<strong>%1$s</strong> v%2$s installed successfully. You can get started by creating a \'Restriction\'.', 's2member-x'), esc_html($this->Config->©brand['©name']), esc_html($this->c::version())).'</p>'.
+                            '<p>'.sprintf(__('<a href="%1$s" class="button" style="text-decoration:none;">Create Restriction</a>', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>',
                     ];
                 },
             ],
@@ -149,6 +150,7 @@ class App extends SCoreClasses\App
             # Misc. variables.
 
             $is_admin = is_admin();
+            $is_multisite = is_multisite();
 
             # Restriction-related hooks.
 
@@ -168,6 +170,13 @@ class App extends SCoreClasses\App
             }
             # User-related hooks; including role/capability filters.
 
+            add_action('delete_user', [$this->Utils->UserPermissions, 'onDeleteUser']);
+            add_action('wpmu_delete_user', [$this->Utils->UserPermissions, 'onDeleteNetworkUser']);
+
+            add_action('trashed_post', [$this->Utils->UserPermissions, 'onTrashedPost']);
+            add_action('untrashed_post', [$this->Utils->UserPermissions, 'onUntrashedPost']);
+            add_action('before_delete_post', [$this->Utils->UserPermissions, 'onBeforeDeletePost']);
+
             add_filter('user_has_cap', [$this->Utils->UserPermissions, 'onUserHasCap'], 1000, 4);
             add_action('clean_user_cache', [$this->Utils->UserPermissions, 'onCleanUserCache']);
 
@@ -175,11 +184,11 @@ class App extends SCoreClasses\App
                 add_shortcode($if_shortcode_names[] = str_repeat('_', $_i).$if_shortcode_name, [$this->Utils->UserPermissionShortcodes, 'onIf']);
             } // unset($_i); // Housekeeping.
 
+            add_filter('widget_text', 'do_shortcode'); // Enable shortcodes in widgets.
+
             add_filter('no_texturize_shortcodes', function (array $shortcodes) use ($if_shortcode_names) {
                 return array_merge($shortcodes, $if_shortcode_names);
             }); // See: <http://jas.xyz/24AusB7> for more about this filter.
-
-            add_filter('widget_text', 'do_shortcode'); // Enable shortcodes in widgets.
 
             if ($is_admin) { // Admin areas only.
                 add_action('current_screen', [$this->Utils->UserPermissionsWidget, 'onCurrentScreen']);
@@ -194,8 +203,8 @@ class App extends SCoreClasses\App
             }
             # Order-related hooks; attached to WooCommerce events.
 
-            add_action('woocommerce_order_status_completed', [$this->Utils->UserWcPermissions, 'onOrderStatusComplete']);
-            add_action('woocommerce_order_status_processing', [$this->Utils->UserWcPermissions, 'onOrderStatusProcessing']);
+            add_action('woocommerce_order_status_changed', [$this->Utils->UserWcPermissions, 'onOrderStatusChanged'], 1000, 3);
+            add_action('woocommerce_subscription_status_changed', [$this->Utils->UserWcPermissions, 'onSubscriptionStatusChanged'], 1000, 3);
 
             # Security gate; always after the `restriction` post type registration.
 

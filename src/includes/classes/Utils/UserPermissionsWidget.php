@@ -68,15 +68,42 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     }
 
     /**
+     * Is a profile edit page?
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @return bool True if is a profile edit page.
+     */
+    protected function isProfileEditPage(int $user_id = null): bool
+    {
+        return in_array(s::menuPageNow(), ['profile.php', 'user-edit.php'], true);
+    }
+
+    /**
+     * Current user can edit permissions?
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @param int|null $user_id User ID that is being edited.
+     *
+     * @return bool True if the current user can.
+     */
+    protected function currentUserCan(int $user_id = null): bool
+    {
+        return current_user_can('edit_users') && current_user_can('promote_users')
+            && (!$user_id || current_user_can('edit_user', $user_id));
+    }
+
+    /**
      * Get screen object.
      *
      * @since 16xxxx Restrictions.
      */
     public function onCurrentScreen(\WP_Screen $screen)
     {
-        if (!in_array(s::menuPageNow(), ['profile.php', 'user-edit.php'], true)) {
+        if (!$this->isProfileEditPage()) {
             return; // Not applicable.
-        } elseif (!current_user_can('edit_users') || !current_user_can('promote_users')) {
+        } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
         }
         $this->screen           = $screen;
@@ -90,11 +117,9 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
      */
     public function onAdminEnqueueScripts()
     {
-        if (!in_array(s::menuPageNow(), ['profile.php', 'user-edit.php'], true)) {
+        if (!$this->isProfileEditPage()) {
             return; // Not applicable.
-        } elseif (!current_user_can('edit_users') || !current_user_can('promote_users')) {
-            return; // Not applicable.
-        } elseif (empty($GLOBALS['user_id']) || !current_user_can('edit_user', $GLOBALS['user_id'])) {
+        } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
         }
         s::enqueueMomentLibs();
@@ -125,16 +150,17 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'accessTimeTitle'       => _x('Starts', 'user-permissions-widget', 's2member-x'),
                     'accessDatePlaceholder' => _x('date', 'user-permissions-widget', 's2member-x'),
                     'accessTimePlaceholder' => _x('time', 'user-permissions-widget', 's2member-x'),
-                    'emptyAccessDateTime'   => _x('—', 'user-permissions-widget', 's2member-x'),
+                    'emptyAccessDateTime'   => _x('immediately', 'user-permissions-widget', 's2member-x'),
 
                     'expireTimeTitle'       => _x('Ends', 'user-permissions-widget', 's2member-x'),
                     'expireTimeViaTitle'    => _x('Ends Via', 'user-permissions-widget', 's2member-x'),
                     'expireTimeViaIdTitle'  => _x('Ends Via ID', 'user-permissions-widget', 's2member-x'),
                     'expireDatePlaceholder' => _x('date', 'user-permissions-widget', 's2member-x'),
                     'expireTimePlaceholder' => _x('time', 'user-permissions-widget', 's2member-x'),
-                    'emptyExpireDateTime'   => _x('—', 'user-permissions-widget', 's2member-x'),
+                    'emptyExpireDateTime'   => _x('n/a; ongoing', 'user-permissions-widget', 's2member-x'),
 
                     'isEnabledTitle'    => _x('Enabled?', 'user-permissions-widget', 's2member-x'),
+                    'isTrashedTitle'    => _x('Trashed?', 'user-permissions-widget', 's2member-x'),
                     'displayOrderTitle' => _x('Display Order', 'user-permissions-widget', 's2member-x'),
 
                     'insertionTimeTitle'  => _x('Insertion Time', 'user-permissions-widget', 's2member-x'),
@@ -163,11 +189,11 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
      */
     public function onEditUserProfile(\WP_User $WP_User)
     {
-        if (!current_user_can('edit_users')) {
+        $user_id = (int) $WP_User->ID; // Force integer.
+
+        if (!$this->isProfileEditPage()) {
             return; // Not applicable.
-        } elseif (!current_user_can('promote_users')) {
-            return; // Not applicable.
-        } elseif (!current_user_can('edit_user', $WP_User->ID)) {
+        } elseif (!$this->currentUserCan($user_id)) {
             return; // Not applicable.
         }
         $restriction_titles_by_id = a::restrictionTitlesById();
@@ -186,7 +212,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         } else {
             echo    '<p style="font-style:italic;">'.__('<strong>Note:</strong> Start and End dates are optional. No Start Date = starts immediately. If no End Date, access is indefinite. Unchecking the \'Enabled\' box will temporarily suspend access.', 's2member-x').'</p>';
 
-            echo    '<input class="-user-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode(array_values(a::userPermissions($WP_User->ID)))).'" />';
+            echo    '<input class="-user-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode(array_values(a::userPermissions($user_id, false)))).'" />';
             echo    '<input class="-restriction-titles-by-id" type="hidden" value="'.esc_attr(json_encode(a::restrictionTitlesById())).'" />';
 
             echo    '<div class="-grid" data-toggle="jquery-jsgrid"></div>';
@@ -205,18 +231,17 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     {
         $user_id = (int) $user_id; // Force integer.
 
-        if (!current_user_can('edit_users')) {
+        if (!$this->isProfileEditPage()) {
             return; // Not applicable.
-        } elseif (!current_user_can('promote_users')) {
-            return; // Not applicable.
-        } elseif (!current_user_can('edit_user', $user_id)) {
+        } elseif (!$this->currentUserCan($user_id)) {
             return; // Not applicable.
         } elseif (!isset($_REQUEST[$this->client_side_prefix.'_permissions'])) {
             return; // Not applicable.
         }
         // Initialize old/new permission arrays.
+        // Note that `$old_permissions` excludes trash.
 
-        $old_permissions = a::userPermissions($user_id);
+        $old_permissions = a::userPermissions($user_id, false);
         $new_permissions = []; // Initialize.
 
         // Collect and build the array of new permissions.
@@ -237,10 +262,11 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         } // unset($_key, $_r_permission, $_r_permission_key); // Houskeeping.
 
         // Delete old permissions that do not appear in the new permissions array.
+        // Note that `$old_permissions` excludes trashed permissions intentionally here.
 
         foreach ($old_permissions as $_UserPermission) {
             if (!isset($new_permissions[$_UserPermission->ID])) {
-                $_UserPermission->delete();
+                $_UserPermission->delete(); // Delete old permission.
             }
         } // unset($_UserPermission); // Housekeeping.
 
