@@ -142,10 +142,11 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'restrictionIdStatusIsScheduled' => _x('Access Scheduled', 'user-permissions-widget', 's2member-x'),
                     'restrictionIdStatusIsExpired'   => _x('Access Expired', 'user-permissions-widget', 's2member-x'),
 
-                    'idTitle'        => _x('ID', 'user-permissions-widget', 's2member-x'),
-                    'userIdTitle'    => _x('User ID', 'user-permissions-widget', 's2member-x'),
-                    'orderIdTitle'   => _x('Order ID', 'user-permissions-widget', 's2member-x'),
-                    'productIdTitle' => _x('Product ID', 'user-permissions-widget', 's2member-x'),
+                    'idTitle'             => _x('ID', 'user-permissions-widget', 's2member-x'),
+                    'userIdTitle'         => _x('User ID', 'user-permissions-widget', 's2member-x'),
+                    'orderIdTitle'        => _x('Order ID', 'user-permissions-widget', 's2member-x'),
+                    'subscriptionIdTitle' => _x('Subscription ID', 'user-permissions-widget', 's2member-x'),
+                    'productIdTitle'      => _x('Product ID', 'user-permissions-widget', 's2member-x'),
 
                     'accessTimeTitle'       => _x('Starts', 'user-permissions-widget', 's2member-x'),
                     'accessDatePlaceholder' => _x('date', 'user-permissions-widget', 's2member-x'),

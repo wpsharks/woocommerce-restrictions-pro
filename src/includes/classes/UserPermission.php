@@ -60,8 +60,9 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         $this->user_id = (int) ($data->user_id ?? 0);
         unset($data->ID, $data->user_id); // Read-only.
 
-        $data->order_id   = (int) ($data->order_id ?? 0);
-        $data->product_id = (int) ($data->product_id ?? 0);
+        $data->order_id        = (int) ($data->order_id ?? 0);
+        $data->subscription_id = (int) ($data->subscription_id ?? 0);
+        $data->product_id      = (int) ($data->product_id ?? 0);
 
         $data->restriction_id          = (int) ($data->restriction_id ?? 0);
         $data->original_restriction_id = (int) ($data->original_restriction_id ?? 0);

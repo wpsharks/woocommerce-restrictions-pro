@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS `%%table%%` (
   `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `order_id` bigint(20) UNSIGNED NOT NULL,
+  `subscription_id` bigint(20) UNSIGNED NOT NULL,
   `product_id` bigint(20) UNSIGNED NOT NULL,
 
   `restriction_id` bigint(20) UNSIGNED NOT NULL,

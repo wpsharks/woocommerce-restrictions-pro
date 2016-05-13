@@ -66,6 +66,13 @@
         }, {
           type: 'number',
           align: 'center',
+          name: 'subscription_id',
+          title: data.i18n.subscriptionIdTitle,
+
+          visible: false,
+        }, {
+          type: 'number',
+          align: 'center',
           name: 'product_id',
           title: data.i18n.productIdTitle,
 
