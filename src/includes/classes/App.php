@@ -115,8 +115,8 @@ class App extends SCoreClasses\App
                 '§on_install' => function (array $installion_history) {
                     return [
                         'is_transient' => true,
-                        'markup'       => '<p>'.sprintf(__('<strong>%1$s</strong> v%2$s installed successfully. You can get started by creating a \'Restriction\'.', 's2member-x'), esc_html($this->Config->©brand['©name']), esc_html($this->c::version())).'</p>'.
-                            '<p>'.sprintf(__('<a href="%1$s" class="button" style="text-decoration:none;">Create Restriction</a>', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>',
+                        'markup'       => '<p>'.sprintf(__('<strong>%1$s</strong> v%2$s installed successfully.', 's2member-x'), esc_html($this->Config->©brand['©name']), esc_html($this->c::version())).'</p>'.
+                            '<p>'.sprintf(__('~ Start by protecting some of your content: <a href="%1$s" class="button" style="text-decoration:none;">Create Restriction</a>', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>',
                     ];
                 },
             ],
