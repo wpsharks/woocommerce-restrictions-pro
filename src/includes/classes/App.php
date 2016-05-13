@@ -115,8 +115,8 @@ class App extends SCoreClasses\App
                 '§on_install' => function (array $installion_history) {
                     return [
                         'is_transient' => true,
-                        'markup'       => '<p>'.sprintf(__('<strong>%1$s</strong> v%2$s installed successfully.', 's2member-x'), esc_html($this->Config->©brand['©name']), esc_html($this->c::version())).'</p>'.
-                            '<p>'.sprintf(__('~ Start by protecting some of your content: <a href="%1$s" class="button" style="text-decoration:none;">Create Restriction</a>', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>',
+                        'markup'       => '<p>'.sprintf(__('<strong>%1$s</strong> v%2$s installed successfully.', 's2member-x'), esc_html($this->Config->©brand['©name']), esc_html($this->c::version())).'<br />'.
+                            sprintf(__('~ Start by protecting some of your content: <a href="%1$s" class="button" style="text-decoration:none;">Create Restriction</a>', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>',
                     ];
                 },
             ],
@@ -205,6 +205,12 @@ class App extends SCoreClasses\App
 
             add_action('woocommerce_order_status_changed', [$this->Utils->UserWcPermissions, 'onOrderStatusChanged'], 1000, 3);
             add_action('woocommerce_subscription_status_changed', [$this->Utils->UserWcPermissions, 'onSubscriptionStatusChanged'], 1000, 3);
+            add_action('woocommerce_subscriptions_switched_item', [$this->Utils->UserWcPermissions, 'onSubscriptionItemSwitched'], 1000, 3);
+
+            // @TODO Force users to register during checkout when cart contains a restriction.
+            // @TODO See: https://github.com/woothemes/woocommerce/blob/653f79b25b79f953af04a4d1cf28f34ba5c862c9/includes/class-wc-checkout.php#L95-L97
+            // @TODO Via hook: woocommerce_before_checkout_form (and others too).
+            // @TODO Search for `woocommerce_before_checkout_form` in the subscriptions plugin for examples of how to do this.
 
             # Security gate; always after the `restriction` post type registration.
 

@@ -66,20 +66,30 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
 
         $this->core_product_types = [
             'simple', // Covers most products sold w/ WC.
-            'grouped', // A collection of other products; i.e., a group of products.
+            'variation', // A variable product variation.
+            // ↑ These two product types can become line-items.
+
+            'variable', // Variable product; i.e., sells a variation.
+            // Forms a group of variations that aim to sell a `variation`.
+
             'external', // Listed in the storefront but sold elsewhere.
-            'variable', // A variable product; i.e., has variations.
-            'variation', // A product variation.
+            // An external product is never sold, it is sold externally.
+
+            'grouped', // A collection of other products; i.e., a group of products.
+            // A group product is never sold; it only forms a group of others.
         ];
         $this->subscription_product_types = [
-            'subscription', // Cover most subscriptions sold w/ WC.
-            'variable-subscription', 'variable_subscription', // A variable subscription; i.e., has variations.
+            'subscription', // Covers most subscriptions sold w/ WooCommerce.
             'subscription-variation', 'subscription_variation', // A subscription variation.
-        ];
-        // There is some inconsistency in the WC subscriptions plugin.
-        // In some places they use a dash, and in others it uses an underscore.
-        // The official definition is with an `_`, but that seems likely to change.
+            // ↑ These two product types can become line-items.
 
+            'variable-subscription', 'variable_subscription', // Variable subscription; i.e., has variations.
+            // Forms a group of subscription variations that aim to sell a `subscription-variation`.
+
+            // There is some inconsistency in the WC subscriptions plugin.
+            // In some places they use a dash, and in others it uses an underscore.
+            // The official definition is with an `_`, but that seems likely to change.
+        ];
         $this->all_product_types = array_keys(wc_get_product_types()); // Without a `wc-` prefix.
     }
 
@@ -117,14 +127,16 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
             return; // Not possible.
         } elseif (!($WC_Order = wc_get_order($order_id))) {
             return; // Not possible.
-        } elseif (!($WC_Order instanceof \WC_Order)) {
-            return; // Not possible.
         }
-        if (in_array($new_status, ['processing', 'completed'], true)) {
-            if ($new_status === 'completed' || s::getOption('orders_always_grant_immediate_access')) {
+        $always_grant_statuses = s::applyFilters('always_grant_user_persmissions_on_order_statuses', ['completed'], $WC_Order);
+        $grant_statuses        = s::applyFilters('grant_user_persmissions_on_order_statuses', ['processing', 'completed'], $WC_Order);
+        $revoke_statuses       = s::applyFilters('revoke_user_persmissions_on_order_statuses', ['pending', 'on-hold', 'cancelled', 'refunded', 'failed'], $WC_Order);
+
+        if (in_array($new_status, $grant_statuses, true)) {
+            if (in_array($new_status, $always_grant_statuses, true) || s::getOption('orders_always_grant_immediate_access')) {
                 $this->maybeGrantOrderPermissions($WC_Order, $old_status, $new_status);
             }
-        } elseif (in_array($new_status, ['on-hold', 'cancelled', 'refunded', 'failed'], true)) {
+        } elseif (in_array($new_status, $revoke_statuses, true)) {
             $this->maybeRevokeOrderPermissions($WC_Order, $old_status, $new_status);
         }
         file_put_contents(WP_CONTENT_DIR.'/order-status-change.log', print_r(compact('WC_Order', 'new_status', 'old_status'), true)."\n\n", FILE_APPEND);
@@ -151,15 +163,29 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
      *
      * - `on-hold` Also occurs before a renewal is processed, which could fail.
      *             If a renewal fails the `on-hold` status remains and it does not become `active` again.
+     *             This is also another word for `suspend`; i.e., suspending a subscription puts it `on-hold`.
      *
      * - `cancelled` Cancelled by an admin or user in one way or another.
      *               e.g., when a subscription reaches the end of a trial and there is no payment.
      *               - A cancellation event may also occur after a `pending-cancel` status.
      *                 e.g., when a cancellation occurs but prepaid time still remains.
      *               - Also occurs before a subscription is trashed/deleted.
+     *               - Also occurs when a parent order is trashed/deleted.
      *               - Also occurs on max failed payments.
      *
-     * - `switched` @TODO Figure out exactly when this occurs.
+     *               When a subscription is trashed it is `cancelled`, and it is currently
+     *               impossible to restore the subscription in any meaningful/effective way.
+     *               Once trashed, it can be restored, but it remains in a `cancelled` state.
+     *               Attempting to change the status manually is also impossible.
+     *               i.e., Only the `cancelled` option is made available in the UI.
+     *
+     *               Another strange behavior is that trashing a parent order will somehow
+     *               break the connection between the parent order and the child subscription.
+     *               Once a parent order is trashed, the connection is broken and cannot be restored.
+     *
+     * - `switched` Deprecated in 2.0. This doesn't seem to be used any longer.
+     *              Instead use hook: `woocommerce_subscriptions_switched_item`.
+     *              ~ See {@link onSubscriptionItemSwitched()} below.
      *
      * - `expired` This is a lot like `cancelled`, except this occurs whenever a subscription
      *             reaches a fixed end date; e.g., valid from A until B (expires on B date).
@@ -174,14 +200,16 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
             return; // Not possible.
         } elseif (!($WC_Subscription = wcs_get_subscription($subscription_id))) {
             return; // Not possible.
-        } elseif (!($WC_Subscription instanceof \WC_Subscription)) {
-            return; // Not possible.
         }
-        if (in_array($new_status, ['active'], true)) {
-            if ($new_status === 'active' || s::getOption('orders_always_grant_immediate_access')) {
+        $always_grant_statuses = s::applyFilters('always_grant_user_persmissions_on_subscription_statuses', ['active'], $WC_Subscription);
+        $grant_statuses        = s::applyFilters('grant_user_persmissions_on_subscription_statuses', ['active'], $WC_Subscription);
+        $revoke_statuses       = s::applyFilters('revoke_user_persmissions_on_subscription_statuses', ['pending', 'on-hold', 'cancelled', 'switched', 'expired'], $WC_Subscription);
+
+        if (in_array($new_status, $grant_statuses, true)) {
+            if (in_array($new_status, $always_grant_statuses, true) || s::getOption('orders_always_grant_immediate_access')) {
                 $this->maybeGrantSubscriptionPermissions($WC_Subscription, $old_status, $new_status);
             }
-        } elseif (in_array($new_status, ['on-hold', 'cancelled', 'expired'], true)) {
+        } elseif (in_array($new_status, $revoke_statuses, true)) {
             $this->maybeRevokeSubscriptionPermissions($WC_Subscription, $old_status, $new_status);
         }
         file_put_contents(WP_CONTENT_DIR.'/subscription-status-change.log', print_r(compact('WC_Subscription', 'new_status', 'old_status'), true)."\n\n", FILE_APPEND);
@@ -206,6 +234,9 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
         foreach ($WC_Order->get_items() ?: [] as $_item) {
             if (($_WC_Product = $WC_Order->get_product_from_item($_item)) && $_WC_Product->exists()) {
                 if (!$_WC_Product->is_type($this->subscription_product_types)) {
+                    // Don't handle subscription product types here.
+                    // Instead, we handle subscription-based status changes.
+
                     file_put_contents(WP_CONTENT_DIR.'/order-grant-permissions.log', print_r(compact('_WC_Product'), true)."\n\n", FILE_APPEND);
                     // @TODO
                 }
@@ -231,12 +262,38 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
 
         foreach ($WC_Subscription->get_items() ?: [] as $_item) {
             if (($_WC_Product = $WC_Subscription->get_product_from_item($_item)) && $_WC_Product->exists()) {
-                if ($_WC_Product->is_type($this->subscription_product_types)) {
-                    file_put_contents(WP_CONTENT_DIR.'/subscription-grant-permissions.log', print_r(compact('_WC_Product'), true)."\n\n", FILE_APPEND);
-                    // @TODO
-                }
+                // Any type of product can be an item in a subscription; it's just like an order.
+                // While we don't handle subscription product types when an order status changes, we DO handle
+                // any type of product that is in a subscription; i.e., we don't check the product type here.
+
+                // Under normal circumstances subscriptions will only contain subscription products. That's what a subscription is intended for.
+                // However, if a subscription is created manually by a site owner, it may contain any line-item products that a site owner added to it.
+                // So for instance, if a site owner creates a new subscription manually and adds three line-items, and one of those is a `simple` product,
+                // we need to handle that here, even though it wouldn't ordinarily be associated with a subscription; it is if the site owner creates it that way.
+
+                file_put_contents(WP_CONTENT_DIR.'/subscription-grant-permissions.log', print_r(compact('_WC_Product'), true)."\n\n", FILE_APPEND);
+                // @TODO
             }
         } // unset($_item, $_WC_Product); // Housekeeping.
+    }
+
+    /**
+     * Maybe switch subscription permissions.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param \WC_Subscription $WC_Subscription Subscription instance.
+     * @param array            $new_item        The new item data.
+     * @param array            $old_item        The old item data.
+     */
+    public function onSubscriptionItemSwitched(\WC_Subscription $WC_Subscription, array $new_item, array $old_item)
+    {
+        if (!($new_WP_Product = $WC_Subscription->get_product_from_item($new_item)) || !$new_WP_Product->exists()) {
+            return; // Not possible; unable to acquire new product.
+        } elseif (!($old_WP_Product = $WC_Subscription->get_product_from_item($old_item)) || !$old_WP_Product->exists()) {
+            return; // Not possible; unable to acquire new product.
+        }
+        file_put_contents(WP_CONTENT_DIR.'/subscription-switch-permissions.log', print_r(compact('WC_Subscription', 'new_WP_Product', 'old_WP_Product'), true)."\n\n", FILE_APPEND);
     }
 
     /**
@@ -258,6 +315,9 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
         foreach ($WC_Order->get_items() ?: [] as $_item) {
             if (($_WC_Product = $WC_Order->get_product_from_item($_item)) && $_WC_Product->exists()) {
                 if (!$_WC_Product->is_type($this->subscription_product_types)) {
+                    // Don't handle subscription product types here.
+                    // Instead, we handle subscription-based status changes.
+
                     file_put_contents(WP_CONTENT_DIR.'/order-revoke-permissions.log', print_r(compact('_WC_Product'), true)."\n\n", FILE_APPEND);
                     // @TODO
                 }
@@ -283,10 +343,17 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
 
         foreach ($WC_Subscription->get_items() ?: [] as $_item) {
             if (($_WC_Product = $WC_Subscription->get_product_from_item($_item)) && $_WC_Product->exists()) {
-                if ($_WC_Product->is_type($this->subscription_product_types)) {
-                    file_put_contents(WP_CONTENT_DIR.'/subscription-revoke-permissions.log', print_r(compact('_WC_Product'), true)."\n\n", FILE_APPEND);
-                    // @TODO
-                }
+                // Any type of product can be an item in a subscription; it's just like an order.
+                // While we don't handle subscription product types when an order status changes, we DO handle
+                // any type of product that is in a subscription; i.e., we don't check the product type here.
+
+                // Under normal circumstances subscriptions will only contain subscription products. That's what a subscription is intended for.
+                // However, if a subscription is created manually by a site owner, it may contain any line-item products that a site owner added to it.
+                // So for instance, if a site owner creates a new subscription manually and adds three line-items, and one of those is a `simple` product,
+                // we need to handle that here, even though it wouldn't ordinarily be associated with a subscription; it is if the site owner creates it that way.
+
+                file_put_contents(WP_CONTENT_DIR.'/subscription-revoke-permissions.log', print_r(compact('_WC_Product'), true)."\n\n", FILE_APPEND);
+                // @TODO
             }
         } // unset($_item, $_WC_Product); // Housekeeping.
     }
