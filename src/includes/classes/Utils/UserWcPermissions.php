@@ -73,10 +73,10 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
             // Forms a group of variations that aim to sell a `variation`.
 
             'external', // Listed in the storefront but sold elsewhere.
-            // An external product is never sold, it is sold externally.
+            // An external product is never a line-item, it is sold externally.
 
             'grouped', // A collection of other products; i.e., a group of products.
-            // A group product is never sold; it only forms a group of others.
+            // A group product is never a line-item; it only forms a group of others.
         ];
         $this->subscription_product_types = [
             'subscription', // Covers most subscriptions sold w/ WooCommerce.
