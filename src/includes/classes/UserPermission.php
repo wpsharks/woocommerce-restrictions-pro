@@ -64,18 +64,11 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         $data->subscription_id = (int) ($data->subscription_id ?? 0);
         $data->product_id      = (int) ($data->product_id ?? 0);
 
-        $data->restriction_id          = (int) ($data->restriction_id ?? 0);
-        $data->original_restriction_id = (int) ($data->original_restriction_id ?? 0);
+        $data->restriction_id = (int) ($data->restriction_id ?? 0);
+        $data->access_time    = (int) ($data->access_time ?? 0);
+        $data->expire_time    = (int) ($data->expire_time ?? 0);
 
-        $data->access_time          = (int) ($data->access_time ?? 0);
-        $data->original_access_time = (int) ($data->original_access_time ?? 0);
-
-        $data->expire_time          = (int) ($data->expire_time ?? 0);
-        $data->expire_time_via      = (string) ($data->expire_time_via ?? '');
-        $data->expire_time_via_id   = (int) ($data->expire_time_via_id ?? 0);
-        $data->original_expire_time = (int) ($data->original_expire_time ?? 0);
-
-        $data->is_enabled = (int) ($data->is_enabled ?? 0);
+        $data->status     = mb_strtolower((string) ($data->status ?? ''));
         $data->is_trashed = (int) ($data->is_trashed ?? 0);
 
         $data->display_order = (int) ($data->display_order ?? 0);
@@ -96,11 +89,8 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
      */
     public function isAllowed(): bool
     {
-        if (!$this->is_enabled) {
-            return false;
-        }
-        if ($this->is_trashed) {
-            return false;
+        if ($this->is_trashed || $this->status !== 'active') {
+            return false; // Not an active permission.
         }
         $time = time(); // Needed below.
 
@@ -188,10 +178,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
             s::doAction('user_permissions_updated', $where, $update_data);
             //
         } else { // Insertion of a brand new permission.
-            $this->original_restriction_id = $this->restriction_id;
-            $this->original_access_time    = $this->access_time;
-            $this->original_expire_time    = $this->expire_time;
-            $this->insertion_time          = $this->last_update_time          = time();
+            $this->insertion_time = $this->last_update_time = time();
 
             $insert_data = c::cloneArray($this->¤¤overload);
             unset($insert_data['ID']); // Exclude primary key ID.

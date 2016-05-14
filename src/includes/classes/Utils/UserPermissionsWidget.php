@@ -136,47 +136,50 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'mobile' => $this->screen_is_mobile,
                 ],
                 'i18n' => [
-                    'restrictionIdTitle'             => _x('Access', 'user-permissions-widget', 's2member-x'),
-                    'restrictionIdStatusIsAllowed'   => _x('Access Granted', 'user-permissions-widget', 's2member-x'),
-                    'restrictionIdStatusIsDisabled'  => _x('Temporarily Disabled', 'user-permissions-widget', 's2member-x'),
-                    'restrictionIdStatusIsScheduled' => _x('Access Scheduled', 'user-permissions-widget', 's2member-x'),
-                    'restrictionIdStatusIsExpired'   => _x('Access Expired', 'user-permissions-widget', 's2member-x'),
+                    'idTitle'     => _x('ID', 'user-permissions-widget', 's2member-x'),
+                    'userIdTitle' => _x('User ID', 'user-permissions-widget', 's2member-x'),
 
-                    'idTitle'             => _x('ID', 'user-permissions-widget', 's2member-x'),
-                    'userIdTitle'         => _x('User ID', 'user-permissions-widget', 's2member-x'),
                     'orderIdTitle'        => _x('Order ID', 'user-permissions-widget', 's2member-x'),
                     'subscriptionIdTitle' => _x('Subscription ID', 'user-permissions-widget', 's2member-x'),
                     'productIdTitle'      => _x('Product ID', 'user-permissions-widget', 's2member-x'),
 
-                    'accessTimeTitle'       => _x('Starts', 'user-permissions-widget', 's2member-x'),
-                    'accessDatePlaceholder' => _x('date', 'user-permissions-widget', 's2member-x'),
-                    'accessTimePlaceholder' => _x('time', 'user-permissions-widget', 's2member-x'),
-                    'emptyAccessDateTime'   => _x('immediately', 'user-permissions-widget', 's2member-x'),
+                    'restrictionIdTitle'             => _x('Access', 'user-permissions-widget', 's2member-x'),
+                    'restrictionIdStatusIsAllowed'   => _x('Access Granted', 'user-permissions-widget', 's2member-x'),
+                    'restrictionIdStatusIsInactive'  => _x('Access Inactive', 'user-permissions-widget', 's2member-x'),
+                    'restrictionIdStatusIsScheduled' => _x('Access Scheduled', 'user-permissions-widget', 's2member-x'),
+                    'restrictionIdStatusIsExpired'   => _x('Access Expired', 'user-permissions-widget', 's2member-x'),
+                    'restrictionAccessRequired'      => _x('Restriction \'Access\' is empty.', 'user-permissions-widget', 's2member-x'),
 
-                    'expireTimeTitle'       => _x('Ends', 'user-permissions-widget', 's2member-x'),
-                    'expireTimeViaTitle'    => _x('Ends Via', 'user-permissions-widget', 's2member-x'),
-                    'expireTimeViaIdTitle'  => _x('Ends Via ID', 'user-permissions-widget', 's2member-x'),
-                    'expireDatePlaceholder' => _x('date', 'user-permissions-widget', 's2member-x'),
-                    'expireTimePlaceholder' => _x('time', 'user-permissions-widget', 's2member-x'),
-                    'emptyExpireDateTime'   => _x('n/a; ongoing', 'user-permissions-widget', 's2member-x'),
+                    'accessTimeTitle'        => _x('Starts', 'user-permissions-widget', 's2member-x'),
+                    'accessDatePlaceholder'  => _x('date', 'user-permissions-widget', 's2member-x'),
+                    'accessTimePlaceholder'  => _x('time', 'user-permissions-widget', 's2member-x'),
+                    'emptyAccessDateTime'    => _x('immediately', 'user-permissions-widget', 's2member-x'),
+                    'accessTimeLtExpireTime' => _x('When both are given, \'Starts\' must come before \'Ends\'.', 'user-permissions-widget', 's2member-x'),
 
-                    'isEnabledTitle'    => _x('Enabled?', 'user-permissions-widget', 's2member-x'),
-                    'isTrashedTitle'    => _x('Trashed?', 'user-permissions-widget', 's2member-x'),
+                    'expireTimeTitle'                 => _x('Ends', 'user-permissions-widget', 's2member-x'),
+                    'expireDatePlaceholder'           => _x('date', 'user-permissions-widget', 's2member-x'),
+                    'expireTimePlaceholder'           => _x('time', 'user-permissions-widget', 's2member-x'),
+                    'emptyExpireDateTime'             => _x('never', 'user-permissions-widget', 's2member-x'),
+                    'emptyExpireDateTimeSubscription' => _x('when subscription ends', 'user-permissions-widget', 's2member-x'),
+
+                    'statusTitle'               => _x('Status', 'user-permissions-widget', 's2member-x'),
+                    'isTrashedTitle'            => _x('Trashed?', 'user-permissions-widget', 's2member-x'),
+                    'isTrashedStatus'           => _x('Trashed', 'user-permissions-widget', 's2member-x'),
+                    'restrictionStatusRequired' => _x('Restriction \'Status\' is empty.', 'user-permissions-widget', 's2member-x'),
+
                     'displayOrderTitle' => _x('Display Order', 'user-permissions-widget', 's2member-x'),
 
                     'insertionTimeTitle'  => _x('Insertion Time', 'user-permissions-widget', 's2member-x'),
                     'lastUpdateTimeTitle' => _x('Last Update Time', 'user-permissions-widget', 's2member-x'),
 
-                    'original'                  => _x('Original', 'user-permissions-widget', 's2member-x'),
-                    'noDataContent'             => _x('No permissions yet.', 'user-permissions-widget', 's2member-x'),
-                    'restrictionAccessRequired' => _x('Restriction \'Access\' is empty.', 'user-permissions-widget', 's2member-x'),
-                    'accessTimeLtExpireTime'    => _x('When both are given, \'Starts\' must come before \'Ends\'.', 'user-permissions-widget', 's2member-x'),
-                    'notReadyToSave'            => _x('Not ready to save all changes yet...', 'user-permissions-widget', 's2member-x'),
-                    'stillInserting'            => _x('A Permission row is still pending insertion.', 'user-permissions-widget', 's2member-x'),
-                    'stillEditing'              => _x('A Permission row is still open for editing.', 'user-permissions-widget', 's2member-x'),
-                    'via'                       => _x('via', 'user-permissions-widget', 's2member-x'),
+                    'noDataContent'  => _x('No permissions yet.', 'user-permissions-widget', 's2member-x'),
+                    'notReadyToSave' => _x('Not ready to save all changes yet...', 'user-permissions-widget', 's2member-x'),
+                    'stillInserting' => _x('A Permission row is still pending insertion.', 'user-permissions-widget', 's2member-x'),
+                    'stillEditing'   => _x('A Permission row is still open for editing.', 'user-permissions-widget', 's2member-x'),
+                    'via'            => _x('via', 'user-permissions-widget', 's2member-x'),
                 ],
-                'orderViewUrl=' => admin_url('/post.php?action=edit&post='),
+                'orderViewUrl='        => admin_url('/post.php?action=edit&post='),
+                'subscriptionViewUrl=' => admin_url('/post.php?action=edit&post='),
             ]
         );
     }
@@ -211,10 +214,15 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
             echo    '<p>'.sprintf(__('It\'s not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
             echo '</div>';
         } else {
+            $user_permission_statuses = a::userPermissionStatuses();
+            unset($user_permission_statuses['trashed']); // Exclude `trashed` status.
+            $user_permissions = array_values(a::userPermissions($user_id, false)); // Exclude `trashed` status.
+
             echo    '<p style="font-style:italic;">'.__('<strong>Note:</strong> Start and End dates are optional. No Start Date = starts immediately. If no End Date, access is indefinite. Unchecking the \'Enabled\' box will temporarily suspend access.', 's2member-x').'</p>';
 
-            echo    '<input class="-user-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode(array_values(a::userPermissions($user_id, false)))).'" />';
-            echo    '<input class="-restriction-titles-by-id" type="hidden" value="'.esc_attr(json_encode(a::restrictionTitlesById())).'" />';
+            echo    '<input class="-user-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode($user_permissions)).'" />';
+            echo    '<input class="-restriction-titles-by-id" type="hidden" value="'.esc_attr(json_encode($restriction_titles_by_id)).'" />';
+            echo    '<input class="-user-permission-statuses" type="hidden" value="'.esc_attr(json_encode($user_permission_statuses)).'" />';
 
             echo    '<div class="-grid" data-toggle="jquery-jsgrid"></div>';
         }
@@ -240,10 +248,10 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
             return; // Not applicable.
         }
         // Initialize old/new permission arrays.
-        // Note that `$old_permissions` excludes trash.
+        // Note that `$old_permissions` & `$new_permissions` both exclude trash.
 
-        $old_permissions = a::userPermissions($user_id, false);
-        $new_permissions = []; // Initialize.
+        $old_permissions = a::userPermissions($user_id, false); // Exclude `trashed` status.
+        $new_permissions = []; // Excludiung `trashed` status here also, because it's not an available option.
 
         // Collect and build the array of new permissions.
 
@@ -263,13 +271,17 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         } // unset($_key, $_r_permission, $_r_permission_key); // Houskeeping.
 
         // Delete old permissions that do not appear in the new permissions array.
-        // Note that `$old_permissions` excludes trashed permissions intentionally here.
+        // Note that `trashed` permissions are not deleted here, because they have been excluded above.
 
         foreach ($old_permissions as $_UserPermission) {
             if (!isset($new_permissions[$_UserPermission->ID])) {
                 $_UserPermission->delete(); // Delete old permission.
             }
         } // unset($_UserPermission); // Housekeeping.
+
+        // Update|insert all permissions in the new array; i.e., all being saved via the widget.
+        // Any that do not have a valid `ID` (e.g., no `ID` property, or the `ID` no longer exists,
+        // will be recreated as new user permissions. See also: {@link UserPermission::update()}.
 
         foreach ($new_permissions as $_UserPermission) {
             $_UserPermission->update(); // Updates existing or inserts/saves new one.

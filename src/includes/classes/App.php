@@ -172,6 +172,7 @@ class App extends SCoreClasses\App
 
             add_action('delete_user', [$this->Utils->UserPermissions, 'onDeleteUser']);
             add_action('wpmu_delete_user', [$this->Utils->UserPermissions, 'onDeleteNetworkUser']);
+            add_action('remove_user_from_blog', [$this->Utils->UserPermissions, 'onRemoveUserFromBlog']);
 
             add_action('trashed_post', [$this->Utils->UserPermissions, 'onTrashedPost']);
             add_action('untrashed_post', [$this->Utils->UserPermissions, 'onUntrashedPost']);

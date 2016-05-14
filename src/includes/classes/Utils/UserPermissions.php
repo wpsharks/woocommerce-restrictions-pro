@@ -145,6 +145,23 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     }
 
     /**
+     * On network user removal.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param string|int $user_id User ID.
+     */
+    public function onRemoveUserFromBlog($user_id)
+    {
+        if (!is_multisite()) {
+            return; // Not applicable.
+        }
+        return $this->onDeleteUser($user_id);
+        // Note: When this is triggered we are already inside a `switch_to_blog()` ID.
+        // See: <https://developer.wordpress.org/reference/functions/remove_user_from_blog/>
+    }
+
+    /**
      * On network user deletion.
      *
      * @since 16xxxx Order-related events.
@@ -186,11 +203,29 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
         }
-        if (get_post_type($post_id) !== a::restrictionPostType()) {
-            return; // Not applicable.
+        $post_type             = get_post_type($post_id);
+        $restriction_post_type = a::restrictionPostType();
+
+        if (!in_array($post_type, ['shop_order', 'shop_subscription', $restriction_post_type], true)) {
+            return; // Not applicable against this post type.
+        }
+        switch ($post_type) { // Based on post type.
+            case 'shop_order':
+                $where = ['order_id' => $post_id];
+                break;
+
+            case 'shop_subscription':
+                $where = ['subscription_id' => $post_id];
+                break;
+
+            case $restriction_post_type:
+                $where = ['restriction_id' => $post_id];
+                break;
+
+            default: // Unexpected post type.
+                throw new Exception('Unexpected post type.');
         }
         $WpDb        = s::wpDb(); // DB instance.
-        $where       = ['restriction_id' => $post_id];
         $update_data = ['is_trashed' => 1];
 
         s::doAction('before_user_permissions_update', $where, $update_data);
@@ -212,11 +247,29 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
         }
-        if (get_post_type($post_id) !== a::restrictionPostType()) {
-            return; // Not applicable.
+        $post_type             = get_post_type($post_id);
+        $restriction_post_type = a::restrictionPostType();
+
+        if (!in_array($post_type, ['shop_order', 'shop_subscription', $restriction_post_type], true)) {
+            return; // Not applicable against this post type.
+        }
+        switch ($post_type) { // Based on post type.
+            case 'shop_order':
+                $where = ['order_id' => $post_id];
+                break;
+
+            case 'shop_subscription':
+                $where = ['subscription_id' => $post_id];
+                break;
+
+            case $restriction_post_type:
+                $where = ['restriction_id' => $post_id];
+                break;
+
+            default: // Unexpected post type.
+                throw new Exception('Unexpected post type.');
         }
         $WpDb        = s::wpDb(); // DB instance.
-        $where       = ['restriction_id' => $post_id];
         $update_data = ['is_trashed' => 0];
 
         s::doAction('before_user_permissions_update', $where, $update_data);
@@ -238,11 +291,29 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
         }
-        if (get_post_type($post_id) !== a::restrictionPostType()) {
-            return; // Not applicable.
+        $post_type             = get_post_type($post_id);
+        $restriction_post_type = a::restrictionPostType();
+
+        if (!in_array($post_type, ['shop_order', 'shop_subscription', $restriction_post_type], true)) {
+            return; // Not applicable against this post type.
         }
-        $WpDb  = s::wpDb(); // DB instance.
-        $where = ['restriction_id' => $post_id];
+        switch ($post_type) { // Based on post type.
+            case 'shop_order':
+                $where = ['order_id' => $post_id];
+                break;
+
+            case 'shop_subscription':
+                $where = ['subscription_id' => $post_id];
+                break;
+
+            case $restriction_post_type:
+                $where = ['restriction_id' => $post_id];
+                break;
+
+            default: // Unexpected post type.
+                throw new Exception('Unexpected post type.');
+        }
+        $WpDb = s::wpDb(); // DB instance.
 
         s::doAction('before_user_permissions_delete', $where);
         $WpDb->delete(s::dbPrefix().'user_permissions', $where);
@@ -417,7 +488,8 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
 
         $sql = /* Query all user permissions. */ '
             SELECT * FROM `'.esc_sql(s::dbPrefix().'user_permissions').'`
-                WHERE `user_id` = %s ORDER BY `display_order` ASC';
+                WHERE `user_id` = %s'.(!$include_trash ? ' AND `is_trashed` = 0' : '').
+            ' ORDER BY `display_order` ASC';
         $sql = $WpDb->prepare($sql, $user_id);
 
         if (!($results = $WpDb->get_results($sql))) {

@@ -14,6 +14,9 @@
     }
     var userPermissions = $.parseJSON($widget.find('.-user-permissions').val());
     var restrictionTitlesById = $.parseJSON($widget.find('.-restriction-titles-by-id').val());
+    var userPermissionStatuses = $.parseJSON($widget.find('.-user-permission-statuses').val());
+
+    // Restriction items.
 
     var restrictionItems = [{
       ID: null,
@@ -25,6 +28,20 @@
         title: title
       });
     });
+
+    // Status items.
+
+    var statusItems = [{
+      status: null,
+      title: ''
+    }]; // Initialize array.
+    $.each(statusItems, function (status, title) {
+      restrictionItems.push({
+        status: status,
+        title: title
+      });
+    });
+
     // jsGrid configuration.
 
     $grid.jsGrid($.extend({}, jsGridData.defaultOptions, {
@@ -41,7 +58,7 @@
       }, // This allows drag n' drop.
 
       fields: [
-        // Misc IDs.
+        // Assigned IDs.
         {
           type: 'number',
           align: 'center',
@@ -56,7 +73,10 @@
           title: data.i18n.userIdTitle,
 
           visible: false,
-        }, {
+        },
+
+        // Reference IDs.
+        {
           type: 'number',
           align: 'center',
           name: 'order_id',
@@ -79,7 +99,7 @@
           visible: false,
         },
 
-        // Restriction IDs.
+        // Restriction ID.
         {
           width: '30%',
           type: 'select',
@@ -109,35 +129,35 @@
             var display = '';
 
             var isAllowed = true,
-              isDisabled = false,
+              isInactive = false,
               isScheduled = false,
               isExpired = false;
 
             var currentTime = parseInt(moment.utc().format('X'));
 
-            if (!item.is_enabled) {
-              isDisabled = true;
+            if (item.is_trashed || item.status !== 'active') {
               isAllowed = false;
+              isInactive = true;
             }
             if (item.access_time) {
               if (item.access_time > currentTime) {
-                isScheduled = true;
                 isAllowed = false;
+                isScheduled = true;
               }
             }
             if (item.expire_time) {
               if (item.expire_time <= currentTime) {
-                isExpired = true;
                 isAllowed = false;
+                isExpired = true;
               }
             }
             if (value && typeof restrictionTitlesById[value] === 'string') {
               if (isAllowed) {
                 display += '<span class="dashicons dashicons-unlock" style="color:#49a642;"' +
                   ' title="' + _.escape(data.i18n.restrictionIdStatusIsAllowed) + '" data-toggle="jquery-ui-tooltip"></span>';
-              } else if (isDisabled) {
+              } else if (isInactive) {
                 display += '<span class="si si-octi-lock" style="color:#666;"' +
-                  ' title="' + _.escape(data.i18n.restrictionIdStatusIsDisabled) + '" data-toggle="jquery-ui-tooltip"></span>';
+                  ' title="' + _.escape(data.i18n.restrictionIdStatusIsInactive + ': ' + (typeof userPermissionStatuses[item.status] === 'string' ? userPermissionStatuses[item.status] : item.status)) + '" data-toggle="jquery-ui-tooltip"></span>';
               } else if (isScheduled) {
                 display += '<span class="si si-calendar-check-o" style="color:#666;"' +
                   ' title="' + _.escape(data.i18n.restrictionIdStatusIsScheduled) + '" data-toggle="jquery-ui-tooltip"></span>';
@@ -147,24 +167,21 @@
               }
               display += ' <strong>' + _.escape(restrictionTitlesById[value]) + '</strong>';
 
-              if (item.order_id) // Applied via order ID in WooCommerce?
+              if (item.order_id) { // Applied via order ID in WooCommerce?
                 display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.orderIdTitle) +
-                ' <a href="' + _.escape(data['orderViewUrl='] + encodeURIComponent(item.order_id)) + '">#' + _.escape(item.order_id) + '</a>' + '</small></em>';
+                  ' <a href="' + _.escape(data['orderViewUrl='] + encodeURIComponent(item.order_id)) + '">#' + _.escape(item.order_id) + '</a>' + '</small></em>';
+              } else if (item.subscription_id) { // Applied via subscription ID in WooCommerce?
+                display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.subscriptionIdTitle) +
+                  ' <a href="' + _.escape(data['subscriptionViewUrl='] + encodeURIComponent(item.subscription_id)) + '">#' + _.escape(item.subscription_id) + '</a>' + '</small></em>';
+              }
             }
             return display;
           }
-        }, {
-          type: 'number',
-          align: 'center',
-          name: 'original_restriction_id',
-          title: data.i18n.original + ' ' + data.i18n.restrictionIdTitle,
-
-          visible: false,
         },
 
-        // Access times.
+        // Access time.
         {
-          width: '25%',
+          width: '22.5%',
           type: 'dateTime',
           align: 'center',
           name: 'access_time',
@@ -188,18 +205,11 @@
               return '• ' + data.i18n.accessTimeLtExpireTime;
             }
           },
-        }, {
-          type: 'number',
-          align: 'center',
-          name: 'original_access_time',
-          title: data.i18n.original + ' ' + data.i18n.accessTimeTitle,
-
-          visible: false,
         },
 
-        // Expire times.
+        // Expire time.
         {
-          width: '25%',
+          width: '22.5%',
           type: 'dateTime',
           align: 'center',
           name: 'expire_time',
@@ -213,50 +223,44 @@
 
           visible: true,
           editing: true,
-          inserting: true
-        }, {
-          type: 'text',
-          align: 'center',
-          name: 'expire_time_via',
-          title: data.i18n.expireTimeViaTitle,
+          inserting: true,
 
-          visible: false,
-        }, {
-          type: 'number',
-          align: 'center',
-          name: 'expire_time_via_id',
-          title: data.i18n.expireTimeViaIdTitle,
-
-          visible: false,
-        }, {
-          type: 'number',
-          align: 'center',
-          name: 'original_expire_time',
-          title: data.i18n.original + ' ' + data.i18n.expireTimeTitle,
-
-          visible: false,
+          itemTemplate: function (value, item) {
+            if (item.subscription_id && !parseInt(timestamp)) {
+              return '<em>' + _.escape(data.i18n.emptyExpireDateTimeSubscription) + '</em>';
+            } else {
+              return this._timestampFormat(value, this.subType, true);
+            }
+          }
         },
 
-        // Enabled?
+        // Status.
         {
-          width: '10%',
-          type: 'checkbox',
+          width: '15%',
+          type: 'select',
           align: 'center',
-          name: 'is_enabled',
-          title: data.i18n.isEnabledTitle,
+          name: 'status',
+          title: data.i18n.statusTitle,
 
           visible: true,
           editing: true,
           inserting: true,
 
-          _createCheckbox: function () {
-            return $('<input type="checkbox" checked />');
-          }
-        },
+          valueField: 'status',
+          valueType: 'string',
+          textField: 'title',
 
-        // Trashed?
-        {
-          width: '10%',
+          items: statusItems,
+
+          validate: {
+            validator: function (value, item) {
+              return typeof value === 'string' && value && value !== '0';
+            },
+            message: function (value, item) {
+              return '• ' + data.i18n.restrictionStatusRequired;
+            }
+          }
+        }, {
           type: 'number',
           align: 'center',
           name: 'is_trashed',
@@ -293,6 +297,7 @@
         },
 
         // And the field controls now.
+        // This defaults to a `10%` width also.
         $.extend({}, jsGridData.controlDefaultOptions, {})
       ]
     }));
