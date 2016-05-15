@@ -48,6 +48,7 @@ class App extends SCoreClasses\App
             '©di' => [
                 '©default_rule' => [
                     'new_instances' => [
+                        ProductPermission::class,
                         UserPermission::class,
                     ],
                 ],
@@ -213,6 +214,17 @@ class App extends SCoreClasses\App
             // @TODO Via hook: woocommerce_before_checkout_form (and others too).
             // @TODO Search for `woocommerce_before_checkout_form` in the subscriptions plugin for examples of how to do this.
 
+            # Product-data and other product-related WooCommerce events.
+
+            if ($is_admin) { // Admin areas only.
+                add_action('current_screen', [$this->Utils->WcProductData, 'onCurrentScreen']);
+
+                add_action('admin_enqueue_scripts', [$this->Utils->WcProductData, 'onAdminEnqueueScripts']);
+
+                add_action('woocommerce_product_options_general_product_data', [$this->Utils->WcProductData, 'onGeneralProductData']);
+                add_action('woocommerce_product_after_variable_attributes', [$this->Utils->WcProductData, 'onAfterVariableAttributes']);
+                add_action('save_post_'.$this->Utils->WcProductData->post_type, [$this->Utils->WcProductData, 'onSavePost'], 10, 3);
+            }
             # Security gate; always after the `restriction` post type registration.
 
             // See also: <http://jas.xyz/1WlT51u> to review the BuddyPress loading order.

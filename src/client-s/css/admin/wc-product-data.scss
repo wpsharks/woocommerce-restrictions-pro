@@ -1,0 +1,29 @@
+/*
+ * Dependencies.
+ */
+@import '../../../../../wp-sharks-core/src/client-s/css/bourbon/bourbon';
+@import '../../../../../wp-sharks-core/src/client-s/css/admin/mixins/fields';
+@import '../../../../../wp-sharks-core/src/client-s/css/admin/mixins/dashicons';
+@import '../../../../../wp-sharks-core/src/client-s/css/jquery-plugins/jsgrid/enhancements';
+@import '../../../../../wp-sharks-core/src/vendor/websharks/sharkicons/src/sharkicons';
+@include sharkicons-font('../../../../../wp-sharks-core/src/vendor/websharks/sharkicons/src');
+@include sharkicon-short-classes;
+
+/*
+ * Color definitions.
+ */
+$jquery-jsgrid-insert-row-bg-color: #f1f1f1;
+
+/*
+ * Widget styles.
+ */
+#rsxqjzypgdqmrnnkkkrmgshvnnnkzzvu-product-data {
+  .-grid.jsgrid {
+    @include wp-admin-field-standards;
+    @include jquery-jsgrid-enhancements;
+
+    .jsgrid-insert-row > td {
+      background:             $jquery-jsgrid-insert-row-bg-color;
+    }
+  }
+}

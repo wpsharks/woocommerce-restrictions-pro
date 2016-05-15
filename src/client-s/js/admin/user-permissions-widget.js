@@ -35,8 +35,8 @@
       status: null,
       title: ''
     }]; // Initialize array.
-    $.each(statusItems, function (status, title) {
-      restrictionItems.push({
+    $.each(userPermissionStatuses, function (status, title) {
+      statusItems.push({
         status: status,
         title: title
       });
@@ -137,20 +137,19 @@
 
             if (item.is_trashed || item.status !== 'active') {
               isAllowed = false;
-              isInactive = true;
-            }
-            if (item.access_time) {
-              if (item.access_time > currentTime) {
-                isAllowed = false;
-                isScheduled = true;
-              }
-            }
-            if (item.expire_time) {
-              if (item.expire_time <= currentTime) {
-                isAllowed = false;
-                isExpired = true;
-              }
-            }
+              isInactive = true; // Flag true.
+            } // Access not allowed due to status.
+
+            if (item.access_time && item.access_time > currentTime) {
+              isAllowed = false;
+              isScheduled = true; // Flag as true.
+            } // Access is coming soon; i.e., scheduled.
+
+            if (item.expire_time && item.expire_time <= currentTime) {
+              isAllowed = false;
+              isExpired = true; // Flag as true.
+            } // Access has expired; i.e., no longer available.
+
             if (value && typeof restrictionTitlesById[value] === 'string') {
               if (isAllowed) {
                 display += '<span class="dashicons dashicons-unlock" style="color:#49a642;"' +
@@ -167,12 +166,20 @@
               }
               display += ' <strong>' + _.escape(restrictionTitlesById[value]) + '</strong>';
 
-              if (item.order_id) { // Applied via order ID in WooCommerce?
-                display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.orderIdTitle) +
-                  ' <a href="' + _.escape(data['orderViewUrl='] + encodeURIComponent(item.order_id)) + '">#' + _.escape(item.order_id) + '</a>' + '</small></em>';
-              } else if (item.subscription_id) { // Applied via subscription ID in WooCommerce?
-                display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.subscriptionIdTitle) +
-                  ' <a href="' + _.escape(data['subscriptionViewUrl='] + encodeURIComponent(item.subscription_id)) + '">#' + _.escape(item.subscription_id) + '</a>' + '</small></em>';
+              if (item.order_id) {
+                if (data.current_user.can_edit_shop_orders) {
+                  display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.orderIdTitle) +
+                    ' <a href="' + _.escape(data['orderViewUrl='] + encodeURIComponent(item.order_id)) + '">#' + _.escape(item.order_id) + '</a>' + '</small></em>';
+                } else {
+                  display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.orderIdTitle) + ' #' + _.escape(item.order_id) + '</small></em>';
+                }
+              } else if (item.subscription_id) {
+                if (data.current_user.can_edit_shop_subscriptions) {
+                  display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.subscriptionIdTitle) +
+                    ' <a href="' + _.escape(data['subscriptionViewUrl='] + encodeURIComponent(item.subscription_id)) + '">#' + _.escape(item.subscription_id) + '</a>' + '</small></em>';
+                } else {
+                  display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.subscriptionIdTitle) + ' #' + _.escape(item.subscription_id) + '</small></em>';
+                }
               }
             }
             return display;

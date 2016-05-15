@@ -26,6 +26,7 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
  */
 abstract class Facades
 {
+    use Traits\Facades\ProductPermission;
     use Traits\Facades\Restriction;
     use Traits\Facades\RestrictionCaps;
     use Traits\Facades\Restrictions;
@@ -35,5 +36,4 @@ abstract class Facades
     use Traits\Facades\UserPermission;
     use Traits\Facades\UserPermissions;
     use Traits\Facades\UserPermissionShortcodes;
-    use Traits\Facades\UserPermissionsWidget;
 }

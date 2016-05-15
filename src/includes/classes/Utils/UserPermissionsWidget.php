@@ -33,7 +33,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
      *
      * @type string Client-side prefix.
      */
-    public $client_side_prefix;
+    protected $client_side_prefix;
 
     /**
      * Screen.
@@ -135,6 +135,10 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                 'is' => [
                     'mobile' => $this->screen_is_mobile,
                 ],
+                'current_user' => [
+                    'can_edit_shop_orders'        => current_user_can('edit_shop_orders'),
+                    'can_edit_shop_subscriptions' => current_user_can('edit_shop_subscriptions'),
+                ],
                 'i18n' => [
                     'idTitle'     => _x('ID', 'user-permissions-widget', 's2member-x'),
                     'userIdTitle' => _x('User ID', 'user-permissions-widget', 's2member-x'),
@@ -148,7 +152,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'restrictionIdStatusIsInactive'  => _x('Access Inactive', 'user-permissions-widget', 's2member-x'),
                     'restrictionIdStatusIsScheduled' => _x('Access Scheduled', 'user-permissions-widget', 's2member-x'),
                     'restrictionIdStatusIsExpired'   => _x('Access Expired', 'user-permissions-widget', 's2member-x'),
-                    'restrictionAccessRequired'      => _x('Restriction \'Access\' is empty.', 'user-permissions-widget', 's2member-x'),
+                    'restrictionAccessRequired'      => _x('\'Access\' is empty. Please make a selection.', 'user-permissions-widget', 's2member-x'),
 
                     'accessTimeTitle'        => _x('Starts', 'user-permissions-widget', 's2member-x'),
                     'accessDatePlaceholder'  => _x('date', 'user-permissions-widget', 's2member-x'),
@@ -165,7 +169,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'statusTitle'               => _x('Status', 'user-permissions-widget', 's2member-x'),
                     'isTrashedTitle'            => _x('Trashed?', 'user-permissions-widget', 's2member-x'),
                     'isTrashedStatus'           => _x('Trashed', 'user-permissions-widget', 's2member-x'),
-                    'restrictionStatusRequired' => _x('Restriction \'Status\' is empty.', 'user-permissions-widget', 's2member-x'),
+                    'restrictionStatusRequired' => _x('\'Status\' is empty. Please make a selection.', 'user-permissions-widget', 's2member-x'),
 
                     'displayOrderTitle' => _x('Display Order', 'user-permissions-widget', 's2member-x'),
 
@@ -193,9 +197,9 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
      */
     public function onEditUserProfile(\WP_User $WP_User)
     {
-        $user_id = (int) $WP_User->ID; // Force integer.
-
-        if (!$this->isProfileEditPage()) {
+        if (!($user_id = (int) $WP_User->ID)) {
+            return; // Not possible.
+        } elseif (!$this->isProfileEditPage()) {
             return; // Not applicable.
         } elseif (!$this->currentUserCan($user_id)) {
             return; // Not applicable.
@@ -238,9 +242,9 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
      */
     public function onEditUserProfileUpdate($user_id)
     {
-        $user_id = (int) $user_id; // Force integer.
-
-        if (!$this->isProfileEditPage()) {
+        if (!($user_id = (int) $user_id)) {
+            return; // Not possible.
+        } elseif (!$this->isProfileEditPage()) {
             return; // Not applicable.
         } elseif (!$this->currentUserCan($user_id)) {
             return; // Not applicable.
@@ -255,7 +259,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
 
         // Collect and build the array of new permissions.
 
-        $_r_permissions = stripslashes((string) $_REQUEST[$this->client_side_prefix.'_permissions']);
+        $_r_permissions = c::unslash((string) $_REQUEST[$this->client_side_prefix.'_permissions']);
         if (!is_array($_r_permissions = json_decode($_r_permissions))) {
             return; // Corrupt form submission. Do not save.
         }

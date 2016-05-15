@@ -237,7 +237,7 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
                     // Don't handle subscription product types here.
                     // Instead, we handle subscription-based status changes.
 
-                    file_put_contents(WP_CONTENT_DIR.'/order-grant-permissions.log', print_r(compact('_WC_Product'), true)."\n\n", FILE_APPEND);
+                    file_put_contents(WP_CONTENT_DIR.'/order-grant-permissions.log', print_r(compact('_WC_Product', '_item'), true)."\n\n", FILE_APPEND);
                     // @TODO
                 }
             }
@@ -271,7 +271,7 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
                 // So for instance, if a site owner creates a new subscription manually and adds three line-items, and one of those is a `simple` product,
                 // we need to handle that here, even though it wouldn't ordinarily be associated with a subscription; it is if the site owner creates it that way.
 
-                file_put_contents(WP_CONTENT_DIR.'/subscription-grant-permissions.log', print_r(compact('_WC_Product'), true)."\n\n", FILE_APPEND);
+                file_put_contents(WP_CONTENT_DIR.'/subscription-grant-permissions.log', print_r(compact('_WC_Product', '_item'), true)."\n\n", FILE_APPEND);
                 // @TODO
             }
         } // unset($_item, $_WC_Product); // Housekeeping.
@@ -293,7 +293,7 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
         } elseif (!($old_WP_Product = $WC_Subscription->get_product_from_item($old_item)) || !$old_WP_Product->exists()) {
             return; // Not possible; unable to acquire new product.
         }
-        file_put_contents(WP_CONTENT_DIR.'/subscription-switch-permissions.log', print_r(compact('WC_Subscription', 'new_WP_Product', 'old_WP_Product'), true)."\n\n", FILE_APPEND);
+        file_put_contents(WP_CONTENT_DIR.'/subscription-switch-permissions.log', print_r(compact('WC_Subscription', 'new_WP_Product', 'old_WP_Product', 'new_item', 'old_item'), true)."\n\n", FILE_APPEND);
     }
 
     /**
@@ -318,7 +318,7 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
                     // Don't handle subscription product types here.
                     // Instead, we handle subscription-based status changes.
 
-                    file_put_contents(WP_CONTENT_DIR.'/order-revoke-permissions.log', print_r(compact('_WC_Product'), true)."\n\n", FILE_APPEND);
+                    file_put_contents(WP_CONTENT_DIR.'/order-revoke-permissions.log', print_r(compact('_WC_Product', '_item'), true)."\n\n", FILE_APPEND);
                     // @TODO
                 }
             }
@@ -352,7 +352,7 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
                 // So for instance, if a site owner creates a new subscription manually and adds three line-items, and one of those is a `simple` product,
                 // we need to handle that here, even though it wouldn't ordinarily be associated with a subscription; it is if the site owner creates it that way.
 
-                file_put_contents(WP_CONTENT_DIR.'/subscription-revoke-permissions.log', print_r(compact('_WC_Product'), true)."\n\n", FILE_APPEND);
+                file_put_contents(WP_CONTENT_DIR.'/subscription-revoke-permissions.log', print_r(compact('_WC_Product', '_item'), true)."\n\n", FILE_APPEND);
                 // @TODO
             }
         } // unset($_item, $_WC_Product); // Housekeeping.

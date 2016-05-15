@@ -29,7 +29,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Post type.
      *
-     * @since 16xxxx
+     * @since 16xxxx Restriction.
      *
      * @type string Post type.
      */
@@ -38,7 +38,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Meta prefix.
      *
-     * @since 16xxxx
+     * @since 16xxxx Restriction.
      *
      * @type string Meta prefix.
      */
@@ -47,7 +47,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Access RES prefix.
      *
-     * @since 16xxxx
+     * @since 16xxxx Restriction.
      *
      * @type string Access RES prefix.
      */
@@ -56,7 +56,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Access CCAP prefix.
      *
-     * @since 16xxxx
+     * @since 16xxxx Restriction.
      *
      * @type string Access CCAP prefix.
      */
@@ -65,7 +65,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Client-side prefix.
      *
-     * @since 16xxxx
+     * @since 16xxxx Restriction.
      *
      * @type string Client-side prefix.
      */
@@ -74,7 +74,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Meta keys.
      *
-     * @since 16xxxx
+     * @since 16xxxx Restriction.
      *
      * @type array Meta keys.
      */
@@ -83,16 +83,16 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Meta keys.
      *
-     * @since 16xxxx
+     * @since 16xxxx Restriction.
      *
      * @type array Meta keys.
      */
     public $int_meta_keys;
 
     /**
-     * Screen.
+     * Current screen.
      *
-     * @since 16xxxx
+     * @since 16xxxx Restriction.
      *
      * @type \WP_Screen|null Screen.
      */
@@ -101,7 +101,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Is screen mobile?
      *
-     * @since 16xxxx
+     * @since 16xxxx Restriction.
      *
      * @type bool Is screen mobile?
      */
@@ -118,11 +118,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->post_type = $this->App->Config->©brand['©prefix'].'_restriction';
-        $this->post_type = s::applyFilters('restriction_post_type', $this->post_type);
-
+        $this->post_type   = $this->App->Config->©brand['©prefix'].'_restriction';
         $this->meta_prefix = $this->App->Config->©brand['©var'].'_restriction_';
-        $this->meta_prefix = s::applyFilters('restriction_meta_prefix', $this->meta_prefix);
 
         $this->access_res_prefix  = s::applyFilters('restriction_res_prefix', 'access_res_');
         $this->access_ccap_prefix = s::applyFilters('restriction_ccap_prefix', 'access_ccap_');
@@ -130,6 +127,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         $this->meta_keys     = ['post_ids', 'post_types', 'tax_term_ids', 'author_ids', 'roles', 'ccaps', 'uri_patterns'];
         $this->int_meta_keys = ['post_ids', 'author_ids']; // Integer data type.
+
+        $this->screen_is_mobile = false; // Initialize.
     }
 
     /**
@@ -253,6 +252,18 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     }
 
     /**
+     * Current user can edit restrictions?
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @return bool True if the current user can.
+     */
+    protected function currentUserCan(): bool
+    {
+        return (bool) current_user_can('edit_'.$this->post_type.'s');
+    }
+
+    /**
      * Get screen object.
      *
      * @since 16xxxx Restrictions.
@@ -260,6 +271,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public function onCurrentScreen(\WP_Screen $screen)
     {
         if (!s::isMenuPageForPostType($this->post_type)) {
+            return; // Not applicable.
+        } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
         }
         $this->screen           = $screen;
@@ -273,6 +286,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function onMenuOrder(array $menu_items): array
     {
+        // No conditional checks up here.
+        // If the menu items exist they are reordered.
+
         $woocommerce_item = 'woocommerce'; // Position after this.
         $woocommerce_key  = array_search($woocommerce_item, $menu_items, true);
 
@@ -305,7 +321,11 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function onAddMetaBoxes(string $post_type)
     {
-        if ($post_type !== $this->post_type) {
+        if (!s::isMenuPageForPostType($this->post_type)) {
+            return; // Not applicable.
+        } elseif (!$this->currentUserCan()) {
+            return; // Not applicable.
+        } elseif ($post_type !== $this->post_type) {
             return; // Not applicable.
         }
         $meta_boxes = [
@@ -344,8 +364,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         if (!s::isMenuPageForPostType($this->post_type)) {
             return $hidden; // Not applicable.
-        }
-        if ($screen->id !== $this->screen->id) {
+        } elseif (!$this->currentUserCan()) {
+            return $hidden; // Not applicable.
+        } elseif (!$this->screen || $screen->id !== $this->screen->id) {
             return $hidden; // Not applicable.
         }
         return array_diff($hidden, ['slugdiv']);
@@ -359,6 +380,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public function onAdminEnqueueScripts()
     {
         if (!s::isMenuPageForPostType($this->post_type)) {
+            return; // Not applicable.
+        } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
         }
         s::enqueueJQueryChosenLibs(); // Enqueue jQuery Chosen plugin.
@@ -723,6 +746,10 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
+        } elseif (get_post_type($post_id) !== $this->post_type) {
+            return; // Not applicable.
+        } elseif (!$this->currentUserCan()) {
+            return; // Not applicable.
         }
         foreach ($this->meta_keys as $_meta_key) {
             $_split_regex        = $_meta_key === 'uri_patterns' ? '/['."\r\n".']+/' : '/[\s,]+/';
@@ -736,7 +763,6 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             $this->updateMeta($post_id, $_meta_key, $_meta_values);
         } // unset($_meta_key, $_split_regex, $_array_map_callback, $_meta_values); // Housekeeping.
 
-        a::clearSystematicCache(); // Clear the cache now.
         a::clearRestrictionsCache(); // Clear the cache now.
     }
 

@@ -455,8 +455,8 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         $accessible_restriction_ids = []; // Initialize.
 
         foreach ($this->permissions($user_id) as $_UserPermission) {
-            if (!isset($accessible_restriction_ids[$_UserPermission->data->restriction_id]) && $_UserPermission->isAllowed()) {
-                $accessible_restriction_ids[$_UserPermission->data->restriction_id] = $_UserPermission->data->restriction_id;
+            if (!isset($accessible_restriction_ids[$_UserPermission->restriction_id]) && $_UserPermission->isAllowed()) {
+                $accessible_restriction_ids[$_UserPermission->restriction_id] = $_UserPermission->restriction_id;
             }
         } // unset($_UserPermission); // Housekeeping.
 

@@ -19,13 +19,21 @@ use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 
-trait UserPermissionsWidget
+trait ProductPermission
 {
     /**
      * @since 16xxxx Initial release.
      */
-    public static function userPermsWidgetClientSidePrefix()
+    public static function productPermissionOffsetPeriods()
     {
-        return $GLOBALS[static::class]->Utils->UserPermissionsWidget->client_side_prefix;
+        return $GLOBALS[static::class]->Utils->ProductPermission->offset_periods;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function productPermissionOffsetPeriodSeconds()
+    {
+        return $GLOBALS[static::class]->Utils->ProductPermission->offset_period_seconds;
     }
 }
