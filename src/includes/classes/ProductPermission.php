@@ -27,24 +27,6 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class ProductPermission extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Valid offset periods.
-     *
-     * @since 16xxxx User permission.
-     *
-     * @type array Valid offset periods.
-     */
-    protected $valid_offset_periods;
-
-    /**
-     * Valid offset period a seconds.
-     *
-     * @since 16xxxx User permission.
-     *
-     * @type array Valid offset period a seconds.
-     */
-    protected $valid_offset_period_seconds;
-
-    /**
      * Class constructor.
      *
      * @since 16xxxx Product permission.
@@ -55,9 +37,6 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
     public function __construct(Classes\App $App, \StdClass $data)
     {
         parent::__construct($App);
-
-        $this->valid_offset_periods        = a::productPermissionOffsetPeriods();
-        $this->valid_offset_period_seconds = a::productPermissionOffsetPeriodSeconds();
 
         $this->fillProperties($data); // Overloading.
     }
@@ -75,58 +54,8 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
             return false;
         } elseif (!$this->restriction_id) {
             return false;
-        } elseif ($this->access_time_offset_period &&
-            !isset($this->valid_offset_periods[$this->access_time_offset_period])) {
-            return false;
-        } elseif ($this->expire_time_offset_period &&
-            !isset($this->valid_offset_periods[$this->expire_time_offset_period])) {
-            return false;
         }
         return true; // No problems.
-    }
-
-    /**
-     * Access time offset (in seconds).
-     *
-     * @since 16xxxx Product permission.
-     *
-     * @return int Access time offset (in seconds).
-     */
-    public function accessTimeOffset(): int
-    {
-        if (!$this->isValid()) {
-            return 0; // Not valid.
-        } elseif (!$this->access_time_offset_count) {
-            return 0; // Not applicable.
-        } elseif (!$this->access_time_offset_period) {
-            return 0; // Not applicable.
-        }
-        $offset_period_seconds = // Convert period to seconds.
-            $this->valid_offset_period_seconds[$this->access_time_offset_period];
-
-        return $this->access_time_offset_count * $offset_period_seconds;
-    }
-
-    /**
-     * Expire time offset (in seconds).
-     *
-     * @since 16xxxx Product permission.
-     *
-     * @return int Expire time offset (in seconds).
-     */
-    public function expireTimeOffset(): int
-    {
-        if (!$this->isValid()) {
-            return 0; // Not valid.
-        } elseif (!$this->expire_time_offset_count) {
-            return 0; // Not applicable.
-        } elseif (!$this->expire_time_offset_period) {
-            return 0; // Not applicable.
-        }
-        $offset_period_seconds = // Convert period to seconds.
-            $this->valid_offset_period_seconds[$this->expire_time_offset_period];
-
-        return $this->accessTimeOffset() + ($this->expire_time_offset_count * $offset_period_seconds);
     }
 
     /**
@@ -150,11 +79,10 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
                 'product_id'     => 0,
                 'restriction_id' => 0,
 
-                'access_time_offset_count'  => 0,
-                'access_time_offset_period' => '',
+                'access_offset_time' => 0,
+                'expire_offset_time' => 0,
 
-                'expire_time_offset_count'  => 0,
-                'expire_time_offset_period' => '',
+                'display_order' => 0,
             ];
             $defaults = (object) $defaults; // Converts to object now.
             // Separate line; see: <https://bugs.php.net/bug.php?id=72219>
@@ -165,10 +93,11 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
         $this->product_id     = abs((int) ($data->product_id ?? $this->product_id ?? 0));
         $this->restriction_id = abs((int) ($data->restriction_id ?? $this->restriction_id ?? 0));
 
-        $this->access_time_offset_count  = abs((int) ($data->access_time_offset_count ?? $this->access_time_offset_count ?? 0));
-        $this->access_time_offset_period = mb_strtolower((string) ($data->access_time_offset_period ?? $this->access_time_offset_period ?? ''));
+        $this->access_offset_time = abs((int) ($data->access_offset_time ?? $this->access_offset_time ?? 0));
+        $this->expire_offset_time = abs((int) ($data->expire_offset_time ?? $this->expire_offset_time ?? 0));
+        // Note the `expire_offset_time` starts from the beginning of the access time.
+        //  i.e., time() + `access_offset_time` + `expire_offset_time` = expire time.
 
-        $this->expire_time_offset_count  = abs((int) ($data->expire_time_offset_count ?? $this->expire_time_offset_count ?? 0));
-        $this->expire_time_offset_period = mb_strtolower((string) ($data->expire_time_offset_period ?? $this->expire_time_offset_period ?? ''));
+        $this->display_order = abs((int) ($data->display_order ?? $this->display_order ?? 0));
     }
 }

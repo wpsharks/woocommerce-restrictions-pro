@@ -9,8 +9,9 @@ CREATE TABLE IF NOT EXISTS `%%table%%` (
   `restriction_id` bigint(20) UNSIGNED NOT NULL,
   `access_time` int(10) UNSIGNED NOT NULL,
   `expire_time` int(10) UNSIGNED NOT NULL,
+  `expires` varchar(128) NOT NULL,
 
-  `status` varchar(60) NOT NULL,
+  `status` varchar(64) NOT NULL,
   `is_trashed` int(1) UNSIGNED NOT NULL,
 
   `display_order` int(10) UNSIGNED NOT NULL,

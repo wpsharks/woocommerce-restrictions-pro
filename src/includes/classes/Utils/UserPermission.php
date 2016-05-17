@@ -33,7 +33,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
      *
      * @type array Permission statuses.
      */
-    public $statuses;
+    protected $statuses;
 
     /**
      * Class constructor.
@@ -46,9 +46,28 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->statuses = [
+        $this->statuses = s::applyFilters('user_permission_statuses', [
             'active'  => __('Active', 's2member-x'),
             'on-hold' => __('On-Hold', 's2member-x'),
-        ];
+        ]);
+    }
+
+    /**
+     * Permission statuses.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @param bool $include_trashed Include `trashed` status?
+     *
+     * @return array An array of user permission statuses.
+     */
+    public function statuses(bool $include_trashed = true): array
+    {
+        $statuses = $this->statuses;
+
+        if (!$include_trashed) {
+            unset($statuses['trashed']); // Exclude.
+        }
+        return $statuses; // With or without `trashed` status.
     }
 }

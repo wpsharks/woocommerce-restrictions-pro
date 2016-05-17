@@ -176,8 +176,8 @@ class UserWcPermissions extends SCoreClasses\SCore\Base\Core
      *               When a subscription is trashed it is `cancelled`, and it is currently
      *               impossible to restore the subscription in any meaningful/effective way.
      *               Once trashed, it can be restored, but it remains in a `cancelled` state.
-     *               Attempting to change the status manually is also impossible.
-     *               i.e., Only the `cancelled` option is made available in the UI.
+     *               Attempting to change the status manually is also impossible for some reason.
+     *               ~ i.e., Only the `cancelled` option is made available in the UI.
      *
      *               Another strange behavior is that trashing a parent order will somehow
      *               break the connection between the parent order and the child subscription.

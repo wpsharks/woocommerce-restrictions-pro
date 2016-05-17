@@ -139,8 +139,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public function onInitRegisterPostType()
     {
         register_post_type(
-            $this->post_type,
-            [
+            $this->post_type, // Args can be filtered by plugins.
+            s::applyFilters('register_post_type_'.$this->post_type.'_args', [
                 'public'       => false,
                 'hierarchical' => false,
 
@@ -158,7 +158,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
                 'menu_position' => null,
                 'menu_icon'     => 'dashicons-lock',
-                'description'   => __('Content Restriction', 's2member-x'),
+                'description'   => __('Content restriction for membership.', 's2member-x'),
 
                 'labels' => [ // See: <http://jas.xyz/244m2Sd>
                     'name'                  => __('Restrictions', 's2member-x'),
@@ -172,7 +172,6 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                     'not_found'             => __('No Restrictions found', 's2member-x'),
                     'not_found_in_trash'    => __('No Restrictions found in Trash', 's2member-x'),
                     'parent_item_colon'     => __('Parent Restriction:', 's2member-x'),
-                    'all_items'             => __('All Restrictions', 's2member-x'),
                     'archives'              => __('Restriction Archives', 's2member-x'),
                     'insert_into_item'      => __('Insert into Restriction', 's2member-x'),
                     'uploaded_to_this_item' => __('Upload to this Restriction', 's2member-x'),
@@ -183,7 +182,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                     'items_list_navigation' => __('Restrictions List Navigation', 's2member-x'),
                     'items_list'            => __('Restrictions List', 's2member-x'),
                     'name_admin_bar'        => __('Restriction', 's2member-x'),
-                    'menu_name'             => sprintf(__('%1$s Restrictions', 's2member-x'), $this->App->Config->©brand['©acronym']),
+                    'menu_name'             => __('Restrictions', 's2member-x'),
+                    'all_items'             => __('All Restrictions', 's2member-x'),
                 ],
 
                 'map_meta_cap'    => true,
@@ -191,64 +191,60 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                     $this->post_type,
                     $this->post_type.'s',
                 ],
-            ]
+            ])
         );
-        /*[pro strip-from="lite"]*/
-        if (s::getOption('restriction_categories_enable')) {
-            register_taxonomy(
-                $this->post_type.'_category',
-                $this->post_type,
-                [
-                    'public'       => false,
-                    'hierarchical' => true,
+        register_taxonomy(
+            $this->post_type.'_category',
+            $this->post_type, // Args can be filtered by plugins.
+            s::applyFilters('register_taxonomy_'.$this->post_type.'_category_args', [
+                'public'       => false,
+                'hierarchical' => true,
 
-                    'show_ui'            => true,
-                    'show_in_menu'       => true,
-                    'show_in_nav_menus'  => false,
-                    'show_tagcloud'      => false,
-                    'show_in_quick_edit' => true,
-                    'show_admin_column'  => true,
+                'show_ui'            => true,
+                'show_in_menu'       => true,
+                'show_in_nav_menus'  => false,
+                'show_tagcloud'      => false,
+                'show_in_quick_edit' => true,
+                'show_admin_column'  => true,
 
-                    'rewrite'   => false,
-                    'query_var' => false,
+                'rewrite'   => false,
+                'query_var' => false,
 
-                    'description' => __('Content Restriction Tags/Categories', 's2member-x'),
+                'description' => __('Content restriction tags/categories.', 's2member-x'),
 
-                    'labels' => [ // See: <http://jas.xyz/244m1Oc>
-                        'name'                       => __('Categories', 's2member-x'),
-                        'singular_name'              => __('Category', 's2member-x'),
-                        'search_items'               => __('Search Categories', 's2member-x'),
-                        'popular_items'              => __('Popular Categories', 's2member-x'),
-                        'all_items'                  => __('All Categories', 's2member-x'),
-                        'parent_item'                => __('Parent Category', 's2member-x'),
-                        'parent_item_colon'          => __('Parent Category:', 's2member-x'),
-                        'edit_item'                  => __('Edit Category', 's2member-x'),
-                        'view_item'                  => __('View Category', 's2member-x'),
-                        'update_item'                => __('Update Category', 's2member-x'),
-                        'add_new_item'               => __('Add New Category', 's2member-x'),
-                        'new_item_name'              => __('New Category Name', 's2member-x'),
-                        'separate_items_with_commas' => __('Separate Categories w/ Commas', 's2member-x'),
-                        'add_or_remove_items'        => __('Add or Remove Categories', 's2member-x'),
-                        'choose_from_most_used'      => __('Choose From the Most Used Categories', 's2member-x'),
-                        'not_found'                  => __('No Categories Found', 's2member-x'),
-                        'no_terms'                   => __('No Categories', 's2member-x'),
-                        'items_list_navigation'      => __('Categories List Navigation', 's2member-x'),
-                        'items_list'                 => __('Categories List', 's2member-x'),
-                        'name_admin_bar'             => __('Category', 's2member-x'),
-                        'menu_name'                  => __('Categories', 's2member-x'),
-                        'archives'                   => __('All Categories', 's2member-x'),
-                    ],
+                'labels' => [ // See: <http://jas.xyz/244m1Oc>
+                    'name'                       => __('Categories', 's2member-x'),
+                    'singular_name'              => __('Category', 's2member-x'),
+                    'search_items'               => __('Search Categories', 's2member-x'),
+                    'popular_items'              => __('Popular Categories', 's2member-x'),
+                    'all_items'                  => __('All Categories', 's2member-x'),
+                    'parent_item'                => __('Parent Category', 's2member-x'),
+                    'parent_item_colon'          => __('Parent Category:', 's2member-x'),
+                    'edit_item'                  => __('Edit Category', 's2member-x'),
+                    'view_item'                  => __('View Category', 's2member-x'),
+                    'update_item'                => __('Update Category', 's2member-x'),
+                    'add_new_item'               => __('Add New Category', 's2member-x'),
+                    'new_item_name'              => __('New Category Name', 's2member-x'),
+                    'separate_items_with_commas' => __('Separate Categories w/ Commas', 's2member-x'),
+                    'add_or_remove_items'        => __('Add or Remove Categories', 's2member-x'),
+                    'choose_from_most_used'      => __('Choose From the Most Used Categories', 's2member-x'),
+                    'not_found'                  => __('No Categories Found', 's2member-x'),
+                    'no_terms'                   => __('No Categories', 's2member-x'),
+                    'items_list_navigation'      => __('Categories List Navigation', 's2member-x'),
+                    'items_list'                 => __('Categories List', 's2member-x'),
+                    'name_admin_bar'             => __('Category', 's2member-x'),
+                    'menu_name'                  => __('Categories', 's2member-x'),
+                    'archives'                   => __('All Categories', 's2member-x'),
+                ],
 
-                    'capabilities' => [
-                        'assign_terms' => 'edit_'.$this->post_type.'s',
-                        'edit_terms'   => 'edit_'.$this->post_type.'s',
-                        'manage_terms' => 'edit_others_'.$this->post_type.'s',
-                        'delete_terms' => 'delete_others_'.$this->post_type.'s',
-                    ],
-                ]
-            );
-        }
-        /*[/pro]*/
+                'capabilities' => [
+                    'assign_terms' => 'edit_'.$this->post_type.'s',
+                    'edit_terms'   => 'edit_'.$this->post_type.'s',
+                    'manage_terms' => 'edit_others_'.$this->post_type.'s',
+                    'delete_terms' => 'delete_others_'.$this->post_type.'s',
+                ],
+            ])
+        );
     }
 
     /**
@@ -295,21 +291,21 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         $restriction_item = 'edit.php?post_type='.$this->post_type;
         $restriction_key  = array_search($restriction_item, $menu_items, true);
 
-        if ($woocommerce_key === false || $restriction_key === false) {
-            return $menu_items; // Not possible.
+        if ($woocommerce_key !== false && $restriction_key !== false) {
+            $new_menu_items = []; // Initialize new menu items.
+
+            foreach ($menu_items as $_key => $_item) {
+                if ($_item !== $restriction_item) {
+                    $new_menu_items[] = $_item;
+                }
+                if ($_item === $woocommerce_item) {
+                    $new_menu_items[] = $restriction_item;
+                }
+            } // unset($_key, $_item); // Housekeeping.
+
+            $menu_items = $new_menu_items; // Alter.
         }
-        $new_menu_items = []; // Initialize new menu items.
-
-        foreach ($menu_items as $_key => $_item) {
-            if ($_item !== $restriction_item) {
-                $new_menu_items[] = $_item;
-            }
-            if ($_item === $woocommerce_item) {
-                $new_menu_items[] = $restriction_item;
-            }
-        } // unset($_key, $_item); // Housekeeping.
-
-        return $new_menu_items;
+        return $menu_items; // Always return filtered value.
     }
 
     /**
@@ -422,8 +418,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         echo    '<h4>'.__('Each \'Restriction\' Serves Two Purposes:', 's2member-x').'</h4>';
         echo    '<ol>';
-        echo        '<li>'.__('It allows you to protect content in WordPress. A single Restriction can protect multiple Posts, Pages, and more.', 's2member-x').'</li>';
-        echo        '<li>'.__('It can also grant access to the content you\'ve protected; i.e., you can sell via WooCommerce Products, or otherwise allow, access to what a Restriction protects.', 's2member-x').'</li>';
+        echo        '<li>'.__('A Restriction allows you to protect content in WordPress. A single Restriction can protect multiple Posts, Pages, and more.', 's2member-x').'</li>';
+        echo        '<li>'.__('It defines a set of permissions, because you can sell via WooCommerce Products, or otherwise allow, access to what a Restriction protects.', 's2member-x').'</li>';
         echo    '</ol>';
         echo    '<p style="font-style:italic;">'.__('So you can think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others.', 's2member-x').'</p>';
         echo    '<p><span class="dashicons dashicons-book"></span> '.sprintf(__('If you\'d like to learn more about Restrictions, see: <a href="%1$s" target="_blank">%2$s Knowledge Base</a>', 's2member-x'), esc_url(s::brandUrl('/kb')), esc_html($this->App->Config->©brand['©name'])).'</p>';

@@ -10,20 +10,28 @@
 @include sharkicon-short-classes;
 
 /*
- * Color definitions.
+ * Meta section styles.
  */
-$jquery-jsgrid-insert-row-bg-color: #f1f1f1;
+.rsxqjzypgdqmrnnkkkrmgshvnnnkzzvu-product-meta {
+  > h3 {
+    margin:                   9px 0;
+    padding:                  5px 9px;
+    font-size:                14px;
+  }
 
-/*
- * Widget styles.
- */
-#rsxqjzypgdqmrnnkkkrmgshvnnnkzzvu-product-data {
-  .-grid.jsgrid {
+  .-permissions-grid.jsgrid {
     @include wp-admin-field-standards;
     @include jquery-jsgrid-enhancements;
 
-    .jsgrid-insert-row > td {
-      background:             $jquery-jsgrid-insert-row-bg-color;
+    .jsgrid-grid-header,
+    .jsgrid-grid-body {
+      border-top-color:       transparent;
+      border-left-color:      transparent;
+      border-right-color:     transparent;
+    }
+
+    .jsgrid-grid-body {
+      border-bottom-color:    transparent;
     }
   }
 }

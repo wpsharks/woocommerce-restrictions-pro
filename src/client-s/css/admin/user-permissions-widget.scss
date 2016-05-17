@@ -12,7 +12,6 @@
 /*
  * Color definitions.
  */
-$jquery-jsgrid-insert-row-bg-color: #f1f1f1;
 $jquery-ui-tooltip-color: #fff;
 $jquery-ui-tooltip-bg-color: #23282d;
 $jquery-ui-tooltip-box-shadow-color: rgba(0, 0, 0, 0.5);
@@ -24,10 +23,6 @@ $jquery-ui-tooltip-box-shadow-color: rgba(0, 0, 0, 0.5);
   .-grid.jsgrid {
     @include wp-admin-field-standards;
     @include jquery-jsgrid-enhancements;
-
-    .jsgrid-insert-row > td {
-      background:             $jquery-jsgrid-insert-row-bg-color;
-    }
   }
 }
 

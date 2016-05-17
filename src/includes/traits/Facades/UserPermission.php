@@ -24,8 +24,8 @@ trait UserPermission
     /**
      * @since 16xxxx Initial release.
      */
-    public static function userPermissionStatuses()
+    public static function userPermissionStatuses(...$args)
     {
-        return $GLOBALS[static::class]->Utils->UserPermission->statuses;
+        return $GLOBALS[static::class]->Utils->UserPermission->statuses(...$args);
     }
 }

@@ -24,16 +24,24 @@ trait ProductPermission
     /**
      * @since 16xxxx Initial release.
      */
-    public static function productPermissionOffsetPeriods()
+    public static function productPermissionOffsetTimes()
     {
-        return $GLOBALS[static::class]->Utils->ProductPermission->offset_periods;
+        return $GLOBALS[static::class]->Utils->ProductPermission->offset_times;
     }
 
     /**
      * @since 16xxxx Initial release.
      */
-    public static function productPermissionOffsetPeriodSeconds()
+    public static function productPermissionAccessOffsetTimes()
     {
-        return $GLOBALS[static::class]->Utils->ProductPermission->offset_period_seconds;
+        return $GLOBALS[static::class]->Utils->ProductPermission->access_offset_times;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function productPermissionExpireOffsetTimes()
+    {
+        return $GLOBALS[static::class]->Utils->ProductPermission->expire_offset_times;
     }
 }

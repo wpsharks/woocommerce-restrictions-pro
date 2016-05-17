@@ -140,48 +140,52 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'can_edit_shop_subscriptions' => current_user_can('edit_shop_subscriptions'),
                 ],
                 'i18n' => [
-                    'idTitle'     => _x('ID', 'user-permissions-widget', 's2member-x'),
-                    'userIdTitle' => _x('User ID', 'user-permissions-widget', 's2member-x'),
+                    'idTitle'     => __('ID', 's2member-x'),
+                    'userIdTitle' => __('User ID', 's2member-x'),
 
-                    'orderIdTitle'        => _x('Order ID', 'user-permissions-widget', 's2member-x'),
-                    'subscriptionIdTitle' => _x('Subscription ID', 'user-permissions-widget', 's2member-x'),
-                    'productIdTitle'      => _x('Product ID', 'user-permissions-widget', 's2member-x'),
+                    'orderIdTitle'        => __('Order ID', 's2member-x'),
+                    'subscriptionIdTitle' => __('Subscription ID', 's2member-x'),
+                    'productIdTitle'      => __('Product ID', 's2member-x'),
 
-                    'restrictionIdTitle'             => _x('Access', 'user-permissions-widget', 's2member-x'),
-                    'restrictionIdStatusIsAllowed'   => _x('Access Granted', 'user-permissions-widget', 's2member-x'),
-                    'restrictionIdStatusIsInactive'  => _x('Access Inactive', 'user-permissions-widget', 's2member-x'),
-                    'restrictionIdStatusIsScheduled' => _x('Access Scheduled', 'user-permissions-widget', 's2member-x'),
-                    'restrictionIdStatusIsExpired'   => _x('Access Expired', 'user-permissions-widget', 's2member-x'),
-                    'restrictionAccessRequired'      => _x('\'Access\' is empty. Please make a selection.', 'user-permissions-widget', 's2member-x'),
+                    'restrictionIdTitle'             => __('Access', 's2member-x'),
+                    'restrictionIdStatusIsAllowed'   => __('Access Granted', 's2member-x'),
+                    'restrictionIdStatusIsInactive'  => __('Access Inactive', 's2member-x'),
+                    'restrictionIdStatusIsScheduled' => __('Access Scheduled', 's2member-x'),
+                    'restrictionIdStatusIsExpired'   => __('Access Expired', 's2member-x'),
+                    'restrictionAccessRequired'      => __('\'Access\' is empty. Please make a selection.', 's2member-x'),
 
-                    'accessTimeTitle'        => _x('Starts', 'user-permissions-widget', 's2member-x'),
-                    'accessDatePlaceholder'  => _x('date', 'user-permissions-widget', 's2member-x'),
-                    'accessTimePlaceholder'  => _x('time', 'user-permissions-widget', 's2member-x'),
-                    'emptyAccessDateTime'    => _x('immediately', 'user-permissions-widget', 's2member-x'),
-                    'accessTimeLtExpireTime' => _x('When both are given, \'Starts\' must come before \'Ends\'.', 'user-permissions-widget', 's2member-x'),
+                    'accessTimeTitle'        => __('Starts', 's2member-x'),
+                    'accessDatePlaceholder'  => __('date', 's2member-x'),
+                    'accessTimePlaceholder'  => __('time', 's2member-x'),
+                    'emptyAccessDateTime'    => __('immediately', 's2member-x'),
+                    'accessTimeLtExpireTime' => __('When both are given, \'Starts\' must come before \'Ends\'.', 's2member-x'),
 
-                    'expireTimeTitle'                 => _x('Ends', 'user-permissions-widget', 's2member-x'),
-                    'expireDatePlaceholder'           => _x('date', 'user-permissions-widget', 's2member-x'),
-                    'expireTimePlaceholder'           => _x('time', 'user-permissions-widget', 's2member-x'),
-                    'emptyExpireDateTime'             => _x('never', 'user-permissions-widget', 's2member-x'),
-                    'emptyExpireDateTimeSubscription' => _x('when subscription ends', 'user-permissions-widget', 's2member-x'),
+                    'expireTimeTitle'       => __('Ends', 's2member-x'),
+                    'expireDatePlaceholder' => __('date', 's2member-x'),
+                    'expireTimePlaceholder' => __('time', 's2member-x'),
+                    'emptyExpireDateTime'   => __('n/a; ongoing', 's2member-x'),
+                    'expiresTitle'          => __('Expires', 's2member-x'),
 
-                    'statusTitle'               => _x('Status', 'user-permissions-widget', 's2member-x'),
-                    'isTrashedTitle'            => _x('Trashed?', 'user-permissions-widget', 's2member-x'),
-                    'isTrashedStatus'           => _x('Trashed', 'user-permissions-widget', 's2member-x'),
-                    'restrictionStatusRequired' => _x('\'Status\' is empty. Please make a selection.', 'user-permissions-widget', 's2member-x'),
+                    'statusTitle'               => __('Status', 's2member-x'),
+                    'isTrashedTitle'            => __('Trashed?', 's2member-x'),
+                    'isTrashedStatus'           => __('Trashed', 's2member-x'),
+                    'restrictionStatusRequired' => __('\'Status\' is empty. Please make a selection.', 's2member-x'),
 
-                    'displayOrderTitle' => _x('Display Order', 'user-permissions-widget', 's2member-x'),
+                    'displayOrderTitle' => __('Display Order', 's2member-x'),
 
-                    'insertionTimeTitle'  => _x('Insertion Time', 'user-permissions-widget', 's2member-x'),
-                    'lastUpdateTimeTitle' => _x('Last Update Time', 'user-permissions-widget', 's2member-x'),
+                    'insertionTimeTitle'  => __('Insertion Time', 's2member-x'),
+                    'lastUpdateTimeTitle' => __('Last Update Time', 's2member-x'),
 
-                    'noDataContent'  => _x('No permissions yet.', 'user-permissions-widget', 's2member-x'),
-                    'notReadyToSave' => _x('Not ready to save all changes yet...', 'user-permissions-widget', 's2member-x'),
-                    'stillInserting' => _x('A Permission row is still pending insertion.', 'user-permissions-widget', 's2member-x'),
-                    'stillEditing'   => _x('A Permission row is still open for editing.', 'user-permissions-widget', 's2member-x'),
-                    'via'            => _x('via', 'user-permissions-widget', 's2member-x'),
+                    'noDataContent'  => __('No permissions yet.', 's2member-x'),
+                    'notReadyToSave' => __('Not ready to save all changes yet...', 's2member-x'),
+                    'stillInserting' => __('A Permission row is still pending insertion.', 's2member-x'),
+                    'stillEditing'   => __('A Permission row is still open for editing.', 's2member-x'),
+                    'via'            => __('via', 's2member-x'),
                 ],
+                'restrictionTitlesById'              => a::restrictionTitlesById(),
+                'userPermissionStatuses'             => a::userPermissionStatuses(false),
+                'productPermissionExpireOffsetTimes' => a::productPermissionExpireOffsetTimes(),
+
                 'orderViewUrl='        => admin_url('/post.php?action=edit&post='),
                 'subscriptionViewUrl=' => admin_url('/post.php?action=edit&post='),
             ]
@@ -211,24 +215,17 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         echo '<hr />'; // After other fields in the user edit page.
 
         echo '<div id="'.esc_attr($this->client_side_prefix.'-user-permissions-widget').'">';
-        echo    '<h3>'.sprintf(__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> %1$s Restriction Access)', 's2member-x'), $this->App->Config->©brand['©acronym']).'</h3>';
+        echo    '<h3>'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 's2member-x').'</h3>';
 
         if (!$restriction_titles_by_id) {
             echo '<div class="notice notice-info inline">';
             echo    '<p>'.sprintf(__('It\'s not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
             echo '</div>';
         } else {
-            $user_permission_statuses = a::userPermissionStatuses();
-            unset($user_permission_statuses['trashed']); // Exclude `trashed` status.
             $user_permissions = array_values(a::userPermissions($user_id, false)); // Exclude `trashed` status.
-
-            echo    '<p style="font-style:italic;">'.__('<strong>Note:</strong> Start and End dates are optional. No Start Date = starts immediately. If no End Date, access is indefinite. Unchecking the \'Enabled\' box will temporarily suspend access.', 's2member-x').'</p>';
-
-            echo    '<input class="-user-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode($user_permissions)).'" />';
-            echo    '<input class="-restriction-titles-by-id" type="hidden" value="'.esc_attr(json_encode($restriction_titles_by_id)).'" />';
-            echo    '<input class="-user-permission-statuses" type="hidden" value="'.esc_attr(json_encode($user_permission_statuses)).'" />';
-
-            echo    '<div class="-grid" data-toggle="jquery-jsgrid"></div>';
+            echo '<p>'.sprintf(__('<strong>Note:</strong> Start and End dates are optional. If no Start date, access starts immediately. If no specific End date is given, access is indefinite (ongoing). However, if a Permission was granted via an Order or Subscription and there is no specific End date set here, the End is controlled by the original Product configuration, and that will be indiciated in the list below. This also means that if a specific End date <em>is</em> given here, it is always obeyed. In other words, you can always choose to set a specific End date and override the original Product configuration for this user. Or, you can create a new Permission manually — i.e., one that is not controlled by an Order or Subscription. If you\'d like to learn more, see: <a href="%1$s" target="_blank">%2$s Knowledge Base</a>', 's2member-x'), esc_url(s::brandUrl('/kb')), esc_html($this->App->Config->©brand['©name'])).'</p>';
+            echo '<input class="-user-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode($user_permissions)).'" />';
+            echo '<div class="-grid" data-toggle="jquery-jsgrid"></div>';
         }
         echo '</div>';
     }

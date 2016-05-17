@@ -34,7 +34,9 @@ class Installer extends SCoreClasses\SCore\Base\Core
     public function onOtherInstallRoutines()
     {
         a::addDefaultRestrictionCaps();
+
         a::clearSystematicCache();
         a::clearRestrictionsCache();
+        a::clearUserPermissionsCache();
     }
 }

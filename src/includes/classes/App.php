@@ -68,14 +68,12 @@ class App extends SCoreClasses\App
             '§pro_option_keys' => [
                 'if_shortcode_expr_enable',
                 'if_shortcode_for_blog_enable',
-                'restriction_categories_enable',
                 'security_gate_redirect_to_args_enable',
                 'orders_always_grant_immediate_access',
             ],
             '§default_options' => [
                 'if_shortcode_expr_enable'              => '1',
                 'if_shortcode_for_blog_enable'          => '0',
-                'restriction_categories_enable'         => '0',
                 'security_gate_redirects_to_post_id'    => '0',
                 'security_gate_redirect_to_args_enable' => '1',
                 'orders_always_grant_immediate_access'  => '1',
@@ -217,13 +215,13 @@ class App extends SCoreClasses\App
             # Product-data and other product-related WooCommerce events.
 
             if ($is_admin) { // Admin areas only.
-                add_action('current_screen', [$this->Utils->WcProductData, 'onCurrentScreen']);
+                add_action('current_screen', [$this->Utils->Product, 'onCurrentScreen']);
 
-                add_action('admin_enqueue_scripts', [$this->Utils->WcProductData, 'onAdminEnqueueScripts']);
+                add_action('admin_enqueue_scripts', [$this->Utils->Product, 'onAdminEnqueueScripts']);
 
-                add_action('woocommerce_product_options_general_product_data', [$this->Utils->WcProductData, 'onGeneralProductData']);
-                add_action('woocommerce_product_after_variable_attributes', [$this->Utils->WcProductData, 'onAfterVariableAttributes']);
-                add_action('save_post_'.$this->Utils->WcProductData->post_type, [$this->Utils->WcProductData, 'onSavePost'], 10, 3);
+                add_action('woocommerce_product_options_general_product_data', [$this->Utils->Product, 'onGeneralProductData']);
+                add_action('woocommerce_product_after_variable_attributes', [$this->Utils->Product, 'onAfterVariableAttributes'], 10, 3);
+                add_action('save_post_'.$this->Utils->Product->post_type, [$this->Utils->Product, 'onSavePost'], 10, 3);
             }
             # Security gate; always after the `restriction` post type registration.
 

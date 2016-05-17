@@ -69,6 +69,8 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
             return false;
         } elseif ($this->access_time && $this->expire_time && $this->access_time >= $this->expire_time) {
             return false;
+        } elseif (($this->order_id || $this->subscription_id) && !$this->expires) {
+            return false;
         }
         return true; // No problems.
     }
@@ -202,6 +204,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
                 'restriction_id' => 0,
                 'access_time'    => 0,
                 'expire_time'    => 0,
+                'expires'        => '',
 
                 'status'     => '',
                 'is_trashed' => 0,
@@ -227,6 +230,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         $this->restriction_id = abs((int) ($data->restriction_id ?? $this->restriction_id ?? 0));
         $this->access_time    = abs((int) ($data->access_time ?? $this->access_time ?? 0));
         $this->expire_time    = abs((int) ($data->expire_time ?? $this->expire_time ?? 0));
+        $this->expires        = mb_strtolower((string) ($data->expires ?? $this->expires ?? ''));
 
         $this->status     = mb_strtolower((string) ($data->status ?? $this->status ?? ''));
         $this->is_trashed = abs((int) ($data->is_trashed ?? $this->is_trashed ?? 0));

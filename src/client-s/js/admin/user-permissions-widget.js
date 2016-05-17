@@ -12,9 +12,8 @@
     if (!$widget.length || !$grid.length) {
       return; // Not possible at this time.
     }
+    var initialGridRefreshComplete = false; // Initialize.
     var userPermissions = $.parseJSON($widget.find('.-user-permissions').val());
-    var restrictionTitlesById = $.parseJSON($widget.find('.-restriction-titles-by-id').val());
-    var userPermissionStatuses = $.parseJSON($widget.find('.-user-permission-statuses').val());
 
     // Restriction items.
 
@@ -22,7 +21,7 @@
       ID: null,
       title: ''
     }]; // Initialize array.
-    $.each(restrictionTitlesById, function (ID, title) {
+    $.each(data.restrictionTitlesById, function (ID, title) {
       restrictionItems.push({
         ID: ID,
         title: title
@@ -31,11 +30,8 @@
 
     // Status items.
 
-    var statusItems = [{
-      status: null,
-      title: ''
-    }]; // Initialize array.
-    $.each(userPermissionStatuses, function (status, title) {
+    var statusItems = []; // Initialize array.
+    $.each(data.userPermissionStatuses, function (status, title) {
       statusItems.push({
         status: status,
         title: title
@@ -45,13 +41,19 @@
     // jsGrid configuration.
 
     $grid.jsGrid($.extend({}, jsGridData.defaultOptions, {
-      data: userPermissions,
-      noDataContent: data.i18n.noDataContent,
+      data: userPermissions, // Permissions array.
+      noDataContent: data.i18n.noDataContent, // On empty.
 
+      insertingByDefault: userPermissions.length === 0,
       sorting: false, // Not compatible w/ sortable.
       paging: false, // Not compatible w/ sortable.
 
-      onRefreshed: function () {
+      onRefreshed: function (e) {
+        if (initialGridRefreshComplete) {
+          return; // Done already.
+        }
+        initialGridRefreshComplete = true; // Doing it now.
+
         $grid.find('.jsgrid-grid-body > table > tbody').sortable({
           placeholder: 'ui-state-highlight'
         });
@@ -133,6 +135,9 @@
               isScheduled = false,
               isExpired = false;
 
+            if (!value || value === '0') {
+              return ''; // Empty.
+            }
             var currentTime = parseInt(moment.utc().format('X'));
 
             if (item.is_trashed || item.status !== 'active') {
@@ -150,36 +155,34 @@
               isExpired = true; // Flag as true.
             } // Access has expired; i.e., no longer available.
 
-            if (value && typeof restrictionTitlesById[value] === 'string') {
-              if (isAllowed) {
-                display += '<span class="dashicons dashicons-unlock" style="color:#49a642;"' +
-                  ' title="' + _.escape(data.i18n.restrictionIdStatusIsAllowed) + '" data-toggle="jquery-ui-tooltip"></span>';
-              } else if (isInactive) {
-                display += '<span class="si si-octi-lock" style="color:#666;"' +
-                  ' title="' + _.escape(data.i18n.restrictionIdStatusIsInactive + ': ' + (typeof userPermissionStatuses[item.status] === 'string' ? userPermissionStatuses[item.status] : item.status)) + '" data-toggle="jquery-ui-tooltip"></span>';
-              } else if (isScheduled) {
-                display += '<span class="si si-calendar-check-o" style="color:#666;"' +
-                  ' title="' + _.escape(data.i18n.restrictionIdStatusIsScheduled) + '" data-toggle="jquery-ui-tooltip"></span>';
-              } else if (isExpired) {
-                display += '<span class="si si-calendar-times-o" style="color:#666;"' +
-                  ' title="' + _.escape(data.i18n.restrictionIdStatusIsExpired) + '" data-toggle="jquery-ui-tooltip"></span>';
-              }
-              display += ' <strong>' + _.escape(restrictionTitlesById[value]) + '</strong>';
+            if (isAllowed) {
+              display += '<span class="dashicons dashicons-unlock" style="color:#49a642;"' +
+                ' title="' + _.escape(data.i18n.restrictionIdStatusIsAllowed) + '" data-toggle="jquery-ui-tooltip"></span>';
+            } else if (isInactive) {
+              display += '<span class="si si-octi-lock" style="color:#666;"' +
+                ' title="' + _.escape(data.i18n.restrictionIdStatusIsInactive + ': ' + data.userPermissionStatuses[item.status]) + '" data-toggle="jquery-ui-tooltip"></span>';
+            } else if (isScheduled) {
+              display += '<span class="si si-calendar-check-o" style="color:#666;"' +
+                ' title="' + _.escape(data.i18n.restrictionIdStatusIsScheduled) + '" data-toggle="jquery-ui-tooltip"></span>';
+            } else if (isExpired) {
+              display += '<span class="si si-calendar-times-o" style="color:#666;"' +
+                ' title="' + _.escape(data.i18n.restrictionIdStatusIsExpired) + '" data-toggle="jquery-ui-tooltip"></span>';
+            }
+            display += ' <strong>' + _.escape(data.restrictionTitlesById[value]) + '</strong>';
 
-              if (item.order_id) {
-                if (data.current_user.can_edit_shop_orders) {
-                  display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.orderIdTitle) +
-                    ' <a href="' + _.escape(data['orderViewUrl='] + encodeURIComponent(item.order_id)) + '">#' + _.escape(item.order_id) + '</a>' + '</small></em>';
-                } else {
-                  display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.orderIdTitle) + ' #' + _.escape(item.order_id) + '</small></em>';
-                }
-              } else if (item.subscription_id) {
-                if (data.current_user.can_edit_shop_subscriptions) {
-                  display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.subscriptionIdTitle) +
-                    ' <a href="' + _.escape(data['subscriptionViewUrl='] + encodeURIComponent(item.subscription_id)) + '">#' + _.escape(item.subscription_id) + '</a>' + '</small></em>';
-                } else {
-                  display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.subscriptionIdTitle) + ' #' + _.escape(item.subscription_id) + '</small></em>';
-                }
+            if (item.order_id) {
+              if (data.current_user.can_edit_shop_orders) {
+                display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.orderIdTitle) +
+                  ' <a href="' + _.escape(data['orderViewUrl='] + encodeURIComponent(item.order_id)) + '">#' + _.escape(item.order_id) + '</a>' + '</small></em>';
+              } else {
+                display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.orderIdTitle) + ' #' + _.escape(item.order_id) + '</small></em>';
+              }
+            } else if (item.subscription_id) {
+              if (data.current_user.can_edit_shop_subscriptions) {
+                display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.subscriptionIdTitle) +
+                  ' <a href="' + _.escape(data['subscriptionViewUrl='] + encodeURIComponent(item.subscription_id)) + '">#' + _.escape(item.subscription_id) + '</a>' + '</small></em>';
+              } else {
+                display += ' <em><small>| ' + _.escape(data.i18n.via + ' ' + data.i18n.subscriptionIdTitle) + ' #' + _.escape(item.subscription_id) + '</small></em>';
               }
             }
             return display;
@@ -206,7 +209,7 @@
 
           validate: {
             validator: function (value, item) {
-              return !value || !item.expire_time || value < item.expire_time;
+              return typeof value === 'number' && (!value || !item.expire_time || value < item.expire_time);
             },
             message: function (value, item) {
               return '• ' + data.i18n.accessTimeLtExpireTime;
@@ -233,12 +236,19 @@
           inserting: true,
 
           itemTemplate: function (value, item) {
-            if (item.subscription_id && !parseInt(timestamp)) {
-              return '<em>' + _.escape(data.i18n.emptyExpireDateTimeSubscription) + '</em>';
-            } else {
-              return this._timestampFormat(value, this.subType, true);
+            if ((item.order_id || item.subscription_id) && item.expires && !parseInt(value)) {
+              return '<em>' + _.escape(data.productPermissionExpireOffsetTimes[item.expires]) + '</em>';
+            } else { // ↑ If no specific End date, and it's controlled by an Order/Subscription.
+              return this._timestampFormat(value, this.subType, true); // Default behavior.
             }
           }
+        }, {
+          type: 'text',
+          align: 'center',
+          name: 'expires',
+          title: data.i18n.expiresTitle,
+
+          visible: false,
         },
 
         // Status.
@@ -305,7 +315,7 @@
 
         // And the field controls now.
         // This defaults to a `10%` width also.
-        $.extend({}, jsGridData.controlDefaultOptions, {})
+        $.extend({}, jsGridData.controlDefaultOptions)
       ]
     }));
     // Tooltips.

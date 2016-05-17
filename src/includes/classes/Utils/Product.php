@@ -20,16 +20,16 @@ use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 
 /**
- * WC product data utilities.
+ * Product utilities.
  *
- * @since 16xxxx WC product data.
+ * @since 16xxxx Product utilities.
  */
-class WcProductData extends SCoreClasses\SCore\Base\Core
+class Product extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Post type.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @type string Post type.
      */
@@ -38,7 +38,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Meta prefix.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @type string Meta prefix.
      */
@@ -47,7 +47,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Visibility classes.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @type string Visibility classes.
      */
@@ -56,7 +56,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Client-side prefix.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @type string Client-side prefix.
      */
@@ -65,7 +65,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Current screen.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @type \WP_Screen|null Screen.
      */
@@ -74,7 +74,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Is screen mobile?
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @type bool Is screen mobile?
      */
@@ -83,7 +83,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @param Classes\App $App Instance.
      */
@@ -111,7 +111,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Current user can edit products?
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @return bool True if the current user can.
      */
@@ -123,7 +123,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Get screen object.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      */
     public function onCurrentScreen(\WP_Screen $screen)
     {
@@ -139,7 +139,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Enqueue styles/scripts.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      */
     public function onAdminEnqueueScripts()
     {
@@ -151,19 +151,45 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
         s::enqueueMomentLibs();
         s::enqueueJQueryJsGridLibs();
 
-        wp_enqueue_style($this->client_side_prefix.'-product-data', c::appUrl('/client-s/css/admin/wc-product-data.min.css'), [], $this->App::VERSION, 'all');
-        wp_enqueue_script($this->client_side_prefix.'-product-data', c::appUrl('/client-s/js/admin/wc-product-data.min.js'), ['jquery', 'jquery-jsgrid', 'jquery-ui-tooltip', 'jquery-ui-sortable', 'underscore', 'moment'], $this->App::VERSION, true);
+        wp_enqueue_style($this->client_side_prefix.'-product-post-type', c::appUrl('/client-s/css/admin/product-post-type.min.css'), [], $this->App::VERSION, 'all');
+        wp_enqueue_script($this->client_side_prefix.'-product-post-type', c::appUrl('/client-s/js/admin/product-post-type.min.js'), ['jquery', 'jquery-jsgrid', 'jquery-ui-tooltip', 'jquery-ui-sortable', 'jquery-tiptip', 'underscore', 'moment'], $this->App::VERSION, true);
 
         wp_localize_script(
-            $this->client_side_prefix.'-product-data',
-            $this->client_side_prefix.'WcProductDataData',
+            $this->client_side_prefix.'-product-post-type',
+            $this->client_side_prefix.'ProductPostTypeData',
             [
                 'is' => [
                     'mobile' => $this->screen_is_mobile,
                 ],
                 'i18n' => [
+                    'productIdTitle' => __('Product ID', 's2member-x'),
 
+                    'restrictionIdTitle'        => __('Access', 's2member-x'),
+                    'restrictionIdTitleTip'     => __('Choose from your current list of configured Restrictions.', 's2member-x'),
+                    'restrictionAccessRequired' => __('\'Access\' selection is empty.', 's2member-x'),
+
+                    'accessOffsetTimeTitle'            => __('Starts', 's2member-x'),
+                    'accessOffsetTimeTitleTip'         => __('Timer begins when Order status is \'completed\'. In the case of a Subscription, when the Subscription is \'active\'.<hr />i.e., \'immediately\' means access starts without delay.<hr />Choosing \'after 7 days\' creates a delay of 7 days. Also known as Content Dripping; i.e., loyal customers gain access to more over time, as configured here.', 's2member-x'),
+                    'accessOffsetTimeOtherPlaceholder' => __('e.g., after 45 days', 's2member-x'),
+                    'accessOffsetTimeRequired'         => __('\'Starts\' selection is empty.', 's2member-x'),
+                    'accessOffsetTimeAfter'            => __('after', 's2member-x'),
+
+                    'expireOffsetTimeTitle'            => __('Ends', 's2member-x'),
+                    'expireOffsetTimeTitleTip'         => __('\'naturally\'; i.e., revoke access when an Order no longer has a \'completed\' status; or a Subscription no longer has an \'active\' status; or a fixed-term Subscription expires.<hr />\'naturally -expired\' excludes the case of a fixed-term Subscription expiring; i.e., when installments are complete, access remains.<hr />\'never\' means do not revoke (ever), even if an Order or Subscription is cancelled.<hr />Choosing \'7 days later\' means 7 days after access begins (according to Start time).', 's2member-x'),
+                    'expireOffsetTimeOtherPlaceholder' => __('e.g., 45 days later', 's2member-x'),
+                    'expireOffsetTimeRequired'         => __('\'Ends\' selection is empty.', 's2member-x'),
+                    'expireOffsetTimeLater'            => __('later', 's2member-x'),
+
+                    'displayOrderTitle' => __('Display Order', 's2member-x'),
+
+                    'noDataContent'  => __('No permissions.', 's2member-x'),
+                    'notReadyToSave' => __('Not ready to save all changes yet...', 's2member-x'),
+                    'stillInserting' => __('A Permission row is still pending insertion.', 's2member-x'),
+                    'stillEditing'   => __('A Permission row is still open for editing.', 's2member-x'),
                 ],
+                'restrictionTitlesById'              => a::restrictionTitlesById(),
+                'productPermissionAccessOffsetTimes' => a::productPermissionAccessOffsetTimes(),
+                'productPermissionExpireOffsetTimes' => a::productPermissionExpireOffsetTimes(),
             ]
         );
     }
@@ -171,7 +197,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * General product data.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      */
     public function onGeneralProductData()
     {
@@ -190,60 +216,64 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
         if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType())) {
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
-        $product_permission_offset_periods = a::productPermissionOffsetPeriods();
-        $current_permissions               = $this->getMeta($post->ID, 'permissions');
+        echo '<div class="'.esc_attr($this->client_side_prefix.'-product-meta options_group '.implode(' ', $this->visibility_classes)).'">';
+        echo    '<h3 style="margin-bottom:0;">'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 's2member-x').'</h3>';
 
-        echo '<div class="'.esc_attr($this->client_side_prefix.'-product-data options_group '.implode(' ', $this->visibility_classes)).'">';
-
-        echo    '<input class="-product-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode($current_permissions)).'" />';
-        echo    '<input class="-restriction-titles-by-id" type="hidden" value="'.esc_attr(json_encode($restriction_titles_by_id)).'" />';
-        echo    '<input class="-product-permission-offset-periods" type="hidden" value="'.esc_attr(json_encode($product_permission_offset_periods)).'" />';
-
-        echo    '<div class="-grid" data-toggle="jquery-jsgrid"></div>';
-
+        if (!$restriction_titles_by_id) {
+            echo '<div class="notice notice-info inline">';
+            echo    '<p>'.sprintf(__('It\'s not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
+            echo '</div>';
+        } else {
+            $current_permissions = $this->getMeta($post->ID, 'permissions');
+            echo '<input class="-product-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode($current_permissions)).'" />';
+            echo '<div class="-permissions-grid" data-toggle="jquery-jsgrid"></div>';
+        }
         echo '</div>';
     }
 
     /**
      * Variable product data.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
+     *
+     * @param int      $key  Current index key.
+     * @param array    $data Current variation data.
+     * @param \WP_Post $post Current variation post.
      */
-    public function onAfterVariableAttributes()
+    public function onAfterVariableAttributes(int $key, array $data, \WP_Post $post)
     {
-        global $post; // Needed below.
-
-        if (!s::isMenuPageForPostType($this->post_type)) {
+        if (!is_ajax()) {
             return; // Not applicable.
         } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
-        } elseif (!($post instanceof \WP_Post)) {
+        } elseif (get_post_type($post) !== $this->post_type.'_variation') {
             return; // Not applicable.
-        } elseif (get_post_type($post) !== $this->post_type) {
+        } elseif (($_REQUEST['action'] ?? '') !== 'woocommerce_load_variations') {
             return; // Not applicable.
         }
         $restriction_titles_by_id = a::restrictionTitlesById();
         if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType())) {
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
-        $product_permission_offset_periods = a::productPermissionOffsetPeriods();
-        $current_permissions               = $this->getMeta($post->ID, 'permissions');
+        echo '<div class="'.esc_attr($this->client_side_prefix.'-product-meta').'" data-variation-key="'.esc_attr($key).'">';
+        echo    '<h3 style="margin-bottom:0;">'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 's2member-x').'</h3>';
 
-        echo '<div class="'.esc_attr($this->client_side_prefix.'-product-data').'">';
-
-        echo    '<input class="-product-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode($current_permissions)).'" />';
-        echo    '<input class="-restriction-titles-by-id" type="hidden" value="'.esc_attr(json_encode($restriction_titles_by_id)).'" />';
-        echo    '<input class="-product-permission-offset-periods" type="hidden" value="'.esc_attr(json_encode($product_permission_offset_periods)).'" />';
-
-        echo    '<div class="-grid" data-toggle="jquery-jsgrid"></div>';
-
+        if (!$restriction_titles_by_id) {
+            echo '<div class="notice notice-info inline">';
+            echo    '<p>'.sprintf(__('It\'s not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
+            echo '</div>';
+        } else {
+            $current_permissions = $this->getMeta($post->ID, 'permissions');
+            echo '<input class="-product-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_variation_permissions['.$key.']').'" value="'.esc_attr(json_encode($current_permissions)).'" />';
+            echo '<div class="-permissions-grid" data-toggle="jquery-jsgrid">Grid</div>';
+        }
         echo '</div>';
     }
 
     /**
      * Get meta values.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @param string|int $post_id  Post ID.
      * @param \WP_Post   $post     Post object.
@@ -282,7 +312,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Get meta values.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @param string|int $post_id Post ID.
      * @param string     $key     Meta key.
@@ -302,7 +332,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Update meta values.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @param string|int $post_id Post ID.
      * @param string     $key     Meta key.
@@ -323,7 +353,7 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
     /**
      * Delete meta values.
      *
-     * @since 16xxxx WC product data.
+     * @since 16xxxx Product utilities.
      *
      * @param string|int $post_id Post ID.
      * @param string     $key     Meta key.
@@ -334,5 +364,17 @@ class WcProductData extends SCoreClasses\SCore\Base\Core
             return; // Not possible.
         }
         delete_post_meta($post_id, $this->meta_prefix.$key);
+    }
+
+    /**
+     * Create product URL.
+     *
+     * @since 16xxxx Restrictions.
+     *
+     * @return string Create product URL.
+     */
+    public function createUrl(): string
+    {
+        return admin_url('/post-new.php?post_type='.urlencode($this->post_type));
     }
 }
