@@ -28,4 +28,20 @@ trait UserPermission
     {
         return $GLOBALS[static::class]->Utils->UserPermission->statuses(...$args);
     }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function addUserPermission(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->UserPermission->add(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function removeUserPermissions(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->UserPermission->remove(...$args);
+    }
 }

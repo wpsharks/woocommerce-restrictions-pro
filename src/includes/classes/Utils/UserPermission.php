@@ -70,4 +70,85 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         }
         return $statuses; // With or without `trashed` status.
     }
+
+    /**
+     * Add a new user permission.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @param string|int      $user_id     User ID.
+     * @param string|int      $restriction Slug or ID.
+     * @param array|\StdClass $data        Permission data.
+     *
+     * @return Classes\UserPermission New user permission.
+     */
+    public function add($user_id, $restriction, $data = null): Classes\UserPermission
+    {
+        if (!($user_id = (int) $user_id)) {
+            return 0; // Not possible.
+        }
+        if ($restriction && is_string($restriction)) {
+            if (!($restriction_id = a::restrictionSlugToId($restriction))) {
+                return 0; // Not possible.
+            }
+        } elseif (!($restriction_id = (int) $restriction)) {
+            return 0; // Not possible.
+        }
+        $data                 = $data ?? new \StdClass();
+        $data                 = (object) $data;
+        $data->user_id        = $user_id;
+        $data->restriction_id = $restriction_id;
+        $data->status         = $data->status ?? 'active';
+
+        $UserPermission = $this->App->Di->get(Classes\UserPermission::class, ['data' => $data]);
+        $UserPermission->update(); // Save/update the new permission.
+
+        return $UserPermission;
+    }
+
+    /**
+     * Remove user permission(s).
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @param string|int      $user_id       User ID.
+     * @param string|int|null $restriction   Slug or ID (optional).
+     * @param int|null        $permission_id A specific permission ID (optional).
+     *
+     * @note If a `$permission_id` is passed, it is used instead of `$restriction_id`.
+     *  CAUTION: If neither are passed, all permission are removed.
+     *
+     * @return int Total permission deletions.
+     */
+    public function remove($user_id, $restriction = null, int $permission_id = null): int
+    {
+        if (!($user_id = (int) $user_id)) {
+            return 0; // Not possible.
+        }
+        if (isset($restriction) && is_string($restriction)) {
+            $restriction_id = a::restrictionSlugToId($restriction);
+        } elseif (isset($restriction)) {
+            $restriction_id = (int) $restriction;
+        }
+        $total_deletions = 0; // Initialize deletion counter.
+
+        foreach (a::userPermissions($user_id) as $_UserPermission) {
+            if (isset($permission_id)) {
+                if ($permission_id === $_UserPermission->ID) {
+                    $_UserPermission->delete();
+                    ++$total_deletions;
+                }
+            } elseif (isset($restriction_id)) {
+                if ($restriction_id === $_UserPermission->restriction_id) {
+                    $_UserPermission->delete();
+                    ++$total_deletions;
+                }
+            } else { // Remove all in this case.
+                $_UserPermission->delete();
+                ++$total_deletions;
+            }
+        } // unset($_UserPermission); // Housekeeping.
+
+        return $total_deletions;
+    }
 }
