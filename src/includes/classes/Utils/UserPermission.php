@@ -47,8 +47,17 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         parent::__construct($App);
 
         $this->statuses = s::applyFilters('user_permission_statuses', [
-            'active'  => __('Active', 's2member-x'),
-            'on-hold' => __('On-Hold', 's2member-x'),
+            // Orders and Subscriptions.
+            'active'    => __('Active', 's2member-x'),
+            'pending'   => __('Pending', 's2member-x'),
+            'on-hold'   => __('On-Hold', 's2member-x'),
+            'cancelled' => __('Cancelled', 's2member-x'),
+            'refunded'  => __('Refunded', 's2member-x'),
+            'failed'    => __('Failed', 's2member-x'),
+
+            // Subscriptions only for these two.
+            'switched' => __('Switched', 's2member-x'),
+            'expired'  => __('Expired', 's2member-x'),
         ]);
     }
 
