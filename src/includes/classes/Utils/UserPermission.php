@@ -80,19 +80,19 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
      * @param string|int      $restriction Slug or ID.
      * @param array|\StdClass $data        Permission data.
      *
-     * @return Classes\UserPermission New user permission.
+     * @return Classes\UserPermission|null New user permission or `null` on failure.
      */
-    public function add($user_id, $restriction, $data = null): Classes\UserPermission
+    public function add($user_id, $restriction, $data = null)
     {
         if (!($user_id = (int) $user_id)) {
-            return 0; // Not possible.
+            return null; // Not possible.
         }
         if ($restriction && is_string($restriction)) {
             if (!($restriction_id = a::restrictionSlugToId($restriction))) {
-                return 0; // Not possible.
+                return null; // Not possible.
             }
         } elseif (!($restriction_id = (int) $restriction)) {
-            return 0; // Not possible.
+            return null; // Not possible.
         }
         $data                 = $data ?? new \StdClass();
         $data                 = (object) $data;
