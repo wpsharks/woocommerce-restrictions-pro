@@ -24,24 +24,48 @@ trait ProductPermission
     /**
      * @since 16xxxx Initial release.
      */
-    public static function productPermissionOffsetTimes()
+    public static function productPermissionAccessOffsetPrefix()
     {
-        return $GLOBALS[static::class]->Utils->ProductPermission->offset_times;
+        return $GLOBALS[static::class]->Utils->ProductPermission->access_offset_prefix;
     }
 
     /**
      * @since 16xxxx Initial release.
      */
-    public static function productPermissionAccessOffsetTimes()
+    public static function productPermissionAccessOffsetKeyPrefix()
     {
-        return $GLOBALS[static::class]->Utils->ProductPermission->access_offset_times;
+        return $GLOBALS[static::class]->Utils->ProductPermission->access_offset_key_prefix;
     }
 
     /**
      * @since 16xxxx Initial release.
      */
-    public static function productPermissionExpireOffsetTimes()
+    public static function productPermissionExpireOffsetSuffix()
     {
-        return $GLOBALS[static::class]->Utils->ProductPermission->expire_offset_times;
+        return $GLOBALS[static::class]->Utils->ProductPermission->expire_offset_suffix;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function productPermissionExpireOffsetKeySuffix()
+    {
+        return $GLOBALS[static::class]->Utils->ProductPermission->expire_offset_key_suffix;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function productPermissionAccessOffsetDirectives()
+    {
+        return $GLOBALS[static::class]->Utils->ProductPermission->access_offset_directives;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function productPermissionExpireOffsetDirectives()
+    {
+        return $GLOBALS[static::class]->Utils->ProductPermission->expire_offset_directives;
     }
 }

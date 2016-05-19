@@ -54,6 +54,15 @@ class Product extends SCoreClasses\SCore\Base\Core
     public $visibility_classes;
 
     /**
+     * Variation visibility classes.
+     *
+     * @since 16xxxx Product utilities.
+     *
+     * @type string Variation visibility classes.
+     */
+    public $variation_visibility_classes;
+
+    /**
      * Client-side prefix.
      *
      * @since 16xxxx Product utilities.
@@ -105,6 +114,8 @@ class Product extends SCoreClasses\SCore\Base\Core
             // In some places they use a dash, and in others it uses an underscore.
             // The official definition is with an `_`, but that seems likely to change.
         ];
+        $this->variation_visibility_classes = []; // None at this time.
+
         $this->client_side_prefix = 'rsxqjzypgdqmrnnkkkrmgshvnnnkzzvu'; // JS, CSS, forms, etc.
     }
 
@@ -168,28 +179,27 @@ class Product extends SCoreClasses\SCore\Base\Core
                     'restrictionIdTitleTip'     => __('Choose from your current list of configured Restrictions.', 's2member-x'),
                     'restrictionAccessRequired' => __('\'Access\' selection is empty.', 's2member-x'),
 
-                    'accessOffsetTimeTitle'            => __('Starts', 's2member-x'),
-                    'accessOffsetTimeTitleTip'         => __('Timer begins when Order status is \'completed\'. In the case of a Subscription, when the Subscription is \'active\'.<hr />i.e., \'immediately\' means access starts without delay.<hr />Choosing \'after 7 days\' creates a delay of 7 days. Also known as Content Dripping; i.e., loyal customers gain access to more over time, as configured here.', 's2member-x'),
-                    'accessOffsetTimeOtherPlaceholder' => __('e.g., after 45 days', 's2member-x'),
-                    'accessOffsetTimeRequired'         => __('\'Starts\' selection is empty.', 's2member-x'),
-                    'accessOffsetTimeAfter'            => __('after', 's2member-x'),
+                    'accessOffsetDirectiveTitle'            => __('Starts', 's2member-x'),
+                    'accessOffsetDirectiveTitleTip'         => __('Timer begins when Order status is \'completed\'. In the case of a Subscription, when the Subscription is \'active\'.<hr />i.e., \'immediately\' means access starts without delay.<hr />Choosing \'after 7 days\' creates a delay of 7 days. Also known as Content Dripping; i.e., loyal customers gain access to more over time, as configured here.<hr />Day, week, month &amp; year options start access at the very beginning of the calculated day: 12:00 AM (GMT/UTC)', 's2member-x'),
+                    'accessOffsetDirectiveOtherPlaceholder' => sprintf(__('e.g., %1$s 48 hours', 's2member-x'), a::productPermissionAccessOffsetPrefix()),
+                    'accessOffsetDirectiveRequired'         => __('\'Starts\' selection is empty.', 's2member-x'),
 
-                    'expireOffsetTimeTitle'            => __('Ends', 's2member-x'),
-                    'expireOffsetTimeTitleTip'         => __('\'naturally\'; i.e., revoke access when an Order no longer has a \'completed\' status; or a Subscription no longer has an \'active\' status; or a fixed-term Subscription expires.<hr />\'naturally -expired\' excludes the case of a fixed-term Subscription expiring; i.e., when installments are complete, access remains.<hr />\'never\' means do not revoke (ever), even if an Order or Subscription is cancelled.<hr />Choosing \'7 days later\' means 7 days after access begins (according to Start time).', 's2member-x'),
-                    'expireOffsetTimeOtherPlaceholder' => __('e.g., 45 days later', 's2member-x'),
-                    'expireOffsetTimeRequired'         => __('\'Ends\' selection is empty.', 's2member-x'),
-                    'expireOffsetTimeLater'            => __('later', 's2member-x'),
+                    'expireOffsetDirectiveTitle'            => __('Ends', 's2member-x'),
+                    'expireOffsetDirectiveTitleTip1'        => __('\'naturally\'; i.e., revoke access when an Order no longer has a \'completed\' status; or a Subscription no longer has an \'active\' status; or a fixed-term Subscription expires.<hr />\'naturally -expired\' excludes the case of a fixed-term Subscription expiring; i.e., when installments are complete, access remains.<hr />\'never\' means do not revoke (ever). Even if an Order or Subscription is cancelled.', 's2member-x'),
+                    'expireOffsetDirectiveTitleTip2'        => __('Date-based options are relative to the Start time.<hr />Choosing \'7 days later\' means 7 days after access begins (according to Start time).<hr />Day, week, month &amp; year options will stop access at the very end of the calculated day: 11:59 PM (GMT/UTC)', 's2member-x'),
+                    'expireOffsetDirectiveOtherPlaceholder' => sprintf(__('e.g., 90 days %1$s', 's2member-x'), a::productPermissionExpireOffsetSuffix()),
+                    'expireOffsetDirectiveRequired'         => __('\'Ends\' selection is empty.', 's2member-x'),
 
                     'displayOrderTitle' => __('Display Order', 's2member-x'),
 
                     'noDataContent'  => __('No permissions.', 's2member-x'),
                     'notReadyToSave' => __('Not ready to save all changes yet...', 's2member-x'),
-                    'stillInserting' => __('A Permission row is still pending insertion.', 's2member-x'),
-                    'stillEditing'   => __('A Permission row is still open for editing.', 's2member-x'),
+                    'stillInserting' => __('A Customer Permission row is still pending insertion. Please click the green \'+\' icon to complete insertion. Or, empty the \'Access\' select menu in the green insertion row.', 's2member-x'),
+                    'stillEditing'   => __('A Customer Permission row (in yellow) is still open for editing. Please save your changes there first, or click the \'x\' icon to cancel editing in the open row.', 's2member-x'),
                 ],
-                'restrictionTitlesById'              => a::restrictionTitlesById(),
-                'productPermissionAccessOffsetTimes' => a::productPermissionAccessOffsetTimes(),
-                'productPermissionExpireOffsetTimes' => a::productPermissionExpireOffsetTimes(),
+                'restrictionTitlesById'                   => a::restrictionTitlesById(),
+                'productPermissionAccessOffsetDirectives' => a::productPermissionAccessOffsetDirectives(),
+                'productPermissionExpireOffsetDirectives' => a::productPermissionExpireOffsetDirectives(),
             ]
         );
     }
@@ -217,7 +227,7 @@ class Product extends SCoreClasses\SCore\Base\Core
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
         echo '<div class="'.esc_attr($this->client_side_prefix.'-product-meta options_group '.implode(' ', $this->visibility_classes)).'">';
-        echo    '<h3 style="margin-bottom:0;">'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 's2member-x').'</h3>';
+        echo    '<p style="margin-bottom:0 !important;">'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 's2member-x').'</p>';
 
         if (!$restriction_titles_by_id) {
             echo '<div class="notice notice-info inline">';
@@ -248,15 +258,13 @@ class Product extends SCoreClasses\SCore\Base\Core
             return; // Not applicable.
         } elseif (get_post_type($post) !== $this->post_type.'_variation') {
             return; // Not applicable.
-        } elseif (($_REQUEST['action'] ?? '') !== 'woocommerce_load_variations') {
-            return; // Not applicable.
         }
         $restriction_titles_by_id = a::restrictionTitlesById();
         if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType())) {
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
-        echo '<div class="'.esc_attr($this->client_side_prefix.'-product-meta').'" data-variation-key="'.esc_attr($key).'">';
-        echo    '<h3 style="margin-bottom:0;">'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 's2member-x').'</h3>';
+        echo '<div class="'.esc_attr($this->client_side_prefix.'-product-meta '.implode(' ', $this->variation_visibility_classes)).'" data-variation-key="'.esc_attr($key).'">';
+        echo    '<p style="margin-bottom:.2em !important;">'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 's2member-x').'</p>';
 
         if (!$restriction_titles_by_id) {
             echo '<div class="notice notice-info inline">';
@@ -265,21 +273,19 @@ class Product extends SCoreClasses\SCore\Base\Core
         } else {
             $current_permissions = $this->getMeta($post->ID, 'permissions');
             echo '<input class="-product-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_variation_permissions['.$key.']').'" value="'.esc_attr(json_encode($current_permissions)).'" />';
-            echo '<div class="-permissions-grid" data-toggle="jquery-jsgrid">Grid</div>';
+            echo '<div class="-permissions-grid" data-toggle="jquery-jsgrid"></div>';
         }
         echo '</div>';
     }
 
     /**
-     * Get meta values.
+     * Save meta values.
      *
      * @since 16xxxx Product utilities.
      *
-     * @param string|int $post_id  Post ID.
-     * @param \WP_Post   $post     Post object.
-     * @param bool       $updating On update?
+     * @param string|int $post_id Post ID.
      */
-    public function onSavePost($post_id, \WP_Post $post, bool $updating)
+    public function onSaveProduct($post_id)
     {
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
@@ -290,12 +296,51 @@ class Product extends SCoreClasses\SCore\Base\Core
         } elseif (!isset($_REQUEST[$this->client_side_prefix.'_permissions'])) {
             return; // Not applicable.
         }
-        $permissions = []; // Initialize array of permissions.
-
         $_r_permissions = c::unslash((string) $_REQUEST[$this->client_side_prefix.'_permissions']);
         if (!is_array($_r_permissions = json_decode($_r_permissions))) {
             return; // Corrupt form submission. Do not save.
         }
+        $this->savePermissions($post_id, $_r_permissions);
+    }
+
+    /**
+     * Save meta values.
+     *
+     * @since 16xxxx Product utilities.
+     *
+     * @param string|int $post_id    Post ID.
+     * @param string|int $loop_index UI loop index.
+     */
+    public function onSaveProductVariation($post_id, $loop_index)
+    {
+        if (!($post_id = (int) $post_id)) {
+            return; // Not possible.
+        } elseif (!$this->currentUserCan()) {
+            return; // Not applicable.
+        } elseif (get_post_type($post_id) !== $this->post_type.'_variation') {
+            return; // Not applicable.
+        } elseif (!isset($_REQUEST[$this->client_side_prefix.'_variation_permissions'][$loop_index])) {
+            return; // Not applicable.
+        }
+        $_r_permissions = c::unslash((string) $_REQUEST[$this->client_side_prefix.'_variation_permissions'][$loop_index]);
+        if (!is_array($_r_permissions = json_decode($_r_permissions))) {
+            return; // Corrupt form submission. Do not save.
+        }
+        $this->savePermissions($post_id, $_r_permissions);
+    }
+
+    /**
+     * Save permissions.
+     *
+     * @since 16xxxx Product utilities.
+     *
+     * @param int   $post_id        Post ID.
+     * @param array $_r_permissions Incoming permissions.
+     */
+    protected function savePermissions(int $post_id, array $_r_permissions)
+    {
+        $permissions = []; // Initialize array.
+
         foreach ($_r_permissions as $_key => $_r_permission) {
             if (!($_r_permission instanceof \StdClass)) {
                 return; // Corrupt form submission.
@@ -303,8 +348,9 @@ class Product extends SCoreClasses\SCore\Base\Core
                 return; // Corrupt form submission.
             } // ↑ Should not happen, but better safe than sorry.
             $_r_permission->product_id = $post_id; // Force association.
-            $permissions[]             = $this->App->Di->get(Classes\ProductPermission::class, ['data' => $_r_permission]);
-        } // unset($_key, $_r_permission, $_r_permission_key); // Houskeeping.
+            $_ProductPermission        = $this->App->Di->get(Classes\ProductPermission::class, ['data' => $_r_permission]);
+            $permissions[]             = (object) $_ProductPermission->overloadArray();
+        } // unset($_key, $_r_permission, $_ProductPermission); // Houskeeping.
 
         $this->updateMeta($post_id, 'permissions', $permissions);
     }

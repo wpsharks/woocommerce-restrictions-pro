@@ -54,8 +54,102 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
             return false;
         } elseif (!$this->restriction_id) {
             return false;
+        } elseif (!$this->access_offset_directive) {
+            return false;
+        } elseif (!$this->expire_offset_directive) {
+            return false;
         }
         return true; // No problems.
+    }
+
+    /**
+     * Calculate access time.
+     *
+     * @since 16xxxx Product permission.
+     *
+     * @param int $from Basis for time calculation.
+     *
+     * @return int Access timestamp, else `0` if n/a.
+     */
+    public function accessTime(int $from = null)
+    {
+        if (!isset($from)) { // Defaults to now.
+            $from = time(); // Basis for `strtotime()`.
+        }
+        if (!$this->isValid()) {
+            return 0; // Not possible.
+        }
+        switch ($this->access_offset_directive) {
+            case 'immediately':
+                return 0;
+
+            default: // Relative offset time.
+                $directive                           = $this->access_offset_directive;
+                $access_offset_key_prefix_regex_frag = c::escRegex(a::productPermissionAccessOffsetKeyPrefix());
+                $directive                           = preg_replace('/^'.$access_offset_key_prefix_regex_frag.'\s+/ui', '', $directive, -1, $contained_access_offset_key_prefix);
+
+                if ($contained_access_offset_key_prefix) {
+                    if (($time = (int) strtotime('+'.$directive, $from)) >= $from) {
+                        return $time; // Access timestamp.
+                    } else {
+                        return 0; // `0` on failure.
+                    }
+                } else { // Anything else compatible w/ `strtotime()`.
+                    // e.g., `first day of next month`, `last day of next month`, etc.
+                    // See: <http://php.net/manual/en/datetime.formats.relative.php>
+                    if (($time = (int) strtotime($directive, $from)) >= $from) {
+                        return $time; // Access timestamp.
+                    } else {
+                        return 0; // `0` on failure.
+                    }
+                }
+        }
+    }
+
+    /**
+     * Calculate expire time.
+     *
+     * @since 16xxxx Product permission.
+     *
+     * @param int $from Basis for time calculation.
+     *
+     * @return int Expiration timestamp, else `0` if n/a.
+     */
+    public function expireTime(int $from = null)
+    {
+        if (!$this->isValid()) {
+            return 0; // Not possible.
+        }
+        if (!($from = $this->accessTime($from))) {
+            $from = time(); // Basis for `strtotime()`.
+        }
+        switch ($this->expire_offset_directive) {
+            case 'naturally':
+            case 'naturally -expired':
+            case 'never':
+                return 0;
+
+            default: // Relative offset time.
+                $directive                           = $this->expire_offset_directive;
+                $expire_offset_key_suffix_regex_frag = c::escRegex(a::productPermissionExpireOffsetKeySuffix());
+                $directive                           = preg_replace('/\s+'.$expire_offset_key_suffix_regex_frag.'$/ui', '', $directive, -1, $contained_expire_offset_key_suffix);
+
+                if ($contained_expire_offset_key_suffix) {
+                    if (($time = (int) strtotime('+'.$directive, $from)) >= $from) {
+                        return $time; // Expire timestamp.
+                    } else {
+                        return 0; // `0` on failure.
+                    }
+                } else { // Anything else compatible w/ `strtotime()`.
+                    // e.g., `first day of next month`, `last day of next month`, etc.
+                    // See: <http://php.net/manual/en/datetime.formats.relative.php>
+                    if (($time = (int) strtotime($directive, $from)) >= $from) {
+                        return $time; // Expire timestamp.
+                    } else {
+                        return 0; // `0` on failure.
+                    }
+                }
+        }
     }
 
     /**
@@ -79,8 +173,8 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
                 'product_id'     => 0,
                 'restriction_id' => 0,
 
-                'access_offset_time' => 0,
-                'expire_offset_time' => 0,
+                'access_offset_directive' => '',
+                'expire_offset_directive' => '',
 
                 'display_order' => 0,
             ];
@@ -93,10 +187,10 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
         $this->product_id     = abs((int) ($data->product_id ?? $this->product_id ?? 0));
         $this->restriction_id = abs((int) ($data->restriction_id ?? $this->restriction_id ?? 0));
 
-        $this->access_offset_time = abs((int) ($data->access_offset_time ?? $this->access_offset_time ?? 0));
-        $this->expire_offset_time = abs((int) ($data->expire_offset_time ?? $this->expire_offset_time ?? 0));
-        // Note the `expire_offset_time` starts from the beginning of the access time.
-        //  i.e., time() + `access_offset_time` + `expire_offset_time` = expire time.
+        $this->access_offset_directive = mb_strtolower((string) ($data->access_offset_directive ?? $this->access_offset_directive ?? ''));
+        $this->expire_offset_directive = mb_strtolower((string) ($data->expire_offset_directive ?? $this->expire_offset_directive ?? ''));
+        // Note the `expire_offset_directive` starts from the beginning of the `access_offset_directive` calculation.
+        //  i.e., time() + `access_offset_directive` + `expire_offset_directive` = expire time.
 
         $this->display_order = abs((int) ($data->display_order ?? $this->display_order ?? 0));
     }

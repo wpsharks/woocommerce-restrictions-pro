@@ -69,7 +69,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
             return false;
         } elseif ($this->access_time && $this->expire_time && $this->access_time >= $this->expire_time) {
             return false;
-        } elseif (($this->order_id || $this->subscription_id) && !$this->expires) {
+        } elseif (($this->order_id || $this->subscription_id) && !$this->expire_directive) {
             return false;
         }
         return true; // No problems.
@@ -201,10 +201,10 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
                 'subscription_id' => 0,
                 'product_id'      => 0,
 
-                'restriction_id' => 0,
-                'access_time'    => 0,
-                'expire_time'    => 0,
-                'expires'        => '',
+                'restriction_id'   => 0,
+                'access_time'      => 0,
+                'expire_time'      => 0,
+                'expire_directive' => '',
 
                 'status'     => '',
                 'is_trashed' => 0,
@@ -227,10 +227,10 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         $this->subscription_id = abs((int) ($data->subscription_id ?? $this->subscription_id ?? 0));
         $this->product_id      = abs((int) ($data->product_id ?? $this->product_id ?? 0));
 
-        $this->restriction_id = abs((int) ($data->restriction_id ?? $this->restriction_id ?? 0));
-        $this->access_time    = abs((int) ($data->access_time ?? $this->access_time ?? 0));
-        $this->expire_time    = abs((int) ($data->expire_time ?? $this->expire_time ?? 0));
-        $this->expires        = mb_strtolower((string) ($data->expires ?? $this->expires ?? ''));
+        $this->restriction_id   = abs((int) ($data->restriction_id ?? $this->restriction_id ?? 0));
+        $this->access_time      = abs((int) ($data->access_time ?? $this->access_time ?? 0));
+        $this->expire_time      = abs((int) ($data->expire_time ?? $this->expire_time ?? 0));
+        $this->expire_directive = mb_strtolower((string) ($data->expire_directive ?? $this->expire_directive ?? ''));
 
         $this->status     = mb_strtolower((string) ($data->status ?? $this->status ?? ''));
         $this->is_trashed = abs((int) ($data->is_trashed ?? $this->is_trashed ?? 0));

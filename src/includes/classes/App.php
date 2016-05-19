@@ -163,7 +163,7 @@ class App extends SCoreClasses\App
 
                 add_action('add_meta_boxes', [$this->Utils->Restriction, 'onAddMetaBoxes']);
                 add_filter('default_hidden_meta_boxes', [$this->Utils->Restriction, 'onDefaultHiddenMetaBoxes'], 10, 2);
-                add_action('save_post_'.$this->Utils->Restriction->post_type, [$this->Utils->Restriction, 'onSavePost'], 10, 3);
+                add_action('save_post_'.$this->Utils->Restriction->post_type, [$this->Utils->Restriction, 'onSaveRestriction']);
 
                 add_action('admin_enqueue_scripts', [$this->Utils->Restriction, 'onAdminEnqueueScripts']);
             }
@@ -221,7 +221,9 @@ class App extends SCoreClasses\App
 
                 add_action('woocommerce_product_options_general_product_data', [$this->Utils->Product, 'onGeneralProductData']);
                 add_action('woocommerce_product_after_variable_attributes', [$this->Utils->Product, 'onAfterVariableAttributes'], 10, 3);
-                add_action('save_post_'.$this->Utils->Product->post_type, [$this->Utils->Product, 'onSavePost'], 10, 3);
+
+                add_action('save_post_'.$this->Utils->Product->post_type, [$this->Utils->Product, 'onSaveProduct']);
+                add_action('woocommerce_save_product_variation', [$this->Utils->Product, 'onSaveProductVariation'], 10, 2);
             }
             # Security gate; always after the `restriction` post type registration.
 

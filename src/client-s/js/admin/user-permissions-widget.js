@@ -18,7 +18,7 @@
     // Restriction items.
 
     var restrictionItems = [{
-      ID: null,
+      ID: 0,
       title: ''
     }]; // Initialize array.
     $.each(data.restrictionTitlesById, function (ID, title) {
@@ -48,7 +48,14 @@
       sorting: false, // Not compatible w/ sortable.
       paging: false, // Not compatible w/ sortable.
 
-      onRefreshed: function (e) {
+      rowClick: function (args) {
+        if (this._editingRow) {
+          this.updateItem(); // Save current item.
+        }
+        this.editItem($(args.event.target).closest('tr'));
+      },
+
+      onRefreshed: function (args) {
         if (initialGridRefreshComplete) {
           return; // Done already.
         }
@@ -236,8 +243,12 @@
           inserting: true,
 
           itemTemplate: function (value, item) {
-            if ((item.order_id || item.subscription_id) && item.expires && !parseInt(value)) {
-              return '<em>' + _.escape(data.productPermissionExpireOffsetTimes[item.expires]) + '</em>';
+            if ((item.order_id || item.subscription_id) && item.expire_directive && !parseInt(value)) {
+              if (typeof data.productPermissionExpireOffsetDirectives[item.expire_directive] === 'string') {
+                return '<em>' + _.escape(data.productPermissionExpireOffsetDirectives[item.expire_directive]) + '</em>';
+              } else { // In case of a custom directive.
+                return '<em>' + _.escape(item.expire_directive) + '</em>';
+              }
             } else { // ↑ If no specific End date, and it's controlled by an Order/Subscription.
               return this._timestampFormat(value, this.subType, true); // Default behavior.
             }
@@ -245,8 +256,8 @@
         }, {
           type: 'text',
           align: 'center',
-          name: 'expires',
-          title: data.i18n.expiresTitle,
+          name: 'expire_directive',
+          title: data.i18n.expireDirectiveTitle,
 
           visible: false,
         },
@@ -319,6 +330,7 @@
       ]
     }));
     // Tooltips.
+
     $widget.tooltip({
       position: {
         my: 'right center',
@@ -332,11 +344,16 @@
     });
     // Form submission handler.
     // This pulls together all of the data.
-    $widget.closest('form').on('submit', function (e) {
+
+    var validateSaveOnSubmit = function (e) {
       var permissions = []; // Initialize permissions.
 
       // This catches a row that is still pending insertion.
-      if ($grid.find('.jsgrid-grid-header > table > tbody > tr.jsgrid-insert-row').filter(':visible').find('> td:first-child select').val()) {
+      var insertModeOn = $grid.find('.jsgrid-insert-mode-button.jsgrid-mode-on-button').length !== 0;
+      var $insertRow = $grid.find('.jsgrid-grid-header > table > tbody > tr.jsgrid-insert-row');
+      var insertRowRestrictionId = $insertRow.find('> td:first-child select').val();
+
+      if (insertModeOn && insertRowRestrictionId && insertRowRestrictionId !== '0') {
         alert(data.i18n.notReadyToSave + '\n• ' + data.i18n.stillInserting);
         /*jshint -W030 */ // Ignore this rule and allow chaining here.
         e.preventDefault(), e.stopImmediatePropagation();
@@ -344,10 +361,12 @@
       }
       // This catches a row that is still open with unsaved changes.
       if ($grid.find('.jsgrid-grid-body > table > tbody > tr.jsgrid-edit-row').length) {
-        alert(data.i18n.notReadyToSave + '\n• ' + data.i18n.stillEditing);
+        $grid.data('JSGrid').updateItem(); // Save changes automatically.
+
+        // alert(data.i18n.notReadyToSave + '\n• ' + data.i18n.stillEditing);
         /*jshint -W030 */ // Ignore this rule and allow chaining here.
-        e.preventDefault(), e.stopImmediatePropagation();
-        return false; // Do not allow at this time.
+        // e.preventDefault(), e.stopImmediatePropagation();
+        // return false; // Do not allow at this time.
       }
       // Ready to go! Let's collect all permission items; i.e., each row in the table.
       $grid.find('.jsgrid-grid-body > table > tbody > tr:not(.jsgrid-nodata-row)').each(function (index) {
@@ -355,7 +374,9 @@
           display_order: index // Set display order.
         }));
       });
-      $widget.find('.-user-permissions').val(JSON.stringify(permissions)); // For server-side handling.
-    });
+      $widget.find('.-user-permissions').val(JSON.stringify(permissions));
+      // console.log('Updated permissions to: %o', permissions); // For console debugging.
+    };
+    $widget.closest('form').on('submit', validateSaveOnSubmit);
   });
 })(jQuery);

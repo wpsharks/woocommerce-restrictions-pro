@@ -48,6 +48,14 @@ trait Product
     /**
      * @since 16xxxx Initial release.
      */
+    public static function productVariationVisibilityClasses()
+    {
+        return $GLOBALS[static::class]->Utils->Product->variation_visibility_classes;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
     public static function productClientSidePrefix()
     {
         return $GLOBALS[static::class]->Utils->Product->client_side_prefix;

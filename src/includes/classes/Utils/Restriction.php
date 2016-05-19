@@ -734,11 +734,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Restrictions.
      *
-     * @param string|int $post_id  Post ID.
-     * @param \WP_Post   $post     Post object.
-     * @param bool       $updating On update?
+     * @param string|int $post_id Post ID.
      */
-    public function onSavePost($post_id, \WP_Post $post, bool $updating)
+    public function onSaveRestriction($post_id)
     {
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
