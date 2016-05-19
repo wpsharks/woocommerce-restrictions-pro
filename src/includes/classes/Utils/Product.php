@@ -101,7 +101,7 @@ class Product extends SCoreClasses\SCore\Base\Core
         parent::__construct($App);
 
         $this->post_type   = 'product'; // Established by WooCommerce.
-        $this->meta_prefix = $this->App->Config->©brand['©var'].'_product_';
+        $this->meta_prefix = '_'.$this->App->Config->©brand['©var'].'_product_';
 
         $this->visibility_classes = [
             'hide_if_external',
@@ -168,7 +168,7 @@ class Product extends SCoreClasses\SCore\Base\Core
         wp_localize_script(
             $this->client_side_prefix.'-product-post-type',
             $this->client_side_prefix.'ProductPostTypeData',
-            [
+            s::applyFilters('product_post_type_client_side_data', [
                 'is' => [
                     'mobile' => $this->screen_is_mobile,
                 ],
@@ -200,7 +200,7 @@ class Product extends SCoreClasses\SCore\Base\Core
                 'restrictionTitlesById'                   => a::restrictionTitlesById(),
                 'productPermissionAccessOffsetDirectives' => a::productPermissionAccessOffsetDirectives(),
                 'productPermissionExpireOffsetDirectives' => a::productPermissionExpireOffsetDirectives(),
-            ]
+            ])
         );
     }
 

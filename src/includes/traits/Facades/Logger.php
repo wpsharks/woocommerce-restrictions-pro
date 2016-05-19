@@ -1,6 +1,6 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Base;
+namespace WebSharks\WpSharks\s2MemberX\Pro\Traits\Facades;
 
 use WebSharks\WpSharks\s2MemberX\Pro\Classes;
 use WebSharks\WpSharks\s2MemberX\Pro\Interfaces;
@@ -19,23 +19,13 @@ use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 
-/**
- * Pseudo-static facades.
- *
- * @since 160227 Initial release.
- */
-abstract class Facades
+trait Logger
 {
-    use Traits\Facades\Logger;
-    use Traits\Facades\Product;
-    use Traits\Facades\ProductPermission;
-    use Traits\Facades\Restriction;
-    use Traits\Facades\RestrictionCaps;
-    use Traits\Facades\Restrictions;
-    use Traits\Facades\SecurityChecks;
-    use Traits\Facades\SecurityGate;
-    use Traits\Facades\Systematics;
-    use Traits\Facades\UserPermission;
-    use Traits\Facades\UserPermissions;
-    use Traits\Facades\UserPermissionShortcodes;
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function addLogEntry(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->Logger->addEntry(...$args);
+    }
 }

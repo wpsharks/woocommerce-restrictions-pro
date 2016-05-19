@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160512'; //v//
+    const VERSION = '160519'; //v//
 
     /**
      * Constructor.
@@ -136,6 +136,11 @@ class App extends SCoreClasses\App
         s::addAction('other_uninstall_routines', [$this->Utils->Uninstaller, 'onOtherUninstallRoutines']);
     }
 
+    // @TODO Force users to register during checkout when cart contains a restriction.
+    // @TODO See: https://github.com/woothemes/woocommerce/blob/653f79b25b79f953af04a4d1cf28f34ba5c862c9/includes/class-wc-checkout.php#L95-L97
+    // @TODO Via hook: woocommerce_before_checkout_form (and others too).
+    // @TODO Search for `woocommerce_before_checkout_form` in the subscriptions plugin for examples of how to do this.
+
     /**
      * Other hook setup handler.
      *
@@ -203,14 +208,11 @@ class App extends SCoreClasses\App
             }
             # Order-related hooks; attached to WooCommerce events.
 
-            add_action('woocommerce_order_status_changed', [$this->Utils->UserWcPermissions, 'onOrderStatusChanged'], 1000, 3);
-            add_action('woocommerce_subscription_status_changed', [$this->Utils->UserWcPermissions, 'onSubscriptionStatusChanged'], 1000, 3);
-            add_action('woocommerce_subscriptions_switched_item', [$this->Utils->UserWcPermissions, 'onSubscriptionItemSwitched'], 1000, 3);
+            add_action('woocommerce_add_order_item_meta', [$this->Utils->OrderMeta, 'onAddOrderItemMeta'], 10, 2);
 
-            // @TODO Force users to register during checkout when cart contains a restriction.
-            // @TODO See: https://github.com/woothemes/woocommerce/blob/653f79b25b79f953af04a4d1cf28f34ba5c862c9/includes/class-wc-checkout.php#L95-L97
-            // @TODO Via hook: woocommerce_before_checkout_form (and others too).
-            // @TODO Search for `woocommerce_before_checkout_form` in the subscriptions plugin for examples of how to do this.
+            add_action('woocommerce_order_status_changed', [$this->Utils->OrderStatus, 'onOrderStatusChanged'], 1000, 3);
+            add_action('woocommerce_subscription_status_changed', [$this->Utils->OrderStatus, 'onSubscriptionStatusChanged'], 1000, 3);
+            add_action('woocommerce_subscriptions_switched_item', [$this->Utils->OrderStatus, 'onSubscriptionItemSwitched'], 1000, 3);
 
             # Product-data and other product-related WooCommerce events.
 

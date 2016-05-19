@@ -118,7 +118,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
 
         # Define special access offset directives.
 
-        $most_common_optgroup_key                                  = '--- '.__('Most Common').' ---';
+        $most_common_optgroup_key                                  = '--- '.__('Most Common', 's2member-x').' ---';
         $this->access_offset_directives[$most_common_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         $this->access_offset_directives['immediately'] = __('immediately', 's2member-x');
@@ -133,7 +133,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
 
         # Period-based offset directives. Starting with minutes and working down from there.
 
-        $minutes_optgroup_key                                  = '--- '.__('Minutes').' ---';
+        $minutes_optgroup_key                                  = '--- '.__('Minutes', 's2member-x').' ---';
         $this->access_offset_directives[$minutes_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$minutes_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
@@ -144,7 +144,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
             $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s minute %2$s', '%1$s minutes %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $hours_optgroup_key                                  = '--- '.__('Hours').' ---';
+        $hours_optgroup_key                                  = '--- '.__('Hours', 's2member-x').' ---';
         $this->access_offset_directives[$hours_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$hours_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
@@ -155,7 +155,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
             $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s hour %2$s', '%1$s hours %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $days_optgroup_key                                  = '--- '.__('Days').' ---';
+        $days_optgroup_key                                  = '--- '.__('Days', 's2member-x').' ---';
         $this->access_offset_directives[$days_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$days_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
@@ -166,7 +166,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
             $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s day %2$s', '%1$s days %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $upcoming_day_based_optgroup_key                                  = '--- '.__('Upcoming Weekday').' ---';
+        $upcoming_day_based_optgroup_key                                  = '--- '.__('Upcoming Weekday', 's2member-x').' ---';
         $this->access_offset_directives[$upcoming_day_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$upcoming_day_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
@@ -183,7 +183,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
             $this->expire_offset_directives[$_key.' 11:59 pm'] = $_title;
         } // unset($_key, $_title); // Housekeeping.
 
-        $next_day_based_optgroup_key                                  = '--- '.__('Next (After Upcoming) Day').' ---';
+        $next_day_based_optgroup_key                                  = '--- '.__('Next (After Upcoming) Day', 's2member-x').' ---';
         $this->access_offset_directives[$next_day_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$next_day_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
@@ -200,7 +200,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
             $this->expire_offset_directives[$_key.' 11:59 pm'] = $_title;
         } // unset($_key, $_title); // Housekeeping.
 
-        $weeks_optgroup_key                                  = '--- '.__('Weeks').' ---';
+        $weeks_optgroup_key                                  = '--- '.__('Weeks', 's2member-x').' ---';
         $this->access_offset_directives[$weeks_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$weeks_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
@@ -211,7 +211,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
             $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s week %2$s', '%1$s weeks %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $week_based_optgroup_key                                  = '--- '.__('Week-Based').' ---';
+        $week_based_optgroup_key                                  = '--- '.__('Week-Based', 's2member-x').' ---';
         $this->access_offset_directives[$week_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$week_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
@@ -224,7 +224,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
             $this->expire_offset_directives[$_key.' 11:59 pm'] = $_title;
         } // unset($_key, $_title); // Housekeeping.
 
-        $months_optgroup_key                                  = '--- '.__('Months').' ---';
+        $months_optgroup_key                                  = '--- '.__('Months', 's2member-x').' ---';
         $this->access_offset_directives[$months_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$months_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
@@ -235,7 +235,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
             $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s month %2$s', '%1$s months %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $month_based_optgroup_key                                  = '--- '.__('Month-Based').' ---';
+        $month_based_optgroup_key                                  = '--- '.__('Month-Based', 's2member-x').' ---';
         $this->access_offset_directives[$month_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$month_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
@@ -248,7 +248,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
             $this->expire_offset_directives[$_key.' 11:59 pm'] = $_title;
         } // unset($_key, $_title); // Housekeeping.
 
-        $years_optgroup_key                                  = '--- '.__('Years').' ---';
+        $years_optgroup_key                                  = '--- '.__('Years', 's2member-x').' ---';
         $this->access_offset_directives[$years_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$years_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
@@ -259,7 +259,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
             $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s year %2$s', '%1$s years %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $year_based_optgroup_key                                  = '--- '.__('Year-Based').' ---';
+        $year_based_optgroup_key                                  = '--- '.__('Year-Based', 's2member-x').' ---';
         $this->access_offset_directives[$year_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$year_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
@@ -274,7 +274,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
         if (s::applyFilters('enable_other_product_permission_offset_directives', !defined('WPLANG') || !WPLANG || mb_stripos(WPLANG, 'en') === 0)) {
             // ↑ Must limit the use of `other` to the english language due to lack of support for a locale in PHP's `strtotime()` function.
 
-            $custom_entry_optgroup_key                                  = '--- '.__('Custom Entry').' ---';
+            $custom_entry_optgroup_key                                  = '--- '.__('Custom Entry', 's2member-x').' ---';
             $this->access_offset_directives[$custom_entry_optgroup_key] = '---'; // Creates an `<optgroup>`.
             $this->expire_offset_directives[$custom_entry_optgroup_key] = '---'; // Creates an `<optgroup>`.
 

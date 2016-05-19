@@ -24,7 +24,7 @@
 .postbox[id^='fdbmjuxwzjfjtaucytprkbcqfpftudyg'] {
   > .inside {
     > .-about.-section {
-      @include wp-admin-dashicon(info);
+      @include wp-admin-dashicon(lock);
 
       &::before {
         float:                right;

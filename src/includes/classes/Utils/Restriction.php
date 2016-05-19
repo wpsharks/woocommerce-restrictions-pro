@@ -119,7 +119,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         parent::__construct($App);
 
         $this->post_type   = $this->App->Config->©brand['©prefix'].'_restriction';
-        $this->meta_prefix = $this->App->Config->©brand['©var'].'_restriction_';
+        $this->meta_prefix = '_'.$this->App->Config->©brand['©var'].'_restriction_';
 
         $this->access_res_prefix  = s::applyFilters('restriction_res_prefix', 'access_res_');
         $this->access_ccap_prefix = s::applyFilters('restriction_ccap_prefix', 'access_ccap_');
@@ -388,7 +388,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         wp_localize_script(
             $this->client_side_prefix.'-restriction-post-type',
             $this->client_side_prefix.'RestrictionPostTypeData',
-            [
+            s::applyFilters('restriction_post_type_client_side_data', [
                 'is' => [
                     'mobile' => $this->screen_is_mobile,
                 ],
@@ -400,7 +400,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                     'suggestedLabel'  => __('Suggested', 's2member-x'),
                     'optionalLabel'   => __('Optional', 's2member-x'),
                 ],
-            ]
+            ])
         );
     }
 
