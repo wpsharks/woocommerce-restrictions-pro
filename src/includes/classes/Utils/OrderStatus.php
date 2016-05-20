@@ -447,6 +447,9 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         $new_product_permissions = $this->productPermissionsFromItem($new_item);
         $old_product_permissions = $this->productPermissionsFromItem($old_item);
 
+        if (!$new_product_id || !$old_product_id || !$new_product_type || !$old_product_type) {
+            return; // Not possible. Missing required IDs and/or types.
+        }
         // Any type of product can be an item in a subscription; it's just like an order.
         // While we don't handle subscription product types when an order status changes, we DO handle
         // any type of product that is in a subscription; i.e., we don't check the product type here.
@@ -457,11 +460,13 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         // we need to handle that here, even though it wouldn't ordinarily be associated with a subscription; it is if the site owner creates it that way.
 
         $trashed_old_user_permissions = $created_new_user_permissions = []; // Initialize.
+        $original_insertion_time      = null; // For access/expire calculations in new permissions.
 
         foreach ($old_product_permissions as $_OldProductPermission) {
             foreach (a::userPermissions($user_id) as $_UserPermission) {
                 if ($_UserPermission->subscription_id === $subscription_id && $_UserPermission->product_id === $old_product_id && $_UserPermission->restriction_id === $_OldProductPermission->restriction_id) {
                     $_UserPermission->update((object) ['status' => $this->user_permission_status_map['switched'], 'is_trashed' => 1]);
+                    $original_insertion_time        = $_UserPermission->insertion_time;
                     $trashed_old_user_permissions[] = $_UserPermission;
                 } // Should be just one; but update all matching subscription/product/restriction IDs.
             } // unset($_UserPermission); // Housekeeping.
@@ -470,8 +475,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         foreach ($new_product_permissions as $_NewProductPermission) {
             $_new_user_permission = a::addUserPermission($user_id, $_NewProductPermission->restriction_id, (object) [
                 'subscription_id'  => $subscription_id, 'product_id' => $new_product_id,
-                'access_time'      => $_NewProductPermission->accessTime(), // @TODO Offset time; based on old insertion time.
-                'expire_time'      => $_NewProductPermission->expireTime(), // @TODO Offset time; based on old insertion time.
+                'access_time'      => $_NewProductPermission->accessTime($original_insertion_time),
+                'expire_time'      => $_NewProductPermission->expireTime($original_insertion_time),
                 'expire_directive' => $_NewProductPermission->expire_offset_directive,
                 'status'           => $this->user_permission_status_map['active'],
             ]);
