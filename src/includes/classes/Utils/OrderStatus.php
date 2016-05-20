@@ -54,6 +54,15 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     protected $all_product_types;
 
     /**
+     * User permission status map.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param array User permission status map.
+     */
+    protected $user_permission_status_map;
+
+    /**
      * Class constructor.
      *
      * @since 16xxxx Order-related events.
@@ -90,14 +99,25 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             // In some places they use a dash, and in others it uses an underscore.
             // The official definition is with an `_`, but that seems likely to change.
         ];
-        $this->status_map = [
+        $this->user_permission_status_map = [
+            // Enabled statuses.
             'processing' => 'enabled',
             'completed'  => 'enabled',
             'active'     => 'enabled',
 
-            'active' => 'enabled',
+            // Disabled statuses.
+            'pending'   => 'pending',
+            'on-hold'   => 'on-hold',
+            'expired'   => 'expired',
+            'refunded'  => 'refunded',
+            'cancelled' => 'cancelled',
+            'failed'    => 'failed',
+            'switched'  => 'switched',
         ];
-        $this->all_product_types = array_keys(wc_get_product_types()); // Without a `wc-` prefix.
+        $this->core_product_types         = s::applyFilters('order_status_core_product_types', $this->core_product_types);
+        $this->subscription_product_types = s::applyFilters('order_status_subscription_product_types', $this->subscription_product_types);
+        $this->user_permission_status_map = s::applyFilters('order_to_user_permission_status_map', $this->user_permission_status_map);
+        $this->all_product_types          = array_keys(wc_get_product_types()); // Without a `wc-` prefix.
     }
 
     /**
@@ -132,6 +152,10 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     {
         if (!($order_id = (int) $order_id)) {
             return; // Not possible.
+        } elseif (empty($this->user_permission_status_map[$old_status])) {
+            return; // Unrecognized new status string.
+        } elseif (empty($this->user_permission_status_map[$new_status])) {
+            return; // Unrecognized new status string.
         } elseif (!($WC_Order = wc_get_order($order_id))) {
             return; // Not possible.
         }
@@ -205,6 +229,10 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     {
         if (!($subscription_id = (int) $subscription_id)) {
             return; // Not possible.
+        } elseif (empty($this->user_permission_status_map[$old_status])) {
+            return; // Unrecognized new status string.
+        } elseif (empty($this->user_permission_status_map[$new_status])) {
+            return; // Unrecognized new status string.
         } elseif (!($WC_Subscription = wcs_get_subscription($subscription_id))) {
             return; // Not possible.
         }
@@ -237,8 +265,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             return; // Not possible; no order ID.
         } elseif (!($user_id = (int) $WC_Order->user_id)) {
             return; // Not possible; no user ID.
-        } elseif (empty($this->status_map[$new_status])) {
-            return; // Unrecognized new status string.
         } elseif ($this->orderPermissionsGranted($order_id)) {
             return; // Permissings granted already.
         }
@@ -266,7 +292,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 foreach ($_user_permissions as $_UserPermission) {
                     if ($_UserPermission->order_id === $order_id && $_UserPermission->product_id === $_product_id
                         && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
-                        $_ProductPermission->update(['status' => $this->status_map[$new_status]]);
+                        $_ProductPermission->update(['status' => $this->user_permission_status_map[$new_status]]);
                         $_updated_existing_user_permission = true; // At least one update.
                     }
                 } // unset($_UserPermission); // Housekeeping.
