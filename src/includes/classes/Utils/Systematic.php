@@ -89,7 +89,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Initial release.
      *
-     * @return int[] Array of taxonomies.
+     * @return string[] Array of taxonomies.
      */
     public function taxonomies(): array
     {
