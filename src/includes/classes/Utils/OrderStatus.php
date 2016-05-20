@@ -288,29 +288,30 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_user_permissions = a::userPermissions($user_id); // User permissions.
 
             foreach ($_product_permissions as $_ProductPermission) {
-                // Attempt to update an existing user permission first!
                 $_updated_existing_user_permission = false; // Initialize.
 
+                # Attempt to update an existing user permission.
                 foreach ($_user_permissions as $_UserPermission) {
                     if ($_UserPermission->order_id === $order_id && $_UserPermission->product_id === $_product_id
                         && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
-                        $_ProductPermission->update(['status' => $this->user_permission_status_map[$new_status]]);
+                        $_UserPermission->update((object) ['status' => $this->user_permission_status_map[$new_status]]);
                         $_updated_existing_user_permission = true; // At least one update.
-                    }
+                    } // Should be just one; but update all matching order/product/restriction IDs.
                 } // unset($_UserPermission); // Housekeeping.
 
-                // Otherwise, create a new user permission.
-
+                # Otherwise, create a new user permission.
                 if (!$_updated_existing_user_permission) {
-                    // @TODO Establish other details whenever a user permission is added here.
-                    $_UserPermission = a::addUserPermission($user_id, $_ProductPermission->restriction_id);
+                    a::addUserPermission($user_id, $_ProductPermission->restriction_id, (object) [
+                        'access_time'      => $_ProductPermission->accessTime(),
+                        'expire_time'      => $_ProductPermission->expireTime(),
+                        'expire_directive' => $_ProductPermission->expire_offset_directive,
+                    ]);
                 }
             } // unset($_ProductPermission, $_updated_existing_user_permission); // Housekeeping.
 
             $_log_vars = compact(
                 'order_id',
                 'user_id',
-                '_item',
                 '_product_id',
                 '_product_type',
                 '_product_permissions'
@@ -368,7 +369,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_log_vars = compact(
                 'subscription_id',
                 'user_id',
-                '_item',
                 '_product_id',
                 '_product_type',
                 '_product_permissions'
@@ -428,12 +428,10 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             'subscription_id',
             'user_id',
             //
-            'new_item',
             'new_product_id',
             'new_product_type',
             'new_product_permissions',
             //
-            'old_item',
             'old_product_id',
             'old_product_type',
             'old_product_permissions'
@@ -483,7 +481,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_log_vars = compact(
                 'order_id',
                 'user_id',
-                '_item',
                 '_product_id',
                 '_product_type',
                 '_product_permissions'
@@ -541,7 +538,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_log_vars = compact(
                 'subscription_id',
                 'user_id',
-                '_item',
                 '_product_id',
                 '_product_type',
                 '_product_permissions'

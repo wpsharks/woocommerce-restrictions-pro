@@ -113,11 +113,12 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         } elseif (!($restriction_id = (int) $restriction)) {
             return null; // Not possible.
         }
-        $data                 = $data ?? new \StdClass();
-        $data                 = (object) $data;
+        $data = (object) ($data ?? new \StdClass());
+
         $data->user_id        = $user_id;
         $data->restriction_id = $restriction_id;
         $data->status         = $data->status ?? 'enabled';
+        $data->display_order  = $data->display_order ?? count(a::userPermissions($user_id));
 
         $UserPermission = $this->App->Di->get(Classes\UserPermission::class, ['data' => $data]);
         $UserPermission->update(); // Save/update the new permission.
