@@ -45,15 +45,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     protected $subscription_product_types;
 
     /**
-     * All product types.
-     *
-     * @since 16xxxx Order-related events.
-     *
-     * @param array All product types.
-     */
-    protected $all_product_types;
-
-    /**
      * User permission status map.
      *
      * @since 16xxxx Order-related events.
@@ -61,6 +52,15 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      * @param array User permission status map.
      */
     protected $user_permission_status_map;
+
+    /**
+     * All product types.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param array All product types.
+     */
+    protected $all_product_types;
 
     /**
      * Class constructor.
@@ -150,6 +150,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     public function onOrderStatusChanged($order_id, string $old_status, string $new_status)
     {
+        a::addLogEntry('order-status-change', c::dump(compact('order_id', 'new_status', 'old_status'), true));
+
         if (!($order_id = (int) $order_id)) {
             return; // Not possible.
         } elseif (empty($this->user_permission_status_map[$old_status])) {
@@ -170,7 +172,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         } elseif (in_array($new_status, $revoke_statuses, true)) {
             $this->maybeRevokeOrderPermissions($WC_Order, $old_status, $new_status);
         }
-        a::addLogEntry('order-status-changed', c::dump(compact('WC_Order', 'new_status', 'old_status'), true));
     }
 
     /**
@@ -227,6 +228,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     public function onSubscriptionStatusChanged($subscription_id, string $old_status, string $new_status)
     {
+        a::addLogEntry('subscription-status-change', c::dump(compact('subscription_id', 'new_status', 'old_status'), true));
+
         if (!($subscription_id = (int) $subscription_id)) {
             return; // Not possible.
         } elseif (empty($this->user_permission_status_map[$old_status])) {
@@ -247,7 +250,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         } elseif (in_array($new_status, $revoke_statuses, true)) {
             $this->maybeRevokeSubscriptionPermissions($WC_Subscription, $old_status, $new_status);
         }
-        a::addLogEntry('subscription-status-changed', c::dump(compact('WC_Subscription', 'new_status', 'old_status'), true));
     }
 
     /**
@@ -268,7 +270,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         } elseif ($this->orderPermissionsGranted($order_id)) {
             return; // Permissings granted already.
         }
-        $this->orderPermissionsGranted($order_id, true);
+        $this->orderPermissionsGranted($order_id, true); // Flag now.
 
         // Note: We want to avoid looking for a `\WC_Product` object here.
         // An item may be associated with a product that no longer exists for whatever reason.
@@ -335,7 +337,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         } elseif ($this->subscriptionPermissionsGranted($subscription_id)) {
             return; // Permissings granted already.
         }
-        $this->subscriptionPermissionsGranted($subscription_id, true);
+        $this->subscriptionPermissionsGranted($subscription_id, true); // Flag now.
 
         // Note: We want to avoid looking for a `\WC_Product` or `\WC_Subscription` object here.
         // An item may be associated with a product or subscription that no longer exists.
@@ -457,7 +459,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         } elseif (!$this->orderPermissionsGranted($order_id)) {
             return; // Permissings revoked already.
         }
-        $this->orderPermissionsGranted($order_id, false);
+        $this->orderPermissionsGranted($order_id, false); // Flag now.
 
         // Note: We want to avoid looking for a `\WC_Product` object here.
         // An item may be associated with a product that no longer exists for whatever reason.
@@ -508,7 +510,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         } elseif (!$this->subscriptionPermissionsGranted($subscription_id)) {
             return; // Permissings revoked already.
         }
-        $this->subscriptionPermissionsGranted($subscription_id, false);
+        $this->subscriptionPermissionsGranted($subscription_id, false); // Flag now.
 
         // Note: We want to avoid looking for a `\WC_Product` or `\WC_Subscription` object here.
         // An item may be associated with a product or subscription that no longer exists.
