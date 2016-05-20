@@ -288,8 +288,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_user_permissions         = a::userPermissions($user_id); // User permissions.
             $_updated_user_permissions = $_new_user_permissions = []; // Initialize.
 
-            // @TODO Consider `is_trashed`; i.e., perhaps exclude trash from these iterations.
-
             foreach ($_product_permissions as $_ProductPermission) {
                 $_updated_existing_user_permission = false; // Initialize.
 
@@ -539,7 +537,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             foreach ($_product_permissions as $_ProductPermission) {
                 foreach ($_user_permissions as $_UserPermission) {
                     if ($_UserPermission->order_id === $order_id && $_UserPermission->product_id === $_product_id && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
-                        if ($_UserPermission->expire_directive !== 'never') { // Note that `expired` is not relevant here; that's for subscriptions only.
+                        if ($_UserPermission->expire_directive !== 'never') { // Anything other than `never` will be altered here.
                             $_UserPermission->update((object) ['status' => $this->user_permission_status_map[$new_status]]);
                             $_updated_user_permissions[] = $_UserPermission;
                         }
