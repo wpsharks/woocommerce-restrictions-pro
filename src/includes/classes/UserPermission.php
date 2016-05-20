@@ -95,7 +95,9 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         } elseif ($this->expire_time && $this->expire_time <= time()) {
             return false;
         }
-        // @TODO Consider checking `expire_directive` here also.
+        // Note: Not checking `expire_directive` here, because date/time-based diretives
+        // are calculated ahead of time by product permissions. Thus, an `expire_time` will exist
+        // if the `expire_directive` is date/time-based; i.e., checking `expire_time` is enough in this context.
 
         return true; // Allowed access.
     }
