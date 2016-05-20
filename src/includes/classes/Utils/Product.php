@@ -198,8 +198,8 @@ class Product extends SCoreClasses\SCore\Base\Core
                     'stillEditing'   => __('A Customer Permission row (in yellow) is still open for editing. Please save your changes there first, or click the \'x\' icon to cancel editing in the open row.', 's2member-x'),
                 ],
                 'restrictionTitlesById'                   => a::restrictionTitlesById(),
-                'productPermissionAccessOffsetDirectives' => a::productPermissionAccessOffsetDirectives(),
-                'productPermissionExpireOffsetDirectives' => a::productPermissionExpireOffsetDirectives(),
+                'productPermissionAccessOffsetDirectives' => a::productPermissionAccessOffsetDirectives(true),
+                'productPermissionExpireOffsetDirectives' => a::productPermissionExpireOffsetDirectives(true),
             ])
         );
     }

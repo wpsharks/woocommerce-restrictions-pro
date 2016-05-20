@@ -137,7 +137,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                 ],
                 'current_user' => [
                     'can_edit_shop_orders'        => current_user_can('edit_shop_orders'),
-                    'can_edit_shop_subscriptions' => current_user_can('edit_shop_subscriptions'),
+                    'can_edit_shop_subscriptions' => current_user_can('edit_shop_orders'),
                 ],
                 'i18n' => [
                     'idTitle'     => __('ID', 's2member-x'),
@@ -147,29 +147,36 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'subscriptionIdTitle' => __('Subscription ID', 's2member-x'),
                     'productIdTitle'      => __('Product ID', 's2member-x'),
 
-                    'restrictionIdTitle'             => __('Access', 's2member-x'),
-                    'restrictionIdStatusIsAllowed'   => __('Access Granted', 's2member-x'),
-                    'restrictionIdStatusIsInactive'  => __('Access Inactive', 's2member-x'),
-                    'restrictionIdStatusIsScheduled' => __('Access Scheduled', 's2member-x'),
-                    'restrictionIdStatusIsExpired'   => __('Access Expired', 's2member-x'),
-                    'restrictionAccessRequired'      => __('\'Access\' is empty. Please make a selection.', 's2member-x'),
+                    'restrictionIdTitle'        => __('Access', 's2member-x'),
+                    'restrictionIdTitleTip'     => __('Access to one or more configured Restrictions.<hr />It\'s OK for Permissions granted manually and/or via Orders &amp; Subscriptions to overlap with each other. This is because any Permission that currently grants access, does. Access is denied only if no Permissions grant access.', 's2member-x'),
+                    'restrictionAccessRequired' => __('\'Access\' selection is empty.', 's2member-x'),
 
-                    'accessTimeTitle'        => __('Starts', 's2member-x'),
+                    'accessTimeTitle'    => __('Starts', 's2member-x'),
+                    'accessTimeTitleTip' => __('If left empty, access starts immediately (no delay).', 's2member-x'),
+
                     'accessDatePlaceholder'  => __('date', 's2member-x'),
                     'accessTimePlaceholder'  => __('time', 's2member-x'),
                     'emptyAccessDateTime'    => __('immediately', 's2member-x'),
                     'accessTimeLtExpireTime' => __('When both are given, \'Starts\' must come before \'Ends\'.', 's2member-x'),
 
-                    'expireTimeTitle'       => __('Ends', 's2member-x'),
+                    'expireTimeTitle'    => __('Ends', 's2member-x'),
+                    'expireTimeTitleTip' => __('If left empty, access is indefinite (ongoing).<hr />If the Permission was acquired via an Order or Subscription, the End is controlled by your original Product configuration, which will be indicated below.<hr />You can always choose to set a specific End date here, which overrides the original Product configuration.', 's2member-x'),
+
                     'expireDatePlaceholder' => __('date', 's2member-x'),
                     'expireTimePlaceholder' => __('time', 's2member-x'),
-                    'emptyExpireDateTime'   => __('n/a; ongoing', 's2member-x'),
+                    'emptyExpireDateTime'   => __('— n/a —', 's2member-x'),
                     'expireDirectiveTitle'  => __('Expires', 's2member-x'),
 
-                    'statusTitle'               => __('Status', 's2member-x'),
+                    'statusTitle'    => __('Status', 's2member-x'),
+                    'statusTitleTip' => __('Current permission status.<hr />Anything other than \'Enabled\' is collectively referred to as Disabled; i.e., disabled status variations simply help to convey why access is currently disabled.', 's2member-x'),
+
                     'isTrashedTitle'            => __('Trashed?', 's2member-x'),
                     'isTrashedStatus'           => __('Trashed', 's2member-x'),
-                    'restrictionStatusRequired' => __('\'Status\' is empty. Please make a selection.', 's2member-x'),
+                    'restrictionStatusRequired' => __('\'Status\' selection is empty.', 's2member-x'),
+
+                    'statusIsDisabled'  => __('Access Disabled', 's2member-x'),
+                    'statusIsScheduled' => __('Access Scheduled', 's2member-x'),
+                    'statusIsExpired'   => __('Access Expired', 's2member-x'),
 
                     'displayOrderTitle' => __('Display Order', 's2member-x'),
 
@@ -183,7 +190,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'stillEditing'   => __('A Customer Permission row (in yellow) is still open for editing. Please save your changes there first, or click the \'x\' icon to cancel editing in the open row.', 's2member-x'),
                 ],
                 'restrictionTitlesById'                   => a::restrictionTitlesById(),
-                'userPermissionStatuses'                  => a::userPermissionStatuses(false),
+                'userPermissionStatuses'                  => a::userPermissionStatuses(true),
                 'productPermissionExpireOffsetDirectives' => a::productPermissionExpireOffsetDirectives(),
 
                 'orderViewUrl='        => admin_url('/post.php?action=edit&post='),
@@ -223,7 +230,6 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
             echo '</div>';
         } else {
             $user_permissions = array_values(a::userPermissions($user_id, false)); // Exclude `trashed` status.
-            echo '<p>'.sprintf(__('<strong>Note:</strong> Start and End dates are optional. If no Start date, access starts immediately. If no specific End date is given, access is indefinite (ongoing). However, if a Permission was granted via an Order or Subscription and there is no specific End date set here, the End is controlled by the original Product configuration, and that will be indiciated in the list below. This also means that if a specific End date <em>is</em> given here, it is always obeyed. In other words, you can always choose to set a specific End date and override the original Product configuration for this user. Or, you can create a new Permission manually — i.e., one that is not controlled by an Order or Subscription. If you\'d like to learn more, see: <a href="%1$s" target="_blank">%2$s Knowledge Base</a>', 's2member-x'), esc_url(s::brandUrl('/kb')), esc_html($this->App->Config->©brand['©name'])).'</p>';
             echo '<input class="-user-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode($user_permissions)).'" />';
             echo '<div class="-grid" data-toggle="jquery-jsgrid"></div>';
         }

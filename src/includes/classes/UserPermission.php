@@ -88,7 +88,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
             return false;
         } elseif ($this->is_trashed) {
             return false;
-        } elseif ($this->status !== 'active') {
+        } elseif ($this->status !== 'enabled') {
             return false;
         } elseif ($this->access_time && $this->access_time > time()) {
             return false;
@@ -239,5 +239,11 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
 
         $this->insertion_time   = abs((int) ($data->insertion_time ?? $this->insertion_time ?? 0));
         $this->last_update_time = abs((int) ($data->last_update_time ?? $this->last_update_time ?? 0));
+
+        if ($this->status !== 'expired' && $this->expire_time && $this->expire_time <= time()) {
+            $this->status = 'expired'; // Force a matching status.
+        } elseif ($this->status === 'expired' && $this->expire_time && $this->expire_time > time()) {
+            $this->status = 'enabled'; // Force a matching status.
+        }
     }
 }

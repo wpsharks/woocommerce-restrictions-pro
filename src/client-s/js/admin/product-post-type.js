@@ -119,6 +119,7 @@
               type: 'number',
               align: 'center',
               name: 'product_id',
+              css: '-property-product-id',
               title: data.i18n.productIdTitle,
 
               visible: false,
@@ -130,6 +131,7 @@
               type: 'select',
               align: 'center',
               name: 'restriction_id',
+              css: '-property-restriction-id',
               title: data.i18n.restrictionIdTitle + ' ' + tip(data.i18n.restrictionIdTitleTip),
 
               visible: true,
@@ -161,6 +163,7 @@
               type: 'select',
               align: 'center',
               name: 'access_offset_directive',
+              css: '-property-access-offset-directive',
               title: data.i18n.accessOffsetDirectiveTitle + ' ' + tip(data.i18n.accessOffsetDirectiveTitleTip),
 
               visible: true,
@@ -191,6 +194,7 @@
               type: 'select',
               align: 'center',
               name: 'expire_offset_directive',
+              css: '-property-expire-offset-directive',
               title: data.i18n.expireOffsetDirectiveTitle + ' ' + tip(data.i18n.expireOffsetDirectiveTitleTip1) + tip(data.i18n.expireOffsetDirectiveTitleTip2),
 
               visible: true,
@@ -220,6 +224,7 @@
               type: 'number',
               align: 'center',
               name: 'display_order',
+              css: '-property-display-order',
               title: data.i18n.displayOrderTitle,
 
               visible: false,
@@ -284,7 +289,7 @@
           // This catches a row that is still pending insertion.
           var insertModeOn = $grid.find('.jsgrid-insert-mode-button.jsgrid-mode-on-button').length !== 0;
           var $insertRow = $grid.find('.jsgrid-grid-header > table > tbody > tr.jsgrid-insert-row');
-          var insertRowRestrictionId = $insertRow.find('> td:first-child select').val();
+          var insertRowRestrictionId = $insertRow.find('> td.-property-restriction-id select').val();
 
           if (insertModeOn && insertRowRestrictionId && insertRowRestrictionId !== '0') {
             moveToPermissionsTab(); // Open the relevant tab so they can fix problem.

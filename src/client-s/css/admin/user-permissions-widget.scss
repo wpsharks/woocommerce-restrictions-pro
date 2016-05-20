@@ -5,16 +5,14 @@
 @import '../../../../../wp-sharks-core/src/client-s/css/admin/mixins/fields';
 @import '../../../../../wp-sharks-core/src/client-s/css/admin/mixins/dashicons';
 @import '../../../../../wp-sharks-core/src/client-s/css/jquery-plugins/jsgrid/enhancements';
+@import '../../../../../wp-sharks-core/src/client-s/css/jquery-plugins/ui-tooltip/enhancements';
+
+/*
+ * Sharkicons also.
+ */
 @import '../../../../../wp-sharks-core/src/vendor/websharks/sharkicons/src/sharkicons';
 @include sharkicons-font('../../../../../wp-sharks-core/src/vendor/websharks/sharkicons/src');
 @include sharkicon-short-classes;
-
-/*
- * Color definitions.
- */
-$jquery-ui-tooltip-color: #fff;
-$jquery-ui-tooltip-bg-color: #23282d;
-$jquery-ui-tooltip-box-shadow-color: rgba(0, 0, 0, 0.5);
 
 /*
  * Widget styles.
@@ -23,36 +21,65 @@ $jquery-ui-tooltip-box-shadow-color: rgba(0, 0, 0, 0.5);
   .-grid.jsgrid {
     @include wp-admin-field-standards;
     @include jquery-jsgrid-enhancements;
+
+    .jsgrid-grid-header {
+      th {
+        .si[data-toggle~='jquery-ui-tooltip'] {
+          opacity:            0.3;
+          cursor:             help;
+          vertical-align:     middle;
+
+          &:hover {
+            opacity:          1;
+          }
+        }
+      }
+    }
+
+    .jsgrid-grid-body {
+      tr {
+        &.-is-not-allowed {
+          opacity:            0.5;
+        }
+
+        &.-is-allowed {
+          td.-property-restriction-id,
+          td.-property-status {
+            .-title {
+              font-weight:    bold;
+            }
+          }
+        }
+
+        td.-property-restriction-id {
+          .-via {
+            font-size:        80%;
+            font-style:       italic;
+          }
+        }
+
+        td.-property-access-time,
+        td.-property-expire-time {
+          .-date {
+            line-height:      1;
+            font-size:        90%;
+            vertical-align:   middle;
+            display:          inline-block;
+          }
+
+          .-time {
+            line-height:      1;
+            font-size:        70%;
+            vertical-align:   middle;
+            display:          inline-block;
+          }
+        }
+      }
+    }
   }
 }
 
 /*
- * Tooltip styles.
+ * Tooltip enhancements.
  */
-.accrhcdehngpugpudhpcwtykbfdykarp-tooltip.ui-tooltip.ui-widget {
-  border:                     0;
-  font-size:                  80%;
-  color:                      $jquery-ui-tooltip-color;
-  background:                 $jquery-ui-tooltip-bg-color;
-  box-shadow:                 0 0 2px $jquery-ui-tooltip-box-shadow-color;
-
-  > .ui-tooltip-content::after {
-    width:                    0;
-    content:                  '';
-    border-style:             solid;
-    display:                  block;
-    position:                 absolute;
-    top:                      calc(50% - 8px);
-    border-color:             transparent $jquery-ui-tooltip-bg-color;
-  }
-
-  &.left > .ui-tooltip-content::after {
-    left:                    -8px;
-    border-width:             8px 8px 8px 0;
-  }
-
-  &.right > .ui-tooltip-content::after {
-    right:                   -8px;
-    border-width:             8px 0 8px 8px;
-  }
-}
+@include jquery-ui-tooltip-enhancements('.accrhcdehngpugpudhpcwtykbfdykarp-tooltip');

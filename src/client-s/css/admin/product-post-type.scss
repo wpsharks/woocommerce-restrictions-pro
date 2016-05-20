@@ -5,16 +5,13 @@
 @import '../../../../../wp-sharks-core/src/client-s/css/admin/mixins/fields';
 @import '../../../../../wp-sharks-core/src/client-s/css/admin/mixins/dashicons';
 @import '../../../../../wp-sharks-core/src/client-s/css/jquery-plugins/jsgrid/enhancements';
-@import '../../../../../wp-sharks-core/src/vendor/websharks/sharkicons/src/sharkicons';
-@include sharkicons-font('../../../../../wp-sharks-core/src/vendor/websharks/sharkicons/src');
-@include sharkicon-short-classes;
 
 /*
  * Color definitions.
  */
 $jsgrid-td-border-color: #f3f3f3;
-$tiptip-gradient-color-1: rgba(255, 255, 255, 0);
-$tiptip-gradient-color-2: rgba(255, 255, 255, 0.5);
+$tiptip-hr-gradient-color-1: rgba(255, 255, 255, 0);
+$tiptip-hr-gradient-color-2: rgba(255, 255, 255, 0.5);
 
 /*
  * Meta section styles.
@@ -133,7 +130,7 @@ $tiptip-gradient-color-2: rgba(255, 255, 255, 0.5);
 
 #tiptip_content {
   hr {
-    @include linear-gradient(to right, $tiptip-gradient-color-1, $tiptip-gradient-color-2, $tiptip-gradient-color-1);
+    @include linear-gradient(to right, $tiptip-hr-gradient-color-1, $tiptip-hr-gradient-color-2, $tiptip-hr-gradient-color-1);
 
     border:                   0;
     height:                   1px;

@@ -56,16 +56,16 @@ trait ProductPermission
     /**
      * @since 16xxxx Initial release.
      */
-    public static function productPermissionAccessOffsetDirectives()
+    public static function productPermissionAccessOffsetDirectives(...$args)
     {
-        return $GLOBALS[static::class]->Utils->ProductPermission->access_offset_directives;
+        return $GLOBALS[static::class]->Utils->ProductPermission->accessOffsetDirectives(...$args);
     }
 
     /**
      * @since 16xxxx Initial release.
      */
-    public static function productPermissionExpireOffsetDirectives()
+    public static function productPermissionExpireOffsetDirectives(...$args)
     {
-        return $GLOBALS[static::class]->Utils->ProductPermission->expire_offset_directives;
+        return $GLOBALS[static::class]->Utils->ProductPermission->expireOffsetDirectives(...$args);
     }
 }

@@ -69,7 +69,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
      *
      * @type array Access offset directives.
      */
-    public $access_offset_directives;
+    protected $access_offset_directives;
 
     /**
      * Expire offset directives.
@@ -78,7 +78,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
      *
      * @type array Expire offset directives.
      */
-    public $expire_offset_directives;
+    protected $expire_offset_directives;
 
     /**
      * Class constructor.
@@ -280,5 +280,51 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
 
             $this->access_offset_directives['other'] = $this->expire_offset_directives['other'] = __('other', 's2member-x');
         }
+    }
+
+    /**
+     * Access offset directives.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @param bool $include_optgroups Include optgroups?
+     *
+     * @return array An array of access offset directives.
+     */
+    public function accessOffsetDirectives(bool $include_optgroups = false): array
+    {
+        $directives = $this->access_offset_directives; // Copy of the array.
+
+        if (!$include_optgroups) {
+            foreach ($directives as $_key => $_title) {
+                if ($_title === '---') {
+                    unset($directives[$_key]);
+                } // Removes `---` optgroups.
+            } // unset($_key, $_title); // Housekeeping.
+        }
+        return $directives;
+    }
+
+    /**
+     * Expire offset directives.
+     *
+     * @since 16xxxx Security gate.
+     *
+     * @param bool $include_optgroups Include optgroups?
+     *
+     * @return array An array of expire offset directives.
+     */
+    public function expireOffsetDirectives(bool $include_optgroups = false): array
+    {
+        $directives = $this->expire_offset_directives; // Copy of the array.
+
+        if (!$include_optgroups) {
+            foreach ($directives as $_key => $_title) {
+                if ($_title === '---') {
+                    unset($directives[$_key]);
+                } // Removes `---` optgroups.
+            } // unset($_key, $_title); // Housekeeping.
+        }
+        return $directives;
     }
 }

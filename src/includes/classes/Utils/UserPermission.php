@@ -47,17 +47,23 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         parent::__construct($App);
 
         $this->statuses = s::applyFilters('user_permission_statuses', [
-            // Orders and Subscriptions.
-            'active'    => __('Active', 's2member-x'),
-            'pending'   => __('Pending', 's2member-x'),
-            'on-hold'   => __('On-Hold', 's2member-x'),
-            'cancelled' => __('Cancelled', 's2member-x'),
-            'refunded'  => __('Refunded', 's2member-x'),
-            'failed'    => __('Failed', 's2member-x'),
+            '--- '.__('Enabled').' ---' => '---',
+            'enabled'                   => __('Enabled', 's2member-x'),
 
-            // Subscriptions only for these two.
-            'switched' => __('Switched', 's2member-x'),
-            'expired'  => __('Expired', 's2member-x'),
+            '--- '.__('Disabled').' ---' => '---',
+            'pending'                    => __('Pending', 's2member-x'),
+            'processing'                 => __('Processing', 's2member-x'),
+            'on-hold'                    => __('On-Hold', 's2member-x'),
+            'expired'                    => __('Expired', 's2member-x'),
+            'refunded'                   => __('Refunded', 's2member-x'),
+            'cancelled'                  => __('Cancelled', 's2member-x'),
+            'failed'                     => __('Payment(s) Failed', 's2member-x'),
+            'switched'                   => __('Subscription Switched', 's2member-x'),
+
+            // This one does not apply. `trashed` has it's own flag.
+            // Instead of a `trashed` status, we have the `is_trashed` property.
+            // This allows `status` to be preserved if a permission is restored later.
+            // 'trashed' => __('Trashed', 's2member-x'),
         ]);
     }
 
@@ -66,18 +72,22 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Security gate.
      *
-     * @param bool $include_trashed Include `trashed` status?
+     * @param bool $include_optgroups Include optgroups?
      *
      * @return array An array of user permission statuses.
      */
-    public function statuses(bool $include_trashed = true): array
+    public function statuses(bool $include_optgroups = false): array
     {
-        $statuses = $this->statuses;
+        $statuses = $this->statuses; // Copy of the array.
 
-        if (!$include_trashed) {
-            unset($statuses['trashed']); // Exclude.
+        if (!$include_optgroups) {
+            foreach ($statuses as $_key => $_title) {
+                if ($_title === '---') {
+                    unset($statuses[$_key]);
+                } // Removes `---` optgroups.
+            } // unset($_key, $_title); // Housekeeping.
         }
-        return $statuses; // With or without `trashed` status.
+        return $statuses;
     }
 
     /**
@@ -107,7 +117,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         $data                 = (object) $data;
         $data->user_id        = $user_id;
         $data->restriction_id = $restriction_id;
-        $data->status         = $data->status ?? 'active';
+        $data->status         = $data->status ?? 'enabled';
 
         $UserPermission = $this->App->Di->get(Classes\UserPermission::class, ['data' => $data]);
         $UserPermission->update(); // Save/update the new permission.
