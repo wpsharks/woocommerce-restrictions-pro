@@ -90,6 +90,13 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             // In some places they use a dash, and in others it uses an underscore.
             // The official definition is with an `_`, but that seems likely to change.
         ];
+        $this->status_map = [
+            'processing' => 'enabled',
+            'completed'  => 'enabled',
+            'active'     => 'enabled',
+
+            'active' => 'enabled',
+        ];
         $this->all_product_types = array_keys(wc_get_product_types()); // Without a `wc-` prefix.
     }
 
@@ -230,6 +237,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             return; // Not possible; no order ID.
         } elseif (!($user_id = (int) $WC_Order->user_id)) {
             return; // Not possible; no user ID.
+        } elseif (empty($this->status_map[$new_status])) {
+            return; // Unrecognized new status string.
         } elseif ($this->orderPermissionsGranted($order_id)) {
             return; // Permissings granted already.
         }
@@ -251,12 +260,24 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_user_permissions = a::userPermissions($user_id); // User permissions.
 
             foreach ($_product_permissions as $_ProductPermission) {
-                if ($_ProductPermission->order_id === $order_id && $_ProductPermission->product_id === $_product_id) {
-                    $_ProductPermission->update([]); // @TODO
-                } else {
-                    $_ProductPermission->update([]); // @TODO
+                // Attempt to update an existing user permission first!
+                $_updated_existing_user_permission = false; // Initialize.
+
+                foreach ($_user_permissions as $_UserPermission) {
+                    if ($_UserPermission->order_id === $order_id && $_UserPermission->product_id === $_product_id
+                        && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
+                        $_ProductPermission->update(['status' => $this->status_map[$new_status]]);
+                        $_updated_existing_user_permission = true; // At least one update.
+                    }
+                } // unset($_UserPermission); // Housekeeping.
+
+                // Otherwise, create a new user permission.
+
+                if (!$_updated_existing_user_permission) {
+                    // @TODO Establish other details whenever a user permission is added here.
+                    $_UserPermission = a::addUserPermission($user_id, $_ProductPermission->restriction_id);
                 }
-            } // unset($_ProductPermission); // Housekeeping.
+            } // unset($_ProductPermission, $_updated_existing_user_permission); // Housekeeping.
 
             $_log_vars = compact(
                 'order_id',
