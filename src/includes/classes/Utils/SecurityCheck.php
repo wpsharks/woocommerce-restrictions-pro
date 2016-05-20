@@ -216,6 +216,9 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
         $systematic_roles        = a::systematicRoles();
         $systematic_uri_patterns = a::systematicUriPatterns();
 
+        // Note that we have systematic taxonomies also, but those are
+        // for dropdown menu exclusions only; i.e., not checked here.
+
         foreach (['post_ids', 'post_types', 'roles', 'uri_patterns'] as $_meta_key) {
             if ($_meta_key === 'uri_patterns') {
                 if (!$accessing['uris'] && !$accessing['uri_paths']) {

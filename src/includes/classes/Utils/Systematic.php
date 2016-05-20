@@ -85,6 +85,28 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     }
 
     /**
+     * Systematic taxonomies.
+     *
+     * @since 16xxxx Initial release.
+     *
+     * @return int[] Array of taxonomies.
+     */
+    public function taxonomies(): array
+    {
+        global $blog_id; // Current blog ID.
+
+        if (($taxonomies = &$this->cacheKey(__FUNCTION__, $blog_id)) !== null) {
+            return $taxonomies; // Cached already.
+        }
+        $taxonomies = []; // Initialize.
+        $taxonomies = array_merge($taxonomies, [a::restrictionCategoryTaxonomy()]);
+        $taxonomies = array_merge($taxonomies, ['product_type']);
+        $taxonomies = array_unique(c::removeEmptys($taxonomies));
+
+        return $taxonomies = s::applyFilters('systematic_taxonomies', $taxonomies);
+    }
+
+    /**
      * Roles.
      *
      * @since 16xxxx Initial release.

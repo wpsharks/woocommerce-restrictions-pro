@@ -40,6 +40,14 @@ trait Restriction
     /**
      * @since 16xxxx Initial release.
      */
+    public static function restrictionCategoryTaxonomy()
+    {
+        return $GLOBALS[static::class]->Utils->Restriction->category_taxonomy;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
     public static function restrictionMetaPrefix()
     {
         return $GLOBALS[static::class]->Utils->Restriction->meta_prefix;

@@ -48,6 +48,14 @@ trait Systematics
     /**
      * @since 16xxxx Initial release.
      */
+    public static function systematicTaxonomies(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->Systematic->taxonomies(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
     public static function systematicRoles(...$args)
     {
         return $GLOBALS[static::class]->Utils->Systematic->roles(...$args);

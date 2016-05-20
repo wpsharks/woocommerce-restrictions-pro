@@ -36,6 +36,15 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public $post_type;
 
     /**
+     * Category taxonomy.
+     *
+     * @since 16xxxx Restriction.
+     *
+     * @type string Category taxonomy.
+     */
+    public $category_taxonomy;
+
+    /**
      * Meta prefix.
      *
      * @since 16xxxx Restriction.
@@ -118,8 +127,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->post_type   = $this->App->Config->©brand['©prefix'].'_restriction';
-        $this->meta_prefix = '_'.$this->App->Config->©brand['©var'].'_restriction_';
+        $this->post_type         = $this->App->Config->©brand['©prefix'].'_restriction';
+        $this->category_taxonomy = $this->App->Config->©brand['©prefix'].'_restriction_category';
+        $this->meta_prefix       = '_'.$this->App->Config->©brand['©var'].'_restriction_';
 
         $this->access_res_prefix  = s::applyFilters('restriction_res_prefix', 'access_res_');
         $this->access_ccap_prefix = s::applyFilters('restriction_ccap_prefix', 'access_ccap_');
@@ -194,9 +204,9 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             ])
         );
         register_taxonomy(
-            $this->post_type.'_category',
+            $this->category_taxonomy,
             $this->post_type, // Args can be filtered by plugins.
-            s::applyFilters('register_taxonomy_'.$this->post_type.'_category_args', [
+            s::applyFilters('register_taxonomy_'.$this->category_taxonomy.'_args', [
                 'public'       => false,
                 'hierarchical' => true,
 
@@ -569,6 +579,8 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             s::applyFilters('restriction_ui_tax_term_id_select_option_args', [
                 'allow_empty'              => false,
                 'option_child_indent_char' => '|',
+                'taxonomy_filters'         => ['public' => true],
+                'taxonomies_exclude'       => a::systematicTaxonomies(),
                 'current_tax_term_ids'     => $current_tax_term_ids,
             ])
         );
