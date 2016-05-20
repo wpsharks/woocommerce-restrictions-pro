@@ -95,6 +95,8 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         } elseif ($this->expire_time && $this->expire_time <= time()) {
             return false;
         }
+        // @TODO Consider checking `expire_directive` here also.
+
         return true; // Allowed access.
     }
 
