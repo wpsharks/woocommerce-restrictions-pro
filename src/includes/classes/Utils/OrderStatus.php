@@ -285,7 +285,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             } elseif (!($_product_permissions = $this->productPermissionsFromItem($_item))) {
                 continue; // Not applicable; no product permissions.
             }
-            $_user_permissions = a::userPermissions($user_id); // User permissions.
+            $_user_permissions         = a::userPermissions($user_id); // User permissions.
+            $_updated_user_permissions = $_new_user_permissions = []; // Initialize.
 
             foreach ($_product_permissions as $_ProductPermission) {
                 $_updated_existing_user_permission = false; // Initialize.
@@ -295,12 +296,13 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                     if ($_UserPermission->order_id === $order_id && $_UserPermission->product_id === $_product_id && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
                         $_UserPermission->update((object) ['status' => $this->user_permission_status_map[$new_status]]);
                         $_updated_existing_user_permission = true; // At least one update.
+                        $_updated_user_permissions[]       = $_UserPermission;
                     } // Should be just one; but update all matching order/product/restriction IDs.
                 } // unset($_UserPermission); // Housekeeping.
 
                 # Otherwise, create a new user permission.
                 if (!$_updated_existing_user_permission) {
-                    a::addUserPermission($user_id, $_ProductPermission->restriction_id, (object) [
+                    $_new_user_permissions[] = a::addUserPermission($user_id, $_ProductPermission->restriction_id, (object) [
                         'order_id'         => $order_id, 'product_id' => $_product_id,
                         'access_time'      => $_ProductPermission->accessTime(),
                         'expire_time'      => $_ProductPermission->expireTime(),
@@ -313,12 +315,16 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_log_vars = compact(
                 'order_id',
                 'user_id',
+                'old_status',
+                'new_status',
                 '_product_id',
                 '_product_type',
-                '_product_permissions'
+                '_product_permissions',
+                '_updated_user_permissions',
+                '_new_user_permissions'
             );
             a::addLogEntry('order-item-granted-permissions', c::dump($_log_vars, true));
-        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_log_vars); // Housekeeping.
+        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_new_user_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
@@ -361,7 +367,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             // So for instance, if a site owner creates a new subscription manually and adds three line-items, and one of those is a `simple` product,
             // we need to handle that here, even though it wouldn't ordinarily be associated with a subscription; it is if the site owner creates it that way.
 
-            $_user_permissions = a::userPermissions($user_id); // User permissions.
+            $_user_permissions         = a::userPermissions($user_id); // User permissions.
+            $_updated_user_permissions = $_new_user_permissions = []; // Initialize.
 
             foreach ($_product_permissions as $_ProductPermission) {
                 $_updated_existing_user_permission = false; // Initialize.
@@ -371,12 +378,13 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                     if ($_UserPermission->subscription_id === $subscription_id && $_UserPermission->product_id === $_product_id && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
                         $_UserPermission->update((object) ['status' => $this->user_permission_status_map[$new_status]]);
                         $_updated_existing_user_permission = true; // At least one update.
+                        $_updated_user_permissions[]       = $_UserPermission;
                     } // Should be just one; but update all matching subscription/product/restriction IDs.
                 } // unset($_UserPermission); // Housekeeping.
 
                 # Otherwise, create a new user permission.
                 if (!$_updated_existing_user_permission) {
-                    a::addUserPermission($user_id, $_ProductPermission->restriction_id, (object) [
+                    $_new_user_permissions[] = a::addUserPermission($user_id, $_ProductPermission->restriction_id, (object) [
                         'subscription_id'  => $subscription_id, 'product_id' => $_product_id,
                         'access_time'      => $_ProductPermission->accessTime(),
                         'expire_time'      => $_ProductPermission->expireTime(),
@@ -389,12 +397,16 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_log_vars = compact(
                 'subscription_id',
                 'user_id',
+                'old_status',
+                'new_status',
                 '_product_id',
                 '_product_type',
-                '_product_permissions'
+                '_product_permissions',
+                '_updated_user_permissions',
+                '_new_user_permissions'
             );
             a::addLogEntry('subscription-item-granted-permissions', c::dump($_log_vars, true));
-        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_log_vars); // Housekeeping.
+        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_new_user_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
@@ -492,13 +504,15 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             } elseif (!($_product_permissions = $this->productPermissionsFromItem($_item))) {
                 continue; // Not applicable; no product permissions.
             }
-            $_user_permissions = a::userPermissions($user_id); // User permissions.
+            $_user_permissions         = a::userPermissions($user_id); // User permissions.
+            $_updated_user_permissions = []; // Only update existing; no new user permissions.
 
             foreach ($_product_permissions as $_ProductPermission) {
                 foreach ($_user_permissions as $_UserPermission) {
                     if ($_UserPermission->order_id === $order_id && $_UserPermission->product_id === $_product_id && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
                         if ($_UserPermission->expire_directive !== 'never') { // Note that `expired` is not relevant here; that's for subscriptions only.
                             $_UserPermission->update((object) ['status' => $this->user_permission_status_map[$new_status]]);
+                            $_updated_user_permissions[] = $_UserPermission;
                         }
                     } // Should be just one; but update all matching order/product/restriction IDs.
                 } // unset($_UserPermission); // Housekeeping.
@@ -507,12 +521,15 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_log_vars = compact(
                 'order_id',
                 'user_id',
+                'old_status',
+                'new_status',
                 '_product_id',
                 '_product_type',
-                '_product_permissions'
+                '_product_permissions',
+                '_updated_user_permissions'
             );
             a::addLogEntry('order-item-revoked-permissions', c::dump($_log_vars, true));
-        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_log_vars); // Housekeeping.
+        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
@@ -546,8 +563,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             } elseif (!($_product_permissions = $this->productPermissionsFromItem($_item))) {
                 continue; // Not applicable; no product permissions.
             }
-            $_user_permissions = a::userPermissions($user_id); // User permissions.
-
             // Any type of product can be an item in a subscription; it's just like an order.
             // While we don't handle subscription product types when an order status changes, we DO handle
             // any type of product that is in a subscription; i.e., we don't check the product type here.
@@ -557,11 +572,15 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             // So for instance, if a site owner creates a new subscription manually and adds three line-items, and one of those is a `simple` product,
             // we need to handle that here, even though it wouldn't ordinarily be associated with a subscription; it is if the site owner creates it that way.
 
+            $_user_permissions         = a::userPermissions($user_id); // User permissions.
+            $_updated_user_permissions = []; // Only update existing; no new user permissions.
+
             foreach ($_product_permissions as $_ProductPermission) {
                 foreach ($_user_permissions as $_UserPermission) {
                     if ($_UserPermission->subscription_id === $subscription_id && $_UserPermission->product_id === $_product_id && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
                         if ($_UserPermission->expire_directive !== 'never' && ($new_status !== 'expired' || $_UserPermission->expire_directive !== 'naturally -expired')) {
                             $_UserPermission->update((object) ['status' => $this->user_permission_status_map[$new_status]]);
+                            $_updated_user_permissions[] = $_UserPermission;
                         }
                     } // Should be just one; but update all matching subscription/product/restriction IDs.
                 } // unset($_UserPermission); // Housekeeping.
@@ -570,12 +589,15 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_log_vars = compact(
                 'subscription_id',
                 'user_id',
+                'old_status',
+                'new_status',
                 '_product_id',
                 '_product_type',
-                '_product_permissions'
+                '_product_permissions',
+                '_updated_user_permissions'
             );
             a::addLogEntry('subscription-item-revoked-permissions', c::dump($_log_vars, true));
-        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_log_vars); // Housekeeping.
+        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
