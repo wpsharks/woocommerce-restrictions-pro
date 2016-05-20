@@ -231,8 +231,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         }
         $this->orderPermissionsGranted((int) $WC_Order->post->ID, true);
 
-        $product_meta_prefix = a::productMetaPrefix(); // Product meta prefix.
-
         // Note: We want to avoid looking for a `\WC_Product` object here.
         // An item may be associated with a product that no longer exists for whatever reason.
 
