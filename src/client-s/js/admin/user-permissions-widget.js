@@ -71,7 +71,6 @@
           args.item.status = 'enabled'; // Force a matching status.
         }
       },
-
       onItemUpdating: function (args) {
         this.onItemInserting(args); // Same exact validation as the above.
       },
@@ -81,13 +80,13 @@
           return '-is-not-allowed'; // Row classes.
         } // Access not allowed due to status.
 
-        if (item.access_time && item.access_time > parseInt(moment.utc().format('X'))) {
-          return '-is-not-allowed'; // Row classes.
-        } // Access is coming soon; i.e., scheduled.
-
         if (item.status === 'expired' || (item.expire_time && item.expire_time <= parseInt(moment.utc().format('X')))) {
           return '-is-not-allowed'; // Row classes.
         } // Access has expired; i.e., no longer available.
+
+        if (item.access_time && item.access_time > parseInt(moment.utc().format('X'))) {
+          return '-is-not-allowed'; // Row classes.
+        } // Access is coming soon; i.e., scheduled.
 
         return '-is-allowed'; // Row classes.
       },
@@ -312,19 +311,17 @@
             if (item.is_trashed || item.status !== 'enabled') {
               isAllowed = false, isDisabled = true;
             }
+            if (item.status === 'expired' || (item.expire_time && item.expire_time <= parseInt(moment.utc().format('X')))) {
+              isAllowed = false, isDisabled = true, isExpired = true;
+            }
             if (item.access_time && item.access_time > parseInt(moment.utc().format('X'))) {
               isAllowed = false, isScheduled = true;
-            }
-            if (item.status === 'expired' || (item.expire_time && item.expire_time <= parseInt(moment.utc().format('X')))) {
-              isAllowed = false, isExpired = true;
             }
             if (!isAllowed) { // If not allowed, provide a tooltip to help explain why.
               if (isDisabled) { // Disabled statuses take precedence in this display.
                 display += '<span class="si si-' + (isExpired ? 'calendar-times-o' : 'eye-slash') + '" title="' + _.escape(data.i18n.statusIsDisabled + ': ' + data.userPermissionStatuses[item.status]) + '" data-toggle="jquery-ui-tooltip"></span>';
               } else if (isScheduled) {
                 display += '<span class="si si-calendar-check-o" title="' + _.escape(data.i18n.statusIsScheduled) + '" data-toggle="jquery-ui-tooltip"></span>';
-              } else if (isExpired) {
-                display += '<span class="si si-calendar-times-o" title="' + _.escape(data.i18n.statusIsExpired) + '" data-toggle="jquery-ui-tooltip"></span>';
               }
             }
             display += ' <span class="-title">' + _.escape(data.userPermissionStatuses[item.status]) + '</span>';

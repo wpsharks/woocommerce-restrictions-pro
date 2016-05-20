@@ -148,7 +148,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'productIdTitle'      => __('Product ID', 's2member-x'),
 
                     'restrictionIdTitle'        => __('Access', 's2member-x'),
-                    'restrictionIdTitleTip'     => __('Access to one or more configured Restrictions.<hr />It\'s OK for Permissions granted manually and/or via Orders &amp; Subscriptions to overlap with each other. This is because any Permission that currently grants access, does. Access is denied only if no Permissions grant access.', 's2member-x'),
+                    'restrictionIdTitleTip'     => __('Access to one or more configured Restrictions.<hr />It\'s OK for Permissions granted manually and/or via Orders &amp; Subscriptions to overlap with each other. This is because any Permission that currently grants access, does. Access is denied only if no Permission grants access.', 's2member-x'),
                     'restrictionAccessRequired' => __('\'Access\' selection is empty.', 's2member-x'),
 
                     'accessTimeTitle'    => __('Starts', 's2member-x'),
@@ -168,7 +168,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'expireDirectiveTitle'  => __('Expires', 's2member-x'),
 
                     'statusTitle'    => __('Status', 's2member-x'),
-                    'statusTitleTip' => __('Current permission status.<hr />Anything other than \'Enabled\' is collectively referred to as Disabled; i.e., disabled status variations simply help to convey why access is currently disabled.', 's2member-x'),
+                    'statusTitleTip' => __('Current permission status.<hr />Anything other than \'Enabled\' is collectively referred to as Disabled.<hr />Disabled status variations simply help to convey why access is currently disabled.', 's2member-x'),
 
                     'isTrashedTitle'            => __('Trashed?', 's2member-x'),
                     'isTrashedStatus'           => __('Trashed', 's2member-x'),
