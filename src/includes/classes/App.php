@@ -136,11 +136,6 @@ class App extends SCoreClasses\App
         s::addAction('other_uninstall_routines', [$this->Utils->Uninstaller, 'onOtherUninstallRoutines']);
     }
 
-    // @TODO Force users to register during checkout when cart contains a restriction.
-    // @TODO See: https://github.com/woothemes/woocommerce/blob/653f79b25b79f953af04a4d1cf28f34ba5c862c9/includes/class-wc-checkout.php#L95-L97
-    // @TODO Via hook: woocommerce_before_checkout_form (and others too).
-    // @TODO Search for `woocommerce_before_checkout_form` in the subscriptions plugin for examples of how to do this.
-
     /**
      * Other hook setup handler.
      *
@@ -206,6 +201,10 @@ class App extends SCoreClasses\App
                 add_action('personal_options_update', [$this->Utils->UserPermissionsWidget, 'onEditUserProfileUpdate']);
                 add_action('edit_user_profile_update', [$this->Utils->UserPermissionsWidget, 'onEditUserProfileUpdate']);
             }
+            # Checkout-related hooks; including checkout-specific option filters.
+
+            add_action('woocommerce_checkout_init', [$this->Utils->Checkout, 'onCheckoutInit']);
+
             # Order-related hooks; attached to WooCommerce events.
 
             add_action('woocommerce_add_order_item_meta', [$this->Utils->OrderMeta, 'onAddOrderItemMeta'], 10, 2);
