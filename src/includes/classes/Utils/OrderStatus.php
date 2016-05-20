@@ -288,6 +288,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_user_permissions         = a::userPermissions($user_id); // User permissions.
             $_updated_user_permissions = $_new_user_permissions = []; // Initialize.
 
+            // @TODO Consider `is_trashed`; i.e., perhaps exclude trash from these iterations.
+
             foreach ($_product_permissions as $_ProductPermission) {
                 $_updated_existing_user_permission = false; // Initialize.
 
