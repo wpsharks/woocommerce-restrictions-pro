@@ -203,7 +203,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         }
         $always_grant_statuses = s::applyFilters('always_grant_user_persmissions_on_subscription_statuses', ['active'], $WC_Subscription);
         $grant_statuses        = s::applyFilters('grant_user_persmissions_on_subscription_statuses', ['active'], $WC_Subscription);
-        $revoke_statuses       = s::applyFilters('revoke_user_persmissions_on_subscription_statuses', ['pending', 'on-hold', 'cancelled', 'switched', 'expired'], $WC_Subscription);
+        $revoke_statuses       = s::applyFilters('revoke_user_persmissions_on_subscription_statuses', ['pending', 'on-hold', 'cancelled', 'expired'], $WC_Subscription);
 
         if (in_array($new_status, $grant_statuses, true)) {
             if (in_array($new_status, $always_grant_statuses, true) || s::getOption('orders_always_grant_immediate_access')) {
@@ -226,28 +226,41 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     protected function maybeGrantOrderPermissions(\WC_Order $WC_Order, string $old_status, string $new_status)
     {
-        if ($this->orderPermissionsGranted((int) $WC_Order->post->ID)) {
+        if ($this->orderPermissionsGranted((int) $WC_Order->id)) {
             return; // Permissings granted already.
         }
-        $this->orderPermissionsGranted((int) $WC_Order->post->ID, true);
+        $this->orderPermissionsGranted((int) $WC_Order->id, true);
 
         // Note: We want to avoid looking for a `\WC_Product` object here.
         // An item may be associated with a product that no longer exists for whatever reason.
 
         foreach ($WC_Order->get_items() ?: [] as $_item) {
-            if (!($_product_type = $this->productTypeFromItem($item))) {
+            if (!($_product_id = $this->productIdFromItem($_item))) {
+                continue; // Not possible; no product ID.
+            } elseif (!($_product_type = $this->productTypeFromItem($_item))) {
                 continue; // Not possible; no product type.
             } elseif (in_array($_product_type, $this->subscription_product_types, true)) {
                 // Don't handle subscription product types here.
                 continue; // Instead, we handle subscription-based status changes.
-            } elseif (!($_product_permissions = $this->productPermissionsFromItem($item))) {
+            } elseif (!($_product_permissions = $this->productPermissionsFromItem($_item))) {
                 continue; // Not applicable; no product permissions.
             }
             foreach ($_product_permissions as $_ProductPermission) {
+                if ($_ProductPermission->order_id === (int) $WC_Order->id && $_ProductPermission->product_id === $_product_id) {
+                    $_ProductPermission->update([]); // @TODO
+                } else {
+                    $_ProductPermission->update([]); // @TODO
+                }
             } // unset($_ProductPermission); // Housekeeping.
 
-            a::addLogEntry('order-item-granted-permissions', c::dump(compact('_item', '_product_type', '_product_permissions'), true));
-        } // unset($_item, $_product_type, $_product_permissions); // Housekeeping.
+            $_log_vars = compact(
+                '_item',
+                '_product_id',
+                '_product_type',
+                '_product_permissions',
+            );
+            a::addLogEntry('order-item-granted-permissions', c::dump($_log_vars, true));
+        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
@@ -261,18 +274,20 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     protected function maybeGrantSubscriptionPermissions(\WC_Subscription $WC_Subscription, string $old_status, string $new_status)
     {
-        if ($this->subscriptionPermissionsGranted((int) $WC_Subscription->post->ID)) {
+        if ($this->subscriptionPermissionsGranted((int) $WC_Subscription->id)) {
             return; // Permissings granted already.
         }
-        $this->subscriptionPermissionsGranted((int) $WC_Subscription->post->ID, true);
+        $this->subscriptionPermissionsGranted((int) $WC_Subscription->id, true);
 
         // Note: We want to avoid looking for a `\WC_Product` or `\WC_Subscription` object here.
         // An item may be associated with a product or subscription that no longer exists.
 
         foreach ($WC_Subscription->get_items() ?: [] as $_item) {
-            if (!($_product_type = $this->productTypeFromItem($item))) {
+            if (!($_product_id = $this->productIdFromItem($_item))) {
+                continue; // Not possible; no product ID.
+            } elseif (!($_product_type = $this->productTypeFromItem($_item))) {
                 continue; // Not possible; no product type.
-            } elseif (!($_product_permissions = $this->productPermissionsFromItem($item))) {
+            } elseif (!($_product_permissions = $this->productPermissionsFromItem($_item))) {
                 continue; // Not applicable; no product permissions.
             }
             // Any type of product can be an item in a subscription; it's just like an order.
@@ -285,10 +300,17 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             // we need to handle that here, even though it wouldn't ordinarily be associated with a subscription; it is if the site owner creates it that way.
 
             foreach ($_product_permissions as $_ProductPermission) {
+                 // @TODO
             } // unset($_ProductPermission); // Housekeeping.
 
-            a::addLogEntry('subscription-item-granted-permissions', c::dump(compact('_item', '_product_type', '_product_permissions'), true));
-        } // unset($_item, $_product_type, $_product_permissions); // Housekeeping.
+            $_log_vars = compact(
+                '_item',
+                '_product_id',
+                '_product_type',
+                '_product_permissions',
+            );
+            a::addLogEntry('subscription-item-granted-permissions', c::dump($_log_vars, true));
+        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
@@ -304,6 +326,9 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     {
         // Note: We want to avoid looking for a `\WC_Product` or `\WC_Subscription` object here.
         // An item may be associated with a product or subscription that no longer exists.
+
+        $new_product_id = $this->productIdFromItem($new_item);
+        $old_product_id = $this->productIdFromItem($old_item);
 
         $new_product_type = $this->productTypeFromItem($new_item);
         $old_product_type = $this->productTypeFromItem($old_item);
@@ -321,12 +346,27 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         // we need to handle that here, even though it wouldn't ordinarily be associated with a subscription; it is if the site owner creates it that way.
 
         foreach ($old_product_permissions as $_ProductPermission) {
+             // @TODO
         } // unset($_ProductPermission); // Housekeeping.
 
         foreach ($new_product_permissions as $_ProductPermission) {
+             // @TODO
         } // unset($_ProductPermission); // Housekeeping.
 
-        a::addLogEntry('subscription-item-switched-permissions', c::dump(compact('WC_Subscription', 'new_item', 'new_product_type', 'new_product_permissions', 'old_item', 'old_product_type', 'old_product_permissions'), true));
+        $log_vars = compact(
+            'WC_Subscription',
+            //
+            'new_item',
+            'new_product_id',
+            'new_product_type',
+            'new_product_permissions',
+            //
+            'old_item',
+            'old_product_id',
+            'old_product_type',
+            'old_product_permissions'
+        );
+        a::addLogEntry('subscription-item-switched-permissions', c::dump($log_vars, true));
     }
 
     /**
@@ -340,28 +380,37 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     protected function maybeRevokeOrderPermissions(\WC_Order $WC_Order, string $old_status, string $new_status)
     {
-        if (!$this->orderPermissionsGranted((int) $WC_Order->post->ID)) {
+        if (!$this->orderPermissionsGranted((int) $WC_Order->id)) {
             return; // Permissings revoked already.
         }
-        $this->orderPermissionsGranted((int) $WC_Order->post->ID, false);
+        $this->orderPermissionsGranted((int) $WC_Order->id, false);
 
         // Note: We want to avoid looking for a `\WC_Product` object here.
         // An item may be associated with a product that no longer exists for whatever reason.
 
         foreach ($WC_Order->get_items() ?: [] as $_item) {
-            if (!($_product_type = $this->productTypeFromItem($item))) {
+            if (!($_product_id = $this->productIdFromItem($_item))) {
+                continue; // Not possible; no product ID.
+            } elseif (!($_product_type = $this->productTypeFromItem($_item))) {
                 continue; // Not possible; no product type.
             } elseif (in_array($_product_type, $this->subscription_product_types, true)) {
                 // Don't handle subscription product types here.
                 continue; // Instead, we handle subscription-based status changes.
-            } elseif (!($_product_permissions = $this->productPermissionsFromItem($item))) {
+            } elseif (!($_product_permissions = $this->productPermissionsFromItem($_item))) {
                 continue; // Not applicable; no product permissions.
             }
             foreach ($_product_permissions as $_ProductPermission) {
+                 // @TODO
             } // unset($_ProductPermission); // Housekeeping.
 
-            a::addLogEntry('order-item-revoked-permissions', c::dump(compact('_item', '_product_type', '_product_permissions'), true));
-        } // unset($_item, $_product_type, $_product_permissions); // Housekeeping.
+            $_log_vars = compact(
+                '_item',
+                '_product_id',
+                '_product_type',
+                '_product_permissions',
+            );
+            a::addLogEntry('order-item-revoked-permissions', c::dump($_log_vars, true));
+        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
@@ -375,18 +424,20 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     protected function maybeRevokeSubscriptionPermissions(\WC_Subscription $WC_Subscription, string $old_status, string $new_status)
     {
-        if (!$this->subscriptionPermissionsGranted((int) $WC_Subscription->post->ID)) {
+        if (!$this->subscriptionPermissionsGranted((int) $WC_Subscription->id)) {
             return; // Permissings revoked already.
         }
-        $this->subscriptionPermissionsGranted((int) $WC_Subscription->post->ID, false);
+        $this->subscriptionPermissionsGranted((int) $WC_Subscription->id, false);
 
         // Note: We want to avoid looking for a `\WC_Product` or `\WC_Subscription` object here.
         // An item may be associated with a product or subscription that no longer exists.
 
         foreach ($WC_Subscription->get_items() ?: [] as $_item) {
-            if (!($_product_type = $this->productTypeFromItem($item))) {
+            if (!($_product_id = $this->productIdFromItem($_item))) {
+                continue; // Not possible; no product ID.
+            } elseif (!($_product_type = $this->productTypeFromItem($_item))) {
                 continue; // Not possible; no product type.
-            } elseif (!($_product_permissions = $this->productPermissionsFromItem($item))) {
+            } elseif (!($_product_permissions = $this->productPermissionsFromItem($_item))) {
                 continue; // Not applicable; no product permissions.
             }
             // Any type of product can be an item in a subscription; it's just like an order.
@@ -399,10 +450,17 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             // we need to handle that here, even though it wouldn't ordinarily be associated with a subscription; it is if the site owner creates it that way.
 
             foreach ($_product_permissions as $_ProductPermission) {
+                 // @TODO
             } // unset($_ProductPermission); // Housekeeping.
 
-            a::addLogEntry('subscription-item-revoked-permissions', c::dump(compact('_item', '_product_type', '_product_permissions'), true));
-        } // unset($_item, $_product_type, $_product_permissions); // Housekeeping.
+            $_log_vars = compact(
+                '_item',
+                '_product_id',
+                '_product_type',
+                '_product_permissions',
+            );
+            a::addLogEntry('subscription-item-revoked-permissions', c::dump($_log_vars, true));
+        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
@@ -449,6 +507,20 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             update_post_meta($subscription_id, $meta_key, (int) $granted);
         }
         return (bool) get_post_meta($subscription_id, $meta_key, true);
+    }
+
+    /**
+     * Product ID from item.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param array $item Order line item data.
+     *
+     * @return int Product ID from item.
+     */
+    protected function productIdFromItem(array $item): int
+    {
+        return (int) ($item['product_id'] ?? 0);
     }
 
     /**

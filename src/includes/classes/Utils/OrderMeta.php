@@ -59,7 +59,7 @@ class OrderMeta extends SCoreClasses\SCore\Base\Core
         }
         $product_meta_prefix = a::productMetaPrefix();
         $product_type        = $WC_Product->get_type(); // i.e., `->product_type`.
-        $product_permissions = a::getProductMeta($WC_Product->post->ID, 'permissions');
+        $product_permissions = a::getProductMeta($WC_Product->id, 'permissions');
 
         wc_add_order_item_meta($item_id, $product_meta_prefix.'type', $product_type);
 
