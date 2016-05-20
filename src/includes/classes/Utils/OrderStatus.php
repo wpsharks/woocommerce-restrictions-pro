@@ -302,9 +302,11 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 # Otherwise, create a new user permission.
                 if (!$_updated_existing_user_permission) {
                     a::addUserPermission($user_id, $_ProductPermission->restriction_id, (object) [
+                        'order_id'         => $order_id, 'product_id' => $_product_id,
                         'access_time'      => $_ProductPermission->accessTime(),
                         'expire_time'      => $_ProductPermission->expireTime(),
                         'expire_directive' => $_ProductPermission->expire_offset_directive,
+                        'status'           => $this->user_permission_status_map[$new_status],
                     ]);
                 }
             } // unset($_ProductPermission, $_updated_existing_user_permission); // Housekeeping.
@@ -363,8 +365,28 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_user_permissions = a::userPermissions($user_id); // User permissions.
 
             foreach ($_product_permissions as $_ProductPermission) {
-                // @TODO
-            } // unset($_ProductPermission); // Housekeeping.
+                $_updated_existing_user_permission = false; // Initialize.
+
+                # Attempt to update an existing user permission.
+                foreach ($_user_permissions as $_UserPermission) {
+                    if ($_UserPermission->subscription_id === $subscription_id && $_UserPermission->product_id === $_product_id
+                        && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
+                        $_UserPermission->update((object) ['status' => $this->user_permission_status_map[$new_status]]);
+                        $_updated_existing_user_permission = true; // At least one update.
+                    } // Should be just one; but update all matching order/product/restriction IDs.
+                } // unset($_UserPermission); // Housekeeping.
+
+                # Otherwise, create a new user permission.
+                if (!$_updated_existing_user_permission) {
+                    a::addUserPermission($user_id, $_ProductPermission->restriction_id, (object) [
+                        'subscription_id'  => $subscription_id, 'product_id' => $_product_id,
+                        'access_time'      => $_ProductPermission->accessTime(),
+                        'expire_time'      => $_ProductPermission->expireTime(),
+                        'expire_directive' => $_ProductPermission->expire_offset_directive,
+                        'status'           => $this->user_permission_status_map[$new_status],
+                    ]);
+                }
+            } // unset($_ProductPermission, $_updated_existing_user_permission); // Housekeeping.
 
             $_log_vars = compact(
                 'subscription_id',
