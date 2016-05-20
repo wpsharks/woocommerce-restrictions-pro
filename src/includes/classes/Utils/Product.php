@@ -196,7 +196,7 @@ class Product extends SCoreClasses\SCore\Base\Core
 
                     'expireOffsetDirectiveTitle'            => __('Ends', 's2member-x'),
                     'expireOffsetDirectiveTitleTip1'        => __('\'naturally\'; i.e., revoke access when an Order no longer has a \'completed\' status; or a Subscription no longer has an \'active\' status; or a fixed-term Subscription expires.<hr />\'naturally -expired\' excludes the case of a fixed-term Subscription expiring; i.e., when installments are complete, access remains.<hr />\'never\' means do not revoke (ever). Even if an Order or Subscription is cancelled.', 's2member-x'),
-                    'expireOffsetDirectiveTitleTip2'        => __('Date-based options are relative to the Start time.<hr />Choosing \'7 days later\' means 7 days after access begins (according to Start time).<hr />Day, week, month &amp; year options will stop access at the very end of the calculated day: 11:59 PM (GMT/UTC)', 's2member-x'),
+                    'expireOffsetDirectiveTitleTip2'        => __('Date and time-based options imply the same behavior as \'naturally\', but with a specific End date also. End date/time is relative to the Start time.<hr />Choosing \'7 days later\' means 7 days after access begins (according to Start time).<hr />Day, week, month &amp; year options will stop access at the very end of the calculated day: 11:59 PM (GMT/UTC)', 's2member-x'),
                     'expireOffsetDirectiveOtherPlaceholder' => sprintf(__('e.g., 90 days %1$s', 's2member-x'), a::productPermissionExpireOffsetSuffix()),
                     'expireOffsetDirectiveRequired'         => __('\'Ends\' selection is empty.', 's2member-x'),
 

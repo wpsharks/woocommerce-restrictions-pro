@@ -292,8 +292,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
 
                 # Attempt to update an existing user permission.
                 foreach ($_user_permissions as $_UserPermission) {
-                    if ($_UserPermission->order_id === $order_id && $_UserPermission->product_id === $_product_id
-                        && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
+                    if ($_UserPermission->order_id === $order_id && $_UserPermission->product_id === $_product_id && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
                         $_UserPermission->update((object) ['status' => $this->user_permission_status_map[$new_status]]);
                         $_updated_existing_user_permission = true; // At least one update.
                     } // Should be just one; but update all matching order/product/restriction IDs.
@@ -369,8 +368,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
 
                 # Attempt to update an existing user permission.
                 foreach ($_user_permissions as $_UserPermission) {
-                    if ($_UserPermission->subscription_id === $subscription_id && $_UserPermission->product_id === $_product_id
-                        && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
+                    if ($_UserPermission->subscription_id === $subscription_id && $_UserPermission->product_id === $_product_id && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
                         $_UserPermission->update((object) ['status' => $this->user_permission_status_map[$new_status]]);
                         $_updated_existing_user_permission = true; // At least one update.
                     } // Should be just one; but update all matching order/product/restriction IDs.
@@ -497,7 +495,13 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_user_permissions = a::userPermissions($user_id); // User permissions.
 
             foreach ($_product_permissions as $_ProductPermission) {
-                // @TODO
+                foreach ($_user_permissions as $_UserPermission) {
+                    if ($_UserPermission->order_id === $order_id && $_UserPermission->product_id === $_product_id && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
+                        if ($_UserPermission->expire_directive !== 'never') { // Note that `expired` is not relevant here; that's for subscriptions only.
+                            $_UserPermission->update((object) ['status' => $this->user_permission_status_map[$new_status]]);
+                        }
+                    } // Should be just one; but update all matching order/product/restriction IDs.
+                } // unset($_UserPermission); // Housekeeping.
             } // unset($_ProductPermission); // Housekeeping.
 
             $_log_vars = compact(
