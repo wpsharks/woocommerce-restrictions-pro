@@ -558,7 +558,13 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             // we need to handle that here, even though it wouldn't ordinarily be associated with a subscription; it is if the site owner creates it that way.
 
             foreach ($_product_permissions as $_ProductPermission) {
-                // @TODO
+                foreach ($_user_permissions as $_UserPermission) {
+                    if ($_UserPermission->subscription_id === $subscription_id && $_UserPermission->product_id === $_product_id && $_UserPermission->restriction_id === $_ProductPermission->restriction_id) {
+                        if ($_UserPermission->expire_directive !== 'never' && ($new_status !== 'expired' || $_UserPermission->expire_directive !== 'naturally -expired')) {
+                            $_UserPermission->update((object) ['status' => $this->user_permission_status_map[$new_status]]);
+                        }
+                    } // Should be just one; but update all matching order/product/restriction IDs.
+                } // unset($_UserPermission); // Housekeeping.
             } // unset($_ProductPermission); // Housekeeping.
 
             $_log_vars = compact(
