@@ -469,9 +469,19 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             } // unset($_UserPermission); // Housekeeping.
         } // unset($_OldProductPermission); // Housekeeping.
 
-        foreach ($new_product_permissions as $_ProductPermission) {
-            // @TODO // Add new permissions and deal with time offset calculations.
-        } // unset($_ProductPermission); // Housekeeping.
+        foreach ($new_product_permissions as $_NewProductPermission) {
+            $_new_user_permission = a::addUserPermission($user_id, $_NewProductPermission->restriction_id, (object) [
+                'subscription_id'  => $subscription_id, 'product_id' => $new_product_id,
+                'access_time'      => $_NewProductPermission->accessTime(), // @TODO Offset time; based on old insertion time.
+                'expire_time'      => $_NewProductPermission->expireTime(), // @TODO Offset time; based on old insertion time.
+                'expire_directive' => $_NewProductPermission->expire_offset_directive,
+                'status'           => $this->user_permission_status_map['active'],
+            ]);
+            if (!$_new_user_permission) { // Catch insertion failures.
+                throw new Exception('Failed to add new user permission.');
+            }
+            $created_new_user_permissions[] = $_new_user_permission; // Record new permission.
+        } // unset($_NewProductPermission, $_new_user_permission); // Housekeeping.
 
         $log_vars = compact(
             'subscription_id',
