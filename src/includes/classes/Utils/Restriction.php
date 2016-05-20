@@ -495,8 +495,10 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         $post_type_select_options = s::postTypeSelectOptions(
             s::applyFilters('restriction_ui_post_type_select_option_args', [
-                'include'            => get_post_types(['public' => true]),
-                'exclude'            => a::systematicPostTypes(),
+                'include' => get_post_types(['public' => true]),
+                'exclude' => array_merge(a::systematicPostTypes(), [a::productPostType()]),
+                // Note that we exclude `product` here also, because protecting *all* product post types
+                // would make no sense; i.e., that would prevent anyone from buying access.
                 'allow_empty'        => false,
                 'current_post_types' => $current_post_types,
             ])
@@ -580,7 +582,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                 'allow_empty'              => false,
                 'option_child_indent_char' => '|',
                 'taxonomy_filters'         => ['public' => true],
-                'taxonomies_exclude'       => a::systematicTaxonomies(),
+                'taxonomies_exclude'       => [$this->category_taxonomy, a::productTypeTaxonomy()],
                 'current_tax_term_ids'     => $current_tax_term_ids,
             ])
         );

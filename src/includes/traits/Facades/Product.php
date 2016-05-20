@@ -32,6 +32,14 @@ trait Product
     /**
      * @since 16xxxx Initial release.
      */
+    public static function productTypeTaxonomy()
+    {
+        return $GLOBALS[static::class]->Utils->Product->type_taxonomy;
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
     public static function productMetaPrefix()
     {
         return $GLOBALS[static::class]->Utils->Product->meta_prefix;

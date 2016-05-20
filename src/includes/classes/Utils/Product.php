@@ -36,6 +36,15 @@ class Product extends SCoreClasses\SCore\Base\Core
     public $post_type;
 
     /**
+     * Type taxonomy.
+     *
+     * @since 16xxxx Product utilities.
+     *
+     * @type string Type taxonomy.
+     */
+    public $type_taxonomy;
+
+    /**
      * Meta prefix.
      *
      * @since 16xxxx Product utilities.
@@ -100,8 +109,9 @@ class Product extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->post_type   = 'product'; // Established by WooCommerce.
-        $this->meta_prefix = '_'.$this->App->Config->©brand['©var'].'_product_';
+        $this->post_type     = 'product'; // Established by WooCommerce.
+        $this->type_taxonomy = 'product_type'; // Established by WooCommerce.
+        $this->meta_prefix   = '_'.$this->App->Config->©brand['©var'].'_product_';
 
         $this->visibility_classes = [
             'hide_if_external',
