@@ -218,13 +218,16 @@ class App extends SCoreClasses\App
 
             # Order-related hooks; attached to WooCommerce events.
 
-            add_action('woocommerce_add_order_item_meta', [$this->Utils->OrderMeta, 'onAddOrderItemMeta'], 10, 2);
+            add_action('woocommerce_add_order_item_meta', [$this->Utils->OrderMeta, 'onAddOrderItemMeta']);
+            add_action('woocommerce_saved_order_items', [$this->Utils->OrderMeta, 'onSavedOrderItems'], 10, 2);
 
             add_action('woocommerce_order_status_changed', [$this->Utils->OrderStatus, 'onOrderStatusChanged'], 1000, 3);
             add_action('woocommerce_subscription_status_changed', [$this->Utils->OrderStatus, 'onSubscriptionStatusChanged'], 1000, 3);
             add_action('woocommerce_subscriptions_switched_item', [$this->Utils->OrderStatus, 'onSubscriptionItemSwitched'], 1000, 3);
 
             add_action('update_post_meta', [$this->Utils->OrderMeta, 'onPostMetaUpdate'], 10, 4);
+
+            add_filter('woocommerce_hidden_order_itemmeta', [$this->Utils->OrderMeta, 'onHiddenOrderItemMeta']);
 
             # Product-data and other product-related WooCommerce events.
 

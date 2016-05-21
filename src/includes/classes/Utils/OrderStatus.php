@@ -115,6 +115,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             'active'     => 'enabled',
 
             // Disabled statuses.
+            'draft'     => 'pending',
             'pending'   => 'pending',
             'on-hold'   => 'on-hold',
             'expired'   => 'expired',
@@ -143,6 +144,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      * Order statuses explained in greater detail.
      * See also: `array_keys(wc_get_order_statuses())`.
      *  ↑ Array keys include the `wc-` prefix.
+     *
+     * - `draft` When an order is still in the draft phase.
      *
      * - `pending` Order received (unpaid). e.g., abandoned orders have this status also.
      *
@@ -174,7 +177,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         }
         $always_grant_statuses = s::applyFilters('always_grant_user_persmissions_on_order_statuses', ['completed'], $WC_Order);
         $grant_statuses        = s::applyFilters('grant_user_persmissions_on_order_statuses', ['processing', 'completed'], $WC_Order);
-        $revoke_statuses       = s::applyFilters('revoke_user_persmissions_on_order_statuses', ['pending', 'on-hold', 'cancelled', 'refunded', 'failed'], $WC_Order);
+        $revoke_statuses       = s::applyFilters('revoke_user_persmissions_on_order_statuses', ['draft', 'pending', 'on-hold', 'cancelled', 'refunded', 'failed'], $WC_Order);
 
         if (in_array($new_status, $grant_statuses, true)) {
             if (in_array($new_status, $always_grant_statuses, true) || s::getOption('orders_always_grant_immediate_access')) {
@@ -197,6 +200,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      * Subscription statuses explained in greater detail.
      * See also: `array_keys(wcs_get_subscription_statuses())`.
      *  ↑ Array keys include the `wc-` prefix.
+     *
+     * - `draft` When a subscription is still in the draft phase.
      *
      * - `pending` When an order is received (unpaid); the subscription is created as pending.
      *             In other words, a `pending` subscription is the same as a `pending` order.
@@ -252,7 +257,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         }
         $always_grant_statuses = s::applyFilters('always_grant_user_persmissions_on_subscription_statuses', ['active'], $WC_Subscription);
         $grant_statuses        = s::applyFilters('grant_user_persmissions_on_subscription_statuses', ['active'], $WC_Subscription);
-        $revoke_statuses       = s::applyFilters('revoke_user_persmissions_on_subscription_statuses', ['pending', 'on-hold', 'cancelled', 'expired'], $WC_Subscription);
+        $revoke_statuses       = s::applyFilters('revoke_user_persmissions_on_subscription_statuses', ['draft', 'pending', 'on-hold', 'cancelled', 'expired'], $WC_Subscription);
 
         if (in_array($new_status, $grant_statuses, true)) {
             if (in_array($new_status, $always_grant_statuses, true) || s::getOption('orders_always_grant_immediate_access')) {
@@ -278,11 +283,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             return; // Not possible; no order ID.
         } elseif (!($user_id = (int) $WC_Order->user_id)) {
             return; // Not possible; no user ID.
-        } elseif ($this->orderPermissionsGranted($order_id)) {
-            return; // Permissings granted already.
         }
-        $this->orderPermissionsGranted($order_id, true); // Flag now.
-
         // Note: We want to avoid looking for a `\WC_Product` object here.
         // An item may be associated with a product that no longer exists for whatever reason.
 
@@ -360,11 +361,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             return; // Not possible; no subscription ID.
         } elseif (!($user_id = (int) $WC_Subscription->user_id)) {
             return; // Not possible; no user ID.
-        } elseif ($this->subscriptionPermissionsGranted($subscription_id)) {
-            return; // Permissings granted already.
         }
-        $this->subscriptionPermissionsGranted($subscription_id, true); // Flag now.
-
         // Note: We want to avoid looking for a `\WC_Product` or `\WC_Subscription` object here.
         // An item may be associated with a product or subscription that no longer exists.
 
@@ -533,11 +530,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             return; // Not possible; no order ID.
         } elseif (!($user_id = (int) $WC_Order->user_id)) {
             return; // Not possible; no user ID.
-        } elseif (!$this->orderPermissionsGranted($order_id)) {
-            return; // Permissings revoked already.
         }
-        $this->orderPermissionsGranted($order_id, false); // Flag now.
-
         // Note: We want to avoid looking for a `\WC_Product` object here.
         // An item may be associated with a product that no longer exists for whatever reason.
 
@@ -596,11 +589,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             return; // Not possible; no subscription ID.
         } elseif (!($user_id = (int) $WC_Subscription->user_id)) {
             return; // Not possible; no user ID.
-        } elseif (!$this->subscriptionPermissionsGranted($subscription_id)) {
-            return; // Permissings revoked already.
         }
-        $this->subscriptionPermissionsGranted($subscription_id, false); // Flag now.
-
         // Note: We want to avoid looking for a `\WC_Product` or `\WC_Subscription` object here.
         // An item may be associated with a product or subscription that no longer exists.
 
@@ -649,52 +638,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             );
             a::addLogEntry('subscription-item-revoked-permissions', c::dump($_log_vars, true));
         } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_log_vars); // Housekeeping.
-    }
-
-    /**
-     * Order permissions granted?
-     *
-     * @since 16xxxx Order-related events.
-     *
-     * @param int  $order_id Order ID.
-     * @param bool $granted  If setting the value.
-     *
-     * @return bool True if permissions have been granted.
-     */
-    protected function orderPermissionsGranted(int $order_id, bool $granted = null): bool
-    {
-        if (!$order_id) { // Empty?
-            return false; // Not possible.
-        }
-        $meta_key = '_'.$this->App->Config->©brand['©var'].'_permissions_granted';
-
-        if (isset($granted)) { // Setting the value?
-            update_post_meta($order_id, $meta_key, (int) $granted);
-        }
-        return (bool) get_post_meta($order_id, $meta_key, true);
-    }
-
-    /**
-     * Subscription permissions granted?
-     *
-     * @since 16xxxx Order-related events.
-     *
-     * @param int  $subscription_id Subscription ID.
-     * @param bool $granted         If setting the value.
-     *
-     * @return bool True if permissions have been granted.
-     */
-    protected function subscriptionPermissionsGranted(int $subscription_id, bool $granted = null): bool
-    {
-        if (!$subscription_id) { // Empty?
-            return false; // Not possible.
-        }
-        $meta_key = '_'.$this->App->Config->©brand['©var'].'_permissions_granted';
-
-        if (isset($granted)) { // Setting the value?
-            update_post_meta($subscription_id, $meta_key, (int) $granted);
-        }
-        return (bool) get_post_meta($subscription_id, $meta_key, true);
     }
 
     /**
