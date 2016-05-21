@@ -158,6 +158,6 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
             'subscription_id',
             'product_id',
             'where'
-        ), __('Deleting user permissions when deleting order item.', 's2member-x');
+        ), __('Deleting user permissions when deleting order item.', 's2member-x'));
     }
 }
