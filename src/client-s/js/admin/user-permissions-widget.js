@@ -86,16 +86,21 @@
 
         if (item.access_time && item.access_time > parseInt(moment.utc().format('X'))) {
           return '-is-not-allowed'; // Row classes.
-        } // Access is coming soon; i.e., scheduled.
+        } // Access is coming soon; i.e., scheduled for future access.
 
         return '-is-allowed'; // Row classes.
       },
 
       rowClick: function (args) {
+        var $target = $(args.event.target);
+
+        if ($target.is('a')) { // Not on anchor clicks.
+          return; // No edit if user clicked a link in the row.
+        }
         if (this._editingRow) {
           this.updateItem(); // Save current item.
         }
-        this.editItem($(args.event.target).closest('tr'));
+        this.editItem($target.closest('tr'));
       },
 
       fields: [

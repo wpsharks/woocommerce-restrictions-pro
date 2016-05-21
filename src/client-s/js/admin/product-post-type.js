@@ -71,13 +71,6 @@
           sorting: false, // Not compatible w/ sortable.
           paging: false, // Not compatible w/ sortable.
 
-          rowClick: function (args) {
-            if (this._editingRow) {
-              this.updateItem(); // Save current item.
-            }
-            this.editItem($(args.event.target).closest('tr'));
-          },
-
           onRefreshed: function (args) {
             if (initialGridRefreshComplete) {
               return; // Done already.
@@ -111,6 +104,18 @@
             $meta.closest('.woocommerce_variation').addClass('variation-needs-update');
             $postbox.find('#variable_product_options').find('button.save-variation-changes')
               .removeAttr('disabled').trigger('woocommerce_variations_input_changed');
+          },
+
+          rowClick: function (args) {
+            var $target = $(args.event.target);
+
+            if ($target.is('a')) { // Not on anchor clicks.
+              return; // No edit if user clicked a link in the row.
+            }
+            if (this._editingRow) {
+              this.updateItem(); // Save current item.
+            }
+            this.editItem($target.closest('tr'));
           },
 
           fields: [

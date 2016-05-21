@@ -47,10 +47,10 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         parent::__construct($App);
 
         $this->statuses = s::applyFilters('user_permission_statuses', [
-            '--- '.__('Enabled').' ---' => '---',
+            '--- '.__('Enabled', 's2member-x').' ---' => '---',
             'enabled'                   => __('Enabled', 's2member-x'),
 
-            '--- '.__('Disabled').' ---' => '---',
+            '--- '.__('Disabled', 's2member-x').' ---' => '---',
             'pending'                    => __('Pending', 's2member-x'),
             'processing'                 => __('Processing', 's2member-x'),
             'on-hold'                    => __('On-Hold', 's2member-x'),

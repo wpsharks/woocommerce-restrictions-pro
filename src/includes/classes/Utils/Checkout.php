@@ -148,7 +148,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
      *
      * @param \WC_Checkout $WC_Checkout Class instance.
      */
-    public function onAfterCheckoutForm(\WC_Checkout $WC_Checkout): array
+    public function onAfterCheckoutForm(\WC_Checkout $WC_Checkout)
     {
         if (!$this->cartContainsPermissions()) {
             return; // Not applicable.

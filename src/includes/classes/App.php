@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160519'; //v//
+    const VERSION = '160521'; //v//
 
     /**
      * Constructor.
@@ -44,6 +44,9 @@ class App extends SCoreClasses\App
      */
     public function __construct(array $instance = [])
     {
+        $is_multisite = is_multisite();
+        $is_main_site = !$is_multisite || is_main_site();
+
         $instance_base = [
             '©di' => [
                 '©default_rule' => [
@@ -72,11 +75,11 @@ class App extends SCoreClasses\App
                 'orders_always_grant_immediate_access',
             ],
             '§default_options' => [
-                'if_shortcode_expr_enable'              => '1',
-                'if_shortcode_for_blog_enable'          => '0',
-                'security_gate_redirects_to_post_id'    => '0',
+                'if_shortcode_expr_enable'              => $is_multisite && !$is_main_site ? '0' : '1',
+                'if_shortcode_for_blog_enable'          => $is_multisite && !$is_main_site ? '0' : '1',
+                'security_gate_redirects_to_post_id'    => '0', // Post ID.
                 'security_gate_redirect_to_args_enable' => '1',
-                'orders_always_grant_immediate_access'  => '1',
+                'orders_always_grant_immediate_access'  => '0',
             ],
             '§conflicts' => [
                 '§plugins' => [
@@ -220,6 +223,8 @@ class App extends SCoreClasses\App
             add_action('woocommerce_order_status_changed', [$this->Utils->OrderStatus, 'onOrderStatusChanged'], 1000, 3);
             add_action('woocommerce_subscription_status_changed', [$this->Utils->OrderStatus, 'onSubscriptionStatusChanged'], 1000, 3);
             add_action('woocommerce_subscriptions_switched_item', [$this->Utils->OrderStatus, 'onSubscriptionItemSwitched'], 1000, 3);
+
+            add_action('update_post_meta', [$this->Utils->OrderMeta, 'onPostMetaUpdate'], 10, 4);
 
             # Product-data and other product-related WooCommerce events.
 

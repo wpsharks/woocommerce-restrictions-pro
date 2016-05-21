@@ -63,6 +63,33 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     protected $access_ccap_prefix_regex;
 
     /**
+     * Order post type.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param string Order post type.
+     */
+    protected $order_post_type;
+
+    /**
+     * Subscription post type.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param string Subscription post type.
+     */
+    protected $subscription_post_type;
+
+    /**
+     * Restriction post type.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param string Restriction post type.
+     */
+    protected $restriction_post_type;
+
+    /**
      * Class constructor.
      *
      * @since 16xxxx Security gate.
@@ -91,6 +118,10 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         // However, it's a standard for WP slugs to be lowercase (they are forced to lowercase), so that is how examples should be written.
         // As long as `has_cap()` and other conditionals are written in lowercase, there's very little chance of error.
         // What we do allow (as seen above) is a mixture of either `_` or `-` as word separators.
+
+        $this->order_post_type        = a::orderPostType();
+        $this->subscription_post_type = a::subscriptionPostType();
+        $this->restriction_post_type  = a::restrictionPostType();
     }
 
     /**
@@ -203,22 +234,26 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
         }
-        $post_type             = get_post_type($post_id);
-        $restriction_post_type = a::restrictionPostType();
+        $applicable_post_types = [
+            $this->order_post_type,
+            $this->subscription_post_type,
+            $this->restriction_post_type,
+        ]; // Any of these are applicable here.
 
-        if (!in_array($post_type, ['shop_order', 'shop_subscription', $restriction_post_type], true)) {
-            return; // Not applicable against this post type.
+        $post_type = get_post_type($post_id); // This post type.
+        if (!in_array($post_type, $applicable_post_types, true)) {
+            return; // Not applicable.
         }
         switch ($post_type) { // Based on post type.
-            case 'shop_order':
+            case $this->order_post_type:
                 $where = ['order_id' => $post_id];
                 break;
 
-            case 'shop_subscription':
+            case $this->subscription_post_type:
                 $where = ['subscription_id' => $post_id];
                 break;
 
-            case $restriction_post_type:
+            case $this->restriction_post_type:
                 $where = ['restriction_id' => $post_id];
                 break;
 
@@ -247,22 +282,26 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
         }
-        $post_type             = get_post_type($post_id);
-        $restriction_post_type = a::restrictionPostType();
+        $applicable_post_types = [
+            $this->order_post_type,
+            $this->subscription_post_type,
+            $this->restriction_post_type,
+        ]; // Any of these are applicable here.
 
-        if (!in_array($post_type, ['shop_order', 'shop_subscription', $restriction_post_type], true)) {
-            return; // Not applicable against this post type.
+        $post_type = get_post_type($post_id); // This post type.
+        if (!in_array($post_type, $applicable_post_types, true)) {
+            return; // Not applicable.
         }
         switch ($post_type) { // Based on post type.
-            case 'shop_order':
+            case $this->order_post_type:
                 $where = ['order_id' => $post_id];
                 break;
 
-            case 'shop_subscription':
+            case $this->subscription_post_type:
                 $where = ['subscription_id' => $post_id];
                 break;
 
-            case $restriction_post_type:
+            case $this->restriction_post_type:
                 $where = ['restriction_id' => $post_id];
                 break;
 
@@ -291,22 +330,26 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
         }
-        $post_type             = get_post_type($post_id);
-        $restriction_post_type = a::restrictionPostType();
+        $applicable_post_types = [
+            $this->order_post_type,
+            $this->subscription_post_type,
+            $this->restriction_post_type,
+        ]; // Any of these are applicable here.
 
-        if (!in_array($post_type, ['shop_order', 'shop_subscription', $restriction_post_type], true)) {
-            return; // Not applicable against this post type.
+        $post_type = get_post_type($post_id); // This post type.
+        if (!in_array($post_type, $applicable_post_types, true)) {
+            return; // Not applicable.
         }
         switch ($post_type) { // Based on post type.
-            case 'shop_order':
+            case $this->order_post_type:
                 $where = ['order_id' => $post_id];
                 break;
 
-            case 'shop_subscription':
+            case $this->subscription_post_type:
                 $where = ['subscription_id' => $post_id];
                 break;
 
-            case $restriction_post_type:
+            case $this->restriction_post_type:
                 $where = ['restriction_id' => $post_id];
                 break;
 
@@ -318,6 +361,43 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         s::doAction('before_user_permissions_delete', $where);
         $WpDb->delete(s::dbPrefix().'user_permissions', $where);
         s::doAction('user_permissions_deleted', $where);
+
+        $this->clearCache(); // For all users.
+    }
+
+    /**
+     * Transfer permission to another user.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param string|int $old_user_id Old user ID.
+     * @param string|int $new_user_id New user ID.
+     * @param array      $args        Any additional behavioral args.
+     */
+    public function transfer($old_user_id, $new_user_id, array $args = [])
+    {
+        if (!($old_user_id = (int) $old_user_id)) {
+            return; // Not possible.
+        } elseif (!($new_user_id = (int) $new_user_id)) {
+            return; // Not possible.
+        } elseif ($old_user_id === $new_user_id) {
+            return; // Not necessary.
+        }
+        $default_args = [
+            'where' => [], // Transfer where.
+        ];
+        $args = array_merge($default_args, $args);
+        $args = array_intersect_key($args, $default_args);
+
+        $args['where'] = (array) $args['where']; // Force array.
+
+        $WpDb        = s::wpDb(); // DB instance.
+        $where       = array_merge($args['where'], ['user_id' => $old_user_id]);
+        $update_data = ['user_id' => $new_user_id]; // Transfer ownership.
+
+        s::doAction('before_user_permissions_update', $where, $update_data);
+        $WpDb->update(s::dbPrefix().'user_permissions', $update_data, $where);
+        s::doAction('user_permissions_updated', $where, $update_data);
 
         $this->clearCache(); // For all users.
     }

@@ -63,6 +63,15 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     protected $all_product_types;
 
     /**
+     * Product meta prefix.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param string Product meta prefix.
+     */
+    protected $product_meta_prefix;
+
+    /**
      * Class constructor.
      *
      * @since 16xxxx Order-related events.
@@ -118,6 +127,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         $this->subscription_product_types = s::applyFilters('order_status_subscription_product_types', $this->subscription_product_types);
         $this->user_permission_status_map = s::applyFilters('order_to_user_permission_status_map', $this->user_permission_status_map);
         $this->all_product_types          = array_keys(wc_get_product_types()); // Without a `wc-` prefix.
+
+        $this->product_meta_prefix = a::productMetaPrefix();
     }
 
     /**
@@ -275,14 +286,16 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         // Note: We want to avoid looking for a `\WC_Product` object here.
         // An item may be associated with a product that no longer exists for whatever reason.
 
-        foreach ($WC_Order->get_items() ?: [] as $_item) {
-            if (!($_product_id = $this->productIdFromItem($_item))) {
+        foreach ($WC_Order->get_items() ?: [] as $_item_id => $_item) {
+            $_item_id = (int) $_item_id; // Force integer.
+
+            if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
                 continue; // Not possible; no product ID.
-            } elseif (!($_product_type = $this->productTypeFromItem($_item))) {
+            } elseif (!($_product_type = $this->itemProductType($_item_id))) {
                 continue; // Not possible; no product type.
             } elseif (in_array($_product_type, $this->subscription_product_types, true)) {
                 continue; // Don't handle subscription product types here.
-            } elseif (!($_product_permissions = $this->productPermissionsFromItem($_item))) {
+            } elseif (!($_product_permissions = $this->itemProductPermissions($_item_id))) {
                 continue; // Not applicable; no product permissions.
             }
             $_user_permissions         = a::userPermissions($user_id); // User permissions.
@@ -329,7 +342,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_new_user_permissions'
             );
             a::addLogEntry('order-item-granted-permissions', c::dump($_log_vars, true));
-        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_new_user_permissions, $_log_vars); // Housekeeping.
+        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_new_user_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
@@ -355,12 +368,14 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         // Note: We want to avoid looking for a `\WC_Product` or `\WC_Subscription` object here.
         // An item may be associated with a product or subscription that no longer exists.
 
-        foreach ($WC_Subscription->get_items() ?: [] as $_item) {
-            if (!($_product_id = $this->productIdFromItem($_item))) {
+        foreach ($WC_Subscription->get_items() ?: [] as $_item_id => $_item) {
+            $_item_id = (int) $_item_id; // Force integer.
+
+            if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
                 continue; // Not possible; no product ID.
-            } elseif (!($_product_type = $this->productTypeFromItem($_item))) {
+            } elseif (!($_product_type = $this->itemProductType($_item_id))) {
                 continue; // Not possible; no product type.
-            } elseif (!($_product_permissions = $this->productPermissionsFromItem($_item))) {
+            } elseif (!($_product_permissions = $this->itemProductPermissions($_item_id))) {
                 continue; // Not applicable; no product permissions.
             }
             // Any type of product can be an item in a subscription; it's just like an order.
@@ -416,7 +431,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_new_user_permissions'
             );
             a::addLogEntry('subscription-item-granted-permissions', c::dump($_log_vars, true));
-        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_new_user_permissions, $_log_vars); // Housekeeping.
+        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_new_user_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
@@ -438,8 +453,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         // Note: We want to avoid looking for a `\WC_Product` or `\WC_Subscription` object here.
         // An item may be associated with a product or subscription that no longer exists.
 
-        $new_product_id = $this->productIdFromItem($new_item);
-        $old_product_id = $this->productIdFromItem($old_item);
+        $new_product_id = (int) ($new_item['product_id'] ?? 0);
+        $old_product_id = (int) ($old_item['product_id'] ?? 0);
 
         $new_product_type = $this->productTypeFromItem($new_item);
         $old_product_type = $this->productTypeFromItem($old_item);
@@ -526,14 +541,16 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         // Note: We want to avoid looking for a `\WC_Product` object here.
         // An item may be associated with a product that no longer exists for whatever reason.
 
-        foreach ($WC_Order->get_items() ?: [] as $_item) {
-            if (!($_product_id = $this->productIdFromItem($_item))) {
+        foreach ($WC_Order->get_items() ?: [] as $_item_id => $_item) {
+            $_item_id = (int) $_item_id; // Force integer.
+
+            if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
                 continue; // Not possible; no product ID.
-            } elseif (!($_product_type = $this->productTypeFromItem($_item))) {
+            } elseif (!($_product_type = $this->itemProductType($_item_id))) {
                 continue; // Not possible; no product type.
             } elseif (in_array($_product_type, $this->subscription_product_types, true)) {
                 continue; // Don't handle subscription product types here.
-            } elseif (!($_product_permissions = $this->productPermissionsFromItem($_item))) {
+            } elseif (!($_product_permissions = $this->itemProductPermissions($_item_id))) {
                 continue; // Not applicable; no product permissions.
             }
             $_user_permissions         = a::userPermissions($user_id); // User permissions.
@@ -561,7 +578,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_updated_user_permissions'
             );
             a::addLogEntry('order-item-revoked-permissions', c::dump($_log_vars, true));
-        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_log_vars); // Housekeeping.
+        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
@@ -587,12 +604,14 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         // Note: We want to avoid looking for a `\WC_Product` or `\WC_Subscription` object here.
         // An item may be associated with a product or subscription that no longer exists.
 
-        foreach ($WC_Subscription->get_items() ?: [] as $_item) {
-            if (!($_product_id = $this->productIdFromItem($_item))) {
+        foreach ($WC_Subscription->get_items() ?: [] as $_item_id => $_item) {
+            $_item_id = (int) $_item_id; // Force integer.
+
+            if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
                 continue; // Not possible; no product ID.
-            } elseif (!($_product_type = $this->productTypeFromItem($_item))) {
+            } elseif (!($_product_type = $this->itemProductType($_item_id))) {
                 continue; // Not possible; no product type.
-            } elseif (!($_product_permissions = $this->productPermissionsFromItem($_item))) {
+            } elseif (!($_product_permissions = $this->itemProductPermissions($_item_id))) {
                 continue; // Not applicable; no product permissions.
             }
             // Any type of product can be an item in a subscription; it's just like an order.
@@ -629,7 +648,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_updated_user_permissions'
             );
             a::addLogEntry('subscription-item-revoked-permissions', c::dump($_log_vars, true));
-        } // unset($_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_log_vars); // Housekeeping.
+        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_log_vars); // Housekeeping.
     }
 
     /**
@@ -679,17 +698,17 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * Product ID from item.
+     * Item product type.
      *
      * @since 16xxxx Order-related events.
      *
-     * @param array $item Order line item data.
+     * @param int $item_id Order item ID.
      *
-     * @return int Product ID from item.
+     * @return string Item product type.
      */
-    protected function productIdFromItem(array $item): int
+    protected function itemProductType(int $item_id): string
     {
-        return (int) ($item['product_id'] ?? 0);
+        return (string) wc_get_order_item_meta($item_id, $this->product_meta_prefix.'type', true);
     }
 
     /**
@@ -697,16 +716,41 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Order-related events.
      *
-     * @param array $item Order line item data.
+     * @param array $item Order item.
      *
      * @return string Product type from item.
      */
     protected function productTypeFromItem(array $item): string
     {
-        if (empty($item['item_meta'])) {
+        if (empty($item['item_meta'][$this->product_meta_prefix.'type'][0])) {
             return ''; // Not possible; no meta values.
         }
-        return (string) ($item['item_meta'][a::productMetaPrefix().'type'] ?? '');
+        return (string) $item['item_meta'][$this->product_meta_prefix.'type'][0];
+    }
+
+    /**
+     * Item product permissions.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param int $item_id Order item ID.
+     *
+     * @return Classes\ProductPermission[] Item product permissions.
+     */
+    protected function itemProductPermissions(int $item_id): array
+    {
+        $product_permissions  = []; // Initialize.
+        $_product_permissions = wc_get_order_item_meta($item_id, $this->product_meta_prefix.'permissions', false);
+        $_product_permissions = is_array($_product_permissions) ? $_product_permissions : [];
+
+        foreach ($_product_permissions as $_product_permission) {
+            if (!($_product_permission instanceof \StdClass)) {
+                continue; // Invalid data; not possible.
+            }
+            $product_permissions[] = $this->App->Di->get(Classes\ProductPermission::class, ['data' => $_product_permission]);
+        } // unset($_product_permissions, $_product_permission); // Housekeeping.
+
+        return $product_permissions;
     }
 
     /**
@@ -720,11 +764,11 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     protected function productPermissionsFromItem(array $item): array
     {
-        if (empty($item['item_meta'])) {
+        if (empty($item['item_meta'][$this->product_meta_prefix.'permissions'])) {
             return []; // Not possible; no meta values.
         }
         $product_permissions  = []; // Initialize.
-        $_product_permissions = $item['item_meta'][a::productMetaPrefix().'permissions'] ?? [];
+        $_product_permissions = $item['item_meta'][$this->product_meta_prefix.'permissions'] ?? [];
         $_product_permissions = is_array($_product_permissions) ? $_product_permissions : [];
 
         foreach ($_product_permissions as $_product_permission) {

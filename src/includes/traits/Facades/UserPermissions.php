@@ -24,6 +24,14 @@ trait UserPermissions
     /**
      * @since 16xxxx Initial release.
      */
+    public static function transferUserPermissions(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->UserPermissions->transfer(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
     public static function userHas(...$args)
     {
         return $GLOBALS[static::class]->Utils->UserPermissions->hasAccessToRestrictions(...$args);
