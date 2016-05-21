@@ -27,19 +27,136 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 class Checkout extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * On checkout init.
+     * Original settings that need reversion.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Checkout utilities.
+     *
+     * @param array Original settings.
+     */
+    protected $original_settings;
+
+    /**
+     * Class constructor.
+     *
+     * @since 16xxxx Checkout utilities.
+     *
+     * @param Classes\App $App Instance.
+     */
+    public function __construct(Classes\App $App)
+    {
+        parent::__construct($App);
+
+        $this->original_settings = []; // Initialize.
+    }
+
+    /**
+     * Cart contains permissions?
+     *
+     * @since 16xxxx Checkout utilities.
+     *
+     * @return bool True if cart contains permissions.
+     */
+    protected function cartContainsPermissions()
+    {
+        $WooCommerce = WC(); // `\WooCommerce` instance.
+
+        if ($WooCommerce->cart->is_empty()) {
+            return false; // Cart is empty.
+        }
+        foreach ($WooCommerce->cart->get_cart() as $_cart_item) {
+            $_WC_Product = $_cart_item['data'];
+
+            if (a::getProductMeta($_WC_Product->id, 'permissions')) {
+                return true; // Product offers permissions.
+            }
+        } // unset($_cart_item); // Housekeeping.
+
+        return false;
+    }
+
+    /**
+     * Before checkout form.
+     *
+     * @since 16xxxx Checkout utilities.
      *
      * @param \WC_Checkout $WC_Checkout Class instance.
      */
-    public function onCheckoutInit(\WC_Checkout $WC_Checkout)
+    public function onBeforeCheckoutForm(\WC_Checkout $WC_Checkout)
     {
+        if (!$this->cartContainsPermissions()) {
+            return; // Not applicable.
+        }
+        $this->original_settings['enable_signup']         = $WC_Checkout->enable_signup;
+        $this->original_settings['enable_guest_checkout'] = $WC_Checkout->enable_guest_checkout;
+        $this->original_settings['must_create_account']   = $WC_Checkout->must_create_account;
+
         $WC_Checkout->enable_signup         = true;
         $WC_Checkout->enable_guest_checkout = false;
-        // @TODO Force users to register during checkout when cart contains a restriction.
-        // @TODO See: https://github.com/woothemes/woocommerce/blob/653f79b25b79f953af04a4d1cf28f34ba5c862c9/includes/class-wc-checkout.php#L95-L97
-        // @TODO Via hook: woocommerce_before_checkout_form (and others too).
-        // @TODO Search for `woocommerce_before_checkout_form` in the subscriptions plugin for examples of how to do this.
+        $WC_Checkout->must_create_account   = !is_user_logged_in();
+    }
+
+    /**
+     * Filter checkout fields.
+     *
+     * @since 16xxxx Checkout utilities.
+     *
+     * @param array $fields Checkout fields.
+     *
+     * @return array Checkout fields.
+     */
+    public function onCheckoutFields(array $fields): array
+    {
+        foreach (['account_username', 'account_password', 'account_password-2'] as $_account_field) {
+            if (isset($fields['account'][$_account_field])) {
+                $fields['account'][$_account_field]['required'] = true;
+            }
+        } // unset($_account_field); // Housekeeping.
+
+        return $fields;
+    }
+
+    /**
+     * Filter JS checkout params.
+     *
+     * @since 16xxxx Checkout utilities.
+     *
+     * @param array $params JS checkout params.
+     *
+     * @return array JS checkout params.
+     */
+    public function onCheckoutParams(array $params): array
+    {
+        if (isset($params['option_guest_checkout'])) {
+            $params['option_guest_checkout'] = 'no';
+        }
+        return $params;
+    }
+
+    /**
+     * After checkout form.
+     *
+     * @since 16xxxx Checkout utilities.
+     *
+     * @param \WC_Checkout $WC_Checkout Class instance.
+     */
+    public function onAfterCheckoutForm(\WC_Checkout $WC_Checkout): array
+    {
+        foreach ($this->original_settings as $_setting => $_value) {
+            if ($_setting && isset($_value)) { // Restore.
+                $WC_Checkout->{$_setting} = $_value;
+            }
+        } // unset($_setting, $_value); // Housekeeping.
+    }
+
+    /**
+     * Before processing checkout.
+     *
+     * @since 16xxxx Checkout utilities.
+     */
+    public function onBeforeCheckoutProcess()
+    {
+        if (!empty($_POST) && !is_user_logged_in()) {
+            $_POST['createaccount'] = 1;
+        }
     }
 }

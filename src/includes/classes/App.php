@@ -203,7 +203,15 @@ class App extends SCoreClasses\App
             }
             # Checkout-related hooks; including checkout-specific option filters.
 
-            add_action('woocommerce_checkout_init', [$this->Utils->Checkout, 'onCheckoutInit']);
+            add_action('woocommerce_before_checkout_form', [$this->Utils->Checkout, 'onBeforeCheckoutForm'], -1000);
+
+            add_filter('woocommerce_checkout_fields', [$this->Utils->Checkout, 'onCheckoutFields'], 1000);
+            add_filter('woocommerce_params', [$this->Utils->Checkout, 'onCheckoutParams']); // JS params.
+            add_filter('wc_checkout_params', [$this->Utils->Checkout, 'onCheckoutParams']); // JS params.
+
+            add_action('woocommerce_after_checkout_form', [$this->Utils->Checkout, 'onAfterCheckoutForm'], -1000);
+
+            add_action('woocommerce_before_checkout_process', [$this->Utils->Checkout, 'onBeforeCheckoutProcess']);
 
             # Order-related hooks; attached to WooCommerce events.
 
