@@ -58,20 +58,23 @@ class Checkout extends SCoreClasses\SCore\Base\Core
      */
     protected function cartContainsPermissions()
     {
+        if (($contains = &$this->cacheKey(__FUNCTION__)) !== null) {
+            return $contains; // ALready cached this.
+        }
         $WooCommerce = WC(); // `\WooCommerce` instance.
 
         if ($WooCommerce->cart->is_empty()) {
-            return false; // Cart is empty.
+            return $contains = false; // Cart is empty.
         }
         foreach ($WooCommerce->cart->get_cart() as $_cart_item) {
             $_WC_Product = $_cart_item['data'];
 
             if (a::getProductMeta($_WC_Product->id, 'permissions')) {
-                return true; // Product offers permissions.
+                return $contains = true;
             }
         } // unset($_cart_item); // Housekeeping.
 
-        return false;
+        return $contains = false;
     }
 
     /**
@@ -106,6 +109,9 @@ class Checkout extends SCoreClasses\SCore\Base\Core
      */
     public function onCheckoutFields(array $fields): array
     {
+        if (!$this->cartContainsPermissions()) {
+            return $fields; // Not applicable.
+        }
         foreach (['account_username', 'account_password', 'account_password-2'] as $_account_field) {
             if (isset($fields['account'][$_account_field])) {
                 $fields['account'][$_account_field]['required'] = true;
@@ -126,6 +132,9 @@ class Checkout extends SCoreClasses\SCore\Base\Core
      */
     public function onCheckoutParams(array $params): array
     {
+        if (!$this->cartContainsPermissions()) {
+            return $params; // Not applicable.
+        }
         if (isset($params['option_guest_checkout'])) {
             $params['option_guest_checkout'] = 'no';
         }
@@ -141,6 +150,9 @@ class Checkout extends SCoreClasses\SCore\Base\Core
      */
     public function onAfterCheckoutForm(\WC_Checkout $WC_Checkout): array
     {
+        if (!$this->cartContainsPermissions()) {
+            return; // Not applicable.
+        }
         foreach ($this->original_settings as $_setting => $_value) {
             if ($_setting && isset($_value)) { // Restore.
                 $WC_Checkout->{$_setting} = $_value;
@@ -155,6 +167,9 @@ class Checkout extends SCoreClasses\SCore\Base\Core
      */
     public function onBeforeCheckoutProcess()
     {
+        if (!$this->cartContainsPermissions()) {
+            return; // Not applicable.
+        }
         if (!empty($_POST) && !is_user_logged_in()) {
             $_POST['createaccount'] = 1;
         }
