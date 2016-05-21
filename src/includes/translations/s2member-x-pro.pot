@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: s2Member X Pro 160521\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/s2member-x-pro\n"
-"POT-Creation-Date: 2016-05-21 21:19:09+00:00\n"
+"POT-Creation-Date: 2016-05-21 21:23:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -972,6 +972,58 @@ msgstr ""
 msgid "<strong>Note:</strong> Start and End dates are optional. No Start Date = starts immediately. If no End Date, access is indefinite. Unchecking the 'Enabled' box will temporarily suspend access."
 msgstr ""
 
+#: .~build/s2member-x-pro/src/includes/classes/Utils/OrderItem.php:161
+#: src/includes/classes/Utils/OrderItem.php:161
+msgid "Deleting user permissions when deleting order item."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/OrderItemMeta.php:112
+#: .~build/s2member-x-pro/src/includes/classes/Utils/OrderItemMeta.php:157
+#: src/includes/classes/Utils/OrderItemMeta.php:112
+#: src/includes/classes/Utils/OrderItemMeta.php:157
+msgid "Updating custom order item meta."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/OrderMeta.php:109
+#: src/includes/classes/Utils/OrderMeta.php:109
+msgid "Transferring user permissions because customer was changed."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:149
+#: src/includes/classes/Utils/OrderStatus.php:149
+msgid "Monitoring order status changes."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:233
+#: src/includes/classes/Utils/OrderStatus.php:233
+msgid "Monitoring subscription status changes."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:330
+#: src/includes/classes/Utils/OrderStatus.php:330
+msgid "Granting user permissions on order status change."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:414
+#: src/includes/classes/Utils/OrderStatus.php:414
+msgid "Granting user permissions on subscription status change."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:498
+#: src/includes/classes/Utils/OrderStatus.php:498
+msgid "Switching user permisssions on subscription upgrade/downgrade."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:555
+#: src/includes/classes/Utils/OrderStatus.php:555
+msgid "Revoking user permissions on order status change."
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:620
+#: src/includes/classes/Utils/OrderStatus.php:620
+msgid "Revoking user permissions on subscription status change."
+msgstr ""
+
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Product.php:186
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:148
 #: src/includes/classes/Utils/Product.php:186
@@ -1677,45 +1729,16 @@ msgstr ""
 msgid "No permissions yet."
 msgstr ""
 
-#: src/includes/classes/Utils/OrderItem.php:161
-msgid "Deleting user permissions when deleting order item."
+#: src/includes/classes/Utils/Logger.php:72
+msgid "unknown caller"
 msgstr ""
 
-#: src/includes/classes/Utils/OrderItemMeta.php:112
-#: src/includes/classes/Utils/OrderItemMeta.php:157
-msgid "Updating custom order item meta."
+#: src/includes/classes/Utils/Logger.php:73
+msgid "nothing given by caller"
 msgstr ""
 
-#: src/includes/classes/Utils/OrderMeta.php:109
-msgid "Transferring user permissions because customer was changed."
-msgstr ""
-
-#: src/includes/classes/Utils/OrderStatus.php:149
-msgid "Monitoring order status changes."
-msgstr ""
-
-#: src/includes/classes/Utils/OrderStatus.php:233
-msgid "Monitoring subscription status changes."
-msgstr ""
-
-#: src/includes/classes/Utils/OrderStatus.php:330
-msgid "Granting user permissions on order status change."
-msgstr ""
-
-#: src/includes/classes/Utils/OrderStatus.php:414
-msgid "Granting user permissions on subscription status change."
-msgstr ""
-
-#: src/includes/classes/Utils/OrderStatus.php:498
-msgid "Switching user permisssions on subscription upgrade/downgrade."
-msgstr ""
-
-#: src/includes/classes/Utils/OrderStatus.php:555
-msgid "Revoking user permissions on order status change."
-msgstr ""
-
-#: src/includes/classes/Utils/OrderStatus.php:620
-msgid "Revoking user permissions on subscription status change."
+#: src/includes/classes/Utils/Logger.php:79
+msgid "n/a; CLI process"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
