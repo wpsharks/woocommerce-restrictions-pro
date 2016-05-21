@@ -63,15 +63,6 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     protected $access_ccap_prefix_regex;
 
     /**
-     * Order post type.
-     *
-     * @since 16xxxx Order-related events.
-     *
-     * @param string Order post type.
-     */
-    protected $order_post_type;
-
-    /**
      * Subscription post type.
      *
      * @since 16xxxx Order-related events.
@@ -88,6 +79,15 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      * @param string Restriction post type.
      */
     protected $restriction_post_type;
+
+    /**
+     * All order post types.
+     *
+     * @since 16xxxx Order-related events.
+     *
+     * @param array All order post types.
+     */
+    protected $all_order_post_types;
 
     /**
      * Class constructor.
@@ -119,9 +119,9 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         // As long as `has_cap()` and other conditionals are written in lowercase, there's very little chance of error.
         // What we do allow (as seen above) is a mixture of either `_` or `-` as word separators.
 
-        $this->order_post_type        = a::orderPostType();
         $this->subscription_post_type = a::subscriptionPostType();
         $this->restriction_post_type  = a::restrictionPostType();
+        $this->all_order_post_types   = wc_get_order_types();
     }
 
     /**
@@ -234,31 +234,31 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
         }
-        $applicable_post_types = [
-            $this->order_post_type,
-            $this->subscription_post_type,
-            $this->restriction_post_type,
-        ]; // Any of these are applicable here.
+        $applicable_post_types = array_merge(
+            $this->all_order_post_types,
+            [$this->restriction_post_type]
+        ); // Any of these are applicable here.
 
         $post_type = get_post_type($post_id); // This post type.
         if (!in_array($post_type, $applicable_post_types, true)) {
             return; // Not applicable.
         }
         switch ($post_type) { // Based on post type.
-            case $this->order_post_type:
-                $where = ['order_id' => $post_id];
-                break;
 
             case $this->subscription_post_type:
-                $where = ['subscription_id' => $post_id];
+                $subscription_id = $post_id; // Subscription.
+                $where           = compact('subscription_id');
                 break;
 
             case $this->restriction_post_type:
-                $where = ['restriction_id' => $post_id];
+                $restriction_id = $post_id; // Restriction.
+                $where          = compact('restriction_id');
                 break;
 
-            default: // Unexpected post type.
-                throw new Exception('Unexpected post type.');
+            default: // Or any other order type.
+                $order_id = $post_id; // Order of some type.
+                $where    = compact('order_id');
+                break;
         }
         $WpDb        = s::wpDb(); // DB instance.
         $update_data = ['is_trashed' => 1];
@@ -282,31 +282,31 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
         }
-        $applicable_post_types = [
-            $this->order_post_type,
-            $this->subscription_post_type,
-            $this->restriction_post_type,
-        ]; // Any of these are applicable here.
+        $applicable_post_types = array_merge(
+            $this->all_order_post_types,
+            [$this->restriction_post_type]
+        ); // Any of these are applicable here.
 
         $post_type = get_post_type($post_id); // This post type.
         if (!in_array($post_type, $applicable_post_types, true)) {
             return; // Not applicable.
         }
         switch ($post_type) { // Based on post type.
-            case $this->order_post_type:
-                $where = ['order_id' => $post_id];
-                break;
 
             case $this->subscription_post_type:
-                $where = ['subscription_id' => $post_id];
+                $subscription_id = $post_id; // Subscription.
+                $where           = compact('subscription_id');
                 break;
 
             case $this->restriction_post_type:
-                $where = ['restriction_id' => $post_id];
+                $restriction_id = $post_id; // Restriction.
+                $where          = compact('restriction_id');
                 break;
 
-            default: // Unexpected post type.
-                throw new Exception('Unexpected post type.');
+            default: // Or any other order type.
+                $order_id = $post_id; // Order of some type.
+                $where    = compact('order_id');
+                break;
         }
         $WpDb        = s::wpDb(); // DB instance.
         $update_data = ['is_trashed' => 0];
@@ -330,31 +330,31 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
         }
-        $applicable_post_types = [
-            $this->order_post_type,
-            $this->subscription_post_type,
-            $this->restriction_post_type,
-        ]; // Any of these are applicable here.
+        $applicable_post_types = array_merge(
+            $this->all_order_post_types,
+            [$this->restriction_post_type]
+        ); // Any of these are applicable here.
 
         $post_type = get_post_type($post_id); // This post type.
         if (!in_array($post_type, $applicable_post_types, true)) {
             return; // Not applicable.
         }
         switch ($post_type) { // Based on post type.
-            case $this->order_post_type:
-                $where = ['order_id' => $post_id];
-                break;
 
             case $this->subscription_post_type:
-                $where = ['subscription_id' => $post_id];
+                $subscription_id = $post_id; // Subscription.
+                $where           = compact('subscription_id');
                 break;
 
             case $this->restriction_post_type:
-                $where = ['restriction_id' => $post_id];
+                $restriction_id = $post_id; // Restriction.
+                $where          = compact('restriction_id');
                 break;
 
-            default: // Unexpected post type.
-                throw new Exception('Unexpected post type.');
+            default: // Or any other order type.
+                $order_id = $post_id; // Order of some type.
+                $where    = compact('order_id');
+                break;
         }
         $WpDb = s::wpDb(); // DB instance.
 

@@ -22,23 +22,14 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 /**
  * Order status changes.
  *
- * @since 16xxxx Order-related events.
+ * @since 16xxxx Order status changes.
  */
 class OrderStatus extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Core product types.
-     *
-     * @since 16xxxx Order-related events.
-     *
-     * @param array Core product types.
-     */
-    protected $core_product_types;
-
-    /**
      * Subscription product types.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param array Subscription product types.
      */
@@ -47,25 +38,16 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * User permission status map.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param array User permission status map.
      */
     protected $user_permission_status_map;
 
     /**
-     * All product types.
-     *
-     * @since 16xxxx Order-related events.
-     *
-     * @param array All product types.
-     */
-    protected $all_product_types;
-
-    /**
      * Product meta prefix.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param string Product meta prefix.
      */
@@ -74,28 +56,27 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param Classes\App $App Instance.
      */
     public function __construct(Classes\App $App)
     {
         parent::__construct($App);
-
-        $this->core_product_types = [
-            'simple', // Covers most products sold w/ WC.
-            'variation', // A variable product variation.
-            // ↑ These two product types can become line-items.
-
-            'variable', // Variable product; i.e., sells a variation.
-            // Forms a group of variations that aim to sell a `variation`.
-
-            'external', // Listed in the storefront but sold elsewhere.
-            // An external product is never a line-item, it is sold externally.
-
-            'grouped', // A collection of other products; i.e., a group of products.
-            // A group product is never a line-item; it only forms a group of others.
-        ];
+        /*
+         * `simple`  Covers most products.
+         * `variation` A variable product variation.
+         * ↑ These two product types can become line-items.
+         *
+         * `variable` Variable product; i.e., sells a variation.
+         * Forms a group of variations that aim to sell a `variation`.
+         *
+         * `external` Listed in the storefront but sold elsewhere.
+         * An external product is never a line-item, it is sold externally.
+         *
+         * `grouped` A collection of other products; i.e., a group of products.
+         * A group product is never a line-item; it only forms a group of others.
+         */
         $this->subscription_product_types = [
             'subscription', // Covers most subscriptions sold w/ WooCommerce.
             'subscription-variation', 'subscription_variation', // A subscription variation.
@@ -124,18 +105,15 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             'failed'    => 'failed',
             'switched'  => 'switched',
         ];
-        $this->core_product_types         = s::applyFilters('order_status_core_product_types', $this->core_product_types);
         $this->subscription_product_types = s::applyFilters('order_status_subscription_product_types', $this->subscription_product_types);
         $this->user_permission_status_map = s::applyFilters('order_to_user_permission_status_map', $this->user_permission_status_map);
-        $this->all_product_types          = array_keys(wc_get_product_types()); // Without a `wc-` prefix.
-
-        $this->product_meta_prefix = a::productMetaPrefix();
+        $this->product_meta_prefix        = a::productMetaPrefix(); // Plugin-specific meta prefix.
     }
 
     /**
      * Order status change.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param string|int $order_id   Order ID.
      * @param string     $old_status Old status prior to change.
@@ -164,7 +142,11 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     public function onOrderStatusChanged($order_id, string $old_status, string $new_status)
     {
-        a::addLogEntry('order-status-change', c::dump(compact('order_id', 'new_status', 'old_status'), true));
+        a::addLogEntry(__METHOD__, compact(
+            'order_id',
+            'new_status',
+            'old_status'
+        ), __('Monitoring order status changes.', 's2member-x'));
 
         if (!($order_id = (int) $order_id)) {
             return; // Not possible.
@@ -191,7 +173,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Subscription status change.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param string|int $subscription_id Subscription ID.
      * @param string     $old_status      Old status prior to change.
@@ -244,7 +226,11 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     public function onSubscriptionStatusChanged($subscription_id, string $old_status, string $new_status)
     {
-        a::addLogEntry('subscription-status-change', c::dump(compact('subscription_id', 'new_status', 'old_status'), true));
+        a::addLogEntry(__METHOD__, compact(
+            'subscription_id',
+            'new_status',
+            'old_status'
+        ), __('Monitoring subscription status changes.', 's2member-x'));
 
         if (!($subscription_id = (int) $subscription_id)) {
             return; // Not possible.
@@ -271,7 +257,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Maybe grant order permissions.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param \WC_Order $WC_Order   Order instance.
      * @param string    $old_status Old status prior to change.
@@ -291,7 +277,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_item_id = (int) $_item_id; // Force integer.
 
             if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
-                continue; // Not possible; no product ID.
+                continue; // Not applicable; not associated w/ a product ID.
             } elseif (!($_product_type = $this->itemProductType($_item_id))) {
                 continue; // Not possible; no product type.
             } elseif (in_array($_product_type, $this->subscription_product_types, true)) {
@@ -331,7 +317,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 }
             } // unset($_ProductPermission, $_updated_existing_user_permission, $_new_user_permission); // Housekeeping.
 
-            $_log_vars = compact(
+            a::addLogEntry(__METHOD__, compact(
                 'order_id',
                 'user_id',
                 'old_status',
@@ -341,15 +327,14 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_product_permissions',
                 '_updated_user_permissions',
                 '_new_user_permissions'
-            );
-            a::addLogEntry('order-item-granted-permissions', c::dump($_log_vars, true));
-        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_new_user_permissions, $_log_vars); // Housekeeping.
+            ), __('Granting user permissions on order status change.', 's2member-x'));
+        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_new_user_permissions); // Housekeeping.
     }
 
     /**
      * Maybe grant subscription permissions.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param \WC_Subscription $WC_Subscription Subscription instance.
      * @param string           $old_status      Old status prior to change.
@@ -369,7 +354,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_item_id = (int) $_item_id; // Force integer.
 
             if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
-                continue; // Not possible; no product ID.
+                continue; // Not applicable; not associated w/ a product ID.
             } elseif (!($_product_type = $this->itemProductType($_item_id))) {
                 continue; // Not possible; no product type.
             } elseif (!($_product_permissions = $this->itemProductPermissions($_item_id))) {
@@ -416,7 +401,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 }
             } // unset($_ProductPermission, $_updated_existing_user_permission, $_new_user_permission); // Housekeeping.
 
-            $_log_vars = compact(
+            a::addLogEntry(__METHOD__, compact(
                 'subscription_id',
                 'user_id',
                 'old_status',
@@ -426,15 +411,14 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_product_permissions',
                 '_updated_user_permissions',
                 '_new_user_permissions'
-            );
-            a::addLogEntry('subscription-item-granted-permissions', c::dump($_log_vars, true));
-        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_new_user_permissions, $_log_vars); // Housekeeping.
+            ), __('Granting user permissions on subscription status change.', 's2member-x'));
+        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_new_user_permissions); // Housekeeping.
     }
 
     /**
      * Maybe switch subscription permissions.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param \WC_Subscription $WC_Subscription Subscription instance.
      * @param array            $new_item        The new item data.
@@ -460,7 +444,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         $old_product_permissions = $this->productPermissionsFromItem($old_item);
 
         if (!$new_product_id || !$old_product_id || !$new_product_type || !$old_product_type) {
-            return; // Not possible. Missing required IDs and/or types.
+            return; // Not applicable; not associated w/ a product or data missing.
         }
         // Any type of product can be an item in a subscription; it's just like an order.
         // While we don't handle subscription product types when an order status changes, we DO handle
@@ -498,7 +482,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $created_new_user_permissions[] = $_new_user_permission; // Record new permission.
         } // unset($_NewProductPermission, $_new_user_permission); // Housekeeping.
 
-        $log_vars = compact(
+        a::addLogEntry(__METHOD__, compact(
             'subscription_id',
             'user_id',
             //
@@ -511,14 +495,13 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             'old_product_type',
             'old_product_permissions',
             'trashed_old_user_permissions'
-        );
-        a::addLogEntry('subscription-item-switched-permissions', c::dump($log_vars, true));
+        ), __('Switching user permisssions on subscription upgrade/downgrade.', 's2member-x'));
     }
 
     /**
      * Maybe revoke order permissions.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param \WC_Order $WC_Order   Order instance.
      * @param string    $old_status Old status prior to change.
@@ -538,7 +521,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_item_id = (int) $_item_id; // Force integer.
 
             if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
-                continue; // Not possible; no product ID.
+                continue; // Not applicable; not associated w/ a product ID.
             } elseif (!($_product_type = $this->itemProductType($_item_id))) {
                 continue; // Not possible; no product type.
             } elseif (in_array($_product_type, $this->subscription_product_types, true)) {
@@ -560,7 +543,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 } // unset($_UserPermission); // Housekeeping.
             } // unset($_ProductPermission); // Housekeeping.
 
-            $_log_vars = compact(
+            a::addLogEntry(__METHOD__, compact(
                 'order_id',
                 'user_id',
                 'old_status',
@@ -569,15 +552,14 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_product_type',
                 '_product_permissions',
                 '_updated_user_permissions'
-            );
-            a::addLogEntry('order-item-revoked-permissions', c::dump($_log_vars, true));
-        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_log_vars); // Housekeeping.
+            ), __('Revoking user permissions on order status change.', 's2member-x'));
+        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions); // Housekeeping.
     }
 
     /**
      * Maybe revoke subscription permissions.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param \WC_Subscription $WC_Subscription Subscription instance.
      * @param string           $old_status      Old status prior to change.
@@ -597,7 +579,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             $_item_id = (int) $_item_id; // Force integer.
 
             if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
-                continue; // Not possible; no product ID.
+                continue; // Not applicable; not associated w/ a product ID.
             } elseif (!($_product_type = $this->itemProductType($_item_id))) {
                 continue; // Not possible; no product type.
             } elseif (!($_product_permissions = $this->itemProductPermissions($_item_id))) {
@@ -626,7 +608,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 } // unset($_UserPermission); // Housekeeping.
             } // unset($_ProductPermission); // Housekeeping.
 
-            $_log_vars = compact(
+            a::addLogEntry(__METHOD__, compact(
                 'subscription_id',
                 'user_id',
                 'old_status',
@@ -635,15 +617,14 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_product_type',
                 '_product_permissions',
                 '_updated_user_permissions'
-            );
-            a::addLogEntry('subscription-item-revoked-permissions', c::dump($_log_vars, true));
-        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions, $_log_vars); // Housekeeping.
+            ), __('Revoking user permissions on subscription status change.', 's2member-x'));
+        } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions, $_user_permissions, $_updated_user_permissions); // Housekeeping.
     }
 
     /**
      * Item product type.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param int $item_id Order item ID.
      *
@@ -657,7 +638,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Product type from item.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param array $item Order item.
      *
@@ -674,7 +655,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Item product permissions.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param int $item_id Order item ID.
      *
@@ -699,7 +680,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Product permissions from item.
      *
-     * @since 16xxxx Order-related events.
+     * @since 16xxxx Order status changes.
      *
      * @param array $item Order line item data.
      *

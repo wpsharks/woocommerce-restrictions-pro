@@ -79,6 +79,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         $post_types = array_merge($post_types, [a::restrictionPostType()]);
         $post_types = array_merge($post_types, ['attachment', 'nav_menu_item']);
         $post_types = array_merge($post_types, [a::orderPostType(), a::subscriptionPostType(), a::couponPostType(), a::webhookPostType()]);
+        $post_types = array_merge($post_types, wc_get_order_types());
         $post_types = array_unique(c::removeEmptys($post_types));
 
         return $post_types = s::applyFilters('systematic_post_types', $post_types);

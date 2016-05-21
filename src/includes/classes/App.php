@@ -87,12 +87,14 @@ class App extends SCoreClasses\App
                 ], // <https://www.woothemes.com/products/woocommerce-memberships/>
             ],
             '§dependencies' => [
+                // @TODO Require a minimum version of WordPress.
                 '§plugins' => [
                     'woocommerce' => [
                         'in_wp'       => true,
                         'name'        => 'WooCommerce',
                         'url'         => 'https://wordpress.org/plugins/woocommerce/',
                         'archive_url' => 'https://wordpress.org/plugins/woocommerce/developers/',
+                        // @TODO Require a minimum version of WooCommerce.
                     ],
                 ],
                 '§others' => [
@@ -148,15 +150,17 @@ class App extends SCoreClasses\App
     {
         parent::onSetupOtherHooks(); // Core hooks.
 
-        add_action('woocommerce_init', function () {
+        add_action('init', function () {
+            $this->Utils->Restriction->onInitRegisterPostType();
+        }, 6); // Right after other WooCommerce post types.
+
+        add_action('init', function () {
             # Misc. variables.
 
             $is_admin = is_admin();
             $is_multisite = is_multisite();
 
             # Restriction-related hooks.
-
-            $this->Utils->Restriction->onInitRegisterPostType();
 
             if ($is_admin) { // Admin areas only.
                 add_action('current_screen', [$this->Utils->Restriction, 'onCurrentScreen']);
@@ -187,11 +191,11 @@ class App extends SCoreClasses\App
                 add_shortcode($if_shortcode_names[] = str_repeat('_', $_i).$if_shortcode_name, [$this->Utils->UserPermissionShortcodes, 'onIf']);
             } // unset($_i); // Housekeeping.
 
-            add_filter('widget_text', 'do_shortcode'); // Enable shortcodes in widgets.
-
             add_filter('no_texturize_shortcodes', function (array $shortcodes) use ($if_shortcode_names) {
                 return array_merge($shortcodes, $if_shortcode_names);
             }); // See: <http://jas.xyz/24AusB7> for more about this filter.
+
+            add_filter('widget_text', 'do_shortcode'); // Enable shortcodes in widgets.
 
             if ($is_admin) { // Admin areas only.
                 add_action('current_screen', [$this->Utils->UserPermissionsWidget, 'onCurrentScreen']);
@@ -218,16 +222,17 @@ class App extends SCoreClasses\App
 
             # Order-related hooks; attached to WooCommerce events.
 
-            add_action('woocommerce_add_order_item_meta', [$this->Utils->OrderMeta, 'onAddOrderItemMeta']);
-            add_action('woocommerce_saved_order_items', [$this->Utils->OrderMeta, 'onSavedOrderItems'], 10, 2);
+            add_action('update_post_meta', [$this->Utils->OrderMeta, 'onPostMetaUpdate'], 10, 4);
+
+            add_action('woocommerce_before_delete_order_item', [$this->Utils->OrderItem, 'onBeforeDeleteOrderItem']);
+
+            add_action('woocommerce_add_order_item_meta', [$this->Utils->OrderItemMeta, 'onAddOrderItemMeta']);
+            add_action('woocommerce_saved_order_items', [$this->Utils->OrderItemMeta, 'onSavedOrderItems'], 10, 2);
+            add_filter('woocommerce_hidden_order_itemmeta', [$this->Utils->OrderItemMeta, 'onHiddenOrderItemMeta']);
 
             add_action('woocommerce_order_status_changed', [$this->Utils->OrderStatus, 'onOrderStatusChanged'], 1000, 3);
             add_action('woocommerce_subscription_status_changed', [$this->Utils->OrderStatus, 'onSubscriptionStatusChanged'], 1000, 3);
             add_action('woocommerce_subscriptions_switched_item', [$this->Utils->OrderStatus, 'onSubscriptionItemSwitched'], 1000, 3);
-
-            add_action('update_post_meta', [$this->Utils->OrderMeta, 'onPostMetaUpdate'], 10, 4);
-
-            add_filter('woocommerce_hidden_order_itemmeta', [$this->Utils->OrderMeta, 'onHiddenOrderItemMeta']);
 
             # Product-data and other product-related WooCommerce events.
 
@@ -242,7 +247,10 @@ class App extends SCoreClasses\App
                 add_action('save_post_'.$this->Utils->Product->post_type, [$this->Utils->Product, 'onSaveProduct']);
                 add_action('woocommerce_save_product_variation', [$this->Utils->Product, 'onSaveProductVariation'], 10, 2);
             }
-            # Security gate; always after the `restriction` post type registration.
+        }, 10); // After hook priority `9`; i.e., after post types/statues have been registered by WooCommerce & WC extensions.
+
+        add_action('wp_loaded', function () {
+            $this->Utils->SecurityGate->onWpLoaded(); // Security gate.
 
             // See also: <http://jas.xyz/1WlT51u> to review the BuddyPress loading order.
             // BuddyPress runs its setup on `plugins_loaded` at the latest, so this comes after BP.
@@ -250,7 +258,7 @@ class App extends SCoreClasses\App
             // See also: <https://github.com/wp-plugins/bbpress/blob/master/bbpress.php#L969>
             // bbPress runs its setup on `plugins_loaded` at the latest, so this comes after BBP.
 
-            $this->Utils->SecurityGate->onInitGuardRestrictions();
-        });
+        }, 10); // Default hook priority is OK here. On the front-end, this reattaches to the `wp` hook anyway.
+        // On the admin side, this will run immediately (i.e., on `wp_loaded`); but again, default priority is fine.
     }
 }

@@ -54,7 +54,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Security gate.
      */
-    public function onInitGuardRestrictions()
+    public function onWpLoaded()
     {
         if (c::isCli()) {
             return; // Not applicable.
@@ -64,7 +64,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
                 $this->denyRedirect();
             }
         } else { // Wait until the main query is ready.
-            add_action('wp', [$this, 'onWpGuardRestrictions'], -PHP_INT_MAX);
+            add_action('wp', [$this, 'onWpGuardRestrictions'], -(PHP_INT_MAX - 10));
         }
     }
 
@@ -78,7 +78,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     public function onWpGuardRestrictions(\WP $WP)
     {
         // This should fire once only, so let's remove it.
-        remove_action('wp', [$this, 'onWpGuardRestrictions'], -PHP_INT_MAX);
+        remove_action('wp', [$this, 'onWpGuardRestrictions'], -(PHP_INT_MAX - 10));
 
         if ($this->restrictionsApply()) {
             $this->denyRedirect();

@@ -29,6 +29,7 @@ abstract class Facades
     use Traits\Facades\Coupon;
     use Traits\Facades\Logger;
     use Traits\Facades\Order;
+    use Traits\Facades\OrderItem;
     use Traits\Facades\Product;
     use Traits\Facades\ProductPermission;
     use Traits\Facades\Restriction;
