@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: s2Member X Pro 160521\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/s2member-x-pro\n"
-"POT-Creation-Date: 2016-05-21 21:23:19+00:00\n"
+"POT-Creation-Date: 2016-05-21 21:26:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -972,6 +972,21 @@ msgstr ""
 msgid "<strong>Note:</strong> Start and End dates are optional. No Start Date = starts immediately. If no End Date, access is indefinite. Unchecking the 'Enabled' box will temporarily suspend access."
 msgstr ""
 
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:72
+#: src/includes/classes/Utils/Logger.php:72
+msgid "unknown caller"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:73
+#: src/includes/classes/Utils/Logger.php:73
+msgid "nothing given by caller"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:79
+#: src/includes/classes/Utils/Logger.php:79
+msgid "n/a; CLI process"
+msgstr ""
+
 #: .~build/s2member-x-pro/src/includes/classes/Utils/OrderItem.php:161
 #: src/includes/classes/Utils/OrderItem.php:161
 msgid "Deleting user permissions when deleting order item."
@@ -1730,15 +1745,28 @@ msgid "No permissions yet."
 msgstr ""
 
 #: src/includes/classes/Utils/Logger.php:72
-msgid "unknown caller"
+msgid "Event:"
 msgstr ""
 
 #: src/includes/classes/Utils/Logger.php:73
-msgid "nothing given by caller"
+msgid "Note:"
+msgstr ""
+
+#: src/includes/classes/Utils/Logger.php:74
+msgid "Time:"
+msgstr ""
+
+#: src/includes/classes/Utils/Logger.php:75
+msgid "Microtime:"
+msgstr ""
+
+#: src/includes/classes/Utils/Logger.php:76
+msgid "Current User:"
 msgstr ""
 
 #: src/includes/classes/Utils/Logger.php:79
-msgid "n/a; CLI process"
+#: src/includes/classes/Utils/Logger.php:81
+msgid "URL:"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

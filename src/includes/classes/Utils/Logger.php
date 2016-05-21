@@ -69,16 +69,16 @@ class Logger extends SCoreClasses\SCore\Base\Core
         $event = str_replace($this->App->namespace, '', $event);
         $event = c::mbTrim($event, '', '\\'); // Clean it up now.
 
-        $log_entry_data[] = __('Event:').'        '.($event ? $event : __('unknown caller', 's2member-x'));
-        $log_entry_data[] = __('Note:').'         '.($note ? $note : __('nothing given by caller', 's2member-x'));
-        $log_entry_data[] = __('Time:').'         '.s::dateI18nUtc('F jS, Y, g:i a T');
-        $log_entry_data[] = __('Microtime:').'    '.number_format(microtime(true), 8, '.', '');
-        $log_entry_data[] = __('Current User:').' '.get_current_user_id();
+        $log_entry_data[] = __('Event:', 's2member-x').'        '.($event ? $event : __('unknown caller', 's2member-x'));
+        $log_entry_data[] = __('Note:', 's2member-x').'         '.($note ? $note : __('nothing given by caller', 's2member-x'));
+        $log_entry_data[] = __('Time:', 's2member-x').'         '.s::dateI18nUtc('F jS, Y, g:i a T');
+        $log_entry_data[] = __('Microtime:', 's2member-x').'    '.number_format(microtime(true), 8, '.', '');
+        $log_entry_data[] = __('Current User:', 's2member-x').' '.get_current_user_id();
 
         if (c::isCli()) { // The current URL may or may not be possible here.
-            $log_entry_data[] = __('URL:').'          '.__('n/a; CLI process', 's2member-x')."\n";
+            $log_entry_data[] = __('URL:', 's2member-x').'          '.__('n/a; CLI process', 's2member-x')."\n";
         } else {
-            $log_entry_data[] = __('URL:').'          '.c::currentUrl()."\n";
+            $log_entry_data[] = __('URL:', 's2member-x').'          '.c::currentUrl()."\n";
         }
         $log_entry_data[] = (string) (!is_scalar($data) ? c::dump($data, true) : $data);
 
