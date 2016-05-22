@@ -173,6 +173,11 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         s::doAction('user_permissions_deleted', $where);
 
         $this->clearCache($user_id); // For this user.
+
+        a::addLogEntry(__METHOD__, compact(
+            'user_id',
+            'where'
+        ), __('Deleted user permissions.', 's2member-x'));
     }
 
     /**
@@ -220,6 +225,11 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         } // unset($_site); // Housekeeping.
 
         $this->clearCache($user_id); // For this user.
+
+        a::addLogEntry(__METHOD__, compact(
+            'user_id',
+            'where'
+        ), __('Deleted user permissions.', 's2member-x'));
     }
 
     /**
@@ -268,6 +278,15 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         s::doAction('user_permissions_updated', $where, $update_data);
 
         $this->clearCache(); // For all users.
+
+        a::addLogEntry(__METHOD__, compact(
+            'post_id',
+            'post_type',
+            'subscription_id',
+            'restriction_id',
+            'order_id',
+            'where'
+        ), __('Trashed associated user permissions.', 's2member-x'));
     }
 
     /**
@@ -316,6 +335,15 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         s::doAction('user_permissions_updated', $where, $update_data);
 
         $this->clearCache(); // For all users.
+
+        a::addLogEntry(__METHOD__, compact(
+            'post_id',
+            'post_type',
+            'subscription_id',
+            'restriction_id',
+            'order_id',
+            'where'
+        ), __('Restored associated user permissions.', 's2member-x'));
     }
 
     /**
@@ -363,6 +391,15 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         s::doAction('user_permissions_deleted', $where);
 
         $this->clearCache(); // For all users.
+
+        a::addLogEntry(__METHOD__, compact(
+            'post_id',
+            'post_type',
+            'subscription_id',
+            'restriction_id',
+            'order_id',
+            'where'
+        ), __('Deleted associated user permissions.', 's2member-x'));
     }
 
     /**

@@ -101,7 +101,6 @@ class OrderMeta extends SCoreClasses\SCore\Base\Core
                     break; // Transfers permissions to new customer when user ID is changed on an order.
             }
             a::addLogEntry(__METHOD__, compact(
-                'post_type',
                 'order_id',
                 'subscription_id',
                 'new_user_id',

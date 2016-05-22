@@ -69,7 +69,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
             return false;
         } elseif ($this->access_time && $this->expire_time && $this->access_time >= $this->expire_time) {
             return false;
-        } elseif (($this->order_id || $this->subscription_id) && !$this->expire_directive) {
+        } elseif (($this->order_id || $this->subscription_id || $this->product_id || $this->item_id) && !$this->expire_directive) {
             return false;
         }
         return true; // No problems.
@@ -204,6 +204,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
                 'order_id'        => 0,
                 'subscription_id' => 0,
                 'product_id'      => 0,
+                'item_id'         => 0,
 
                 'restriction_id'   => 0,
                 'access_time'      => 0,
@@ -230,6 +231,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         $this->order_id        = abs((int) ($data->order_id ?? $this->order_id ?? 0));
         $this->subscription_id = abs((int) ($data->subscription_id ?? $this->subscription_id ?? 0));
         $this->product_id      = abs((int) ($data->product_id ?? $this->product_id ?? 0));
+        $this->item_id         = abs((int) ($data->item_id ?? $this->item_id ?? 0));
 
         $this->restriction_id   = abs((int) ($data->restriction_id ?? $this->restriction_id ?? 0));
         $this->access_time      = abs((int) ($data->access_time ?? $this->access_time ?? 0));

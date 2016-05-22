@@ -148,6 +148,14 @@
           title: data.i18n.productIdTitle,
 
           visible: false,
+        }, {
+          type: 'number',
+          align: 'center',
+          name: 'item_id',
+          css: '-property-item-id',
+          title: data.i18n.itemIdTitle,
+
+          visible: false,
         },
 
         // Restriction ID.

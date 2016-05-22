@@ -69,21 +69,30 @@ class Logger extends SCoreClasses\SCore\Base\Core
         $event = str_replace($this->App->namespace, '', $event);
         $event = c::mbTrim($event, '', '\\'); // Clean it up now.
 
+        $event_log_file_handle = mb_strpos($event, '#issue') !== false
+            ? $this->App->Config->©brand['©slug'].'-issues'
+            : $this->App->Config->©brand['©slug'];
+
         $current_user = wp_get_current_user(); // If there is one; else an object placeholder.
 
-        $log_entry_data[] = __('Event:', 's2member-x').'        '.($event ? $event : __('unknown caller', 's2member-x'));
-        $log_entry_data[] = __('Note:', 's2member-x').'         '.($note ? $note : __('nothing given by caller', 's2member-x'));
-        $log_entry_data[] = __('Time:', 's2member-x').'         '.s::dateI18nUtc('F jS, Y, g:i a T');
         $log_entry_data[] = __('Microtime:', 's2member-x').'    '.number_format(microtime(true), 8, '.', '');
-        $log_entry_data[] = __('Current User:', 's2member-x').' #'.$current_user->ID.' ('.$current_user->user_login.')';
+        $log_entry_data[] = __('Event:', 's2member-x').'        '.($event ? $event : __('unknown caller', 's2member-x'));
+        $log_entry_data[] = __('Note:', 's2member-x').'         '.($note ? $note : __('nothing given by caller', 's2member-x'))."\n";
+
+        $log_entry_data[] = __('System:', 's2member-x').'       '.PHP_OS.'; PHP v'.PHP_VERSION.' ('.PHP_SAPI.')';
+        $log_entry_data[] = __('Software:', 's2member-x').'     WP v'.WP_VERSION.'; WC v'.WC_VERSION.'; '.$this->App->Config->©brand['©acronym'].' v'.$this->App::VERSION."\n";
 
         if (c::isCli()) { // The current URL may or may not be possible here.
-            $log_entry_data[] = __('URL:', 's2member-x').'          '.__('n/a; CLI process', 's2member-x');
+            $log_entry_data[] = __('User:', 's2member-x').'         '.__('n/a; CLI process', 's2member-x');
+            $log_entry_data[] = __('User Agent:', 's2member-x').'   '.__('n/a; CLI process', 's2member-x');
+            $log_entry_data[] = __('URL:', 's2member-x').'          '.__('n/a; CLI process', 's2member-x')."\n";
         } else {
-            $log_entry_data[] = __('URL:', 's2member-x').'          '.c::currentUrl();
+            $log_entry_data[] = __('User:', 's2member-x').'         #'.$current_user->ID.' @'.$current_user->user_login.' \''.$current_user->display_name.'\' ['.($_SERVER['REMOTE_ADDR'] ?? __('unknown', 's2member-x')).']';
+            $log_entry_data[] = __('User Agent:', 's2member-x').'   '.($_SERVER['HTTP_USER_AGENT'] ?? __('unknown', 's2member-x'));
+            $log_entry_data[] = __('URL:', 's2member-x').'          '.c::currentUrl()."\n"; // This could get quite long.
         }
-        $log_entry_data[] = __('Data:', 's2member-x').'         '.c::mbTrim((string) (!is_scalar($data) ? c::dump($data, true) : $data));
+        $log_entry_data[] = c::mbTrim(c::dump($data, true), "\r\n"); // A dump of the data (variables) recorded by the log entry caller.
 
-        $this->WC_Logger->add($this->App->Config->©brand['©slug'], "\n".implode("\n", $log_entry_data)."\n".str_repeat('-', 70));
+        $this->WC_Logger->add($event_log_file_handle, "\n".implode("\n", $log_entry_data)."\n\n".str_repeat('-', 3)."\n");
     }
 }

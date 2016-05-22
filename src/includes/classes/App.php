@@ -33,7 +33,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160521'; //v//
+    const VERSION = '160522'; //v//
 
     /**
      * Constructor.
@@ -57,13 +57,14 @@ class App extends SCoreClasses\App
                 ],
             ],
             '©brand' => [
-                '©name'        => 's2Member X',
-                '©text_domain' => 's2member-x',
-                '©slug'        => 's2member-x',
-                '©var'         => 's2member_x',
-                '©name'        => 's2Member X',
-                '©acronym'     => 's2',
-                '©prefix'      => 's2x',
+                '©name'         => 's2Member X',
+                '©text_domain'  => 's2member-x',
+                '©slug'         => 's2member-x',
+                '©var'          => 's2member_x',
+                '©name'         => 's2Member X',
+                '©acronym'      => 's2x',
+                '©prefix'       => 's2x',
+                'short_acronym' => 's2',
 
                 '§domain'      => 'wpsharks.com',
                 '§domain_path' => '/product/s2member-x',
@@ -233,6 +234,11 @@ class App extends SCoreClasses\App
             add_action('woocommerce_order_status_changed', [$this->Utils->OrderStatus, 'onOrderStatusChanged'], 1000, 3);
             add_action('woocommerce_subscription_status_changed', [$this->Utils->OrderStatus, 'onSubscriptionStatusChanged'], 1000, 3);
             add_action('woocommerce_subscriptions_switched_item', [$this->Utils->OrderStatus, 'onSubscriptionItemSwitched'], 1000, 3);
+
+            // Moving this to after 'items', so that status changes will reflect new items.
+            // Search for `WC_Meta_Box_Order_Items::save` to see the hook priority we need to come after.
+            remove_action('woocommerce_process_shop_order_meta', 'WCS_Meta_Box_Subscription_Data::save', 10, 2);
+            add_action('woocommerce_process_shop_order_meta', 'WCS_Meta_Box_Subscription_Data::save', 11, 2);
 
             # Product-data and other product-related WooCommerce events.
 

@@ -66,7 +66,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
      *
      * @param string|int $item Order item ID.
      *
-     * @return \WC_Order|null Order on success.
+     * @return \WC_Abstract_Order|null Order on success.
      */
     public function getOrderByItemId($item_id)
     {
@@ -106,6 +106,59 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
     }
 
     /**
+     * Get order item by ID.
+     *
+     * @since 16xxxx Order item utilities.
+     *
+     * @param string|int              $item     Order item ID.
+     * @param \WC_Abstract_Order|null $WC_Order The order if already known.
+     *
+     * @return array An order item, else empty array.
+     */
+    public function getOrderItemById($item_id, \WC_Abstract_Order $WC_Order = null): array
+    {
+        if (!($item_id = (int) $item_id)) {
+            return []; // Not possible.
+        } elseif (!($WC_Order = $WC_Order ?: $this->getOrderByItemId($item_id))) {
+            return []; // Not possible.
+        }
+        foreach ($WC_Order->get_items() as $_item_id => $_item) {
+            if ($_item_id === $item_id) {
+                return $_item; // Found item by ID.
+            }
+        } // unset($_item_id, $_item); // Housekeeping.
+
+        return []; // Failure.
+    }
+
+    /**
+     * Get product by order item ID.
+     *
+     * @since 16xxxx Order item utilities.
+     *
+     * @param string|int              $item     Order item ID.
+     * @param \WC_Abstract_Order|null $WC_Order The order if already known.
+     *
+     * @return \WC_Product|null A product object instance, else `null`.
+     */
+    public function getProductByOrderItemId($item_id, \WC_Abstract_Order $WC_Order = null)
+    {
+        if (!($item_id = (int) $item_id)) {
+            return null; // Not possible.
+        } elseif (!($WC_Order = $WC_Order ?: $this->getOrderByItemId($item_id))) {
+            return null; // Not possible.
+        }
+        foreach ($WC_Order->get_items() as $_item_id => $_item) {
+            if ($_item_id === $item_id) {
+                $WC_Product = $WC_Order->get_product_from_item($_item);
+                return $WC_Product instanceof \WC_Product ? $WC_Product : null;
+            }
+        } // unset($_item_id, $_item); // Housekeeping.
+
+        return null; // Failure.
+    }
+
+    /**
      * On item deleted from order.
      *
      * @since 16xxxx Order item utilities.
@@ -119,15 +172,17 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
         if (!($item_id = (int) $item_id)) {
             return; // Not possible; empty item ID.
         } elseif (!($product_id = (int) wc_get_order_item_meta($item_id, '_product_id', true))) {
-            return; // Not possible; unable to acquire product ID.
-        } elseif (!($WC_Product = wc_get_product($product_id)) || !$WC_Product->exists()) {
-            return; // Not possible; unable to acquire product instance.
+            return; // Not applicable; not associated with a product ID.
         } elseif (!($WC_Order = $this->getOrderByItemId($item_id))) {
+            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire order.', 's2member-x'));
             return; // Not possible; unable to acquire order.
+        } elseif (!($post_type = $WC_Order->post->post_type)) {
+            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire order post type.', 's2member-x'));
+            return; // Not possible; unable to acquire order post type.
         }
-        $WpDb = s::wpDb(); // DB class instance.
+        $WpDb = s::wpDb(); // DB class object instance.
 
-        switch ($WC_Order->post->post_type) { // Based on post type.
+        switch ($post_type) { // Based on post type.
 
             case $this->subscription_post_type:
                 $WC_Subscription = $WC_Order; // Subscription.
@@ -135,6 +190,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
                 $where           = [
                     'subscription_id' => $subscription_id,
                     'product_id'      => $product_id,
+                    'item_id'         => $item_id,
                 ];
                 break; // Stop here.
 
@@ -143,6 +199,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
                 $where    = [
                     'order_id'   => $order_id,
                     'product_id' => $product_id,
+                    'item_id'    => $item_id,
                 ];
                 break; // Stop here.
         }
@@ -153,10 +210,10 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
         a::clearUserPermissionsCache(); // For all users.
 
         a::addLogEntry(__METHOD__, compact(
-            'item_id',
             'order_id',
             'subscription_id',
             'product_id',
+            'item_id',
             'where'
         ), __('Deleting user permissions when deleting order item.', 's2member-x'));
     }

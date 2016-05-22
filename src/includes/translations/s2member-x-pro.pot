@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the s2Member X Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: s2Member X Pro 160521\n"
+"Project-Id-Version: s2Member X Pro 160522\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/s2member-x-pro\n"
-"POT-Creation-Date: 2016-05-21 21:26:57+00:00\n"
+"POT-Creation-Date: 2016-05-22 03:04:56+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -963,7 +963,7 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:229
 #: src/includes/classes/Utils/Product.php:244
 #: src/includes/classes/Utils/Product.php:281
-#: src/includes/classes/Utils/UserPermissionsWidget.php:229
+#: src/includes/classes/Utils/UserPermissionsWidget.php:230
 msgid "It's not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href=\"%1$s\">click here</a>."
 msgstr ""
 
@@ -973,22 +973,53 @@ msgid "<strong>Note:</strong> Start and End dates are optional. No Start Date = 
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:72
-#: src/includes/classes/Utils/Logger.php:72
+#: src/includes/classes/Utils/Logger.php:74
+msgid "Event:"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:72
+#: src/includes/classes/Utils/Logger.php:74
 msgid "unknown caller"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:73
-#: src/includes/classes/Utils/Logger.php:73
+#: src/includes/classes/Utils/Logger.php:75
+msgid "Note:"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:73
+#: src/includes/classes/Utils/Logger.php:75
 msgid "nothing given by caller"
 msgstr ""
 
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:74
+msgid "Time:"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:75
+#: src/includes/classes/Utils/Logger.php:76
+msgid "Microtime:"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:76
+#: src/includes/classes/Utils/Logger.php:77
+msgid "Current User:"
+msgstr ""
+
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:79
-#: src/includes/classes/Utils/Logger.php:79
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:81
+#: src/includes/classes/Utils/Logger.php:80
+#: src/includes/classes/Utils/Logger.php:82
+msgid "URL:"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/Logger.php:79
+#: src/includes/classes/Utils/Logger.php:80
 msgid "n/a; CLI process"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/OrderItem.php:161
-#: src/includes/classes/Utils/OrderItem.php:161
+#: src/includes/classes/Utils/OrderItem.php:163
 msgid "Deleting user permissions when deleting order item."
 msgstr ""
 
@@ -1000,7 +1031,7 @@ msgid "Updating custom order item meta."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/OrderMeta.php:109
-#: src/includes/classes/Utils/OrderMeta.php:109
+#: src/includes/classes/Utils/OrderMeta.php:108
 msgid "Transferring user permissions because customer was changed."
 msgstr ""
 
@@ -1015,27 +1046,27 @@ msgid "Monitoring subscription status changes."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:330
-#: src/includes/classes/Utils/OrderStatus.php:330
+#: src/includes/classes/Utils/OrderStatus.php:333
 msgid "Granting user permissions on order status change."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:414
-#: src/includes/classes/Utils/OrderStatus.php:414
+#: src/includes/classes/Utils/OrderStatus.php:421
 msgid "Granting user permissions on subscription status change."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:498
-#: src/includes/classes/Utils/OrderStatus.php:498
+#: src/includes/classes/Utils/OrderStatus.php:509
 msgid "Switching user permisssions on subscription upgrade/downgrade."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:555
-#: src/includes/classes/Utils/OrderStatus.php:555
+#: src/includes/classes/Utils/OrderStatus.php:569
 msgid "Revoking user permissions on order status change."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/OrderStatus.php:620
-#: src/includes/classes/Utils/OrderStatus.php:620
+#: src/includes/classes/Utils/OrderStatus.php:638
 msgid "Revoking user permissions on subscription status change."
 msgstr ""
 
@@ -1049,7 +1080,7 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Product.php:188
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:150
 #: src/includes/classes/Utils/Product.php:188
-#: src/includes/classes/Utils/UserPermissionsWidget.php:150
+#: src/includes/classes/Utils/UserPermissionsWidget.php:151
 msgid "Access"
 msgstr ""
 
@@ -1061,14 +1092,14 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Product.php:190
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:152
 #: src/includes/classes/Utils/Product.php:190
-#: src/includes/classes/Utils/UserPermissionsWidget.php:152
+#: src/includes/classes/Utils/UserPermissionsWidget.php:153
 msgid "'Access' selection is empty."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Product.php:192
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:154
 #: src/includes/classes/Utils/Product.php:192
-#: src/includes/classes/Utils/UserPermissionsWidget.php:154
+#: src/includes/classes/Utils/UserPermissionsWidget.php:155
 msgid "Starts"
 msgstr ""
 
@@ -1090,7 +1121,7 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Product.php:197
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:162
 #: src/includes/classes/Utils/Product.php:197
-#: src/includes/classes/Utils/UserPermissionsWidget.php:162
+#: src/includes/classes/Utils/UserPermissionsWidget.php:163
 msgid "Ends"
 msgstr ""
 
@@ -1117,7 +1148,7 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Product.php:203
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:181
 #: src/includes/classes/Utils/Product.php:203
-#: src/includes/classes/Utils/UserPermissionsWidget.php:181
+#: src/includes/classes/Utils/UserPermissionsWidget.php:182
 msgid "Display Order"
 msgstr ""
 
@@ -1129,21 +1160,21 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Product.php:206
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:188
 #: src/includes/classes/Utils/Product.php:206
-#: src/includes/classes/Utils/UserPermissionsWidget.php:188
+#: src/includes/classes/Utils/UserPermissionsWidget.php:189
 msgid "Not ready to save all changes yet..."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Product.php:207
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:189
 #: src/includes/classes/Utils/Product.php:207
-#: src/includes/classes/Utils/UserPermissionsWidget.php:189
+#: src/includes/classes/Utils/UserPermissionsWidget.php:190
 msgid "A Customer Permission row is still pending insertion. Please click the green '+' icon to complete insertion. Or, empty the 'Access' select menu in the green insertion row."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/Product.php:208
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:190
 #: src/includes/classes/Utils/Product.php:208
-#: src/includes/classes/Utils/UserPermissionsWidget.php:190
+#: src/includes/classes/Utils/UserPermissionsWidget.php:191
 msgid "A Customer Permission row (in yellow) is still open for editing. Please save your changes there first, or click the 'x' icon to cancel editing in the open row."
 msgstr ""
 
@@ -1152,7 +1183,7 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:225
 #: src/includes/classes/Utils/Product.php:240
 #: src/includes/classes/Utils/Product.php:277
-#: src/includes/classes/Utils/UserPermissionsWidget.php:225
+#: src/includes/classes/Utils/UserPermissionsWidget.php:226
 msgid "Customer Permissions (<span class=\"dashicons dashicons-unlock\"></span> Restriction Access)"
 msgstr ""
 
@@ -1174,7 +1205,7 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:124
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:159
 #: src/includes/classes/Utils/ProductPermission.php:124
-#: src/includes/classes/Utils/UserPermissionsWidget.php:159
+#: src/includes/classes/Utils/UserPermissionsWidget.php:160
 msgid "immediately"
 msgstr ""
 
@@ -1641,132 +1672,115 @@ msgid "Subscription ID"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:151
-#: src/includes/classes/Utils/UserPermissionsWidget.php:151
+#: src/includes/classes/Utils/UserPermissionsWidget.php:152
 msgid "Access to one or more configured Restrictions.<hr />It's OK for Permissions granted manually and/or via Orders &amp; Subscriptions to overlap with each other. This is because any Permission that currently grants access, does. Access is denied only if no Permission grants access."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:155
-#: src/includes/classes/Utils/UserPermissionsWidget.php:155
+#: src/includes/classes/Utils/UserPermissionsWidget.php:156
 msgid "If left empty, access starts immediately (no delay)."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:157
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:165
-#: src/includes/classes/Utils/UserPermissionsWidget.php:157
-#: src/includes/classes/Utils/UserPermissionsWidget.php:165
+#: src/includes/classes/Utils/UserPermissionsWidget.php:158
+#: src/includes/classes/Utils/UserPermissionsWidget.php:166
 msgid "date"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:158
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:166
-#: src/includes/classes/Utils/UserPermissionsWidget.php:158
-#: src/includes/classes/Utils/UserPermissionsWidget.php:166
+#: src/includes/classes/Utils/UserPermissionsWidget.php:159
+#: src/includes/classes/Utils/UserPermissionsWidget.php:167
 msgid "time"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:160
-#: src/includes/classes/Utils/UserPermissionsWidget.php:160
+#: src/includes/classes/Utils/UserPermissionsWidget.php:161
 msgid "When both are given, 'Starts' must come before 'Ends'."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:163
-#: src/includes/classes/Utils/UserPermissionsWidget.php:163
+#: src/includes/classes/Utils/UserPermissionsWidget.php:164
 msgid "If left empty, access is indefinite (ongoing).<hr />If the Permission was acquired via an Order or Subscription, the End is controlled by your original Product configuration, which will be indicated below.<hr />You can always choose to set a specific End date here, which overrides the original Product configuration."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:167
-#: src/includes/classes/Utils/UserPermissionsWidget.php:167
+#: src/includes/classes/Utils/UserPermissionsWidget.php:168
 msgid "— n/a —"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:168
-#: src/includes/classes/Utils/UserPermissionsWidget.php:168
+#: src/includes/classes/Utils/UserPermissionsWidget.php:169
 msgid "Expires"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:170
-#: src/includes/classes/Utils/UserPermissionsWidget.php:170
+#: src/includes/classes/Utils/UserPermissionsWidget.php:171
 msgid "Status"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:171
-#: src/includes/classes/Utils/UserPermissionsWidget.php:171
+#: src/includes/classes/Utils/UserPermissionsWidget.php:172
 msgid "Current permission status.<hr />Anything other than 'Enabled' is collectively referred to as Disabled.<hr />Disabled status variations simply help to convey why access is currently disabled."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:173
-#: src/includes/classes/Utils/UserPermissionsWidget.php:173
+#: src/includes/classes/Utils/UserPermissionsWidget.php:174
 msgid "Trashed?"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:174
-#: src/includes/classes/Utils/UserPermissionsWidget.php:174
+#: src/includes/classes/Utils/UserPermissionsWidget.php:175
 msgid "Trashed"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:175
-#: src/includes/classes/Utils/UserPermissionsWidget.php:175
+#: src/includes/classes/Utils/UserPermissionsWidget.php:176
 msgid "'Status' selection is empty."
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:177
-#: src/includes/classes/Utils/UserPermissionsWidget.php:177
+#: src/includes/classes/Utils/UserPermissionsWidget.php:178
 msgid "Access Disabled"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:178
-#: src/includes/classes/Utils/UserPermissionsWidget.php:178
+#: src/includes/classes/Utils/UserPermissionsWidget.php:179
 msgid "Access Scheduled"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:179
-#: src/includes/classes/Utils/UserPermissionsWidget.php:179
+#: src/includes/classes/Utils/UserPermissionsWidget.php:180
 msgid "Access Expired"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:183
-#: src/includes/classes/Utils/UserPermissionsWidget.php:183
+#: src/includes/classes/Utils/UserPermissionsWidget.php:184
 msgid "Insertion Time"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:184
-#: src/includes/classes/Utils/UserPermissionsWidget.php:184
+#: src/includes/classes/Utils/UserPermissionsWidget.php:185
 msgid "Last Update Time"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:186
-#: src/includes/classes/Utils/UserPermissionsWidget.php:186
+#: src/includes/classes/Utils/UserPermissionsWidget.php:187
 msgid "via"
 msgstr ""
 
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:187
-#: src/includes/classes/Utils/UserPermissionsWidget.php:187
+#: src/includes/classes/Utils/UserPermissionsWidget.php:188
 msgid "No permissions yet."
 msgstr ""
 
-#: src/includes/classes/Utils/Logger.php:72
-msgid "Event:"
+#: src/includes/classes/Utils/Logger.php:84
+msgid "Data:"
 msgstr ""
 
-#: src/includes/classes/Utils/Logger.php:73
-msgid "Note:"
-msgstr ""
-
-#: src/includes/classes/Utils/Logger.php:74
-msgid "Time:"
-msgstr ""
-
-#: src/includes/classes/Utils/Logger.php:75
-msgid "Microtime:"
-msgstr ""
-
-#: src/includes/classes/Utils/Logger.php:76
-msgid "Current User:"
-msgstr ""
-
-#: src/includes/classes/Utils/Logger.php:79
-#: src/includes/classes/Utils/Logger.php:81
-msgid "URL:"
+#: src/includes/classes/Utils/UserPermissionsWidget.php:149
+msgid "Item ID"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

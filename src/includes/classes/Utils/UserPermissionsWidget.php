@@ -146,6 +146,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'orderIdTitle'        => __('Order ID', 's2member-x'),
                     'subscriptionIdTitle' => __('Subscription ID', 's2member-x'),
                     'productIdTitle'      => __('Product ID', 's2member-x'),
+                    'itemIdTitle'         => __('Item ID', 's2member-x'),
 
                     'restrictionIdTitle'        => __('Access', 's2member-x'),
                     'restrictionIdTitleTip'     => __('Access to one or more configured Restrictions.<hr />It\'s OK for Permissions granted manually and/or via Orders &amp; Subscriptions to overlap with each other. This is because any Permission that currently grants access, does. Access is denied only if no Permission grants access.', 's2member-x'),

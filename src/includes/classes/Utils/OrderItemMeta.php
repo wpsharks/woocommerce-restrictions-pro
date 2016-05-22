@@ -83,16 +83,22 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
      *
      * @param string|int $item_id Order item ID.
      *
-     * @note This works for Subscriptions also.
+     * @note This works for Subscription order items also.
      */
     public function onAddOrderItemMeta($item_id)
     {
         if (!($item_id = (int) $item_id)) {
             return; // Not possible; empty item ID.
-        } elseif (!($product_id = (int) wc_get_order_item_meta($item_id, '_product_id', true))) {
+        } elseif (!(int) wc_get_order_item_meta($item_id, '_product_id', true)) {
             return; // Not applicable; not associated w/ a product ID.
-        } elseif (!($WC_Product = wc_get_product($product_id)) || !$WC_Product->exists()) {
-            return; // Not possible; unable to acquire product instance.
+            // Important: This product ID  may point to a `variable` product.
+            // Whereas `a::getProductByOrderItemId()` returns the underlying variation.
+        } elseif (!($WC_Product = a::getProductByOrderItemId($item_id)) || !$WC_Product->exists()) {
+            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire product.', 's2member-x'));
+            return; // Not possible; unable to acquire order.
+        } elseif (!($product_id = (int) $WC_Product->id)) { // Possible `variation`.
+            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire product ID.', 's2member-x'));
+            return; // Not possible; unable to acquire product ID.
         }
         $product_type        = $WC_Product->get_type();
         $product_permissions = a::getProductMeta($product_id, 'permissions');
@@ -107,6 +113,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
 
         a::addLogEntry(__METHOD__, compact(
             'item_id',
+            'product_id',
             'product_type',
             'product_permissions'
         ), __('Updating custom order item meta.', 's2member-x'));
@@ -120,24 +127,32 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
      * @param string|int $order_id Order ID.
      * @param array      $data     AJAX data.
      *
-     * @note This works for Subscriptions also.
+     * @note This works for Subscription order items also.
      */
     public function onSavedOrderItems($order_id, array $data)
     {
         if (!($order_id = (int) $order_id)) {
             return; // Not possible.
         } elseif (empty($data['order_item_id'])) {
-            return; // Not possible.
-        } elseif (!is_array($data['order_item_id'])) {
+            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Missing order item IDs.', 's2member-x'));
+            return; // Not possible; missing `order_item_id` index.
+        } elseif (!is_array($data['order_item_id']) && !is_numeric($data['order_item_id'])) {
+            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unexpected order item IDs.', 's2member-x'));
             return; // Not possible.
         }
-        foreach ($data['order_item_id'] as $_item_id) {
+        foreach ((array) $data['order_item_id'] as $_item_id) { // Force an array value.
             if (!($_item_id = (int) $_item_id)) {
                 continue; // Not possible; empty item ID.
-            } elseif (!($_product_id = (int) wc_get_order_item_meta($_item_id, '_product_id', true))) {
-                continue; // Not applicable; not associated w/ a product ID.
-            } elseif (!($_WC_Product = wc_get_product($_product_id)) || !$_WC_Product->exists()) {
-                continue; // Not possible; unable to acquire product instance.
+            } elseif (!(int) wc_get_order_item_meta($_item_id, '_product_id', true)) {
+                return; // Not applicable; not associated w/ a product ID.
+                // Important: This product ID  may point to a `variable` product.
+                // Whereas `a::getProductByOrderItemId()` returns the underlying variation.
+            } elseif (!($_WC_Product = a::getProductByOrderItemId($_item_id)) || !$_WC_Product->exists()) {
+                a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire product.', 's2member-x'));
+                return; // Not possible; unable to acquire order.
+            } elseif (!($_product_id = (int) $_WC_Product->id)) { // Possible `variation`.
+                a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire product ID.', 's2member-x'));
+                return; // Not possible; unable to acquire product ID.
             }
             $_product_type        = $_WC_Product->get_type();
             $_product_permissions = a::getProductMeta($_product_id, 'permissions');
@@ -152,6 +167,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
 
             a::addLogEntry(__METHOD__, compact(
                 '_item_id',
+                '_product_id',
                 '_product_type',
                 '_product_permissions'
             ), __('Updating custom order item meta.', 's2member-x'));

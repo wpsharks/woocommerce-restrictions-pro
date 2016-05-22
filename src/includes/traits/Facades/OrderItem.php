@@ -28,4 +28,20 @@ trait OrderItem
     {
         return $GLOBALS[static::class]->Utils->OrderItem->getOrderByItemId(...$args);
     }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function getOrderItemById(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->OrderItem->getOrderItemById(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function getProductByOrderItemId(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->OrderItem->getProductByOrderItemId(...$args);
+    }
 }
