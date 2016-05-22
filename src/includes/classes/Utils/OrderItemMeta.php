@@ -83,7 +83,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
      *
      * @param string|int $item_id Order item ID.
      *
-     * @note This works for Subscription order items also.
+     * @note This works for subscription order items also.
      */
     public function onAddOrderItemMeta($item_id)
     {
@@ -127,7 +127,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
      * @param string|int $order_id Order ID.
      * @param array      $data     AJAX data.
      *
-     * @note This works for Subscription order items also.
+     * @note This works for subscription order items also.
      */
     public function onSavedOrderItems($order_id, array $data)
     {
