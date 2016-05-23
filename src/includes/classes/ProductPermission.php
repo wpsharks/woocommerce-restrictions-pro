@@ -18,6 +18,9 @@ use WebSharks\Core\WpSharksCore\Classes as CoreClasses;
 use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
+#
+use function assert as debug;
+use function get_defined_vars as vars;
 
 /**
  * Product permission.
@@ -164,7 +167,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
         $is_overloaded = $this->isOverloaded();
 
         if ($is_overloaded && isset($data->product_id)) {
-            throw new Exception('Trying to update contruct-only property.');
+            throw c::issue('Trying to update contruct-only property.');
         }
         if (!$is_overloaded) { // Called by constructor?
             $is_overloaded = true; // Overloading now.

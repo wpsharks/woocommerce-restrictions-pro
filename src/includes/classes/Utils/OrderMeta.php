@@ -18,6 +18,9 @@ use WebSharks\Core\WpSharksCore\Classes as CoreClasses;
 use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
+#
+use function assert as debug;
+use function get_defined_vars as vars;
 
 /**
  * Order meta utilities.
@@ -100,12 +103,12 @@ class OrderMeta extends SCoreClasses\SCore\Base\Core
                     a::transferUserPermissions($old_user_id, $new_user_id, ['where' => compact('order_id')]);
                     break; // Transfers permissions to new customer when user ID is changed on an order.
             }
-            a::addLogEntry(__METHOD__, compact(
+            c::review(compact(// Log for review.
                 'order_id',
                 'subscription_id',
                 'new_user_id',
                 'old_user_id'
-            ), __('Transferring user permissions because customer was changed.', 's2member-x'));
+            ), 'Transferring user permissions because customer was changed.');
         }
     }
 }

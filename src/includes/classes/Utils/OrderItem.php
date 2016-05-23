@@ -18,6 +18,9 @@ use WebSharks\Core\WpSharksCore\Classes as CoreClasses;
 use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
+#
+use function assert as debug;
+use function get_defined_vars as vars;
 
 /**
  * Order item utilities.
@@ -174,10 +177,10 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
         } elseif (!($product_id = (int) wc_get_order_item_meta($item_id, '_product_id', true))) {
             return; // Not applicable; not associated with a product ID.
         } elseif (!($WC_Order = $this->getOrderByItemId($item_id))) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire order.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unable to acquire order.'));
             return; // Not possible; unable to acquire order.
         } elseif (!($post_type = $WC_Order->post->post_type)) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire order post type.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unable to acquire order post type.'));
             return; // Not possible; unable to acquire order post type.
         }
         $WpDb = s::wpDb(); // DB class object instance.
@@ -209,12 +212,12 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
 
         a::clearUserPermissionsCache(); // For all users.
 
-        a::addLogEntry(__METHOD__, compact(
+        c::review(compact(// Log for review.
             'order_id',
             'subscription_id',
             'product_id',
             'item_id',
             'where'
-        ), __('Deleting user permissions when deleting order item.', 's2member-x'));
+        ), 'Deleting user permissions when deleting order item.');
     }
 }

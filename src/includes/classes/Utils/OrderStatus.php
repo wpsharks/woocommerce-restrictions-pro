@@ -18,6 +18,9 @@ use WebSharks\Core\WpSharksCore\Classes as CoreClasses;
 use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
+#
+use function assert as debug;
+use function get_defined_vars as vars;
 
 /**
  * Order status changes.
@@ -142,22 +145,22 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     public function onOrderStatusChanged($order_id, string $old_status, string $new_status)
     {
-        a::addLogEntry(__METHOD__, compact(
+        c::review(compact(// Log for review.
             'order_id',
             'new_status',
             'old_status'
-        ), __('Monitoring order status changes.', 's2member-x'));
+        ), 'Monitoring order status changes.');
 
         if (!($order_id = (int) $order_id)) {
             return; // Not possible.
         } elseif (empty($this->user_permission_status_map[$old_status])) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unexpected old status.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unexpected old status.'));
             return; // Unrecognized new status string.
         } elseif (empty($this->user_permission_status_map[$new_status])) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unexpected new status.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unexpected new status.'));
             return; // Unrecognized new status string.
         } elseif (!($WC_Order = wc_get_order($order_id))) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire order.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unable to acquire order.'));
             return; // Not possible.
         }
         $always_grant_statuses = s::applyFilters('always_grant_user_persmissions_on_order_statuses', ['completed'], $WC_Order);
@@ -229,22 +232,22 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     public function onSubscriptionStatusChanged($subscription_id, string $old_status, string $new_status)
     {
-        a::addLogEntry(__METHOD__, compact(
+        c::review(compact(// Log for review.
             'subscription_id',
             'new_status',
             'old_status'
-        ), __('Monitoring subscription status changes.', 's2member-x'));
+        ), 'Monitoring subscription status changes.');
 
         if (!($subscription_id = (int) $subscription_id)) {
             return; // Not possible.
         } elseif (empty($this->user_permission_status_map[$old_status])) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unexpected old status.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unexpected old status.'));
             return; // Unrecognized new status string.
         } elseif (empty($this->user_permission_status_map[$new_status])) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unexpected new status.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unexpected new status.'));
             return; // Unrecognized new status string.
         } elseif (!($WC_Subscription = wcs_get_subscription($subscription_id))) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire subscription.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unable to acquire subscription.'));
             return; // Not possible.
         }
         $always_grant_statuses = s::applyFilters('always_grant_user_persmissions_on_subscription_statuses', ['active'], $WC_Subscription);
@@ -285,7 +288,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
                 continue; // Not applicable; not associated w/ a product ID.
             } elseif (!($_product_type = $this->itemProductType($_item_id))) {
-                a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Missing product type.', 's2member-x'));
+                debug(0, c::issue(vars(), 'Missing product type.'));
                 continue; // Not possible; no product type.
             } elseif (in_array($_product_type, $this->subscription_product_types, true)) {
                 continue; // Don't handle subscription product types here.
@@ -321,14 +324,14 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                         'status'           => $this->user_permission_status_map[$new_status],
                     ]);
                     if (!$_new_UserPermission) { // Catch insertion failures.
-                        throw new Exception('Failed to add new user permission.');
+                        throw c::issue('Failed to add new user permission.');
                     }
                     $_new_user_permissions[$_new_UserPermission->ID] = $_new_UserPermission; // Record new permission.
                     $_user_permissions[$_new_UserPermission->ID]     = $_new_UserPermission; // Add to existing array also.
                 }
             } // unset($_ProductPermission, $_updated_existing_user_permission, $_new_UserPermission);
 
-            a::addLogEntry(__METHOD__, compact(
+            c::review(compact(// Log for review.
                 'order_id',
                 'user_id',
                 'old_status',
@@ -339,7 +342,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_product_permissions',
                 '_updated_user_permissions',
                 '_new_user_permissions'
-            ), __('Granting user permissions on order status change.', 's2member-x'));
+            ), 'Granting user permissions on order status change.');
         } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions);
         // unset($_user_permissions, $_updated_user_permissions, $_new_user_permissions);
     }
@@ -369,7 +372,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
                 continue; // Not applicable; not associated w/ a product ID.
             } elseif (!($_product_type = $this->itemProductType($_item_id))) {
-                a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Missing product type.', 's2member-x'));
+                debug(0, c::issue(vars(), 'Missing product type.'));
                 continue; // Not possible; no product type.
             } elseif (!($_product_permissions = $this->itemProductPermissions($_item_id))) {
                 continue; // Not applicable; no product permissions.
@@ -412,14 +415,14 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                         'status'           => $this->user_permission_status_map[$new_status],
                     ]);
                     if (!$_new_UserPermission) { // Catch insertion failures.
-                        throw new Exception('Failed to add new user permission.');
+                        throw c::issue('Failed to add new user permission.');
                     }
                     $_new_user_permissions[$_new_UserPermission->ID] = $_new_UserPermission; // Record new permission.
                     $_user_permissions[$_new_UserPermission->ID]     = $_new_UserPermission; // Add to existing array also.
                 }
             } // unset($_ProductPermission, $_updated_existing_user_permission, $_new_UserPermission);
 
-            a::addLogEntry(__METHOD__, compact(
+            c::review(compact(// Log for review.
                 'subscription_id',
                 'user_id',
                 'old_status',
@@ -430,7 +433,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_product_permissions',
                 '_updated_user_permissions',
                 '_new_user_permissions'
-            ), __('Granting user permissions on subscription status change.', 's2member-x'));
+            ), 'Granting user permissions on subscription status change.');
         } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions);
         // unset($_user_permissions, $_updated_user_permissions, $_new_user_permissions);
     }
@@ -467,10 +470,10 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         $old_product_permissions = $old_item_id ? $this->itemProductPermissions($old_item_id) : [];
 
         if (!$new_product_id || !$old_product_id || !$new_item_id || !$old_item_id || !$new_product_type || !$old_product_type) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Missing one or more IDs/types.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Missing one or more IDs/types.'));
             return; // Not applicable/possible. This is a case that should be logged for review.
         } elseif (!($new_status = $WC_Subscription->get_status()) || empty($this->user_permission_status_map[$new_status])) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unexpected (or missing) subscription status.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unexpected (or missing) subscription status.'));
             return; // Not applicable/possible. This is a case that should be logged for review.
         }
         // Any type of product can be an item in a subscription; it's just like an order.
@@ -508,12 +511,12 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 'status'           => $this->user_permission_status_map[$new_status],
             ]);
             if (!$_new_UserPermission) { // Catch insertion failures.
-                throw new Exception('Failed to add new user permission.');
+                throw c::issue('Failed to add new user permission.');
             }
             $created_new_user_permissions[$_new_UserPermission->ID] = $_new_UserPermission; // Record new permission.
         } // unset($_NewProductPermission, $_new_UserPermission); // Housekeeping.
 
-        a::addLogEntry(__METHOD__, compact(
+        c::review(compact(// Log for review.
             'subscription_id',
             'user_id',
             //
@@ -528,7 +531,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             'old_product_type',
             'old_product_permissions',
             'trashed_old_user_permissions'
-        ), __('Switching user permisssions on subscription upgrade/downgrade.', 's2member-x'));
+        ), 'Switching user permisssions on subscription upgrade/downgrade.');
     }
 
     /**
@@ -556,7 +559,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
                 continue; // Not applicable; not associated w/ a product ID.
             } elseif (!($_product_type = $this->itemProductType($_item_id))) {
-                a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Missing product type.', 's2member-x'));
+                debug(0, c::issue(vars(), 'Missing product type.'));
                 continue; // Not possible; no product type.
             } elseif (in_array($_product_type, $this->subscription_product_types, true)) {
                 continue; // Don't handle subscription product types here.
@@ -581,7 +584,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             } // unset($_UserPermission); // Housekeeping.
             // } // unset($_ProductPermission); // Housekeeping.
 
-            a::addLogEntry(__METHOD__, compact(
+            c::review(compact(// Log for review.
                 'order_id',
                 'user_id',
                 'old_status',
@@ -591,7 +594,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_product_type',
                 '_product_permissions',
                 '_updated_user_permissions'
-            ), __('Revoking user permissions on order status change.', 's2member-x'));
+            ), 'Revoking user permissions on order status change.');
         } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions);
         // unset($_user_permissions, $_updated_user_permissions);
     }
@@ -621,7 +624,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             if (!($_product_id = (int) ($_item['product_id'] ?? 0))) {
                 continue; // Not applicable; not associated w/ a product ID.
             } elseif (!($_product_type = $this->itemProductType($_item_id))) {
-                a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Missing product type.', 's2member-x'));
+                debug(0, c::issue(vars(), 'Missing product type.'));
                 continue; // Not possible; no product type.
             // } elseif (!($_product_permissions = $this->itemProductPermissions($_item_id))) {
             //     continue; // Not applicable; no product permissions.
@@ -653,7 +656,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             } // unset($_UserPermission); // Housekeeping.
             // } // unset($_ProductPermission); // Housekeeping.
 
-            a::addLogEntry(__METHOD__, compact(
+            c::review(compact(// Log for review.
                 'subscription_id',
                 'user_id',
                 'old_status',
@@ -663,7 +666,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_product_type',
                 '_product_permissions',
                 '_updated_user_permissions'
-            ), __('Revoking user permissions on subscription status change.', 's2member-x'));
+            ), 'Revoking user permissions on subscription status change.');
         } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions);
         // unset($_user_permissions, $_updated_user_permissions);
     }

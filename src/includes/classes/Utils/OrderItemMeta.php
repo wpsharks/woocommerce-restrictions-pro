@@ -18,6 +18,9 @@ use WebSharks\Core\WpSharksCore\Classes as CoreClasses;
 use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
+#
+use function assert as debug;
+use function get_defined_vars as vars;
 
 /**
  * Order item meta utilities.
@@ -94,10 +97,10 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             // Important: This product ID  may point to a `variable` product.
             // Whereas `a::getProductByOrderItemId()` returns the underlying variation.
         } elseif (!($WC_Product = a::getProductByOrderItemId($item_id)) || !$WC_Product->exists()) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire product.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unable to acquire product.'));
             return; // Not possible; unable to acquire order.
         } elseif (!($product_id = (int) $WC_Product->id)) { // Possible `variation`.
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire product ID.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unable to acquire product ID.'));
             return; // Not possible; unable to acquire product ID.
         }
         $product_type        = $WC_Product->get_type();
@@ -111,12 +114,12 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             wc_add_order_item_meta($item_id, $this->product_meta_prefix.'permissions', $_product_permission);
         } // unset($_product_permission); // Housekeeping.
 
-        a::addLogEntry(__METHOD__, compact(
+        c::review(compact(// Log for review.
             'item_id',
             'product_id',
             'product_type',
             'product_permissions'
-        ), __('Updating custom order item meta.', 's2member-x'));
+        ), 'Updating custom order item meta.');
     }
 
     /**
@@ -134,10 +137,10 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
         if (!($order_id = (int) $order_id)) {
             return; // Not possible.
         } elseif (empty($data['order_item_id'])) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Missing order item IDs.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Missing order item IDs.'));
             return; // Not possible; missing `order_item_id` index.
         } elseif (!is_array($data['order_item_id']) && !is_numeric($data['order_item_id'])) {
-            a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unexpected order item IDs.', 's2member-x'));
+            debug(0, c::issue(vars(), 'Unexpected order item IDs.'));
             return; // Not possible.
         }
         foreach ((array) $data['order_item_id'] as $_item_id) { // Force an array value.
@@ -148,10 +151,10 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
                 // Important: This product ID  may point to a `variable` product.
                 // Whereas `a::getProductByOrderItemId()` returns the underlying variation.
             } elseif (!($_WC_Product = a::getProductByOrderItemId($_item_id)) || !$_WC_Product->exists()) {
-                a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire product.', 's2member-x'));
+                debug(0, c::issue(vars(), 'Unable to acquire product.'));
                 return; // Not possible; unable to acquire order.
             } elseif (!($_product_id = (int) $_WC_Product->id)) { // Possible `variation`.
-                a::addLogEntry(__METHOD__.'#issue', get_defined_vars(), __('Unable to acquire product ID.', 's2member-x'));
+                debug(0, c::issue(vars(), 'Unable to acquire product ID.'));
                 return; // Not possible; unable to acquire product ID.
             }
             $_product_type        = $_WC_Product->get_type();
@@ -165,12 +168,12 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
                 wc_add_order_item_meta($_item_id, $this->product_meta_prefix.'permissions', $_product_permission);
             } // unset($_product_permission); // Housekeeping.
 
-            a::addLogEntry(__METHOD__, compact(
+            c::review(compact(// Log for review.
                 '_item_id',
                 '_product_id',
                 '_product_type',
                 '_product_permissions'
-            ), __('Updating custom order item meta.', 's2member-x'));
+            ), 'Updating custom order item meta.');
         } // unset($_item_id, $_product_id, $_WC_Product, $_product_type, $_product_permissions); // Housekeeping.
     }
 }

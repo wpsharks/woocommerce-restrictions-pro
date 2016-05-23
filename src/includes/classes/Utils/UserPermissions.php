@@ -18,6 +18,9 @@ use WebSharks\Core\WpSharksCore\Classes as CoreClasses;
 use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
+#
+use function assert as debug;
+use function get_defined_vars as vars;
 
 /**
  * User permission utilities.
@@ -174,10 +177,10 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
 
         $this->clearCache($user_id); // For this user.
 
-        a::addLogEntry(__METHOD__, compact(
+        c::review(compact(// Log for review.
             'user_id',
             'where'
-        ), __('Deleted user permissions.', 's2member-x'));
+        ), 'Deleted user permissions.');
     }
 
     /**
@@ -226,10 +229,10 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
 
         $this->clearCache($user_id); // For this user.
 
-        a::addLogEntry(__METHOD__, compact(
+        c::review(compact(// Log for review.
             'user_id',
             'where'
-        ), __('Deleted user permissions.', 's2member-x'));
+        ), 'Deleted user permissions.');
     }
 
     /**
@@ -279,14 +282,14 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
 
         $this->clearCache(); // For all users.
 
-        a::addLogEntry(__METHOD__, compact(
+        c::review(compact(// Log for review.
             'post_id',
             'post_type',
             'subscription_id',
             'restriction_id',
             'order_id',
             'where'
-        ), __('Trashed associated user permissions.', 's2member-x'));
+        ), 'Trashed associated user permissions.');
     }
 
     /**
@@ -336,14 +339,14 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
 
         $this->clearCache(); // For all users.
 
-        a::addLogEntry(__METHOD__, compact(
+        c::review(compact(// Log for review.
             'post_id',
             'post_type',
             'subscription_id',
             'restriction_id',
             'order_id',
             'where'
-        ), __('Restored associated user permissions.', 's2member-x'));
+        ), 'Restored associated user permissions.');
     }
 
     /**
@@ -392,14 +395,14 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
 
         $this->clearCache(); // For all users.
 
-        a::addLogEntry(__METHOD__, compact(
+        c::review(compact(// Log for review.
             'post_id',
             'post_type',
             'subscription_id',
             'restriction_id',
             'order_id',
             'where'
-        ), __('Deleted associated user permissions.', 's2member-x'));
+        ), 'Deleted associated user permissions.');
     }
 
     /**

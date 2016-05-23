@@ -18,6 +18,9 @@ use WebSharks\Core\WpSharksCore\Classes as CoreClasses;
 use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
+#
+use function assert as debug;
+use function get_defined_vars as vars;
 
 /**
  * App.
@@ -33,7 +36,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160522'; //v//
+    const VERSION = '160523'; //v//
 
     /**
      * Constructor.
@@ -88,14 +91,21 @@ class App extends SCoreClasses\App
                 ], // <https://www.woothemes.com/products/woocommerce-memberships/>
             ],
             '§dependencies' => [
-                // @TODO Require a minimum version of WordPress.
                 '§plugins' => [
                     'woocommerce' => [
                         'in_wp'       => true,
                         'name'        => 'WooCommerce',
                         'url'         => 'https://wordpress.org/plugins/woocommerce/',
                         'archive_url' => 'https://wordpress.org/plugins/woocommerce/developers/',
-                        // @TODO Require a minimum version of WooCommerce.
+                        'test'        => function (string $slug) {
+                            $min_version = '2.5.5'; //wc-required-version//
+                            if (version_compare(WC_VERSION, $min_version, '<')) {
+                                return [
+                                    'min_version' => $min_version,
+                                    'reason'      => 'needs-upgrade',
+                                ];
+                            }
+                        },
                     ],
                 ],
                 '§others' => [
@@ -104,9 +114,7 @@ class App extends SCoreClasses\App
                         'description' => __('a Permalink Structure other than <em>plain</em>', 's2member-x'),
 
                         'test' => function (string $key) {
-                            if (get_option('permalink_structure')) {
-                                return true; // No problem.
-                            } else {
+                            if (!get_option('permalink_structure')) {
                                 return [
                                     'how_to_resolve' => sprintf(__('<a href="%1$s">change your Permalink settings</a> to anything but <em>plain</em>', 's2member-x'), esc_url(admin_url('/options-permalink.php'))),
                                     'cap_to_resolve' => 'manage_options',

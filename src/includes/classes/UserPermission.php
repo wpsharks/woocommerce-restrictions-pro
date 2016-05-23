@@ -18,6 +18,9 @@ use WebSharks\Core\WpSharksCore\Classes as CoreClasses;
 use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
+#
+use function assert as debug;
+use function get_defined_vars as vars;
 
 /**
  * User permission.
@@ -141,7 +144,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
             $this->fillProperties($data);
         }
         if (!$this->isValid()) { // Validation.
-            throw new Exception('Invalid properties.');
+            throw c::issue('Invalid properties.');
         }
         if ($this->ID) { // Update existing permission.
             $WpDb                   = s::wpDb();
@@ -170,9 +173,9 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
             s::doAction('before_user_permissions_insert', [], $insert_data);
 
             if ((int) $WpDb->insert(s::dbPrefix().'user_permissions', $insert_data) !== 1) {
-                throw new Exception('User permission insertion failure.');
+                throw c::issue('User permission insertion failure.');
             } elseif (!($this->ID = abs((int) $WpDb->insert_id))) {
-                throw new Exception('Unable to aquire insert ID.');
+                throw c::issue('Unable to aquire insert ID.');
             }
             a::clearUserPermissionsCache($this->user_id); // Clear user cache.
 
@@ -192,7 +195,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         $is_overloaded = $this->isOverloaded();
 
         if ($is_overloaded && (isset($data->ID) || isset($data->user_id))) {
-            throw new Exception('Trying to update contruct-only property.');
+            throw c::issue('Trying to update contruct-only property.');
         }
         if (!$is_overloaded) { // Called by constructor?
             $is_overloaded = true; // Overloading now.

@@ -18,6 +18,9 @@ use WebSharks\Core\WpSharksCore\Classes as CoreClasses;
 use WebSharks\Core\WpSharksCore\Classes\Core\Base\Exception;
 use WebSharks\Core\WpSharksCore\Interfaces as CoreInterfaces;
 use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
+#
+use function assert as debug;
+use function get_defined_vars as vars;
 
 /**
  * Pseudo-static facades.
@@ -27,7 +30,6 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 abstract class Facades
 {
     use Traits\Facades\Coupon;
-    use Traits\Facades\Logger;
     use Traits\Facades\Order;
     use Traits\Facades\OrderItem;
     use Traits\Facades\Product;
