@@ -216,6 +216,9 @@ class App extends SCoreClasses\App
 
                 add_action('personal_options_update', [$this->Utils->UserPermissionsWidget, 'onEditUserProfileUpdate']);
                 add_action('edit_user_profile_update', [$this->Utils->UserPermissionsWidget, 'onEditUserProfileUpdate']);
+
+                add_filter('manage_users_columns', [$this->Utils->UserColumns, 'onManageUsersColumns']);
+                add_filter('manage_users_custom_column', [$this->Utils->UserColumns, 'onManageUsersCustomColumn'], 10, 3);
             }
             # Checkout-related hooks; including checkout-specific option filters.
 
