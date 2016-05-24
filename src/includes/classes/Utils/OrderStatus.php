@@ -279,7 +279,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         if (!($order_id = (int) $WC_Order->id)) {
             debug(0, c::issue(vars(), 'Empty order ID.'));
             return; // Not possible; no order ID.
-        } elseif (!($user_id = (int) $WC_Order->user_id)) {
+        } elseif (!($user_id = (int) $WC_Order->get_user_id())) {
             return; // Not possible; no user ID.
         }
         foreach ($WC_Order->get_items() ?: [] as $_item_id => $_item) {
@@ -361,7 +361,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         if (!($subscription_id = (int) $WC_Subscription->id)) {
             debug(0, c::issue(vars(), 'Empty subscription ID.'));
             return; // Not possible; no subscription ID.
-        } elseif (!($user_id = (int) $WC_Subscription->user_id)) {
+        } elseif (!($user_id = (int) $WC_Subscription->get_user_id())) {
             return; // Not possible; no user ID.
         }
         foreach ($WC_Subscription->get_items() ?: [] as $_item_id => $_item) {
@@ -450,7 +450,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         if (!($subscription_id = (int) $WC_Subscription->id)) {
             debug(0, c::issue(vars(), 'Empty subscription ID.'));
             return; // Not possible; no subscription ID.
-        } elseif (!($user_id = (int) $WC_Subscription->user_id)) {
+        } elseif (!($user_id = (int) $WC_Subscription->get_user_id())) {
             return; // Not possible; no user ID.
         }
         $new_item_id = (int) ($old_item['switched_subscription_new_item_id'] ?? 0);
@@ -544,7 +544,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         if (!($order_id = (int) $WC_Order->id)) {
             debug(0, c::issue(vars(), 'Empty order ID.'));
             return; // Not possible; no order ID.
-        } elseif (!($user_id = (int) $WC_Order->user_id)) {
+        } elseif (!($user_id = (int) $WC_Order->get_user_id())) {
             return; // Not possible; no user ID.
         }
         $user_permissions         = a::userPermissions($user_id); // User permissions.
@@ -582,7 +582,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         if (!($subscription_id = (int) $WC_Subscription->id)) {
             debug(0, c::issue(vars(), 'Empty subscription ID.'));
             return; // Not possible; no subscription ID.
-        } elseif (!($user_id = (int) $WC_Subscription->user_id)) {
+        } elseif (!($user_id = (int) $WC_Subscription->get_user_id())) {
             return; // Not possible; no user ID.
         }
         $user_permissions         = a::userPermissions($user_id); // User permissions.

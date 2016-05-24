@@ -95,7 +95,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             return; // Not possible; empty item ID.
         } elseif (!($WC_Product = a::productByOrderItemId($item_id)) || !$WC_Product->exists()) {
             return; // Not applicable; not associated w/ a product.
-        } elseif (!($product_id = (int) $WC_Product->id)) {
+        } elseif (!($product_id = (int) $WC_Product->get_id())) {
             debug(0, c::issue(vars(), 'Unable to acquire product ID.'));
             return; // Not possible; unable to acquire product ID.
         }
@@ -146,7 +146,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
                 continue; // Not possible; empty item ID.
             } elseif (!($_WC_Product = a::productByOrderItemId($_item_id)) || !$_WC_Product->exists()) {
                 continue; // Not applicable; not associated w/ a product.
-            } elseif (!($_product_id = (int) $_WC_Product->id)) {
+            } elseif (!($_product_id = (int) $_WC_Product->get_id())) {
                 debug(0, c::issue(vars(), 'Unable to acquire product ID.'));
                 continue; // Not possible; unable to acquire product ID.
             }

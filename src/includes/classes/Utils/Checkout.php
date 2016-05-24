@@ -72,7 +72,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
         foreach ($WooCommerce->cart->get_cart() as $_cart_item) {
             $_WC_Product = $_cart_item['data'];
 
-            if (a::getProductMeta($_WC_Product->id, 'permissions')) {
+            if (a::getProductMeta($_WC_Product->get_id(), 'permissions')) {
                 return $contains = true;
             }
         } // unset($_cart_item); // Housekeeping.
