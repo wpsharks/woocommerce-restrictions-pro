@@ -93,7 +93,16 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
         if (!($item_id = (int) $item_id)) {
             debug(0, c::issue(vars(), 'Empty item ID.'));
             return; // Not possible; empty item ID.
-        } elseif (!($WC_Product = a::productByOrderItemId($item_id)) || !$WC_Product->exists()) {
+        } elseif (!($WC_Order = a::orderByItemId($item_id))) {
+            debug(0, c::issue(vars(), 'Unable to acquire order.'));
+            return; // Not possible; unable to acquire order.
+        } elseif (!($order_id = (int) $WC_Order->id)) {
+            debug(0, c::issue(vars(), 'Missing order ID.'));
+            return; // Not possible; missing order ID.
+        } elseif (!($order_type = get_post_type($order_id))) {
+            debug(0, c::issue(vars(), 'Unable to acquire order type.'));
+            return; // Not possible; unable to acquire order type.
+        } elseif (!($WC_Product = a::productByOrderItemId($item_id, $WC_Order))) {
             return; // Not applicable; not associated w/ a product.
         } elseif (!($product_id = (int) $WC_Product->get_id())) {
             debug(0, c::issue(vars(), 'Unable to acquire product ID.'));
@@ -111,6 +120,8 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
         } // unset($_product_permission); // Housekeeping.
 
         c::review(compact(// Log for review.
+            'order_id',
+            'order_type',
             'item_id',
             'product_id',
             'product_type',
@@ -136,6 +147,9 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
         } elseif (!($WC_Order = wc_get_order($order_id))) {
             debug(0, c::issue(vars(), 'Unable to acquire order.'));
             return; // Not possible; unable to acquire order.
+        } elseif (!($order_type = get_post_type($order_id))) {
+            debug(0, c::issue(vars(), 'Unable to acquire order type.'));
+            return; // Not possible; unable to acquire order type.
         } elseif (empty($data['order_item_id'])) {
             debug(0, c::issue(vars(), 'Missing order item IDs.'));
             return; // Not possible; missing `order_item_id` index.
@@ -147,7 +161,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             if (!($_item_id = (int) $_item_id)) {
                 debug(0, c::issue(vars(), 'Empty item ID.'));
                 continue; // Not possible; empty item ID.
-            } elseif (!($_WC_Product = a::productByOrderItemId($_item_id)) || !$_WC_Product->exists()) {
+            } elseif (!($_WC_Product = a::productByOrderItemId($_item_id, $WC_Order))) {
                 continue; // Not applicable; not associated w/ a product.
             } elseif (!($_product_id = (int) $_WC_Product->get_id())) {
                 debug(0, c::issue(vars(), 'Unable to acquire product ID.'));
@@ -165,6 +179,8 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             } // unset($_product_permission); // Housekeeping.
 
             c::review(compact(// Log for review.
+                'order_id',
+                'order_type',
                 '_item_id',
                 '_product_id',
                 '_product_type',
@@ -180,7 +196,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
         if ($new_status === $old_status) { // Special case; i.e., the status is not changing?
             // In this case fake a status change so permissions are updated accordingly.
 
-            switch (get_post_type($order_id)) { // Either an order or subscription.
+            switch ($order_type) { // Either an order or subscription.
 
                 case $this->subscription_post_type:
                     $subscription_id = $order_id; // Subscription.
