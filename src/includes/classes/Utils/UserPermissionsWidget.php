@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * User permissions widget.
  *
- * @since 16xxxx Security gate.
+ * @since 160524 Security gate.
  */
 class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Client-side prefix.
      *
-     * @since 16xxxx
+     * @since 160524
      *
      * @type string Client-side prefix.
      */
@@ -41,7 +41,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     /**
      * Screen.
      *
-     * @since 16xxxx
+     * @since 160524
      *
      * @type \WP_Screen|null Screen.
      */
@@ -50,7 +50,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     /**
      * Is screen mobile?
      *
-     * @since 16xxxx
+     * @since 160524
      *
      * @type bool Is screen mobile?
      */
@@ -59,7 +59,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param Classes\App $App Instance.
      */
@@ -73,7 +73,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     /**
      * Is a profile edit page?
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @return bool True if is a profile edit page.
      */
@@ -85,7 +85,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     /**
      * Current user can edit permissions?
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param int|null $user_id User ID that is being edited.
      *
@@ -100,7 +100,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     /**
      * Get screen object.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      */
     public function onCurrentScreen(\WP_Screen $screen)
     {
@@ -116,7 +116,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     /**
      * Enqueue styles/scripts.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      */
     public function onAdminEnqueueScripts()
     {
@@ -206,7 +206,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     /**
      * In user edit panel.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param \WP_User $WP_User User object class.
      */
@@ -243,7 +243,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
     /**
      * On update of the user.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string|int $user_id User ID.
      */

@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * User permission shortcodes.
  *
- * @since 16xxxx Security gate.
+ * @since 160524 Security gate.
  */
 class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Shortcode name.
      *
-     * @since 16xxxx Shortcodes.
+     * @since 160524 Shortcodes.
      *
      * @param string Shortcode name.
      */
@@ -41,7 +41,7 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
     /**
      * Shortcode name.
      *
-     * @since 16xxxx Shortcodes.
+     * @since 160524 Shortcodes.
      *
      * @param string Shortcode name.
      */
@@ -50,7 +50,7 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Shortcodes.
+     * @since 160524 Shortcodes.
      *
      * @param Classes\App $App Instance.
      */
@@ -65,7 +65,7 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
     /**
      * `[if /]` shortcode.
      *
-     * @since 16xxxx Shortcodes.
+     * @since 160524 Shortcodes.
      *
      * @param array       $atts      Shortcode attributes.
      * @param string|null $content   Shortcode content.

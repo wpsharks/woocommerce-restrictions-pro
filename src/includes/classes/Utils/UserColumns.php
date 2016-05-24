@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * User column utilities.
  *
- * @since 16xxxx User column utilities.
+ * @since 160524 User column utilities.
  */
 class UserColumns extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Restriction titles by ID.
      *
-     * @since 16xxxx User column utilities.
+     * @since 160524 User column utilities.
      *
      * @param array Restriction titles by ID.
      */
@@ -41,7 +41,7 @@ class UserColumns extends SCoreClasses\SCore\Base\Core
     /**
      * Permissions column name.
      *
-     * @since 16xxxx User column utilities.
+     * @since 160524 User column utilities.
      *
      * @param string Permissions column name.
      */
@@ -50,7 +50,7 @@ class UserColumns extends SCoreClasses\SCore\Base\Core
     /**
      * Max permission column lines.
      *
-     * @since 16xxxx User column utilities.
+     * @since 160524 User column utilities.
      *
      * @param int Max permission column lines.
      */
@@ -59,7 +59,7 @@ class UserColumns extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx User column utilities.
+     * @since 160524 User column utilities.
      *
      * @param Classes\App $App Instance.
      */
@@ -75,7 +75,7 @@ class UserColumns extends SCoreClasses\SCore\Base\Core
     /**
      * User columns.
      *
-     * @since 16xxxx User column utilities.
+     * @since 160524 User column utilities.
      *
      * @param array $columns Current columns.
      *
@@ -89,7 +89,7 @@ class UserColumns extends SCoreClasses\SCore\Base\Core
     /**
      * User columns.
      *
-     * @since 16xxxx User column utilities.
+     * @since 160524 User column utilities.
      *
      * @param string     $display Value to display.
      * @param string     $column  Custom column name/key.

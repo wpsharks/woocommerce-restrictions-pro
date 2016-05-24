@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Systematics.
  *
- * @since 16xxxx Security gate.
+ * @since 160524 Security gate.
  */
 class Systematic extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Clear cache.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      */
     public function clearCache()
     {
@@ -44,7 +44,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     /**
      * Post IDs.
      *
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      *
      * @return int[] Array of post IDs.
      */
@@ -67,7 +67,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     /**
      * Post types.
      *
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      *
      * @return int[] Array of post IDs.
      */
@@ -91,7 +91,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     /**
      * Roles.
      *
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      *
      * @return string[] Array of roles.
      */
@@ -115,7 +115,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     /**
      * URI patterns.
      *
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      *
      * @param bool $compile Compile into arrays?
      *
@@ -170,7 +170,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     /**
      * WC Post IDs.
      *
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      *
      * @return int[] Array of post IDs.
      */
@@ -198,7 +198,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     /**
      * WooCommerce URLs.
      *
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      *
      * @return string[] Array of URLs.
      */
@@ -232,7 +232,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     /**
      * BP Post IDs.
      *
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      *
      * @return int[] Array of post IDs.
      */
@@ -260,7 +260,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     /**
      * BuddyPress URLs.
      *
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      *
      * @return string[] Array of URLs.
      */

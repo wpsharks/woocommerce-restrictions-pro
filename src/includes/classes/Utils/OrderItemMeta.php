@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Order item meta utilities.
  *
- * @since 16xxxx Order item meta utilities.
+ * @since 160524 Order item meta utilities.
  */
 class OrderItemMeta extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Subscription post type.
      *
-     * @since 16xxxx Order item meta utilities.
+     * @since 160524 Order item meta utilities.
      *
      * @param string Subscription post type.
      */
@@ -41,7 +41,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
     /**
      * Product meta prefix.
      *
-     * @since 16xxxx Order item meta utilities.
+     * @since 160524 Order item meta utilities.
      *
      * @param string Product meta prefix.
      */
@@ -50,7 +50,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Order item meta utilities.
+     * @since 160524 Order item meta utilities.
      *
      * @param Classes\App $App Instance.
      */
@@ -65,7 +65,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
     /**
      * Hidden meta keys.
      *
-     * @since 16xxxx Order item meta utilities.
+     * @since 160524 Order item meta utilities.
      *
      * @param array $meta_keys Hidden meta keys.
      *
@@ -82,7 +82,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
     /**
      * On add order item meta (during checkout).
      *
-     * @since 16xxxx Order item meta utilities.
+     * @since 160524 Order item meta utilities.
      *
      * @param string|int $item_id Order item ID.
      *
@@ -132,7 +132,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
     /**
      * On product added to order (admin side).
      *
-     * @since 16xxxx Order item meta utilities.
+     * @since 160524 Order item meta utilities.
      *
      * @param string|int $order_id Order ID.
      * @param array      $data     AJAX data.

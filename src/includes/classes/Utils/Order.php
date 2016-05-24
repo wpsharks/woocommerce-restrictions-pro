@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Order utilities.
  *
- * @since 16xxxx Order utilities.
+ * @since 160524 Order utilities.
  */
 class Order extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Post type.
      *
-     * @since 16xxxx Order utilities.
+     * @since 160524 Order utilities.
      *
      * @type string Post type.
      */
@@ -41,7 +41,7 @@ class Order extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Order utilities.
+     * @since 160524 Order utilities.
      *
      * @param Classes\App $App Instance.
      */

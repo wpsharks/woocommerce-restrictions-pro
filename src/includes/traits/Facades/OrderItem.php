@@ -25,7 +25,7 @@ use function get_defined_vars as vars;
 trait OrderItem
 {
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function orderByItemId(...$args)
     {
@@ -33,7 +33,7 @@ trait OrderItem
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function orderItemById(...$args)
     {
@@ -41,7 +41,7 @@ trait OrderItem
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productIdFromItem(...$args)
     {
@@ -49,7 +49,7 @@ trait OrderItem
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productByOrderItemId(...$args)
     {

@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Uninstaller.
  *
- * @since 16xxxx Installer.
+ * @since 160524 Installer.
  */
 class Uninstaller extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Other install routines.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param int $counter Site counter.
      */
@@ -45,7 +45,7 @@ class Uninstaller extends SCoreClasses\SCore\Base\Core
     /**
      * Delete all restrictions.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param int $counter Site counter.
      */

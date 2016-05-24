@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Product permission.
  *
- * @since 16xxxx Product permission.
+ * @since 160524 Product permission.
  */
 class ProductPermission extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Class constructor.
      *
-     * @since 16xxxx Product permission.
+     * @since 160524 Product permission.
      *
      * @param Classes\App $App  Instance.
      * @param \StdClass   $data Permission data.
@@ -47,7 +47,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
     /**
      * A valid permission?
      *
-     * @since 16xxxx Product permission.
+     * @since 160524 Product permission.
      *
      * @return bool True if permission is valid.
      */
@@ -68,7 +68,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Calculate access time.
      *
-     * @since 16xxxx Product permission.
+     * @since 160524 Product permission.
      *
      * @param int $from Basis for time calculation.
      *
@@ -112,7 +112,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Calculate expire time.
      *
-     * @since 16xxxx Product permission.
+     * @since 160524 Product permission.
      *
      * @param int $from Basis for time calculation.
      *
@@ -158,7 +158,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Fill properties from data.
      *
-     * @since 16xxxx Adding user permissions.
+     * @since 160524 Adding user permissions.
      *
      * @param \StdClass $data Object properties.
      */

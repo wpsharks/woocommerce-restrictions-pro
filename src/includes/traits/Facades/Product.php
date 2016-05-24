@@ -25,7 +25,7 @@ use function get_defined_vars as vars;
 trait Product
 {
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productPostType()
     {
@@ -33,7 +33,7 @@ trait Product
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productTypeTaxonomy()
     {
@@ -41,7 +41,7 @@ trait Product
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productMetaPrefix()
     {
@@ -49,7 +49,7 @@ trait Product
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productVisibilityClasses()
     {
@@ -57,7 +57,7 @@ trait Product
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productVariationVisibilityClasses()
     {
@@ -65,7 +65,7 @@ trait Product
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productClientSidePrefix()
     {
@@ -73,7 +73,7 @@ trait Product
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function getProductMeta(...$args)
     {
@@ -81,7 +81,7 @@ trait Product
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function updateProductMeta(...$args)
     {
@@ -89,7 +89,7 @@ trait Product
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function deleteProductMeta(...$args)
     {
@@ -97,7 +97,7 @@ trait Product
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function createProductUrl(...$args)
     {

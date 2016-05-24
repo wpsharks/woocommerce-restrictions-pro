@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: s2Member X Pro 160524\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/s2member-x-pro\n"
-"POT-Creation-Date: 2016-05-24 14:05:09+00:00\n"
+"POT-Creation-Date: 2016-05-24 15:42:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1022,6 +1022,16 @@ msgstr ""
 msgid "There are a few Systematic URIs on your site that cannot be associated with a Restriction. It's OK if one of your patterns overlaps with these, but any URI matching one of these will simply not be allowed to have any additional Restrictions applied to it whatsoever. In other words, these are automatically excluded (internally), because they are associated with special functionality."
 msgstr ""
 
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserColumns.php:86
+#: src/includes/classes/Utils/UserColumns.php:86
+msgid "Permissions"
+msgstr ""
+
+#: .~build/s2member-x-pro/src/includes/classes/Utils/UserColumns.php:117
+#: src/includes/classes/Utils/UserColumns.php:117
+msgid "...and more"
+msgstr ""
+
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermission.php:53
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermission.php:54
 #: src/includes/classes/Utils/UserPermission.php:53
@@ -1221,14 +1231,6 @@ msgstr ""
 #: .~build/s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:191
 #: src/includes/classes/Utils/UserPermissionsWidget.php:191
 msgid "No permissions yet."
-msgstr ""
-
-#: src/includes/classes/Utils/UserColumns.php:76
-msgid "Permissions"
-msgstr ""
-
-#: src/includes/classes/Utils/UserColumns.php:104
-msgid "...and more"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

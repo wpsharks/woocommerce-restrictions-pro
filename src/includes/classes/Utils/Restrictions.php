@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Restrictions.
  *
- * @since 16xxxx Installer.
+ * @since 160524 Installer.
  */
 class Restrictions extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Post type.
      *
-     * @since 16xxxx
+     * @since 160524
      *
      * @type string Post type.
      */
@@ -41,7 +41,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Meta prefix.
      *
-     * @since 16xxxx
+     * @since 160524
      *
      * @type string Meta prefix.
      */
@@ -50,7 +50,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Meta keys.
      *
-     * @since 16xxxx
+     * @since 160524
      *
      * @type array Meta keys.
      */
@@ -59,7 +59,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Full meta keys.
      *
-     * @since 16xxxx
+     * @since 160524
      *
      * @type array Full meta keys.
      */
@@ -68,7 +68,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Meta keys.
      *
-     * @since 16xxxx
+     * @since 160524
      *
      * @type array Meta keys.
      */
@@ -77,7 +77,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param Classes\App $App Instance.
      */
@@ -100,7 +100,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Clear cache.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      */
     public function clearCache()
     {
@@ -112,7 +112,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Restriction slug to ID.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param string $slug A slug.
      *
@@ -129,7 +129,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Restriction IDs for slugs.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param array $slugs One or more slugs/IDs.
      * @note It's OK if the array also contains IDs.
@@ -158,7 +158,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Restriction titles by ID.
      *
-     * @since 16xxxx Restriction titles.
+     * @since 160524 Restriction titles.
      *
      * @return array Titles; keys are IDs.
      */
@@ -182,7 +182,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Restriction IDs by slug.
      *
-     * @since 16xxxx Restrictions by slug.
+     * @since 160524 Restrictions by slug.
      *
      * @return array IDs; keys are slugs.
      */
@@ -209,7 +209,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Restrictions by meta key.
      *
-     * @since 16xxxx Restrictions by meta key.
+     * @since 160524 Restrictions by meta key.
      *
      * @return array `['restrictions', 'restriction_ids']`
      */
@@ -261,7 +261,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     /**
      * Restrictions (all w/ meta).
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @return array All restrictions w/ meta values.
      */

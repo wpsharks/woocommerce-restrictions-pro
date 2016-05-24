@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Restriction.
  *
- * @since 16xxxx Security gate.
+ * @since 160524 Security gate.
  */
 class Restriction extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Post type.
      *
-     * @since 16xxxx Restriction.
+     * @since 160524 Restriction.
      *
      * @type string Post type.
      */
@@ -41,7 +41,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Category taxonomy.
      *
-     * @since 16xxxx Restriction.
+     * @since 160524 Restriction.
      *
      * @type string Category taxonomy.
      */
@@ -50,7 +50,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Meta prefix.
      *
-     * @since 16xxxx Restriction.
+     * @since 160524 Restriction.
      *
      * @type string Meta prefix.
      */
@@ -59,7 +59,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Access RES prefix.
      *
-     * @since 16xxxx Restriction.
+     * @since 160524 Restriction.
      *
      * @type string Access RES prefix.
      */
@@ -68,7 +68,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Access CCAP prefix.
      *
-     * @since 16xxxx Restriction.
+     * @since 160524 Restriction.
      *
      * @type string Access CCAP prefix.
      */
@@ -77,7 +77,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Client-side prefix.
      *
-     * @since 16xxxx Restriction.
+     * @since 160524 Restriction.
      *
      * @type string Client-side prefix.
      */
@@ -86,7 +86,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Meta keys.
      *
-     * @since 16xxxx Restriction.
+     * @since 160524 Restriction.
      *
      * @type array Meta keys.
      */
@@ -95,7 +95,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Meta keys.
      *
-     * @since 16xxxx Restriction.
+     * @since 160524 Restriction.
      *
      * @type array Meta keys.
      */
@@ -104,7 +104,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Current screen.
      *
-     * @since 16xxxx Restriction.
+     * @since 160524 Restriction.
      *
      * @type \WP_Screen|null Screen.
      */
@@ -113,7 +113,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Is screen mobile?
      *
-     * @since 16xxxx Restriction.
+     * @since 160524 Restriction.
      *
      * @type bool Is screen mobile?
      */
@@ -122,7 +122,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param Classes\App $App Instance.
      */
@@ -147,7 +147,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Register post type.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      */
     public function onInitRegisterPostType()
     {
@@ -263,7 +263,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Current user can edit restrictions?
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @return bool True if the current user can.
      */
@@ -275,7 +275,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Get screen object.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      */
     public function onCurrentScreen(\WP_Screen $screen)
     {
@@ -291,7 +291,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Position restrictions.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      */
     public function onMenuOrder(array $menu_items): array
     {
@@ -324,7 +324,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Add meta boxes.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param string $post_type Post type.
      */
@@ -362,7 +362,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Default hidden meta boxes.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param array      $hidden Default hidden.
      * @param \WP_Screen $screen Screen object.
@@ -384,7 +384,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Enqueue styles/scripts.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      */
     public function onAdminEnqueueScripts()
     {
@@ -420,7 +420,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * About meta box.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param \WP_Post $post Post object.
      * @param array    $args Callback args, if any.
@@ -443,7 +443,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Post IDs meta box.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param \WP_Post $post Post object.
      * @param array    $args Callback args, if any.
@@ -485,7 +485,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Post types meta box.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param \WP_Post $post Post object.
      * @param array    $args Callback args, if any.
@@ -527,7 +527,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Author IDs meta box.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param \WP_Post $post Post object.
      * @param array    $args Callback args, if any.
@@ -569,7 +569,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Tax:term IDs meta box.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param \WP_Post $post Post object.
      * @param array    $args Callback args, if any.
@@ -610,7 +610,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Roles meta box.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param \WP_Post $post Post object.
      * @param array    $args Callback args, if any.
@@ -650,7 +650,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * CCAPs meta box.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param \WP_Post $post Post object.
      * @param array    $args Callback args, if any.
@@ -675,7 +675,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * URI patterns meta box.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param \WP_Post $post Post object.
      * @param array    $args Callback args, if any.
@@ -749,7 +749,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Get meta values.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param string|int $post_id Post ID.
      */
@@ -780,7 +780,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Get meta values.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param string|int $post_id Post ID.
      * @param string     $key     Meta key.
@@ -800,7 +800,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Update meta values.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param string|int $post_id Post ID.
      * @param string     $key     Meta key.
@@ -821,7 +821,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Delete meta values.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param string|int $post_id Post ID.
      * @param string     $key     Meta key.
@@ -837,7 +837,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     /**
      * Create restriction URL.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @return string Create restriction URL.
      */

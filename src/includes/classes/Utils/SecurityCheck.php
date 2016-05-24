@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Security check.
  *
- * @since 16xxxx Security gate.
+ * @since 160524 Security gate.
  */
 class SecurityCheck extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Restriction meta keys.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @type array Meta keys.
      */
@@ -41,7 +41,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Restriction integer meta keys.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @type array Integer meta keys.
      */
@@ -50,7 +50,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param Classes\App $App Instance.
      */
@@ -65,7 +65,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Restrictions apply?
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string|int    $post_id        Post ID.
      * @param string        $url_uri        URL (or URI).
@@ -110,7 +110,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Compile post access.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param int   $post_id    Post ID.
      * @param array &$accessing Array; by reference.
@@ -169,7 +169,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Compile URI access.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string $url_uri    Input URL (or URI).
      * @param array  &$accessing Array; by reference.
@@ -192,7 +192,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Compile role access.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param \WP_User $WP_User    User accessing.
      * @param array    &$accessing Array; by reference.
@@ -205,7 +205,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Check systematics.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param array         &$accessing Array; by reference.
      * @param \WP_User|null $WP_User    User accessing.
@@ -250,7 +250,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Check restrictions.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param array         &$accessing     Array; by reference.
      * @param array         &$restricted    Array; by reference.
@@ -308,7 +308,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Initialize the `$accessing` array.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param array &$accessing Array; by reference.
      */
@@ -324,7 +324,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Sanitize `$accessing` data.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param array &$accessing Array; by reference.
      */
@@ -340,7 +340,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Initialize the `$restricted` array.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param array &$restricted Array; by reference.
      */
@@ -352,7 +352,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Sanitize `$restricted` data.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param array &$restricted Array; by reference.
      */
@@ -368,7 +368,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Initialize the `$restricted_by` array.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param array &$restricted_by Array; by reference.
      */
@@ -380,7 +380,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
     /**
      * Sanitize `$restricted_by` data.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param array &$restricted_by Array; by reference.
      */

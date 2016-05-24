@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Checkout utilities.
  *
- * @since 16xxxx Order-related events.
+ * @since 160524 Order-related events.
  */
 class Checkout extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Original settings that need reversion.
      *
-     * @since 16xxxx Checkout utilities.
+     * @since 160524 Checkout utilities.
      *
      * @param array Original settings.
      */
@@ -41,7 +41,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Checkout utilities.
+     * @since 160524 Checkout utilities.
      *
      * @param Classes\App $App Instance.
      */
@@ -55,7 +55,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
     /**
      * Cart contains permissions?
      *
-     * @since 16xxxx Checkout utilities.
+     * @since 160524 Checkout utilities.
      *
      * @return bool True if cart contains permissions.
      */
@@ -83,7 +83,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
     /**
      * Before checkout form.
      *
-     * @since 16xxxx Checkout utilities.
+     * @since 160524 Checkout utilities.
      *
      * @param \WC_Checkout $WC_Checkout Class instance.
      */
@@ -104,7 +104,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
     /**
      * Filter checkout fields.
      *
-     * @since 16xxxx Checkout utilities.
+     * @since 160524 Checkout utilities.
      *
      * @param array $fields Checkout fields.
      *
@@ -127,7 +127,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
     /**
      * Filter JS checkout params.
      *
-     * @since 16xxxx Checkout utilities.
+     * @since 160524 Checkout utilities.
      *
      * @param array $params JS checkout params.
      *
@@ -147,7 +147,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
     /**
      * After checkout form.
      *
-     * @since 16xxxx Checkout utilities.
+     * @since 160524 Checkout utilities.
      *
      * @param \WC_Checkout $WC_Checkout Class instance.
      */
@@ -166,7 +166,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
     /**
      * Before processing checkout.
      *
-     * @since 16xxxx Checkout utilities.
+     * @since 160524 Checkout utilities.
      */
     public function onBeforeCheckoutProcess()
     {

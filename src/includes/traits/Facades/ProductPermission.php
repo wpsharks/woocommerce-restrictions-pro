@@ -25,7 +25,7 @@ use function get_defined_vars as vars;
 trait ProductPermission
 {
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productPermissionAccessOffsetPrefix()
     {
@@ -33,7 +33,7 @@ trait ProductPermission
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productPermissionAccessOffsetKeyPrefix()
     {
@@ -41,7 +41,7 @@ trait ProductPermission
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productPermissionExpireOffsetSuffix()
     {
@@ -49,7 +49,7 @@ trait ProductPermission
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productPermissionExpireOffsetKeySuffix()
     {
@@ -57,7 +57,7 @@ trait ProductPermission
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productPermissionAccessOffsetDirectives(...$args)
     {
@@ -65,7 +65,7 @@ trait ProductPermission
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function productPermissionExpireOffsetDirectives(...$args)
     {

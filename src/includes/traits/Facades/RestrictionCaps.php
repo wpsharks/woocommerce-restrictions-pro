@@ -25,7 +25,7 @@ use function get_defined_vars as vars;
 trait RestrictionCaps
 {
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionCaps()
     {
@@ -33,7 +33,7 @@ trait RestrictionCaps
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function addDefaultRestrictionCaps(...$args)
     {
@@ -41,7 +41,7 @@ trait RestrictionCaps
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function removeAllRestrictionCaps(...$args)
     {
@@ -49,7 +49,7 @@ trait RestrictionCaps
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restoreDefaultRestrictionCaps(...$args)
     {

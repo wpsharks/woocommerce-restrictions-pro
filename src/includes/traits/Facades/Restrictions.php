@@ -25,7 +25,7 @@ use function get_defined_vars as vars;
 trait Restrictions
 {
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function clearRestrictionsCache(...$args)
     {
@@ -33,7 +33,7 @@ trait Restrictions
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionSlugToId(...$args)
     {
@@ -41,7 +41,7 @@ trait Restrictions
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionSlugsToIds(...$args)
     {
@@ -49,7 +49,7 @@ trait Restrictions
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionTitlesById(...$args)
     {
@@ -57,7 +57,7 @@ trait Restrictions
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionIdsBySlug(...$args)
     {
@@ -65,7 +65,7 @@ trait Restrictions
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionsByMetaKey(...$args)
     {
@@ -73,7 +73,7 @@ trait Restrictions
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionsAllWithMeta(...$args)
     {

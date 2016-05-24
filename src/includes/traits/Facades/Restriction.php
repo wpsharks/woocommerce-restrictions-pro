@@ -25,7 +25,7 @@ use function get_defined_vars as vars;
 trait Restriction
 {
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionIcon()
     {
@@ -33,7 +33,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionPostType()
     {
@@ -41,7 +41,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionCategoryTaxonomy()
     {
@@ -49,7 +49,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionMetaPrefix()
     {
@@ -57,7 +57,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionAccessResPrefix()
     {
@@ -65,7 +65,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionAccessCcapPrefix()
     {
@@ -73,7 +73,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionClientSidePrefix()
     {
@@ -81,7 +81,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionMetaKeys()
     {
@@ -89,7 +89,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function restrictionIntMetaKeys()
     {
@@ -97,7 +97,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function getRestrictionMeta(...$args)
     {
@@ -105,7 +105,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function updateRestrictionMeta(...$args)
     {
@@ -113,7 +113,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function deleteRestrictionMeta(...$args)
     {
@@ -121,7 +121,7 @@ trait Restriction
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function createRestrictionUrl(...$args)
     {

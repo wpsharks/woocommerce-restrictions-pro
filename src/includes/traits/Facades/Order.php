@@ -25,7 +25,7 @@ use function get_defined_vars as vars;
 trait Order
 {
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function orderPostType()
     {

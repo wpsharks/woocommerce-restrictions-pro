@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Order status changes.
  *
- * @since 16xxxx Order status changes.
+ * @since 160524 Order status changes.
  */
 class OrderStatus extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Subscription product types.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param array Subscription product types.
      */
@@ -41,7 +41,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Product meta prefix.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param string Product meta prefix.
      */
@@ -50,7 +50,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * User permission status map.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param array User permission status map.
      */
@@ -59,7 +59,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Order grant statuses.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param array Order grant statuses.
      */
@@ -68,7 +68,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Order revoke statuses.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param array Order revoke statuses.
      */
@@ -77,7 +77,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Subscription grant statuses.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param array Subscription grant statuses.
      */
@@ -86,7 +86,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Subscription revoke statuses.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param array Subscription revoke statuses.
      */
@@ -95,7 +95,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param Classes\App $App Instance.
      */
@@ -233,7 +233,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Order status changed.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param string|int $order_id   Order ID.
      * @param string     $old_status Old status prior to change.
@@ -253,7 +253,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Subscription status changed.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param string|int $subscription_id Subscription ID.
      * @param string     $old_status      Old status prior to change.
@@ -273,7 +273,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Psuedo order status changed.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param string|int $order_id   Order ID.
      * @param string     $old_status Old status prior to change.
@@ -304,7 +304,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Psuedo subscription status changed.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param string|int $subscription_id Subscription ID.
      * @param string     $old_status      Old status prior to change.
@@ -335,7 +335,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Maybe grant order permissions.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param \WC_Abstract_Order $WC_Order   Order instance.
      * @param string             $old_status Old status prior to change.
@@ -416,7 +416,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Maybe grant subscription permissions.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param \WC_Subscription $WC_Subscription Subscription instance.
      * @param string           $old_status      Old status prior to change.
@@ -504,7 +504,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Maybe switch subscription permissions.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param \WC_Subscription $WC_Subscription Subscription instance.
      * @param array            $new_item        The new item data.
@@ -598,7 +598,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Maybe revoke order permissions.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param \WC_Abstract_Order $WC_Order   Order instance.
      * @param string             $old_status Old status prior to change.
@@ -636,7 +636,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Maybe revoke subscription permissions.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param \WC_Subscription $WC_Subscription Subscription instance.
      * @param string           $old_status      Old status prior to change.
@@ -674,7 +674,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Item product type.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param int $item_id Order item ID.
      *
@@ -688,7 +688,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     /**
      * Item product permissions.
      *
-     * @since 16xxxx Order status changes.
+     * @since 160524 Order status changes.
      *
      * @param int $item_id Order item ID.
      *

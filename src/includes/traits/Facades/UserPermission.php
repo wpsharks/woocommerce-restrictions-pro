@@ -25,7 +25,7 @@ use function get_defined_vars as vars;
 trait UserPermission
 {
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function userPermissionStatuses(...$args)
     {
@@ -33,7 +33,7 @@ trait UserPermission
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function addUserPermission(...$args)
     {
@@ -41,7 +41,7 @@ trait UserPermission
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function removeUserPermissions(...$args)
     {

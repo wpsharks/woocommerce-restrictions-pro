@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Restriction caps.
  *
- * @since 16xxxx Installer.
+ * @since 160524 Installer.
  */
 class RestrictionCaps extends SCoreClasses\SCore\Base\Core
 {
     /**
      * All caps.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @type array All caps.
      */
@@ -41,7 +41,7 @@ class RestrictionCaps extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @param Classes\App $App Instance.
      */
@@ -73,7 +73,7 @@ class RestrictionCaps extends SCoreClasses\SCore\Base\Core
     /**
      * Add default caps.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @note Must be compatible w/ config `§caps['§manage']`.
      */
@@ -92,7 +92,7 @@ class RestrictionCaps extends SCoreClasses\SCore\Base\Core
     /**
      * Remove all caps.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      */
     public function removeAll()
     {
@@ -109,7 +109,7 @@ class RestrictionCaps extends SCoreClasses\SCore\Base\Core
     /**
      * Restore default caps.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      */
     public function restoreDefaults()
     {

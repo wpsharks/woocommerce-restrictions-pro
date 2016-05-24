@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Security gate.
  *
- * @since 16xxxx Security gate.
+ * @since 160524 Security gate.
  */
 class SecurityGate extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Restriction-related data.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @type array See {@link SecurityCheck{}).
      */
@@ -41,7 +41,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param Classes\App $App Instance.
      */
@@ -55,7 +55,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     /**
      * Guard restrictions.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      */
     public function onWpLoaded()
     {
@@ -74,7 +74,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     /**
      * Guard restrictions.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param \WP $WP WordPress base instance.
      */
@@ -91,7 +91,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     /**
      * Do restrictions apply?
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @return array See {@link SecurityCheck{}).
      */
@@ -120,7 +120,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     /**
      * Deny and redirect.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      */
     protected function denyRedirect()
     {
@@ -138,7 +138,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     /**
      * Maybe add redirect args.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string $redirect_to URL.
      *
@@ -166,7 +166,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     /**
      * Redirect argument.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string $type Type of argument.
      *

@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Webhook utilities.
  *
- * @since 16xxxx Webhook utilities.
+ * @since 160524 Webhook utilities.
  */
 class Webhook extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Post type.
      *
-     * @since 16xxxx Webhook utilities.
+     * @since 160524 Webhook utilities.
      *
      * @type string Post type.
      */
@@ -41,7 +41,7 @@ class Webhook extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Webhook utilities.
+     * @since 160524 Webhook utilities.
      *
      * @param Classes\App $App Instance.
      */

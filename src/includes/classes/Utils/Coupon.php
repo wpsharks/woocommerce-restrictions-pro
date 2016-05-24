@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Coupon utilities.
  *
- * @since 16xxxx Coupon utilities.
+ * @since 160524 Coupon utilities.
  */
 class Coupon extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Post type.
      *
-     * @since 16xxxx Coupon utilities.
+     * @since 160524 Coupon utilities.
      *
      * @type string Post type.
      */
@@ -41,7 +41,7 @@ class Coupon extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Coupon utilities.
+     * @since 160524 Coupon utilities.
      *
      * @param Classes\App $App Instance.
      */

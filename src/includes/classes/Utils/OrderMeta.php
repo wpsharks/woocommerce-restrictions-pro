@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Order meta utilities.
  *
- * @since 16xxxx Order meta utilities.
+ * @since 160524 Order meta utilities.
  */
 class OrderMeta extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Subscription post type.
      *
-     * @since 16xxxx Order meta utilities.
+     * @since 160524 Order meta utilities.
      *
      * @param string Subscription post type.
      */
@@ -41,7 +41,7 @@ class OrderMeta extends SCoreClasses\SCore\Base\Core
     /**
      * All order post types.
      *
-     * @since 16xxxx Order meta utilities.
+     * @since 160524 Order meta utilities.
      *
      * @param array All order post types.
      */
@@ -50,7 +50,7 @@ class OrderMeta extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Order meta utilities.
+     * @since 160524 Order meta utilities.
      *
      * @param Classes\App $App Instance.
      */
@@ -65,7 +65,7 @@ class OrderMeta extends SCoreClasses\SCore\Base\Core
     /**
      * On post meta update.
      *
-     * @since 16xxxx Order meta utilities.
+     * @since 160524 Order meta utilities.
      *
      * @param string|int $meta_id    Meta ID.
      * @param string|int $post_id    Post ID.

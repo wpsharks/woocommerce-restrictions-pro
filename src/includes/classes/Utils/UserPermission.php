@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * User permission utilities.
  *
- * @since 16xxxx Security gate.
+ * @since 160524 Security gate.
  */
 class UserPermission extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Permission statuses.
      *
-     * @since 16xxxx User permissions.
+     * @since 160524 User permissions.
      *
      * @type array Permission statuses.
      */
@@ -41,7 +41,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param Classes\App $App Instance.
      */
@@ -73,7 +73,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Permission statuses.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param bool $include_optgroups Include optgroups?
      *
@@ -96,7 +96,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Add a new user permission.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string|int      $user_id     User ID.
      * @param string|int      $restriction Slug or ID.
@@ -132,7 +132,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Remove user permission(s).
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string|int      $user_id       User ID.
      * @param string|int|null $restriction   Slug or ID (optional).

@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Product permission utilities.
  *
- * @since 16xxxx Security gate.
+ * @since 160524 Security gate.
  */
 class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInterfaces\SecondConstants
 {
     /**
      * Access offset prefix.
      *
-     * @since 16xxxx Product permissions.
+     * @since 160524 Product permissions.
      *
      * @type array Access offset prefix.
      */
@@ -41,7 +41,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
     /**
      * Access offset key prefix.
      *
-     * @since 16xxxx Product permissions.
+     * @since 160524 Product permissions.
      *
      * @type array Access offset key prefix.
      */
@@ -50,7 +50,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
     /**
      * Expire offset suffix.
      *
-     * @since 16xxxx Product permissions.
+     * @since 160524 Product permissions.
      *
      * @type array Expire offset suffix.
      */
@@ -59,7 +59,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
     /**
      * Expire offset key suffix.
      *
-     * @since 16xxxx Product permissions.
+     * @since 160524 Product permissions.
      *
      * @type array Expire offset key suffix.
      */
@@ -68,7 +68,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
     /**
      * Access offset directives.
      *
-     * @since 16xxxx Product permissions.
+     * @since 160524 Product permissions.
      *
      * @type array Access offset directives.
      */
@@ -77,7 +77,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
     /**
      * Expire offset directives.
      *
-     * @since 16xxxx Product permissions.
+     * @since 160524 Product permissions.
      *
      * @type array Expire offset directives.
      */
@@ -86,7 +86,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
     /**
      * Class constructor.
      *
-     * @since 16xxxx Product permissions.
+     * @since 160524 Product permissions.
      *
      * @param Classes\App $App Instance.
      */
@@ -288,7 +288,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
     /**
      * Access offset directives.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param bool $include_optgroups Include optgroups?
      *
@@ -311,7 +311,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
     /**
      * Expire offset directives.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param bool $include_optgroups Include optgroups?
      *

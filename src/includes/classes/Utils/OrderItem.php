@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Order item utilities.
  *
- * @since 16xxxx Order item utilities.
+ * @since 160524 Order item utilities.
  */
 class OrderItem extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Subscription post type.
      *
-     * @since 16xxxx Order item utilities.
+     * @since 160524 Order item utilities.
      *
      * @param string Subscription post type.
      */
@@ -41,7 +41,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
     /**
      * All order post types.
      *
-     * @since 16xxxx Order item utilities.
+     * @since 160524 Order item utilities.
      *
      * @param array All order post types.
      */
@@ -50,7 +50,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Order item utilities.
+     * @since 160524 Order item utilities.
      *
      * @param Classes\App $App Instance.
      */
@@ -65,7 +65,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
     /**
      * Get order containing item.
      *
-     * @since 16xxxx Order item utilities.
+     * @since 160524 Order item utilities.
      *
      * @param string|int $item_id Order item ID.
      *
@@ -112,7 +112,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
     /**
      * Get order item by ID.
      *
-     * @since 16xxxx Order item utilities.
+     * @since 160524 Order item utilities.
      *
      * @param string|int              $item_id  Order item ID.
      * @param \WC_Abstract_Order|null $WC_Order The order if already known.
@@ -138,7 +138,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
     /**
      * Get product ID from item.
      *
-     * @since 16xxxx Order item utilities.
+     * @since 160524 Order item utilities.
      *
      * @param array $item Order item.
      *
@@ -155,7 +155,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
     /**
      * Get product by order item ID.
      *
-     * @since 16xxxx Order item utilities.
+     * @since 160524 Order item utilities.
      *
      * @param string|int              $item_id  Order item ID.
      * @param \WC_Abstract_Order|null $WC_Order The order if already known.
@@ -182,7 +182,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
     /**
      * On item deleted from order.
      *
-     * @since 16xxxx Order item utilities.
+     * @since 160524 Order item utilities.
      *
      * @param string|int $item_id Order item ID.
      *

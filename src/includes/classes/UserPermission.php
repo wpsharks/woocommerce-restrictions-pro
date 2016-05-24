@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * User permission.
  *
- * @since 16xxxx User permission.
+ * @since 160524 User permission.
  */
 class UserPermission extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Valid statuses.
      *
-     * @since 16xxxx User permission.
+     * @since 160524 User permission.
      *
      * @type array Valid statuses.
      */
@@ -41,7 +41,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx User permission.
+     * @since 160524 User permission.
      *
      * @param Classes\App $App  Instance.
      * @param \StdClass   $data Permission data.
@@ -58,7 +58,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     /**
      * A valid permission?
      *
-     * @since 16xxxx User permission.
+     * @since 160524 User permission.
      *
      * @return bool True if permission is valid.
      */
@@ -81,7 +81,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Allowed to access?
      *
-     * @since 16xxxx User permission.
+     * @since 160524 User permission.
      *
      * @return bool True if allowed to access.
      */
@@ -108,7 +108,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Delete this permission.
      *
-     * @since 16xxxx User permission.
+     * @since 160524 User permission.
      *
      * @note Not called during a mass deletion.
      */
@@ -132,7 +132,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Update/insert/save permission.
      *
-     * @since 16xxxx Adding user permissions.
+     * @since 160524 Adding user permissions.
      *
      * @param \StdClass|null $data Object properties.
      *
@@ -186,7 +186,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
     /**
      * Fill properties from data.
      *
-     * @since 16xxxx Adding user permissions.
+     * @since 160524 Adding user permissions.
      *
      * @param \StdClass $data Object properties.
      */

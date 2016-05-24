@@ -25,7 +25,7 @@ use function get_defined_vars as vars;
 trait Systematics
 {
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function clearSystematicCache(...$args)
     {
@@ -33,7 +33,7 @@ trait Systematics
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function systematicPostIds(...$args)
     {
@@ -41,7 +41,7 @@ trait Systematics
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function systematicPostTypes(...$args)
     {
@@ -49,7 +49,7 @@ trait Systematics
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function systematicRoles(...$args)
     {
@@ -57,7 +57,7 @@ trait Systematics
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function systematicUriPatterns(...$args)
     {

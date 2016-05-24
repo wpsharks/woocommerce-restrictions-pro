@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Product utilities.
  *
- * @since 16xxxx Product utilities.
+ * @since 160524 Product utilities.
  */
 class Product extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Post type.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @type string Post type.
      */
@@ -41,7 +41,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Type taxonomy.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @type string Type taxonomy.
      */
@@ -50,7 +50,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Meta prefix.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @type string Meta prefix.
      */
@@ -59,7 +59,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Visibility classes.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @type string Visibility classes.
      */
@@ -68,7 +68,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Variation visibility classes.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @type string Variation visibility classes.
      */
@@ -77,7 +77,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Client-side prefix.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @type string Client-side prefix.
      */
@@ -86,7 +86,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Current screen.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @type \WP_Screen|null Screen.
      */
@@ -95,7 +95,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Is screen mobile?
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @type bool Is screen mobile?
      */
@@ -104,7 +104,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @param Classes\App $App Instance.
      */
@@ -135,7 +135,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Current user can edit products?
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @return bool True if the current user can.
      */
@@ -147,7 +147,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Get screen object.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      */
     public function onCurrentScreen(\WP_Screen $screen)
     {
@@ -163,7 +163,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Enqueue styles/scripts.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      */
     public function onAdminEnqueueScripts()
     {
@@ -220,7 +220,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * General product data.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      */
     public function onGeneralProductData()
     {
@@ -257,7 +257,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Variable product data.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @param int      $key  Current index key.
      * @param array    $data Current variation data.
@@ -294,7 +294,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Save meta values.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @param string|int $post_id Post ID.
      */
@@ -319,7 +319,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Save meta values.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @param string|int $post_id    Post ID.
      * @param string|int $loop_index UI loop index.
@@ -345,7 +345,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Save permissions.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @param int   $post_id        Post ID.
      * @param array $_r_permissions Incoming permissions.
@@ -371,7 +371,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Get meta values.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @param string|int $post_id Post ID.
      * @param string     $key     Meta key.
@@ -391,7 +391,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Update meta values.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @param string|int $post_id Post ID.
      * @param string     $key     Meta key.
@@ -412,7 +412,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Delete meta values.
      *
-     * @since 16xxxx Product utilities.
+     * @since 160524 Product utilities.
      *
      * @param string|int $post_id Post ID.
      * @param string     $key     Meta key.
@@ -428,7 +428,7 @@ class Product extends SCoreClasses\SCore\Base\Core
     /**
      * Create product URL.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      *
      * @return string Create product URL.
      */

@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Installer.
  *
- * @since 16xxxx Installer.
+ * @since 160524 Installer.
  */
 class Installer extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Other install routines.
      *
-     * @since 16xxxx Restrictions.
+     * @since 160524 Restrictions.
      */
     public function onOtherInstallRoutines()
     {

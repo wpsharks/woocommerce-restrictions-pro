@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * Subscription utilities.
  *
- * @since 16xxxx Subscription utilities.
+ * @since 160524 Subscription utilities.
  */
 class Subscription extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Post type.
      *
-     * @since 16xxxx Subscription utilities.
+     * @since 160524 Subscription utilities.
      *
      * @type string Post type.
      */
@@ -41,7 +41,7 @@ class Subscription extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Subscription utilities.
+     * @since 160524 Subscription utilities.
      *
      * @param Classes\App $App Instance.
      */

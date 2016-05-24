@@ -25,14 +25,14 @@ use function get_defined_vars as vars;
 /**
  * User permission utilities.
  *
- * @since 16xxxx Security gate.
+ * @since 160524 Security gate.
  */
 class UserPermissions extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Access RES prefix.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @type string Access RES prefix.
      */
@@ -41,7 +41,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Access CCAP prefix.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @type string Access CCAP prefix.
      */
@@ -50,7 +50,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Access RES prefix regex.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @type string Access RES prefix regex.
      */
@@ -59,7 +59,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Access CCAP prefix regex.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @type string Access CCAP prefix regex.
      */
@@ -68,7 +68,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Subscription post type.
      *
-     * @since 16xxxx Order-related events.
+     * @since 160524 Order-related events.
      *
      * @param string Subscription post type.
      */
@@ -77,7 +77,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Restriction post type.
      *
-     * @since 16xxxx Order-related events.
+     * @since 160524 Order-related events.
      *
      * @param string Restriction post type.
      */
@@ -86,7 +86,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * All order post types.
      *
-     * @since 16xxxx Order-related events.
+     * @since 160524 Order-related events.
      *
      * @param array All order post types.
      */
@@ -95,7 +95,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Class constructor.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param Classes\App $App Instance.
      */
@@ -130,7 +130,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Clear cache.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string|int $user_id User ID.
      */
@@ -142,7 +142,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Clear cache.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string|int $user_id User ID.
      */
@@ -159,7 +159,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * On user deletion.
      *
-     * @since 16xxxx Order-related events.
+     * @since 160524 Order-related events.
      *
      * @param string|int $user_id User ID.
      */
@@ -186,7 +186,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * On network user removal.
      *
-     * @since 16xxxx Order-related events.
+     * @since 160524 Order-related events.
      *
      * @param string|int $user_id User ID.
      */
@@ -203,7 +203,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * On network user deletion.
      *
-     * @since 16xxxx Order-related events.
+     * @since 160524 Order-related events.
      *
      * @param string|int $user_id User ID.
      */
@@ -238,7 +238,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * After a post is trashed.
      *
-     * @since 16xxxx Order-related events.
+     * @since 160524 Order-related events.
      *
      * @param string|int $post_id Post ID.
      */
@@ -295,7 +295,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * After a post is restored.
      *
-     * @since 16xxxx Order-related events.
+     * @since 160524 Order-related events.
      *
      * @param string|int $post_id Post ID.
      */
@@ -352,7 +352,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Before a post is deleted.
      *
-     * @since 16xxxx Order-related events.
+     * @since 160524 Order-related events.
      *
      * @param string|int $post_id Post ID.
      */
@@ -408,7 +408,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Transfer permission to another user.
      *
-     * @since 16xxxx Order-related events.
+     * @since 160524 Order-related events.
      *
      * @param string|int $old_user_id Old user ID.
      * @param string|int $new_user_id New user ID.
@@ -445,7 +445,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Current user has access to restrictions?
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string|int|string[]|int[] $restriction_ids_slugs ID(s) and/or slug(s).
      * @param string                    $satisfy               Defaults to `all` (`any` or `all`).
@@ -460,7 +460,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * A user has access to restrictions?
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string|int                $user_id               User ID.
      * @param string|int|string[]|int[] $restriction_ids_slugs ID(s) and/or slug(s).
@@ -495,7 +495,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Filter user capabilities.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param array    $user_caps     {@link \WP_User::$allcaps}.
      * @param array    $required_caps Required caps, after having already run {@link map_meta_cap()}.
@@ -555,7 +555,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Accessible restriction IDs.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string|int $user_id User ID.
      *
@@ -586,7 +586,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     /**
      * Permissions for a user ID.
      *
-     * @since 16xxxx Security gate.
+     * @since 160524 Security gate.
      *
      * @param string|int $user_id       User ID.
      * @param bool       $include_trash Include trash?

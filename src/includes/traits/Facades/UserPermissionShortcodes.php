@@ -25,7 +25,7 @@ use function get_defined_vars as vars;
 trait UserPermissionShortcodes
 {
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function ifShortcodeName()
     {
@@ -33,7 +33,7 @@ trait UserPermissionShortcodes
     }
 
     /**
-     * @since 16xxxx Initial release.
+     * @since 160524 Initial release.
      */
     public static function elseShortcodeName()
     {
