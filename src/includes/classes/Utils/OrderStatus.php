@@ -393,8 +393,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                     if (!$_new_UserPermission) { // Catch insertion failures.
                         throw c::issue('Failed to add new user permission.');
                     }
-                    $_new_user_permissions[$_new_UserPermission->ID] = $_new_UserPermission; // Record new permission.
-                    $_user_permissions[$_new_UserPermission->ID]     = $_new_UserPermission; // Add to existing array also.
+                    $_new_user_permissions[$_new_UserPermission->ID] = $_new_UserPermission;
                 }
             } // unset($_ProductPermission, $_updated_existing_user_permission, $_new_UserPermission);
 
@@ -482,8 +481,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                     if (!$_new_UserPermission) { // Catch insertion failures.
                         throw c::issue('Failed to add new user permission.');
                     }
-                    $_new_user_permissions[$_new_UserPermission->ID] = $_new_UserPermission; // Record new permission.
-                    $_user_permissions[$_new_UserPermission->ID]     = $_new_UserPermission; // Add to existing array also.
+                    $_new_user_permissions[$_new_UserPermission->ID] = $_new_UserPermission;
                 }
             } // unset($_ProductPermission, $_updated_existing_user_permission, $_new_UserPermission);
 
