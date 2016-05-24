@@ -267,7 +267,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             'old_status'
         ), 'Monitoring subscription status changes.');
 
-        return $this->psuedoSubscriptionStatusChanged($order_id, $old_status, $new_status);
+        return $this->psuedoSubscriptionStatusChanged($subscription_id, $old_status, $new_status);
     }
 
     /**
@@ -409,7 +409,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_product_permissions',
                 '_updated_user_permissions',
                 '_new_user_permissions'
-            ), 'Granting user permissions on order status change.');
+            ), 'Granting user permissions based on current order status.');
         } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions);
         // unset($_user_permissions, $_updated_user_permissions, $_new_user_permissions);
     }
@@ -498,7 +498,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
                 '_product_permissions',
                 '_updated_user_permissions',
                 '_new_user_permissions'
-            ), 'Granting user permissions on subscription status change.');
+            ), 'Granting user permissions based on current subscription status.');
         } // unset($_item_id, $_item, $_product_id, $_product_type, $_product_permissions);
         // unset($_user_permissions, $_updated_user_permissions, $_new_user_permissions);
     }
@@ -632,7 +632,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             'old_status',
             'new_status',
             'revoked_user_permissions'
-        ), 'Revoking user permissions on order status change.');
+        ), 'Revoking user permissions based on current order status.');
     }
 
     /**
@@ -670,7 +670,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             'old_status',
             'new_status',
             'revoked_user_permissions'
-        ), 'Revoking user permissions on subscription status change.');
+        ), 'Revoking user permissions based on current subscription status.');
     }
 
     /**
