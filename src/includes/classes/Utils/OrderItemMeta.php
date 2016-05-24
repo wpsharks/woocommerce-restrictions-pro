@@ -103,10 +103,10 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
         $product_permissions = a::getProductMeta($product_id, 'permissions');
 
         wc_delete_order_item_meta($item_id, $this->product_meta_prefix.'type');
-        wc_add_order_item_meta($item_id, $this->product_meta_prefix.'type', $product_type);
+        wc_delete_order_item_meta($item_id, $this->product_meta_prefix.'permissions');
 
+        wc_add_order_item_meta($item_id, $this->product_meta_prefix.'type', $product_type);
         foreach ($product_permissions as $_product_permission) { // Each permission.
-            wc_delete_order_item_meta($item_id, $this->product_meta_prefix.'permissions');
             wc_add_order_item_meta($item_id, $this->product_meta_prefix.'permissions', $_product_permission);
         } // unset($_product_permission); // Housekeeping.
 
@@ -157,10 +157,10 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             $_product_permissions = a::getProductMeta($_product_id, 'permissions');
 
             wc_delete_order_item_meta($_item_id, $this->product_meta_prefix.'type');
-            wc_add_order_item_meta($_item_id, $this->product_meta_prefix.'type', $_product_type);
+            wc_delete_order_item_meta($_item_id, $this->product_meta_prefix.'permissions');
 
+            wc_add_order_item_meta($_item_id, $this->product_meta_prefix.'type', $_product_type);
             foreach ($_product_permissions as $_product_permission) { // Each permission.
-                wc_delete_order_item_meta($_item_id, $this->product_meta_prefix.'permissions');
                 wc_add_order_item_meta($_item_id, $this->product_meta_prefix.'permissions', $_product_permission);
             } // unset($_product_permission); // Housekeeping.
 
