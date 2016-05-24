@@ -45,7 +45,7 @@ trait OrderItem
      */
     public static function productIdFromItem(...$args)
     {
-        return $GLOBALS[static::class]->Utils->OrderItem->getProductIdFromItem(...$args);
+        return $GLOBALS[static::class]->Utils->OrderItem->productIdFromItem(...$args);
     }
 
     /**

@@ -164,14 +164,16 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             debug(0, c::issue(vars(), 'Unable to acquire order.'));
             return; // Not possible.
         }
-        $always_grant_statuses = s::applyFilters('always_grant_user_persmissions_on_order_statuses', ['completed'], $WC_Order);
-        $grant_statuses        = s::applyFilters('grant_user_persmissions_on_order_statuses', ['processing', 'completed'], $WC_Order);
-        $revoke_statuses       = s::applyFilters('revoke_user_persmissions_on_order_statuses', ['draft', 'pending', 'on-hold', 'cancelled', 'refunded', 'failed'], $WC_Order);
+        $always_grant_immediate_access = s::getOption('orders_always_grant_immediate_access');
+        $grant_statuses                = $always_grant_immediate_access ? ['processing', 'completed'] : ['completed'];
+        $revoke_statuses               = ['draft', 'pending', 'processing', 'on-hold', 'cancelled', 'refunded', 'failed'];
+
+        $grant_statuses  = s::applyFilters('grant_user_persmissions_on_order_statuses', $grant_statuses, $WC_Order);
+        $revoke_statuses = s::applyFilters('revoke_user_persmissions_on_order_statuses', $revoke_statuses, $WC_Order);
+        $revoke_statuses = array_values(array_diff($revoke_statuses, $grant_statuses)); // Mutually exclusive.
 
         if (in_array($new_status, $grant_statuses, true)) {
-            if (in_array($new_status, $always_grant_statuses, true) || s::getOption('orders_always_grant_immediate_access')) {
-                $this->maybeGrantOrderPermissions($WC_Order, $old_status, $new_status);
-            }
+            $this->maybeGrantOrderPermissions($WC_Order, $old_status, $new_status);
         } elseif (in_array($new_status, $revoke_statuses, true)) {
             $this->maybeRevokeOrderPermissions($WC_Order, $old_status, $new_status);
         }
@@ -252,14 +254,15 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             debug(0, c::issue(vars(), 'Unable to acquire subscription.'));
             return; // Not possible.
         }
-        $always_grant_statuses = s::applyFilters('always_grant_user_persmissions_on_subscription_statuses', ['active'], $WC_Subscription);
-        $grant_statuses        = s::applyFilters('grant_user_persmissions_on_subscription_statuses', ['active'], $WC_Subscription);
-        $revoke_statuses       = s::applyFilters('revoke_user_persmissions_on_subscription_statuses', ['draft', 'pending', 'on-hold', 'cancelled', 'expired'], $WC_Subscription);
+        $grant_statuses  = ['active']; // No processing status for subscriptions.
+        $revoke_statuses = ['draft', 'pending', 'on-hold', 'cancelled', 'expired'];
+
+        $grant_statuses  = s::applyFilters('grant_user_persmissions_on_subscription_statuses', $grant_statuses, $WC_Subscription);
+        $revoke_statuses = s::applyFilters('revoke_user_persmissions_on_subscription_statuses', $revoke_statuses, $WC_Subscription);
+        $revoke_statuses = array_values(array_diff($revoke_statuses, $grant_statuses)); // Mutually exclusive.
 
         if (in_array($new_status, $grant_statuses, true)) {
-            if (in_array($new_status, $always_grant_statuses, true) || s::getOption('orders_always_grant_immediate_access')) {
-                $this->maybeGrantSubscriptionPermissions($WC_Subscription, $old_status, $new_status);
-            }
+            $this->maybeGrantSubscriptionPermissions($WC_Subscription, $old_status, $new_status);
         } elseif (in_array($new_status, $revoke_statuses, true)) {
             $this->maybeRevokeSubscriptionPermissions($WC_Subscription, $old_status, $new_status);
         }
