@@ -101,7 +101,7 @@ class OrderMeta extends SCoreClasses\SCore\Base\Core
                     a::transferUserPermissions($old_user_id, $new_user_id, ['where' => compact('subscription_id')]);
                     break; // Transfers permissions to new customer when user ID is changed on an order.
 
-                default: // Or any other order type.
+                default: // Any other order type.
                     $order_id = $post_id; // Order of some type.
                     a::transferUserPermissions($old_user_id, $new_user_id, ['where' => compact('order_id')]);
                     break; // Transfers permissions to new customer when user ID is changed on an order.

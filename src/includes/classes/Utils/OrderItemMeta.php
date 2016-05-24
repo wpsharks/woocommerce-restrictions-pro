@@ -133,6 +133,9 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
         if (!($order_id = (int) $order_id)) {
             debug(0, c::issue(vars(), 'Empty order ID.'));
             return; // Not possible.
+        } elseif (!($WC_Order = wc_get_order($order_id))) {
+            debug(0, c::issue(vars(), 'Unable to acquire order.'));
+            return; // Not possible; unable to acquire order.
         } elseif (empty($data['order_item_id'])) {
             debug(0, c::issue(vars(), 'Missing order item IDs.'));
             return; // Not possible; missing `order_item_id` index.
@@ -168,5 +171,26 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
                 '_product_permissions'
             ), 'Updating custom order item meta.');
         } // unset($_item_id, $_product_id, $_WC_Product, $_product_type, $_product_permissions); // Housekeeping.
+
+        $old_status = $WC_Order->get_status();
+        $new_status = (string) ($_POST['order_status'] ?? '');
+        $new_status = mb_stripos($new_status, 'wc-') === 0 ? substr($new_status, 3) : $new_status;
+        $new_status = $new_status ?: $old_status; // i.e., There is no change in the latter.
+
+        if ($new_status === $old_status) { // Special case; i.e., the status is not changing?
+            // In this case fake a status change so permissions are updated accordingly.
+
+            switch (get_post_type($order_id)) { // Either an order or subscription.
+
+                case $this->subscription_post_type:
+                    $subscription_id = $order_id; // Subscription.
+                    a::psuedoSubscriptionStatusChanged($subscription_id, $old_status, $new_status);
+                    break; // Fake status change so permissions are updated accordingly.
+
+                default: // Any other order type.
+                    a::psuedoOrderStatusChanged($order_id, $old_status, $new_status);
+                    break; // Fake status change so permissions are updated accordingly.
+            }
+        }
     }
 }

@@ -101,7 +101,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
                 }
                 return null; // Not possible.
 
-            default: // Or any other order type.
+            default: // Any other order type.
                 if (($WC_Order = wc_get_order($order_id))) {
                     return $WC_Order;
                 }
@@ -219,7 +219,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
                 ];
                 break; // Stop here.
 
-            default: // Or any other order type.
+            default: // Any other order type.
                 $order_id = (int) $WC_Order->id;
                 $where    = [
                     'order_id'   => $order_id,

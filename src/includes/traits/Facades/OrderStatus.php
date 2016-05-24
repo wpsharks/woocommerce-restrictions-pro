@@ -1,6 +1,6 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Base;
+namespace WebSharks\WpSharks\s2MemberX\Pro\Traits\Facades;
 
 use WebSharks\WpSharks\s2MemberX\Pro\Classes;
 use WebSharks\WpSharks\s2MemberX\Pro\Interfaces;
@@ -22,28 +22,21 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 use function assert as debug;
 use function get_defined_vars as vars;
 
-/**
- * Pseudo-static facades.
- *
- * @since 160227 Initial release.
- */
-abstract class Facades
+trait OrderStatus
 {
-    use Traits\Facades\Coupon;
-    use Traits\Facades\Order;
-    use Traits\Facades\OrderItem;
-    use Traits\Facades\OrderStatus;
-    use Traits\Facades\Product;
-    use Traits\Facades\ProductPermission;
-    use Traits\Facades\Restriction;
-    use Traits\Facades\RestrictionCaps;
-    use Traits\Facades\Restrictions;
-    use Traits\Facades\SecurityChecks;
-    use Traits\Facades\SecurityGate;
-    use Traits\Facades\Subscription;
-    use Traits\Facades\Systematics;
-    use Traits\Facades\UserPermission;
-    use Traits\Facades\UserPermissions;
-    use Traits\Facades\UserPermissionShortcodes;
-    use Traits\Facades\Webhook;
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function psuedoOrderStatusChanged(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->OrderStatus->psuedoOrderStatusChanged(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function psuedoSubscriptionStatusChanged(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->OrderStatus->psuedoSubscriptionStatusChanged(...$args);
+    }
 }

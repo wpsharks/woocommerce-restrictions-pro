@@ -268,7 +268,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
                 $where          = compact('restriction_id');
                 break;
 
-            default: // Or any other order type.
+            default: // Any other order type.
                 $order_id = $post_id; // Order of some type.
                 $where    = compact('order_id');
                 break;
@@ -325,7 +325,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
                 $where          = compact('restriction_id');
                 break;
 
-            default: // Or any other order type.
+            default: // Any other order type.
                 $order_id = $post_id; // Order of some type.
                 $where    = compact('order_id');
                 break;
@@ -382,7 +382,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
                 $where          = compact('restriction_id');
                 break;
 
-            default: // Or any other order type.
+            default: // Any other order type.
                 $order_id = $post_id; // Order of some type.
                 $where    = compact('order_id');
                 break;

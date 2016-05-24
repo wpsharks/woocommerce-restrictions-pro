@@ -39,6 +39,15 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     protected $subscription_product_types;
 
     /**
+     * Product meta prefix.
+     *
+     * @since 16xxxx Order status changes.
+     *
+     * @param string Product meta prefix.
+     */
+    protected $product_meta_prefix;
+
+    /**
      * User permission status map.
      *
      * @since 16xxxx Order status changes.
@@ -48,13 +57,40 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
     protected $user_permission_status_map;
 
     /**
-     * Product meta prefix.
+     * Order grant statuses.
      *
      * @since 16xxxx Order status changes.
      *
-     * @param string Product meta prefix.
+     * @param array Order grant statuses.
      */
-    protected $product_meta_prefix;
+    protected $order_grant_statuses;
+
+    /**
+     * Order revoke statuses.
+     *
+     * @since 16xxxx Order status changes.
+     *
+     * @param array Order revoke statuses.
+     */
+    protected $order_revoke_statuses;
+
+    /**
+     * Subscription grant statuses.
+     *
+     * @since 16xxxx Order status changes.
+     *
+     * @param array Subscription grant statuses.
+     */
+    protected $subscription_grant_statuses;
+
+    /**
+     * Subscription revoke statuses.
+     *
+     * @since 16xxxx Order status changes.
+     *
+     * @param array Subscription revoke statuses.
+     */
+    protected $subscription_revoke_statuses;
 
     /**
      * Class constructor.
@@ -111,37 +147,97 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         $this->subscription_product_types = s::applyFilters('order_status_subscription_product_types', $this->subscription_product_types);
         $this->user_permission_status_map = s::applyFilters('order_to_user_permission_status_map', $this->user_permission_status_map);
         $this->product_meta_prefix        = a::productMetaPrefix(); // Plugin-specific meta prefix.
+        /*
+         * Order statuses explained in greater detail below.
+         * See also: `array_keys(wc_get_order_statuses())`.
+         *  ↑ Array keys include the `wc-` prefix.
+         *
+         * - `draft` When an order is still in the draft phase.
+         *
+         * - `pending` Order received (unpaid). e.g., abandoned orders have this status also.
+         *
+         * - `processing` Payment received & stock reduced. Awaiting review/fulfillment.
+         *
+         * - `on-hold` Stock is reduced. Awaiting payment.
+         *
+         * - `completed` Order fulfilled and complete.
+         *
+         * - `cancelled` Cancelled by an admin or the customer.
+         *
+         * - `refunded` Refunded by an admin or via a payment gateway notification.
+         *
+         * - `failed` Payment failed or was declined (unpaid). Note that this status may not show
+         *            immediately and instead show as pending until verified (e.g., PayPal).
+         */
+        $always_grant_immediate_access = s::getOption('orders_always_grant_immediate_access');
+        $this->order_grant_statuses    = $always_grant_immediate_access ? ['processing', 'completed'] : ['completed'];
+        $this->order_revoke_statuses   = ['draft', 'pending', 'processing', 'on-hold', 'cancelled', 'refunded', 'failed'];
+
+        $this->order_grant_statuses  = s::applyFilters('grant_user_persmissions_on_order_statuses', $this->order_grant_statuses);
+        $this->order_revoke_statuses = s::applyFilters('revoke_user_persmissions_on_order_statuses', $this->order_revoke_statuses);
+        $this->order_revoke_statuses = array_values(array_diff($this->order_revoke_statuses, $this->order_grant_statuses));
+        /*
+         * Subscription statuses explained in greater detail below.
+         * See also: `array_keys(wcs_get_subscription_statuses())`.
+         *  ↑ Array keys include the `wc-` prefix.
+         *
+         * - `draft` When a subscription is still in the draft phase.
+         *
+         * - `pending` When an order is received (unpaid); the subscription is created as pending.
+         *             In other words, a `pending` subscription is the same as a `pending` order.
+         *
+         * - `active` The subscription becomes `active`; i.e., like a `complete` order status.
+         *            Also occurs during a renewal; i.e., `on-hold` to `active` when payment goes through.
+         *
+         * - `on-hold` Also occurs before a renewal is processed, which could fail.
+         *             If a renewal fails the `on-hold` status remains and it does not become `active` again.
+         *             This is also another word for `suspend`; i.e., suspending a subscription puts it `on-hold`.
+         *
+         * - `cancelled` Cancelled by an admin or user in one way or another.
+         *               e.g., when a subscription reaches the end of a trial and there is no payment.
+         *               - A cancellation event may also occur after a `pending-cancel` status.
+         *                 e.g., when a cancellation occurs but prepaid time still remains.
+         *               - Also occurs before a subscription is trashed/deleted.
+         *               - Also occurs when a parent order is trashed/deleted.
+         *               - Also occurs on max failed payments.
+         *
+         *               When a subscription is trashed it is `cancelled`, and it is currently
+         *               impossible to restore the subscription in any meaningful/effective way.
+         *               Once trashed, it can be restored, but it remains in a `cancelled` state.
+         *               Attempting to change the status manually is also impossible for some reason.
+         *               ~ i.e., Only the `cancelled` option is made available in the UI.
+         *
+         *               Another strange behavior is that trashing a parent order will somehow
+         *               break the connection between the parent order and the child subscription.
+         *               Once a parent order is trashed, the connection is broken and cannot be restored.
+         *
+         * - `switched` Deprecated in 2.0. This doesn't seem to be used any longer.
+         *              Instead use hook: `woocommerce_subscriptions_switched_item`.
+         *              ~ See {@link onSubscriptionItemSwitched()} below.
+         *
+         * - `expired` This is a lot like `cancelled`, except this occurs whenever a subscription
+         *             reaches a fixed end date; e.g., valid from A until B (expires on B date).
+         *
+         * - `pending-cancel` Cancelled by an admin or user in one way or another.
+         *                    e.g., when a cancellation occurs but prepaid time still remains.
+         *                    See official docs here: <http://jas.xyz/1X0r6oC>
+         */
+        $this->subscription_grant_statuses  = ['active']; // No processing status for subscriptions.
+        $this->subscription_revoke_statuses = ['draft', 'pending', 'on-hold', 'cancelled', 'expired'];
+
+        $this->subscription_grant_statuses  = s::applyFilters('grant_user_persmissions_on_subscription_statuses', $this->subscription_grant_statuses);
+        $this->subscription_revoke_statuses = s::applyFilters('revoke_user_persmissions_on_subscription_statuses', $this->subscription_revoke_statuses);
+        $this->subscription_revoke_statuses = array_values(array_diff($this->subscription_revoke_statuses, $this->subscription_grant_statuses));
     }
 
     /**
-     * Order status change.
+     * Order status changed.
      *
      * @since 16xxxx Order status changes.
      *
      * @param string|int $order_id   Order ID.
      * @param string     $old_status Old status prior to change.
      * @param string     $new_status The new status after this change.
-     *
-     * Order statuses explained in greater detail.
-     * See also: `array_keys(wc_get_order_statuses())`.
-     *  ↑ Array keys include the `wc-` prefix.
-     *
-     * - `draft` When an order is still in the draft phase.
-     *
-     * - `pending` Order received (unpaid). e.g., abandoned orders have this status also.
-     *
-     * - `processing` Payment received & stock reduced. Awaiting review/fulfillment.
-     *
-     * - `on-hold` Stock is reduced. Awaiting payment.
-     *
-     * - `completed` Order fulfilled and complete.
-     *
-     * - `cancelled` Cancelled by an admin or the customer.
-     *
-     * - `refunded` Refunded by an admin or via a payment gateway notification.
-     *
-     * - `failed` Payment failed or was declined (unpaid). Note that this status may not show
-     *            immediately and instead show as pending until verified (e.g., PayPal).
      */
     public function onOrderStatusChanged($order_id, string $old_status, string $new_status)
     {
@@ -151,6 +247,40 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             'old_status'
         ), 'Monitoring order status changes.');
 
+        return $this->psuedoOrderStatusChanged($order_id, $old_status, $new_status);
+    }
+
+    /**
+     * Subscription status changed.
+     *
+     * @since 16xxxx Order status changes.
+     *
+     * @param string|int $subscription_id Subscription ID.
+     * @param string     $old_status      Old status prior to change.
+     * @param string     $new_status      The new status after this change.
+     */
+    public function onSubscriptionStatusChanged($subscription_id, string $old_status, string $new_status)
+    {
+        c::review(compact(// Log for review.
+            'subscription_id',
+            'new_status',
+            'old_status'
+        ), 'Monitoring subscription status changes.');
+
+        return $this->psuedoSubscriptionStatusChanged($order_id, $old_status, $new_status);
+    }
+
+    /**
+     * Psuedo order status changed.
+     *
+     * @since 16xxxx Order status changes.
+     *
+     * @param string|int $order_id   Order ID.
+     * @param string     $old_status Old status prior to change.
+     * @param string     $new_status The new status after this change.
+     */
+    public function psuedoOrderStatusChanged($order_id, string $old_status, string $new_status)
+    {
         if (!($order_id = (int) $order_id)) {
             debug(0, c::issue(vars(), 'Empty order ID.'));
             return; // Not possible.
@@ -164,83 +294,24 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             debug(0, c::issue(vars(), 'Unable to acquire order.'));
             return; // Not possible.
         }
-        $always_grant_immediate_access = s::getOption('orders_always_grant_immediate_access');
-        $grant_statuses                = $always_grant_immediate_access ? ['processing', 'completed'] : ['completed'];
-        $revoke_statuses               = ['draft', 'pending', 'processing', 'on-hold', 'cancelled', 'refunded', 'failed'];
-
-        $grant_statuses  = s::applyFilters('grant_user_persmissions_on_order_statuses', $grant_statuses, $WC_Order);
-        $revoke_statuses = s::applyFilters('revoke_user_persmissions_on_order_statuses', $revoke_statuses, $WC_Order);
-        $revoke_statuses = array_values(array_diff($revoke_statuses, $grant_statuses)); // Mutually exclusive.
-
-        if (in_array($new_status, $grant_statuses, true)) {
+        if (in_array($new_status, $this->order_grant_statuses, true)) {
             $this->maybeGrantOrderPermissions($WC_Order, $old_status, $new_status);
-        } elseif (in_array($new_status, $revoke_statuses, true)) {
+        } elseif (in_array($new_status, $this->order_revoke_statuses, true)) {
             $this->maybeRevokeOrderPermissions($WC_Order, $old_status, $new_status);
         }
     }
 
     /**
-     * Subscription status change.
+     * Psuedo subscription status changed.
      *
      * @since 16xxxx Order status changes.
      *
      * @param string|int $subscription_id Subscription ID.
      * @param string     $old_status      Old status prior to change.
      * @param string     $new_status      The new status after this change.
-     *
-     * Subscription statuses explained in greater detail.
-     * See also: `array_keys(wcs_get_subscription_statuses())`.
-     *  ↑ Array keys include the `wc-` prefix.
-     *
-     * - `draft` When a subscription is still in the draft phase.
-     *
-     * - `pending` When an order is received (unpaid); the subscription is created as pending.
-     *             In other words, a `pending` subscription is the same as a `pending` order.
-     *
-     * - `active` The subscription becomes `active`; i.e., like a `complete` order status.
-     *            Also occurs during a renewal; i.e., `on-hold` to `active` when payment goes through.
-     *
-     * - `on-hold` Also occurs before a renewal is processed, which could fail.
-     *             If a renewal fails the `on-hold` status remains and it does not become `active` again.
-     *             This is also another word for `suspend`; i.e., suspending a subscription puts it `on-hold`.
-     *
-     * - `cancelled` Cancelled by an admin or user in one way or another.
-     *               e.g., when a subscription reaches the end of a trial and there is no payment.
-     *               - A cancellation event may also occur after a `pending-cancel` status.
-     *                 e.g., when a cancellation occurs but prepaid time still remains.
-     *               - Also occurs before a subscription is trashed/deleted.
-     *               - Also occurs when a parent order is trashed/deleted.
-     *               - Also occurs on max failed payments.
-     *
-     *               When a subscription is trashed it is `cancelled`, and it is currently
-     *               impossible to restore the subscription in any meaningful/effective way.
-     *               Once trashed, it can be restored, but it remains in a `cancelled` state.
-     *               Attempting to change the status manually is also impossible for some reason.
-     *               ~ i.e., Only the `cancelled` option is made available in the UI.
-     *
-     *               Another strange behavior is that trashing a parent order will somehow
-     *               break the connection between the parent order and the child subscription.
-     *               Once a parent order is trashed, the connection is broken and cannot be restored.
-     *
-     * - `switched` Deprecated in 2.0. This doesn't seem to be used any longer.
-     *              Instead use hook: `woocommerce_subscriptions_switched_item`.
-     *              ~ See {@link onSubscriptionItemSwitched()} below.
-     *
-     * - `expired` This is a lot like `cancelled`, except this occurs whenever a subscription
-     *             reaches a fixed end date; e.g., valid from A until B (expires on B date).
-     *
-     * - `pending-cancel` Cancelled by an admin or user in one way or another.
-     *                    e.g., when a cancellation occurs but prepaid time still remains.
-     *                    See official docs here: <http://jas.xyz/1X0r6oC>
      */
-    public function onSubscriptionStatusChanged($subscription_id, string $old_status, string $new_status)
+    public function psuedoSubscriptionStatusChanged($subscription_id, string $old_status, string $new_status)
     {
-        c::review(compact(// Log for review.
-            'subscription_id',
-            'new_status',
-            'old_status'
-        ), 'Monitoring subscription status changes.');
-
         if (!($subscription_id = (int) $subscription_id)) {
             debug(0, c::issue(vars(), 'Empty subscription ID.'));
             return; // Not possible.
@@ -254,16 +325,9 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
             debug(0, c::issue(vars(), 'Unable to acquire subscription.'));
             return; // Not possible.
         }
-        $grant_statuses  = ['active']; // No processing status for subscriptions.
-        $revoke_statuses = ['draft', 'pending', 'on-hold', 'cancelled', 'expired'];
-
-        $grant_statuses  = s::applyFilters('grant_user_persmissions_on_subscription_statuses', $grant_statuses, $WC_Subscription);
-        $revoke_statuses = s::applyFilters('revoke_user_persmissions_on_subscription_statuses', $revoke_statuses, $WC_Subscription);
-        $revoke_statuses = array_values(array_diff($revoke_statuses, $grant_statuses)); // Mutually exclusive.
-
-        if (in_array($new_status, $grant_statuses, true)) {
+        if (in_array($new_status, $this->subscription_grant_statuses, true)) {
             $this->maybeGrantSubscriptionPermissions($WC_Subscription, $old_status, $new_status);
-        } elseif (in_array($new_status, $revoke_statuses, true)) {
+        } elseif (in_array($new_status, $this->subscription_revoke_statuses, true)) {
             $this->maybeRevokeSubscriptionPermissions($WC_Subscription, $old_status, $new_status);
         }
     }
