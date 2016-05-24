@@ -67,11 +67,11 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Order item utilities.
      *
-     * @param string|int $item Order item ID.
+     * @param string|int $item_id Order item ID.
      *
      * @return \WC_Abstract_Order|null Order on success.
      */
-    public function getOrderByItemId($item_id)
+    public function orderByItemId($item_id)
     {
         if (!($item_id = (int) $item_id)) {
             return null; // Not possible.
@@ -87,6 +87,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
         if (!($order_id = (int) $WpDb->get_var($sql))) {
             return null; // Not possible; can't get order ID.
         } elseif (!($post_type = get_post_type($order_id))) {
+            debug(0, c::issue(vars(), 'Unable to acquire order post type.'));
             return null; // Not possible; can't get post type.
         } elseif (!in_array($post_type, $this->all_order_post_types, true)) {
             return null; // Not applicable; not an order post type.
@@ -113,16 +114,16 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
      *
      * @since 16xxxx Order item utilities.
      *
-     * @param string|int              $item     Order item ID.
+     * @param string|int              $item_id  Order item ID.
      * @param \WC_Abstract_Order|null $WC_Order The order if already known.
      *
      * @return array An order item, else empty array.
      */
-    public function getOrderItemById($item_id, \WC_Abstract_Order $WC_Order = null): array
+    public function orderItemById($item_id, \WC_Abstract_Order $WC_Order = null): array
     {
         if (!($item_id = (int) $item_id)) {
             return []; // Not possible.
-        } elseif (!($WC_Order = $WC_Order ?: $this->getOrderByItemId($item_id))) {
+        } elseif (!($WC_Order = $WC_Order ?: $this->orderByItemId($item_id))) {
             return []; // Not possible.
         }
         foreach ($WC_Order->get_items() as $_item_id => $_item) {
@@ -135,20 +136,37 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
     }
 
     /**
+     * Get product ID from item.
+     *
+     * @since 16xxxx Order item utilities.
+     *
+     * @param array $item Order item.
+     *
+     * @return int Product ID from item.
+     */
+    public function productIdFromItem(array $item): int
+    {
+        if (!empty($item['variation_id'])) {
+            return (int) $item['variation_id'];
+        }
+        return (int) ($item['product_id'] ?? 0);
+    }
+
+    /**
      * Get product by order item ID.
      *
      * @since 16xxxx Order item utilities.
      *
-     * @param string|int              $item     Order item ID.
+     * @param string|int              $item_id  Order item ID.
      * @param \WC_Abstract_Order|null $WC_Order The order if already known.
      *
      * @return \WC_Product|null A product object instance, else `null`.
      */
-    public function getProductByOrderItemId($item_id, \WC_Abstract_Order $WC_Order = null)
+    public function productByOrderItemId($item_id, \WC_Abstract_Order $WC_Order = null)
     {
         if (!($item_id = (int) $item_id)) {
             return null; // Not possible.
-        } elseif (!($WC_Order = $WC_Order ?: $this->getOrderByItemId($item_id))) {
+        } elseif (!($WC_Order = $WC_Order ?: $this->orderByItemId($item_id))) {
             return null; // Not possible.
         }
         foreach ($WC_Order->get_items() as $_item_id => $_item) {
@@ -173,12 +191,16 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
     public function onBeforeDeleteOrderItem($item_id)
     {
         if (!($item_id = (int) $item_id)) {
+            debug(0, c::issue(vars(), 'Empty item ID.'));
             return; // Not possible; empty item ID.
-        } elseif (!($product_id = (int) wc_get_order_item_meta($item_id, '_product_id', true))) {
-            return; // Not applicable; not associated with a product ID.
-        } elseif (!($WC_Order = $this->getOrderByItemId($item_id))) {
+        } elseif (!($WC_Order = $this->orderByItemId($item_id))) {
             debug(0, c::issue(vars(), 'Unable to acquire order.'));
             return; // Not possible; unable to acquire order.
+        } elseif (!($item = $this->orderItemById($item_id, $WC_Order))) {
+            debug(0, c::issue(vars(), 'Unable to acquire item.'));
+            return; // Not possible; unable to acquire order item.
+        } elseif (!($product_id = $this->productIdFromItem($item))) {
+            return; // Not applicable; not associated with a product ID.
         } elseif (!($post_type = $WC_Order->post->post_type)) {
             debug(0, c::issue(vars(), 'Unable to acquire order post type.'));
             return; // Not possible; unable to acquire order post type.

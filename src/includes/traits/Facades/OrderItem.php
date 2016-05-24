@@ -27,24 +27,32 @@ trait OrderItem
     /**
      * @since 16xxxx Initial release.
      */
-    public static function getOrderByItemId(...$args)
+    public static function orderByItemId(...$args)
     {
-        return $GLOBALS[static::class]->Utils->OrderItem->getOrderByItemId(...$args);
+        return $GLOBALS[static::class]->Utils->OrderItem->orderByItemId(...$args);
     }
 
     /**
      * @since 16xxxx Initial release.
      */
-    public static function getOrderItemById(...$args)
+    public static function orderItemById(...$args)
     {
-        return $GLOBALS[static::class]->Utils->OrderItem->getOrderItemById(...$args);
+        return $GLOBALS[static::class]->Utils->OrderItem->orderItemById(...$args);
     }
 
     /**
      * @since 16xxxx Initial release.
      */
-    public static function getProductByOrderItemId(...$args)
+    public static function productIdFromItem(...$args)
     {
-        return $GLOBALS[static::class]->Utils->OrderItem->getProductByOrderItemId(...$args);
+        return $GLOBALS[static::class]->Utils->OrderItem->getProductIdFromItem(...$args);
+    }
+
+    /**
+     * @since 16xxxx Initial release.
+     */
+    public static function productByOrderItemId(...$args)
+    {
+        return $GLOBALS[static::class]->Utils->OrderItem->productByOrderItemId(...$args);
     }
 }

@@ -77,12 +77,15 @@ class OrderMeta extends SCoreClasses\SCore\Base\Core
     public function onPostMetaUpdate($meta_id, $post_id, $meta_key, $meta_value)
     {
         if (!($meta_id = (int) $meta_id)) {
+            debug(0, c::issue(vars(), 'Empty meta ID.'));
             return; // Not possible.
         } elseif (!($post_id = (int) $post_id)) {
+            debug(0, c::issue(vars(), 'Empty post ID.'));
             return; // Not possible.
         } elseif ($meta_key !== '_customer_user') {
             return; // Only key we look at, for now.
         } elseif (!($post_type = get_post_type($post_id))) {
+            debug(0, c::issue(vars(), 'Unable to acquire post type.'));
             return; // Not possible; no post type.
         } elseif (!in_array($post_type, $this->all_order_post_types, true)) {
             return; // Not applicable; not an order post type.

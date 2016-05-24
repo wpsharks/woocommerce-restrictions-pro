@@ -91,15 +91,11 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
     public function onAddOrderItemMeta($item_id)
     {
         if (!($item_id = (int) $item_id)) {
+            debug(0, c::issue(vars(), 'Empty item ID.'));
             return; // Not possible; empty item ID.
-        } elseif (!(int) wc_get_order_item_meta($item_id, '_product_id', true)) {
-            return; // Not applicable; not associated w/ a product ID.
-            // Important: This product ID  may point to a `variable` product.
-            // Whereas `a::getProductByOrderItemId()` returns the underlying variation.
-        } elseif (!($WC_Product = a::getProductByOrderItemId($item_id)) || !$WC_Product->exists()) {
-            debug(0, c::issue(vars(), 'Unable to acquire product.'));
-            return; // Not possible; unable to acquire order.
-        } elseif (!($product_id = (int) $WC_Product->id)) { // Possible `variation`.
+        } elseif (!($WC_Product = a::productByOrderItemId($item_id)) || !$WC_Product->exists()) {
+            return; // Not applicable; not associated w/ a product.
+        } elseif (!($product_id = (int) $WC_Product->id)) {
             debug(0, c::issue(vars(), 'Unable to acquire product ID.'));
             return; // Not possible; unable to acquire product ID.
         }
@@ -135,6 +131,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
     public function onSavedOrderItems($order_id, array $data)
     {
         if (!($order_id = (int) $order_id)) {
+            debug(0, c::issue(vars(), 'Empty order ID.'));
             return; // Not possible.
         } elseif (empty($data['order_item_id'])) {
             debug(0, c::issue(vars(), 'Missing order item IDs.'));
@@ -143,19 +140,15 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             debug(0, c::issue(vars(), 'Unexpected order item IDs.'));
             return; // Not possible.
         }
-        foreach ((array) $data['order_item_id'] as $_item_id) { // Force an array value.
+        foreach ((array) $data['order_item_id'] as $_item_id) {
             if (!($_item_id = (int) $_item_id)) {
+                debug(0, c::issue(vars(), 'Empty item ID.'));
                 continue; // Not possible; empty item ID.
-            } elseif (!(int) wc_get_order_item_meta($_item_id, '_product_id', true)) {
-                return; // Not applicable; not associated w/ a product ID.
-                // Important: This product ID  may point to a `variable` product.
-                // Whereas `a::getProductByOrderItemId()` returns the underlying variation.
-            } elseif (!($_WC_Product = a::getProductByOrderItemId($_item_id)) || !$_WC_Product->exists()) {
-                debug(0, c::issue(vars(), 'Unable to acquire product.'));
-                return; // Not possible; unable to acquire order.
-            } elseif (!($_product_id = (int) $_WC_Product->id)) { // Possible `variation`.
+            } elseif (!($_WC_Product = a::productByOrderItemId($_item_id)) || !$_WC_Product->exists()) {
+                continue; // Not applicable; not associated w/ a product.
+            } elseif (!($_product_id = (int) $_WC_Product->id)) {
                 debug(0, c::issue(vars(), 'Unable to acquire product ID.'));
-                return; // Not possible; unable to acquire product ID.
+                continue; // Not possible; unable to acquire product ID.
             }
             $_product_type        = $_WC_Product->get_type();
             $_product_permissions = a::getProductMeta($_product_id, 'permissions');

@@ -51,17 +51,17 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
 
         $this->statuses = s::applyFilters('user_permission_statuses', [
             '--- '.__('Enabled', 's2member-x').' ---' => '---',
-            'enabled'                   => __('Enabled', 's2member-x'),
+            'enabled' => __('Enabled', 's2member-x'),
 
             '--- '.__('Disabled', 's2member-x').' ---' => '---',
-            'pending'                    => __('Pending', 's2member-x'),
-            'processing'                 => __('Processing', 's2member-x'),
-            'on-hold'                    => __('On-Hold', 's2member-x'),
-            'expired'                    => __('Expired', 's2member-x'),
-            'refunded'                   => __('Refunded', 's2member-x'),
-            'cancelled'                  => __('Cancelled', 's2member-x'),
-            'failed'                     => __('Payment(s) Failed', 's2member-x'),
-            'switched'                   => __('Subscription Switched', 's2member-x'),
+            'pending'    => __('Pending', 's2member-x'),
+            'processing' => __('Processing', 's2member-x'),
+            'on-hold'    => __('On-Hold', 's2member-x'),
+            'expired'    => __('Expired', 's2member-x'),
+            'refunded'   => __('Refunded', 's2member-x'),
+            'cancelled'  => __('Cancelled', 's2member-x'),
+            'failed'     => __('Payment(s) Failed', 's2member-x'),
+            'switched'   => __('Subscription Switched', 's2member-x'),
 
             // This one does not apply. `trashed` has it's own flag.
             // Instead of a `trashed` status, we have the `is_trashed` property.
@@ -170,7 +170,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
                 $_UserPermission->delete();
                 ++$total_deletions;
             }
-        } // unset($_UserPermission); // Housekeeping.
+        } // unset($_UserPermission);
 
         return $total_deletions;
     }
