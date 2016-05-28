@@ -276,23 +276,23 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         }
         $messages[$this->post_type] = [
             0 => '', // Not applicable.
-            1 => __('Restriction updated.'),
-            2 => __('Custom field updated.'),
-            3 => __('Custom field deleted.'),
-            4 => __('Restriction updated.'),
+            1 => __('Restriction updated.', 's2member-x'),
+            2 => __('Custom field updated.', 's2member-x'),
+            3 => __('Custom field deleted.', 's2member-x'),
+            4 => __('Restriction updated.', 's2member-x'),
             5 => isset($_GET['revision'])
                 ? sprintf(
-                    __('Restriction restored to revision from %s.'),
+                    __('Restriction restored to revision from %s.', 's2member-x'),
                     wp_post_revision_title((int) $_GET['revision'], false)
                 ) : null,
-            6 => __('Restriction published.'),
-            7 => __('Restriction saved.'),
-            8 => __('Restriction submitted.'),
+            6 => __('Restriction published.', 's2member-x'),
+            7 => __('Restriction saved.', 's2member-x'),
+            8 => __('Restriction submitted.', 's2member-x'),
             9 => sprintf(
-                __('Restriction scheduled for: <strong>%1$s</strong>.'),
-                date_i18n(__('M j, Y @ G:i'), strtotime($post->post_date))
+                __('Restriction scheduled for: <strong>%1$s</strong>.', 's2member-x'),
+                date_i18n(__('M j, Y @ G:i', 's2member-x'), strtotime($post->post_date))
             ),
-            10 => __('Restriction draft updated.'),
+            10 => __('Restriction draft updated.', 's2member-x'),
         ];
         return $messages;
     }

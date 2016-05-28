@@ -1,4 +1,4 @@
-## ${[project_version]}
+## 160528.40012
 
 - Updating to latest WP Sharks core.
 - Adding support for WC logging and WC log files.
