@@ -261,6 +261,43 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     }
 
     /**
+     * Post updated message translations.
+     *
+     * @since 160524 Restrictions.
+     *
+     * @param array $messages Message translations.
+     *
+     * @return array Message translations.
+     */
+    public function onPostUpdatedMessages(array $messages): array
+    {
+        if (!($post = get_post())) {
+            return $messages; // Not possible.
+        }
+        $messages[$this->post_type] = [
+            0 => '', // Not applicable.
+            1 => __('Restriction updated.'),
+            2 => __('Custom field updated.'),
+            3 => __('Custom field deleted.'),
+            4 => __('Restriction updated.'),
+            5 => isset($_GET['revision'])
+                ? sprintf(
+                    __('Restriction restored to revision from %s.'),
+                    wp_post_revision_title((int) $_GET['revision'], false)
+                ) : null,
+            6 => __('Restriction published.'),
+            7 => __('Restriction saved.'),
+            8 => __('Restriction submitted.'),
+            9 => sprintf(
+                __('Restriction scheduled for: <strong>%1$s</strong>.'),
+                date_i18n(__('M j, Y @ G:i'), strtotime($post->post_date))
+            ),
+            10 => __('Restriction draft updated.'),
+        ];
+        return $messages;
+    }
+
+    /**
      * Current user can edit restrictions?
      *
      * @since 160524 Restrictions.
@@ -409,9 +446,10 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                     'titlePlaceholder' => $this->screen_is_mobile
                         ? __('Descriptive summary here...', 's2member-x')
                         : __('Enter a descriptive summary here...', 's2member-x'),
-                    'slugPlaceholder' => __('Enter a unique identifier...', 's2member-x'),
-                    'suggestedLabel'  => __('Suggested', 's2member-x'),
-                    'optionalLabel'   => __('Optional', 's2member-x'),
+                    'slugPlaceholder'     => __('Enter a unique identifier...', 's2member-x'),
+                    'publishButtonCreate' => __('Create Restriction', 's2member-x'),
+                    'suggestedLabel'      => __('Suggested', 's2member-x'),
+                    'optionalLabel'       => __('Optional', 's2member-x'),
                 ],
             ])
         );

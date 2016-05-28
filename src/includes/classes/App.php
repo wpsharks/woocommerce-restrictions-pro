@@ -51,6 +51,11 @@ class App extends SCoreClasses\App
         $is_main_site = !$is_multisite || is_main_site();
 
         $instance_base = [
+            '©debug' => [
+                '©log_callback' => function (...$args) {
+                    $this->Utils->Debugging->onLogEvent(...$args);
+                },
+            ],
             '©di' => [
                 '©default_rule' => [
                     'new_instances' => [
@@ -180,6 +185,7 @@ class App extends SCoreClasses\App
                 add_action('add_meta_boxes', [$this->Utils->Restriction, 'onAddMetaBoxes']);
                 add_filter('default_hidden_meta_boxes', [$this->Utils->Restriction, 'onDefaultHiddenMetaBoxes'], 10, 2);
                 add_action('save_post_'.$this->Utils->Restriction->post_type, [$this->Utils->Restriction, 'onSaveRestriction']);
+                add_filter('post_updated_messages', [$this->Utils->Restriction, 'onPostUpdatedMessages']);
 
                 add_action('admin_enqueue_scripts', [$this->Utils->Restriction, 'onAdminEnqueueScripts']);
             }
@@ -248,9 +254,10 @@ class App extends SCoreClasses\App
 
             // Moving this to after 'items', so that status changes will reflect new items.
             // Search for `WC_Meta_Box_Order_Items::save` to see the hook priority we need to come after.
-            remove_action('woocommerce_process_shop_order_meta', 'WCS_Meta_Box_Subscription_Data::save', 10, 2);
-            add_action('woocommerce_process_shop_order_meta', 'WCS_Meta_Box_Subscription_Data::save', 11, 2);
-
+            if (has_action('woocommerce_process_shop_order_meta', 'WCS_Meta_Box_Subscription_Data::save')) {
+                remove_action('woocommerce_process_shop_order_meta', 'WCS_Meta_Box_Subscription_Data::save', 10, 2);
+                add_action('woocommerce_process_shop_order_meta', 'WCS_Meta_Box_Subscription_Data::save', 11, 2);
+            }
             # Product-data and other product-related WooCommerce events.
 
             if ($is_admin) { // Admin areas only.

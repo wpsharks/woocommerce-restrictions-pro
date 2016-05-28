@@ -25,5 +25,9 @@
       e.stopImmediatePropagation();
       $($(this).data('toggle')).toggle();
     });
+    // Publish button translation enhancement.
+
+    $('input#publish[type="submit"], input#publish[type="button"]').val(data.i18n.publishButtonCreate);
+    $('button#publish').text(data.i18n.publishButtonCreate);
   });
 })(jQuery);
