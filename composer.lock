@@ -4,12 +4,12 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f354e78b739a134e144625b1a1bae992",
-    "content-hash": "bc2c13577f7628e4ad273e36dfa76c53",
+    "hash": "e408d353bcf874915d702a3a00339531",
+    "content-hash": "e65b7394ba56e43d23e5142148aa5823",
     "packages": [
         {
             "name": "websharks/wp-php-rv",
-            "version": "160524",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-php-rv.git",
@@ -57,16 +57,16 @@
         },
         {
             "name": "websharks/wp-sharks-core-rv",
-            "version": "160524",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-sharks-core-rv.git",
-                "reference": "a5ba2fbbe9ef4aee538b4da04d94966b4a927f22"
+                "reference": "d39a7390c4f496ae80da1af848496e507f40d984"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/a5ba2fbbe9ef4aee538b4da04d94966b4a927f22",
-                "reference": "a5ba2fbbe9ef4aee538b4da04d94966b4a927f22",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/d39a7390c4f496ae80da1af848496e507f40d984",
+                "reference": "d39a7390c4f496ae80da1af848496e507f40d984",
                 "shasum": ""
             },
             "require": {
@@ -101,13 +101,16 @@
                 "wordpress",
                 "wpsharks"
             ],
-            "time": "2016-05-24 15:26:53"
+            "time": "2016-05-31 00:08:40"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "websharks/wp-php-rv": 20,
+        "websharks/wp-sharks-core-rv": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
