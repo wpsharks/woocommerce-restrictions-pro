@@ -64,6 +64,10 @@ class App extends SCoreClasses\App
                     ],
                 ],
             ],
+            '§specs' => [
+                '§in_wp'           => false,
+                '§is_network_wide' => false,
+            ],
             '©brand' => [
                 '©name'         => 's2Member X',
                 '©text_domain'  => 's2member-x',
@@ -130,15 +134,6 @@ class App extends SCoreClasses\App
                         },
                     ],
                 ],
-            ],
-            '§notices' => [
-                '§on_install' => function (array $installion_history) {
-                    return [
-                        'is_transient' => true,
-                        'markup'       => '<p>'.sprintf(__('<strong>%1$s</strong> v%2$s installed successfully.', 's2member-x'), esc_html($this->Config->©brand['©name']), esc_html($this::VERSION)).'<br />'.
-                            sprintf(__('~ Start by protecting some of your content: <a href="%1$s" class="button" style="text-decoration:none;">Create Restriction</a>', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>',
-                    ];
-                },
             ],
         ];
         parent::__construct($instance_base, $instance);

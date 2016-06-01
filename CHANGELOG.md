@@ -1,3 +1,9 @@
+## v${[project_version]}
+
+- Bumping to WPSC minimum: `v160601.61851`.
+- Adding custom installation notice template.
+- Now collecting license key on install via WPSC updater. However, the license key is not functional yet as there is no API that can authenticate it. Coming soon.
+
 ## 160528.40012
 
 - Updating to latest WP Sharks core.
