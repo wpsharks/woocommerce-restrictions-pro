@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-php-rv.git",
-                "reference": "0668c55384afcf192487aeb03e9bc7b56d047dc8"
+                "reference": "261522cbb879b0505455a2dde8eb1d67ca20bbd7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-php-rv/zipball/0668c55384afcf192487aeb03e9bc7b56d047dc8",
-                "reference": "0668c55384afcf192487aeb03e9bc7b56d047dc8",
+                "url": "https://api.github.com/repos/websharks/wp-php-rv/zipball/261522cbb879b0505455a2dde8eb1d67ca20bbd7",
+                "reference": "261522cbb879b0505455a2dde8eb1d67ca20bbd7",
                 "shasum": ""
             },
             "require": {
@@ -53,7 +53,7 @@
                 "websharks",
                 "wordpress"
             ],
-            "time": "2016-05-24 12:35:58"
+            "time": "2016-05-31 03:56:40"
         },
         {
             "name": "websharks/wp-sharks-core-rv",
@@ -61,12 +61,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-sharks-core-rv.git",
-                "reference": "d39a7390c4f496ae80da1af848496e507f40d984"
+                "reference": "312d4f06e0666ce4327719b6219090944ac521bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/d39a7390c4f496ae80da1af848496e507f40d984",
-                "reference": "d39a7390c4f496ae80da1af848496e507f40d984",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/312d4f06e0666ce4327719b6219090944ac521bd",
+                "reference": "312d4f06e0666ce4327719b6219090944ac521bd",
                 "shasum": ""
             },
             "require": {
@@ -101,7 +101,7 @@
                 "wordpress",
                 "wpsharks"
             ],
-            "time": "2016-05-31 00:08:40"
+            "time": "2016-05-31 03:49:24"
         }
     ],
     "packages-dev": [],

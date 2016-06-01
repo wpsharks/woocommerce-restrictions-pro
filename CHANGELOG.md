@@ -1,4 +1,4 @@
-## v${[project_version]}
+## v160531.1395-RC
 
 - Bumping to WPSC minimum: `v160601.61851`.
 - Adding custom installation notice template.
