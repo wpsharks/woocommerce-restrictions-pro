@@ -59,9 +59,9 @@ trait Restriction
     /**
      * @since 160524 Initial release.
      */
-    public static function restrictionAccessResPrefix()
+    public static function restrictionAccessPkgPrefix()
     {
-        return $GLOBALS[static::class]->Utils->Restriction->access_res_prefix;
+        return $GLOBALS[static::class]->Utils->Restriction->access_pkg_prefix;
     }
 
     /**

@@ -57,13 +57,13 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     public $meta_prefix;
 
     /**
-     * Access RES prefix.
+     * Access PKG prefix.
      *
      * @since 160524 Restriction.
      *
-     * @type string Access RES prefix.
+     * @type string Access PKG prefix.
      */
-    public $access_res_prefix;
+    public $access_pkg_prefix;
 
     /**
      * Access CCAP prefix.
@@ -134,7 +134,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         $this->category_taxonomy = $this->App->Config->©brand['©prefix'].'_restriction_category';
         $this->meta_prefix       = '_'.$this->App->Config->©brand['©var'].'_restriction_';
 
-        $this->access_res_prefix  = s::applyFilters('restriction_res_prefix', 'access_res_');
+        $this->access_pkg_prefix  = s::applyFilters('restriction_pkg_prefix', 'access_pkg_');
         $this->access_ccap_prefix = s::applyFilters('restriction_ccap_prefix', 'access_ccap_');
         $this->client_side_prefix = 'fdbmjuxwzjfjtaucytprkbcqfpftudyg'; // JS, CSS, forms, etc.
 
@@ -705,7 +705,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo        '<label for="'.esc_attr($field_id).'">'.__('CCAPs (<a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank">Custom Capabilities</a>) in comma-delimited format:', 's2member-x').'</label>';
         echo        '<input type="text" id="'.esc_attr($field_id).'" name="'.esc_attr($field_name).'" autocomplete="off" spellcheck="false" placeholder="'.__('e.g., members_area, pro_membership, premium_content', 's2member-x').'" value="'.esc_attr(implode(', ', $current_ccaps)).'">';
         echo    '</div>';
-        echo    '<p>'.sprintf(__('<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%1$s<code style="padding:0;">something</code>\')</a>, where <code>something</code> is one of the CCAPs you entered here. You can also test for access to an entire Restriction (a more common use case) via <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%2$s<code style="padding:0;">slug</code>\')</a>, where <code>slug</code> is the unique identifier you assigned to a Restriction—which works with or without CCAPs.', 's2member-x'), esc_html($this->access_ccap_prefix), esc_html($this->access_res_prefix)).'</p>';
+        echo    '<p>'.sprintf(__('<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%1$s<code style="padding:0;">something</code>\')</a>, where <code>something</code> is one of the CCAPs you entered here. You can also test for access to an entire Restriction package (a more common use case) via <a href="https://developer.wordpress.org/reference/functions/current_user_can/" target="_blank" style="text-decoration:none;">current_user_can(\'%2$s<code style="padding:0;">slug</code>\')</a>, where <code>slug</code> is the unique identifier you assigned to a Restriction—and that works with or without CCAPs.', 's2member-x'), esc_html($this->access_ccap_prefix), esc_html($this->access_pkg_prefix)).'</p>';
 
         echo '</div>';
     }

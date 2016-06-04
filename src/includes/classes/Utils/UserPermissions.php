@@ -30,13 +30,13 @@ use function get_defined_vars as vars;
 class UserPermissions extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Access RES prefix.
+     * Access PKG prefix.
      *
      * @since 160524 Security gate.
      *
-     * @type string Access RES prefix.
+     * @type string Access PKG prefix.
      */
-    protected $access_res_prefix;
+    protected $access_pkg_prefix;
 
     /**
      * Access CCAP prefix.
@@ -48,13 +48,13 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     protected $access_ccap_prefix;
 
     /**
-     * Access RES prefix regex.
+     * Access PKG prefix regex.
      *
      * @since 160524 Security gate.
      *
-     * @type string Access RES prefix regex.
+     * @type string Access PKG prefix regex.
      */
-    protected $access_res_prefix_regex;
+    protected $access_pkg_prefix_regex;
 
     /**
      * Access CCAP prefix regex.
@@ -103,15 +103,15 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->access_res_prefix  = a::restrictionAccessResPrefix();
+        $this->access_pkg_prefix  = a::restrictionAccessPkgPrefix();
         $this->access_ccap_prefix = a::restrictionAccessCcapPrefix();
 
-        // This allows us to match `access_res_a_` or a mixture like: `access-res_a`.
+        // This allows us to match `access_pkg_a_` or a mixture like: `access-pkg_a`.
         // WP slugs use `-` dashes by default. This allows site owners to type a prefix either way.
-        // For instance, if you have `pro-membership`, you might prefer to test that with `access-res-pro-membership`.
-        // Even better, change the slug to `pro_membership` and use `access_res_pro_membership` — which is possible in WP.
+        // For instance, if you have `pro-membership`, you might prefer to test that with `access-pkg-pro-membership`.
+        // Even better, change the slug to `pro_membership` and use `access_pkg_pro_membership` — which is possible in WP.
 
-        $this->access_res_prefix_regex  = '/^'.preg_replace('/(?:_|\\\\-)/u', '[_\\-]', c::escRegex($this->access_res_prefix)).'/u';
+        $this->access_pkg_prefix_regex  = '/^'.preg_replace('/(?:_|\\\\-)/u', '[_\\-]', c::escRegex($this->access_pkg_prefix)).'/u';
         $this->access_ccap_prefix_regex = '/^'.preg_replace('/(?:_|\\\\-)/u', '[_\\-]', c::escRegex($this->access_ccap_prefix)).'/u';
 
         // Note: For performance, slug comparisons are caSe-sensitive throughout s2Member X.
@@ -524,9 +524,9 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
             }
         } // unset($_role, $_restriction_ids, $_role_object); // Housekeeping.
 
-        // Check for the special `access_res_` prefix.
-        if (preg_match($this->access_res_prefix_regex, $has_cap)) {
-            $_slug = preg_replace($this->access_res_prefix_regex, '', $has_cap);
+        // Check for the special `access_pkg_` prefix.
+        if (preg_match($this->access_pkg_prefix_regex, $has_cap)) {
+            $_slug = preg_replace($this->access_pkg_prefix_regex, '', $has_cap);
             // Note that a slug in this context can contain almost anything.
             // See: <http://wordpress.stackexchange.com/a/149192/81760>
 

@@ -236,7 +236,7 @@ class Product extends SCoreClasses\SCore\Base\Core
             return; // Not applicable.
         }
         $restriction_titles_by_id = a::restrictionTitlesById();
-        if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType())) {
+        if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType().'s')) {
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
         echo '<div class="'.esc_attr($this->client_side_prefix.'-product-meta options_group '.implode(' ', $this->visibility_classes)).'">';
@@ -244,7 +244,7 @@ class Product extends SCoreClasses\SCore\Base\Core
 
         if (!$restriction_titles_by_id) {
             echo '<div class="notice notice-info inline">';
-            echo    '<p>'.sprintf(__('It\'s not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
+            echo    '<p>'.sprintf(__('It\'s not possible to configure Permissions yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
             echo '</div>';
         } else {
             $current_permissions = $this->getMeta($post->ID, 'permissions');
@@ -273,7 +273,7 @@ class Product extends SCoreClasses\SCore\Base\Core
             return; // Not applicable.
         }
         $restriction_titles_by_id = a::restrictionTitlesById();
-        if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType())) {
+        if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType().'s')) {
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
         echo '<div class="'.esc_attr($this->client_side_prefix.'-product-meta '.implode(' ', $this->variation_visibility_classes)).'" data-variation-key="'.esc_attr($key).'">';
@@ -281,7 +281,7 @@ class Product extends SCoreClasses\SCore\Base\Core
 
         if (!$restriction_titles_by_id) {
             echo '<div class="notice notice-info inline">';
-            echo    '<p>'.sprintf(__('It\'s not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
+            echo    '<p>'.sprintf(__('It\'s not possible to configure Permissions yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
             echo '</div>';
         } else {
             $current_permissions = $this->getMeta($post->ID, 'permissions');

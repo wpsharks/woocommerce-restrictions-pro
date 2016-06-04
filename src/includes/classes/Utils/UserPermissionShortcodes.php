@@ -113,8 +113,8 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
         /*
          * Add conditions from the `expr=""` attribute, if applicable.
          *
-         * - [if expr="current_user_can('access_res_slug1')" /]
-         * - [if expr="current_user_can('access_res_slug1') and current_user_can('access_res_slug2')" /]
+         * - [if expr="current_user_can('access_pkg_slug1')" /]
+         * - [if expr="current_user_can('access_pkg_slug1') and current_user_can('access_pkg_slug2')" /]
          * - [if expr="current_user_can('access_ccap_one') or get_user_option('meta_key') === 'value'" /]
          */
         if ($atts['expr']) {
@@ -153,9 +153,9 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
         /*
          * Add conditions from the `current_user_can=""` attribute, if applicable.
          *
-         * - [if current_user_can="access_res_slug1" /]
-         * - [if current_user_can="access_res_slug1 and access_res_slug2" /]
-         * - [if current_user_can="(access_res_slug1 and access_res_slug2) or (access_ccap_one and access_ccap_two)" /]
+         * - [if current_user_can="access_pkg_slug1" /]
+         * - [if current_user_can="access_pkg_slug1 and access_pkg_slug2" /]
+         * - [if current_user_can="(access_pkg_slug1 and access_pkg_slug2) or (access_ccap_one and access_ccap_two)" /]
          */
         if ($atts['current_user_can']) {
             if (mb_strpos($atts['current_user_can'], "'") !== false) {

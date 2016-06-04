@@ -220,7 +220,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
             return; // Not applicable.
         }
         $restriction_titles_by_id = a::restrictionTitlesById();
-        if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType())) {
+        if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType().'s')) {
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
         echo '<hr />'; // After other fields in the user edit page.

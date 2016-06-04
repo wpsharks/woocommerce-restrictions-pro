@@ -1,3 +1,7 @@
+## $v
+
+- Changing the Restriction access prefix in conditionals from `access_res_` to `access_pkg_` as this more accurately describes what is being tested. The `pkg` portion of this suggests you are testing for access to more than one thing, which is exactly the case; i.e., testing for access to an entire Restriction that may offer access in the form of a package. The `access_pkg_` prefix works better with most of the code samples I have been working with; e.g., `[if current_user_can="access_pkg_pro"]` seems better than the term Restriction in the context of what a customer can do.
+
 ## v160601.62250-RC
 
 - Bumping to WPSC minimum: `v160601.61851`.

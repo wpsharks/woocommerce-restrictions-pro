@@ -18,4 +18,4 @@ s2Member® X is a powerful (free) membership plugin for WooCommerce.
 
 == Description ==
 
-Protect members only content with WooCommerce + s2Member® X. Sell access to Roles, Capabilities, and/or Access Tokens. You can also use the `[s2x_if][/s2x_if]` shortcode for WordPress to build conditionals around portions of your content and provide access only if a customer has paid you for it.
+Protect members only content with WooCommerce + s2Member® X. Sell access to Roles, Capabilities, Posts, Pages, Post Types, and/or any other URI pattern. You can also use the `[if current_user_can=""][/if]` shortcode for WordPress to build conditionals around portions of your content and provide access only if a customer has paid you for it.
