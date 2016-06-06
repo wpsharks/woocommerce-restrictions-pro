@@ -73,11 +73,11 @@ class App extends SCoreClasses\App
                 '©text_domain'  => 's2member-x',
                 '©slug'         => 's2member-x',
                 '©var'          => 's2member_x',
-                '©name'         => 's2Member X',
                 '©acronym'      => 's2x',
                 '©prefix'       => 's2x',
                 'short_acronym' => 's2',
 
+                '§action_base' => '©var',
                 '§domain'      => 'wpsharks.com',
                 '§domain_path' => '/product/s2member-x',
             ],
@@ -169,7 +169,6 @@ class App extends SCoreClasses\App
             # Misc. variables.
 
             $is_admin = is_admin();
-            $is_multisite = is_multisite();
 
             # Restriction-related hooks.
 
