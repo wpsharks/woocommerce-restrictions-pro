@@ -1,4 +1,4 @@
-## $v
+## v160606.80145-RC
 
 - Updating to the latest WPSC.
 
