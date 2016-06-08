@@ -77,9 +77,9 @@ class App extends SCoreClasses\App
                 '©prefix'       => 's2x',
                 'short_acronym' => 's2',
 
-                '§action_base' => '©var',
-                '§domain'      => 'wpsharks.com',
-                '§domain_path' => '/product/s2member-x',
+                '§rest_action_base' => '©var',
+                '§domain'           => 'wpsharks.com',
+                '§domain_path'      => '/product/s2member-x',
             ],
             '§pro_option_keys' => [
                 'if_shortcode_expr_enable',
