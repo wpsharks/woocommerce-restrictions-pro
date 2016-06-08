@@ -1,6 +1,6 @@
 === s2Member X Pro ===
 
-Stable tag: 160606.80279
+Stable tag: 160608.43226
 
 Tested up to: 4.5.2
 Requires at least: 4.5.2
