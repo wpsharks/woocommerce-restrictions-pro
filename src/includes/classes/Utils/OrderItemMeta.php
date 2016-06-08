@@ -93,7 +93,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
         if (!($item_id = (int) $item_id)) {
             debug(0, c::issue(vars(), 'Empty item ID.'));
             return; // Not possible; empty item ID.
-        } elseif (!($WC_Order = a::orderByItemId($item_id))) {
+        } elseif (!($WC_Order = s::wcOrderByItemId($item_id))) {
             debug(0, c::issue(vars(), 'Unable to acquire order.'));
             return; // Not possible; unable to acquire order.
         } elseif (!($order_id = (int) $WC_Order->id)) {
@@ -102,7 +102,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
         } elseif (!($order_type = get_post_type($order_id))) {
             debug(0, c::issue(vars(), 'Unable to acquire order type.'));
             return; // Not possible; unable to acquire order type.
-        } elseif (!($WC_Product = a::productByOrderItemId($item_id, $WC_Order))) {
+        } elseif (!($WC_Product = s::wcProductByOrderItemId($item_id, $WC_Order))) {
             return; // Not applicable; not associated w/ a product.
         } elseif (!($product_id = (int) $WC_Product->get_id())) {
             debug(0, c::issue(vars(), 'Unable to acquire product ID.'));
@@ -161,7 +161,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             if (!($_item_id = (int) $_item_id)) {
                 debug(0, c::issue(vars(), 'Empty item ID.'));
                 continue; // Not possible; empty item ID.
-            } elseif (!($_WC_Product = a::productByOrderItemId($_item_id, $WC_Order))) {
+            } elseif (!($_WC_Product = s::wcProductByOrderItemId($_item_id, $WC_Order))) {
                 continue; // Not applicable; not associated w/ a product.
             } elseif (!($_product_id = (int) $_WC_Product->get_id())) {
                 debug(0, c::issue(vars(), 'Unable to acquire product ID.'));

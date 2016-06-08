@@ -352,7 +352,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         foreach ($WC_Order->get_items() ?: [] as $_item_id => $_item) {
             $_item_id = (int) $_item_id; // Force integer.
 
-            if (!($_product_id = a::productIdFromItem($_item))) {
+            if (!($_product_id = s::wcProductIdFromItem($_item))) {
                 continue; // Not applicable; not associated w/ a product ID.
             } elseif (!($_product_type = $this->itemProductType($_item_id))) {
                 debug(0, c::issue(vars(), 'Missing product type.'));
@@ -433,7 +433,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         foreach ($WC_Subscription->get_items() ?: [] as $_item_id => $_item) {
             $_item_id = (int) $_item_id; // Force integer.
 
-            if (!($_product_id = a::productIdFromItem($_item))) {
+            if (!($_product_id = s::wcProductIdFromItem($_item))) {
                 continue; // Not applicable; not associated w/ a product ID.
             } elseif (!($_product_type = $this->itemProductType($_item_id))) {
                 debug(0, c::issue(vars(), 'Missing product type.'));
@@ -521,8 +521,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         $new_item_id = (int) ($old_item['switched_subscription_new_item_id'] ?? 0);
         $old_item_id = (int) ($new_item['switched_subscription_item_id'] ?? 0);
 
-        $new_product_id = a::productIdFromItem($new_item); // Product or variation ID.
-        $old_product_id = a::productIdFromItem($old_item); // Product or variation ID.
+        $new_product_id = s::wcProductIdFromItem($new_item); // Product or variation ID.
+        $old_product_id = s::wcProductIdFromItem($old_item); // Product or variation ID.
 
         $new_product_type = $new_item_id ? $this->itemProductType($new_item_id) : '';
         $old_product_type = $old_item_id ? $this->itemProductType($old_item_id) : '';
