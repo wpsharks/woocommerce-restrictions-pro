@@ -1,4 +1,4 @@
-## $v
+## v160611.60015
 
 - Moving Order Item utilities to the WPSC.
 - Refactor order item meta hook. Deepening the integration to cover a larger array of WC extensions.
