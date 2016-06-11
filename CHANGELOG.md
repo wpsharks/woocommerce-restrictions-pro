@@ -1,3 +1,9 @@
+## $v
+
+- Moving Order Item utilities to the WPSC.
+- Refactor order item meta hook. Deepening the integration to cover a larger array of WC extensions.
+- Adding support for [WooCommerce Give Products](https://www.woothemes.com/products/woocommerce-give-products/) extension.
+
 ## v160608.43226
 
 - Updating to the latest WPSC.

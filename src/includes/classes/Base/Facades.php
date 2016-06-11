@@ -31,7 +31,6 @@ abstract class Facades
 {
     use Traits\Facades\Coupon;
     use Traits\Facades\Order;
-    use Traits\Facades\OrderItem;
     use Traits\Facades\OrderStatus;
     use Traits\Facades\Product;
     use Traits\Facades\ProductPermission;

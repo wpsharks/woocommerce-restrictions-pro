@@ -86,28 +86,31 @@ class OrderMeta extends SCoreClasses\SCore\Base\Core
             return; // Only key we look at, for now.
         } elseif (!($post_type = get_post_type($post_id))) {
             debug(0, c::issue(vars(), 'Unable to acquire post type.'));
-            return; // Not possible; no post type.
+            return; // Not possible; unable to acquire post type.
         } elseif (!in_array($post_type, $this->all_order_post_types, true)) {
             return; // Not applicable; not an order post type.
         }
+        $order_id   = $post_id; // For clarification in routines below.
+        $order_type = $post_type; // Also for clarification below.
+
         $new_user_id = (int) $meta_value; // New customer ID.
-        $old_user_id = (int) get_post_meta($post_id, '_customer_user', true);
+        $old_user_id = (int) get_post_meta($order_id, '_customer_user', true);
 
         if ($old_user_id && $new_user_id && $old_user_id !== $new_user_id) {
-            switch ($post_type) { // Either an order or subscription.
+            switch ($order_type) { // Either an order or subscription.
 
                 case $this->subscription_post_type:
-                    $subscription_id = $post_id; // Subscription.
+                    $subscription_id = $order_id; // Subscription.
                     a::transferUserPermissions($old_user_id, $new_user_id, ['where' => compact('subscription_id')]);
                     break; // Transfers permissions to new customer when user ID is changed on an order.
 
                 default: // Any other order type.
-                    $order_id = $post_id; // Order of some type.
                     a::transferUserPermissions($old_user_id, $new_user_id, ['where' => compact('order_id')]);
                     break; // Transfers permissions to new customer when user ID is changed on an order.
             }
             c::review(compact(// Log for review.
                 'order_id',
+                'order_type',
                 'subscription_id',
                 'new_user_id',
                 'old_user_id'

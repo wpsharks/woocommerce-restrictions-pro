@@ -36,7 +36,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160608.43226'; //v//
+    const VERSION = '160611.55654'; //v//
 
     /**
      * Constructor.
@@ -240,16 +240,24 @@ class App extends SCoreClasses\App
 
             add_action('woocommerce_before_delete_order_item', [$this->Utils->OrderItem, 'onBeforeDeleteOrderItem']);
 
-            add_action('woocommerce_add_order_item_meta', [$this->Utils->OrderItemMeta, 'onAddOrderItemMeta']);
+            add_action('woocommerce_order_add_product', [$this->Utils->OrderItemMeta, 'onOrderAddProduct'], 10, 4);
             add_action('woocommerce_saved_order_items', [$this->Utils->OrderItemMeta, 'onSavedOrderItems'], 10, 2);
             add_filter('woocommerce_hidden_order_itemmeta', [$this->Utils->OrderItemMeta, 'onHiddenOrderItemMeta']);
+
+            // See: <https://www.woothemes.com/products/woocommerce-give-products/>
+            add_filter('woocommerce_order_given', [$this->Utils->OrderItemMeta, 'onOrderGiven']);
 
             add_action('woocommerce_order_status_changed', [$this->Utils->OrderStatus, 'onOrderStatusChanged'], 1000, 3);
             add_action('woocommerce_subscription_status_changed', [$this->Utils->OrderStatus, 'onSubscriptionStatusChanged'], 1000, 3);
             add_action('woocommerce_subscriptions_switched_item', [$this->Utils->OrderStatus, 'onSubscriptionItemSwitched'], 1000, 3);
 
-            // Moving this to after 'items', so that status changes will reflect new items.
+            // See: <https://www.woothemes.com/products/woocommerce-give-products/>
+            add_filter('woocommerce_order_given', [$this->Utils->OrderStatus, 'onOrderGiven']);
+
+            // ↓ This would seem to be a bug in the WCS package.
+            // We are moving this to after 'items', so that status changes will reflect new items.
             // Search for `WC_Meta_Box_Order_Items::save` to see the hook priority we need to come after.
+            // In short, `WCS_Meta_Box_Subscription_Data::save` handles status and other data, which must come after `items`.
             if (has_action('woocommerce_process_shop_order_meta', 'WCS_Meta_Box_Subscription_Data::save')) {
                 remove_action('woocommerce_process_shop_order_meta', 'WCS_Meta_Box_Subscription_Data::save', 10, 2);
                 add_action('woocommerce_process_shop_order_meta', 'WCS_Meta_Box_Subscription_Data::save', 11, 2);

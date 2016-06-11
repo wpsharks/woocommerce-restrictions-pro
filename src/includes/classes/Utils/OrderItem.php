@@ -69,22 +69,25 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
         } elseif (!($WC_Order = s::wcOrderByItemId($item_id))) {
             debug(0, c::issue(vars(), 'Unable to acquire order.'));
             return; // Not possible; unable to acquire order.
+        } elseif (!($order_id = (int) $WC_Order->id)) {
+            debug(0, c::issue(vars(), 'Unable to acquire order ID.'));
+            return; // Not possible; unable to acquire order ID.
+        } elseif (!($order_type = get_post_type($order_id))) {
+            debug(0, c::issue(vars(), 'Unable to acquire order type.'));
+            return; // Not possible; unable to acquire order type.
         } elseif (!($item = s::wcOrderItemById($item_id, $WC_Order))) {
-            debug(0, c::issue(vars(), 'Unable to acquire item.'));
+            debug(0, c::issue(vars(), 'Unable to acquire order item.'));
             return; // Not possible; unable to acquire order item.
         } elseif (!($product_id = s::wcProductIdFromItem($item))) {
             return; // Not applicable; not associated with a product ID.
-        } elseif (!($post_type = $WC_Order->post->post_type)) {
-            debug(0, c::issue(vars(), 'Unable to acquire order post type.'));
-            return; // Not possible; unable to acquire order post type.
         }
         $WpDb = s::wpDb(); // DB class object instance.
 
-        switch ($post_type) { // Based on post type.
+        switch ($order_type) { // Based on post type.
 
             case $this->subscription_post_type:
-                $WC_Subscription = $WC_Order; // Subscription.
-                $subscription_id = (int) $WC_Order->id;
+                $WC_Subscription = $WC_Order;
+                $subscription_id = $order_id;
                 $where           = [
                     'subscription_id' => $subscription_id,
                     'product_id'      => $product_id,
@@ -93,8 +96,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
                 break; // Stop here.
 
             default: // Any other order type.
-                $order_id = (int) $WC_Order->id;
-                $where    = [
+                $where = [
                     'order_id'   => $order_id,
                     'product_id' => $product_id,
                     'item_id'    => $item_id,
@@ -109,6 +111,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
 
         c::review(compact(// Log for review.
             'order_id',
+            'order_type',
             'subscription_id',
             'product_id',
             'item_id',

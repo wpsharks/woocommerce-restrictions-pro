@@ -80,41 +80,41 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * On add order item meta (during checkout).
+     * On adding product to an order (i.e., an item).
      *
-     * @since 160524 Order item meta utilities.
+     * @since 160611 Order item meta utilities.
      *
-     * @param string|int $item_id Order item ID.
+     * @param string|int  $order_id   Order ID.
+     * @param string|int  $item_id    Order item ID.
+     * @param \WC_Product $WC_Product Product instance.
+     * @param string|int  $quantity   Quantity.
      *
      * @note This works for subscription order items also.
      */
-    public function onAddOrderItemMeta($item_id)
+    public function onOrderAddProduct($order_id, $item_id, \WC_Product $WC_Product, $quantity)
     {
-        if (!($item_id = (int) $item_id)) {
-            debug(0, c::issue(vars(), 'Empty item ID.'));
-            return; // Not possible; empty item ID.
-        } elseif (!($WC_Order = s::wcOrderByItemId($item_id))) {
-            debug(0, c::issue(vars(), 'Unable to acquire order.'));
-            return; // Not possible; unable to acquire order.
-        } elseif (!($order_id = (int) $WC_Order->id)) {
-            debug(0, c::issue(vars(), 'Missing order ID.'));
-            return; // Not possible; missing order ID.
+        if (!($order_id = (int) $order_id)) {
+            debug(0, c::issue(vars(), 'Empty order ID.'));
+            return; // Not possible; empty order ID.
         } elseif (!($order_type = get_post_type($order_id))) {
             debug(0, c::issue(vars(), 'Unable to acquire order type.'));
             return; // Not possible; unable to acquire order type.
-        } elseif (!($WC_Product = s::wcProductByOrderItemId($item_id, $WC_Order))) {
-            return; // Not applicable; not associated w/ a product.
+        } elseif (!($item_id = (int) $item_id)) {
+            debug(0, c::issue(vars(), 'Empty item ID.'));
+            return; // Not possible; empty item ID.
         } elseif (!($product_id = (int) $WC_Product->get_id())) {
             debug(0, c::issue(vars(), 'Unable to acquire product ID.'));
             return; // Not possible; unable to acquire product ID.
+        } elseif (!($product_type = $WC_Product->get_type())) {
+            debug(0, c::issue(vars(), 'Unable to acquire product type.'));
+            return; // Not possible; unable to acquire product type.
         }
-        $product_type        = $WC_Product->get_type();
         $product_permissions = a::getProductMeta($product_id, 'permissions');
 
         wc_delete_order_item_meta($item_id, $this->product_meta_prefix.'type');
-        wc_delete_order_item_meta($item_id, $this->product_meta_prefix.'permissions');
-
         wc_add_order_item_meta($item_id, $this->product_meta_prefix.'type', $product_type);
+
+        wc_delete_order_item_meta($item_id, $this->product_meta_prefix.'permissions');
         foreach ($product_permissions as $_product_permission) { // Each permission.
             wc_add_order_item_meta($item_id, $this->product_meta_prefix.'permissions', $_product_permission);
         } // unset($_product_permission); // Housekeeping.
@@ -127,6 +127,31 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             'product_type',
             'product_permissions'
         ), 'Updating custom order item meta.');
+    }
+
+    /**
+     * On an order being given to a user.
+     *
+     * @since 160611 Orders given.
+     *
+     * @param string|int $order_id Order ID.
+     *
+     * @note This works for subscription order items also.
+     */
+    public function onOrderGiven($order_id)
+    {
+        if (!($order_id = (int) $order_id)) {
+            debug(0, c::issue(vars(), 'Empty order ID.'));
+            return; // Not possible; empty order ID.
+        } elseif (!($WC_Order = wc_get_order($item_id))) {
+            debug(0, c::issue(vars(), 'Unable to acquire order.'));
+            return; // Not possible; unable to acquire order.
+        }
+        foreach ($WC_Order->get_items() as $_item_id => $_item) {
+            if (($_WC_Product = $WC_Order->get_product_from_item($_item))) {
+                $this->onOrderAddProduct($order_id, $_item_id, $_WC_Product, $_item['qty'] ?? 1);
+            }
+        } // unset($_item_id, $_item, $_WC_Product); // Housekeeping.
     }
 
     /**
@@ -166,14 +191,16 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             } elseif (!($_product_id = (int) $_WC_Product->get_id())) {
                 debug(0, c::issue(vars(), 'Unable to acquire product ID.'));
                 continue; // Not possible; unable to acquire product ID.
+            } elseif (!($_product_type = $_WC_Product->get_type())) {
+                debug(0, c::issue(vars(), 'Unable to acquire product type.'));
+                continue; // Not possible; unable to acquire product type.
             }
-            $_product_type        = $_WC_Product->get_type();
             $_product_permissions = a::getProductMeta($_product_id, 'permissions');
 
             wc_delete_order_item_meta($_item_id, $this->product_meta_prefix.'type');
-            wc_delete_order_item_meta($_item_id, $this->product_meta_prefix.'permissions');
-
             wc_add_order_item_meta($_item_id, $this->product_meta_prefix.'type', $_product_type);
+
+            wc_delete_order_item_meta($_item_id, $this->product_meta_prefix.'permissions');
             foreach ($_product_permissions as $_product_permission) { // Each permission.
                 wc_add_order_item_meta($_item_id, $this->product_meta_prefix.'permissions', $_product_permission);
             } // unset($_product_permission); // Housekeeping.

@@ -30,6 +30,15 @@ use function get_defined_vars as vars;
 class OrderStatus extends SCoreClasses\SCore\Base\Core
 {
     /**
+     * Subscription post type.
+     *
+     * @since 160611 Orders being given.
+     *
+     * @param string Subscription post type.
+     */
+    protected $subscription_post_type;
+
+    /**
      * Subscription product types.
      *
      * @since 160524 Order status changes.
@@ -116,6 +125,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
          * `grouped` A collection of other products; i.e., a group of products.
          * A group product is never a line-item; it only forms a group of others.
          */
+        $this->subscription_post_type     = a::subscriptionPostType();
         $this->subscription_product_types = [
             'subscription', // Covers most subscriptions sold via WooCommerce.
             'subscription-variation', 'subscription_variation', // A subscription variation.
@@ -241,11 +251,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     public function onOrderStatusChanged($order_id, string $old_status, string $new_status)
     {
-        c::review(compact(// Log for review.
-            'order_id',
-            'new_status',
-            'old_status'
-        ), 'Monitoring order status changes.');
+        c::review(compact('order_id', 'new_status', 'old_status'), 'Monitoring order status changes.');
 
         return $this->psuedoOrderStatusChanged($order_id, $old_status, $new_status);
     }
@@ -261,13 +267,43 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     public function onSubscriptionStatusChanged($subscription_id, string $old_status, string $new_status)
     {
-        c::review(compact(// Log for review.
-            'subscription_id',
-            'new_status',
-            'old_status'
-        ), 'Monitoring subscription status changes.');
+        c::review(compact('subscription_id', 'new_status', 'old_status'), 'Monitoring subscription status changes.');
 
         return $this->psuedoSubscriptionStatusChanged($subscription_id, $old_status, $new_status);
+    }
+
+    /**
+     * On an order being given.
+     *
+     * @since 160611 Orders given.
+     *
+     * @param string|int $order_id Order ID.
+     */
+    public function onOrderGiven($order_id)
+    {
+        if (!($order_id = (int) $order_id)) {
+            debug(0, c::issue(vars(), 'Empty order ID.'));
+            return; // Not possible; empty order ID.
+        } elseif (!($order_type = get_post_type($order_id))) {
+            debug(0, c::issue(vars(), 'Unable to acquire order type.'));
+            return; // Not possible; unable to acquire order type.
+        } elseif (!($WC_Order = wc_get_order($order_id))) {
+            debug(0, c::issue(vars(), 'Unable to acquire order.'));
+            return; // Not possible; unable to acquire order.
+        }
+        c::review(compact('order_id', 'order_type'), 'Monitoring orders being given.');
+
+        switch ($order_type) { // Either an order or subscription.
+
+            case $this->subscription_post_type:
+                $subscription_id = $order_id; // Subscription.
+                $this->psuedoSubscriptionStatusChanged($subscription_id, 'pending', $WC_Order->get_status());
+                break; // Fake status change so permissions are updated accordingly.
+
+            default: // Any other order type.
+                $this->psuedoOrderStatusChanged($order_id, 'pending', $WC_Order->get_status());
+                break; // Fake status change so permissions are updated accordingly.
+        }
     }
 
     /**
