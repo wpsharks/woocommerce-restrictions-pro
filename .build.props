@@ -22,5 +22,5 @@ project_php_required_extensions             =
 project_wp_required_version                 = 4.5.2
 project_wp_tested_up_to_version             = 4.5.2
 
-project_wp_sharks_core_required_version     = 160620.31255
-project_wp_sharks_core_tested_up_to_version = 160620.31255
+project_wp_sharks_core_required_version     = 160621.42233
+project_wp_sharks_core_tested_up_to_version = 160621.42233

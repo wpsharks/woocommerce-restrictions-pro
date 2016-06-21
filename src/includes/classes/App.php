@@ -245,14 +245,14 @@ class App extends SCoreClasses\App
             add_filter('woocommerce_hidden_order_itemmeta', [$this->Utils->OrderItemMeta, 'onHiddenOrderItemMeta']);
 
             // See: <https://www.woothemes.com/products/woocommerce-give-products/>
-            add_filter('woocommerce_order_given', [$this->Utils->OrderItemMeta, 'onOrderGiven']);
+            add_action('woocommerce_order_given', [$this->Utils->OrderItemMeta, 'onOrderGiven']);
 
             add_action('woocommerce_order_status_changed', [$this->Utils->OrderStatus, 'onOrderStatusChanged'], 1000, 3);
             add_action('woocommerce_subscription_status_changed', [$this->Utils->OrderStatus, 'onSubscriptionStatusChanged'], 1000, 3);
             add_action('woocommerce_subscriptions_switched_item', [$this->Utils->OrderStatus, 'onSubscriptionItemSwitched'], 1000, 3);
 
             // See: <https://www.woothemes.com/products/woocommerce-give-products/>
-            add_filter('woocommerce_order_given', [$this->Utils->OrderStatus, 'onOrderGiven']);
+            add_action('woocommerce_order_given', [$this->Utils->OrderStatus, 'onOrderGiven']);
 
             // ↓ This would seem to be a bug in the WCS package.
             // We are moving this to after 'items', so that status changes will reflect new items.
