@@ -1,3 +1,7 @@
+## v160624.34191
+
+- Rebranding. Adding `woocommerce-` prefix.
+
 ## v160624.32326
 
 - Updating to latest WPSC.
