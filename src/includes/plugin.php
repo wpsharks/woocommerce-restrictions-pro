@@ -1,8 +1,8 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\s2MemberX\Pro;
+namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro;
 
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\App;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\App;
 
 if (!defined('WPINC')) {
     exit('Do NOT access this file directly: '.basename(__FILE__));
@@ -14,6 +14,6 @@ add_action('plugins_loaded', function () {
         require_once __DIR__.'/stub.php';
         new App(); // Plugin instance.
     } else {
-        wp_sharks_core_rv_notice('s2Member X');
+        wp_sharks_core_rv_notice('WooCommerce Restrictions — s2Member X');
     }
 });

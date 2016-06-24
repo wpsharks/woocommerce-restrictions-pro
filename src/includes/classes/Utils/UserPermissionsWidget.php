@@ -1,14 +1,14 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Utils;
+namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
-use WebSharks\WpSharks\s2MemberX\Pro\Classes;
-use WebSharks\WpSharks\s2MemberX\Pro\Interfaces;
-use WebSharks\WpSharks\s2MemberX\Pro\Traits;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Interfaces;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits;
 #
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\AppFacades as a;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\SCoreFacades as s;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\CoreFacades as c;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\AppFacades as a;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\SCoreFacades as s;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\CoreFacades as c;
 #
 use WebSharks\WpSharks\Core\Classes as SCoreClasses;
 use WebSharks\WpSharks\Core\Interfaces as SCoreInterfaces;
@@ -143,55 +143,55 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
                     'can_edit_shop_subscriptions' => current_user_can('edit_shop_orders'),
                 ],
                 'i18n' => [
-                    'idTitle'     => __('ID', 's2member-x'),
-                    'userIdTitle' => __('User ID', 's2member-x'),
+                    'idTitle'     => __('ID', 'woocommerce-s2member-x'),
+                    'userIdTitle' => __('User ID', 'woocommerce-s2member-x'),
 
-                    'orderIdTitle'        => __('Order ID', 's2member-x'),
-                    'subscriptionIdTitle' => __('Subscription ID', 's2member-x'),
-                    'productIdTitle'      => __('Product ID', 's2member-x'),
-                    'itemIdTitle'         => __('Item ID', 's2member-x'),
+                    'orderIdTitle'        => __('Order ID', 'woocommerce-s2member-x'),
+                    'subscriptionIdTitle' => __('Subscription ID', 'woocommerce-s2member-x'),
+                    'productIdTitle'      => __('Product ID', 'woocommerce-s2member-x'),
+                    'itemIdTitle'         => __('Item ID', 'woocommerce-s2member-x'),
 
-                    'restrictionIdTitle'        => __('Access', 's2member-x'),
-                    'restrictionIdTitleTip'     => __('Access to one or more configured Restrictions.<hr />It\'s OK for Permissions granted manually and/or via Orders &amp; Subscriptions to overlap with each other. This is because any Permission that currently grants access, does. Access is denied only if no Permission grants access.', 's2member-x'),
-                    'restrictionAccessRequired' => __('\'Access\' selection is empty.', 's2member-x'),
+                    'restrictionIdTitle'        => __('Access', 'woocommerce-s2member-x'),
+                    'restrictionIdTitleTip'     => __('Access to one or more configured Restrictions.<hr />It\'s OK for Permissions granted manually and/or via Orders &amp; Subscriptions to overlap with each other. This is because any Permission that currently grants access, does. Access is denied only if no Permission grants access.', 'woocommerce-s2member-x'),
+                    'restrictionAccessRequired' => __('\'Access\' selection is empty.', 'woocommerce-s2member-x'),
 
-                    'accessTimeTitle'    => __('Starts', 's2member-x'),
-                    'accessTimeTitleTip' => __('If left empty, access starts immediately (no delay).', 's2member-x'),
+                    'accessTimeTitle'    => __('Starts', 'woocommerce-s2member-x'),
+                    'accessTimeTitleTip' => __('If left empty, access starts immediately (no delay).', 'woocommerce-s2member-x'),
 
-                    'accessDatePlaceholder'  => __('date', 's2member-x'),
-                    'accessTimePlaceholder'  => __('time', 's2member-x'),
-                    'emptyAccessDateTime'    => __('immediately', 's2member-x'),
-                    'accessTimeLtExpireTime' => __('When both are given, \'Starts\' must come before \'Ends\'.', 's2member-x'),
+                    'accessDatePlaceholder'  => __('date', 'woocommerce-s2member-x'),
+                    'accessTimePlaceholder'  => __('time', 'woocommerce-s2member-x'),
+                    'emptyAccessDateTime'    => __('immediately', 'woocommerce-s2member-x'),
+                    'accessTimeLtExpireTime' => __('When both are given, \'Starts\' must come before \'Ends\'.', 'woocommerce-s2member-x'),
 
-                    'expireTimeTitle'    => __('Ends', 's2member-x'),
-                    'expireTimeTitleTip' => __('If left empty, access is indefinite (ongoing).<hr />If the Permission was acquired via an Order or Subscription, the End is controlled by your original Product configuration, which will be indicated below.<hr />You can always choose to set a specific End date here, which overrides the original Product configuration.', 's2member-x'),
+                    'expireTimeTitle'    => __('Ends', 'woocommerce-s2member-x'),
+                    'expireTimeTitleTip' => __('If left empty, access is indefinite (ongoing).<hr />If the Permission was acquired via an Order or Subscription, the End is controlled by your original Product configuration, which will be indicated below.<hr />You can always choose to set a specific End date here, which overrides the original Product configuration.', 'woocommerce-s2member-x'),
 
-                    'expireDatePlaceholder' => __('date', 's2member-x'),
-                    'expireTimePlaceholder' => __('time', 's2member-x'),
-                    'emptyExpireDateTime'   => __('— n/a —', 's2member-x'),
-                    'expireDirectiveTitle'  => __('Expires', 's2member-x'),
+                    'expireDatePlaceholder' => __('date', 'woocommerce-s2member-x'),
+                    'expireTimePlaceholder' => __('time', 'woocommerce-s2member-x'),
+                    'emptyExpireDateTime'   => __('— n/a —', 'woocommerce-s2member-x'),
+                    'expireDirectiveTitle'  => __('Expires', 'woocommerce-s2member-x'),
 
-                    'statusTitle'    => __('Status', 's2member-x'),
-                    'statusTitleTip' => __('Current permission status.<hr />Anything other than \'Enabled\' is collectively referred to as Disabled.<hr />Disabled status variations simply help to convey why access is currently disabled.', 's2member-x'),
+                    'statusTitle'    => __('Status', 'woocommerce-s2member-x'),
+                    'statusTitleTip' => __('Current permission status.<hr />Anything other than \'Enabled\' is collectively referred to as Disabled.<hr />Disabled status variations simply help to convey why access is currently disabled.', 'woocommerce-s2member-x'),
 
-                    'isTrashedTitle'            => __('Trashed?', 's2member-x'),
-                    'isTrashedStatus'           => __('Trashed', 's2member-x'),
-                    'restrictionStatusRequired' => __('\'Status\' selection is empty.', 's2member-x'),
+                    'isTrashedTitle'            => __('Trashed?', 'woocommerce-s2member-x'),
+                    'isTrashedStatus'           => __('Trashed', 'woocommerce-s2member-x'),
+                    'restrictionStatusRequired' => __('\'Status\' selection is empty.', 'woocommerce-s2member-x'),
 
-                    'statusIsDisabled'  => __('Access Disabled', 's2member-x'),
-                    'statusIsScheduled' => __('Access Scheduled', 's2member-x'),
-                    'statusIsExpired'   => __('Access Expired', 's2member-x'),
+                    'statusIsDisabled'  => __('Access Disabled', 'woocommerce-s2member-x'),
+                    'statusIsScheduled' => __('Access Scheduled', 'woocommerce-s2member-x'),
+                    'statusIsExpired'   => __('Access Expired', 'woocommerce-s2member-x'),
 
-                    'displayOrderTitle' => __('Display Order', 's2member-x'),
+                    'displayOrderTitle' => __('Display Order', 'woocommerce-s2member-x'),
 
-                    'insertionTimeTitle'  => __('Insertion Time', 's2member-x'),
-                    'lastUpdateTimeTitle' => __('Last Update Time', 's2member-x'),
+                    'insertionTimeTitle'  => __('Insertion Time', 'woocommerce-s2member-x'),
+                    'lastUpdateTimeTitle' => __('Last Update Time', 'woocommerce-s2member-x'),
 
-                    'via'            => __('via', 's2member-x'),
-                    'noDataContent'  => __('No permissions yet.', 's2member-x'),
-                    'notReadyToSave' => __('Not ready to save all changes yet...', 's2member-x'),
-                    'stillInserting' => __('A Customer Permission row is still pending insertion. Please click the green \'+\' icon to complete insertion. Or, empty the \'Access\' select menu in the green insertion row.', 's2member-x'),
-                    'stillEditing'   => __('A Customer Permission row (in yellow) is still open for editing. Please save your changes there first, or click the \'x\' icon to cancel editing in the open row.', 's2member-x'),
+                    'via'            => __('via', 'woocommerce-s2member-x'),
+                    'noDataContent'  => __('No permissions yet.', 'woocommerce-s2member-x'),
+                    'notReadyToSave' => __('Not ready to save all changes yet...', 'woocommerce-s2member-x'),
+                    'stillInserting' => __('A Customer Permission row is still pending insertion. Please click the green \'+\' icon to complete insertion. Or, empty the \'Access\' select menu in the green insertion row.', 'woocommerce-s2member-x'),
+                    'stillEditing'   => __('A Customer Permission row (in yellow) is still open for editing. Please save your changes there first, or click the \'x\' icon to cancel editing in the open row.', 'woocommerce-s2member-x'),
                 ],
                 'restrictionTitlesById'                   => a::restrictionTitlesById(),
                 'userPermissionStatuses'                  => a::userPermissionStatuses(true),
@@ -226,11 +226,11 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
         echo '<hr />'; // After other fields in the user edit page.
 
         echo '<div id="'.esc_attr($this->client_side_prefix.'-user-permissions-widget').'">';
-        echo    '<h3>'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 's2member-x').'</h3>';
+        echo    '<h3>'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 'woocommerce-s2member-x').'</h3>';
 
         if (!$restriction_titles_by_id) {
             echo '<div class="notice notice-info inline">';
-            echo    '<p>'.sprintf(__('It\'s not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
+            echo    '<p>'.sprintf(__('It\'s not possible to grant access yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 'woocommerce-s2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
             echo '</div>';
         } else {
             $user_permissions = array_values(a::userPermissions($user_id, false)); // Exclude `trashed` status.

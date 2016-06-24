@@ -1,14 +1,14 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Utils;
+namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
-use WebSharks\WpSharks\s2MemberX\Pro\Classes;
-use WebSharks\WpSharks\s2MemberX\Pro\Interfaces;
-use WebSharks\WpSharks\s2MemberX\Pro\Traits;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Interfaces;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits;
 #
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\AppFacades as a;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\SCoreFacades as s;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\CoreFacades as c;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\AppFacades as a;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\SCoreFacades as s;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\CoreFacades as c;
 #
 use WebSharks\WpSharks\Core\Classes as SCoreClasses;
 use WebSharks\WpSharks\Core\Interfaces as SCoreInterfaces;
@@ -83,7 +83,7 @@ class UserColumns extends SCoreClasses\SCore\Base\Core
      */
     public function onManageUsersColumns(array $columns): array
     {
-        return array_merge($columns, [$this->permissions_column => __('Permissions', 's2member-x')]);
+        return array_merge($columns, [$this->permissions_column => __('Permissions', 'woocommerce-s2member-x')]);
     }
 
     /**
@@ -114,7 +114,7 @@ class UserColumns extends SCoreClasses\SCore\Base\Core
             $display_lines[] = $_line; // Add line to the array.
 
             if (count($display_lines) > $this->max_permission_column_lines) {
-                $display_lines[] = '<em style="opacity:0.5;">'.__('...and more', 's2member-x').'</em>';
+                $display_lines[] = '<em style="opacity:0.5;">'.__('...and more', 'woocommerce-s2member-x').'</em>';
                 break; // Stop short of full display.
             }
         } // unset($_UserPermission, $_line); // Housekeeping.

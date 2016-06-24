@@ -1,14 +1,14 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Utils;
+namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
-use WebSharks\WpSharks\s2MemberX\Pro\Classes;
-use WebSharks\WpSharks\s2MemberX\Pro\Interfaces;
-use WebSharks\WpSharks\s2MemberX\Pro\Traits;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Interfaces;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits;
 #
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\AppFacades as a;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\SCoreFacades as s;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\CoreFacades as c;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\AppFacades as a;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\SCoreFacades as s;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\CoreFacades as c;
 #
 use WebSharks\WpSharks\Core\Classes as SCoreClasses;
 use WebSharks\WpSharks\Core\Interfaces as SCoreInterfaces;
@@ -112,9 +112,9 @@ class Product extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->post_type     = 'product'; // Established by WooCommerce.
-        $this->type_taxonomy = 'product_type'; // Established by WooCommerce.
-        $this->meta_prefix   = '_'.$this->App->Config->©brand['©var'].'_product_';
+        $this->post_type     = 'product';
+        $this->type_taxonomy = 'product_type';
+        $this->meta_prefix   = '_'.$this->App->Config->©brand['©var'].'_';
 
         $this->visibility_classes = [
             'hide_if_external',
@@ -186,29 +186,29 @@ class Product extends SCoreClasses\SCore\Base\Core
                     'mobile' => $this->screen_is_mobile,
                 ],
                 'i18n' => [
-                    'productIdTitle' => __('Product ID', 's2member-x'),
+                    'productIdTitle' => __('Product ID', 'woocommerce-s2member-x'),
 
-                    'restrictionIdTitle'        => __('Access', 's2member-x'),
-                    'restrictionIdTitleTip'     => __('Choose from your current list of configured Restrictions.', 's2member-x'),
-                    'restrictionAccessRequired' => __('\'Access\' selection is empty.', 's2member-x'),
+                    'restrictionIdTitle'        => __('Access', 'woocommerce-s2member-x'),
+                    'restrictionIdTitleTip'     => __('Choose from your current list of configured Restrictions.', 'woocommerce-s2member-x'),
+                    'restrictionAccessRequired' => __('\'Access\' selection is empty.', 'woocommerce-s2member-x'),
 
-                    'accessOffsetDirectiveTitle'            => __('Starts', 's2member-x'),
-                    'accessOffsetDirectiveTitleTip'         => __('Timer begins when Order status is \'completed\'. In the case of a Subscription, when the Subscription is \'active\'.<hr />i.e., \'immediately\' means access starts without delay.<hr />Choosing \'after 7 days\' creates a delay of 7 days. Also known as Content Dripping; i.e., loyal customers gain access to more over time, as configured here.<hr />Day, week, month &amp; year options start access at the very beginning of the calculated day: 12:00 AM (GMT/UTC)', 's2member-x'),
-                    'accessOffsetDirectiveOtherPlaceholder' => sprintf(__('e.g., %1$s 48 hours', 's2member-x'), a::productPermissionAccessOffsetPrefix()),
-                    'accessOffsetDirectiveRequired'         => __('\'Starts\' selection is empty.', 's2member-x'),
+                    'accessOffsetDirectiveTitle'            => __('Starts', 'woocommerce-s2member-x'),
+                    'accessOffsetDirectiveTitleTip'         => __('Timer begins when Order status is \'completed\'. In the case of a Subscription, when the Subscription is \'active\'.<hr />i.e., \'immediately\' means access starts without delay.<hr />Choosing \'after 7 days\' creates a delay of 7 days. Also known as Content Dripping; i.e., loyal customers gain access to more over time, as configured here.<hr />Day, week, month &amp; year options start access at the very beginning of the calculated day: 12:00 AM (GMT/UTC)', 'woocommerce-s2member-x'),
+                    'accessOffsetDirectiveOtherPlaceholder' => sprintf(__('e.g., %1$s 48 hours', 'woocommerce-s2member-x'), a::productPermissionAccessOffsetPrefix()),
+                    'accessOffsetDirectiveRequired'         => __('\'Starts\' selection is empty.', 'woocommerce-s2member-x'),
 
-                    'expireOffsetDirectiveTitle'            => __('Ends', 's2member-x'),
-                    'expireOffsetDirectiveTitleTip1'        => __('\'naturally\'; i.e., revoke access when an Order no longer has a \'completed\' status; or a Subscription no longer has an \'active\' status; or a fixed-term Subscription expires.<hr />\'naturally -expired\' excludes the case of a fixed-term Subscription expiring; i.e., when installments are complete, access remains.<hr />\'never\' means do not revoke (ever). Even if an Order or Subscription is cancelled.', 's2member-x'),
-                    'expireOffsetDirectiveTitleTip2'        => __('Date and time-based options imply the same behavior as \'naturally\', but with a specific End date also. End date/time is relative to the Start time.<hr />Choosing \'7 days later\' means 7 days after access begins (according to Start time).<hr />Day, week, month &amp; year options will stop access at the very end of the calculated day: 11:59 PM (GMT/UTC)', 's2member-x'),
-                    'expireOffsetDirectiveOtherPlaceholder' => sprintf(__('e.g., 90 days %1$s', 's2member-x'), a::productPermissionExpireOffsetSuffix()),
-                    'expireOffsetDirectiveRequired'         => __('\'Ends\' selection is empty.', 's2member-x'),
+                    'expireOffsetDirectiveTitle'            => __('Ends', 'woocommerce-s2member-x'),
+                    'expireOffsetDirectiveTitleTip1'        => __('\'naturally\'; i.e., revoke access when an Order no longer has a \'completed\' status; or a Subscription no longer has an \'active\' status; or a fixed-term Subscription expires.<hr />\'naturally -expired\' excludes the case of a fixed-term Subscription expiring; i.e., when installments are complete, access remains.<hr />\'never\' means do not revoke (ever). Even if an Order or Subscription is cancelled.', 'woocommerce-s2member-x'),
+                    'expireOffsetDirectiveTitleTip2'        => __('Date and time-based options imply the same behavior as \'naturally\', but with a specific End date also. End date/time is relative to the Start time.<hr />Choosing \'7 days later\' means 7 days after access begins (according to Start time).<hr />Day, week, month &amp; year options will stop access at the very end of the calculated day: 11:59 PM (GMT/UTC)', 'woocommerce-s2member-x'),
+                    'expireOffsetDirectiveOtherPlaceholder' => sprintf(__('e.g., 90 days %1$s', 'woocommerce-s2member-x'), a::productPermissionExpireOffsetSuffix()),
+                    'expireOffsetDirectiveRequired'         => __('\'Ends\' selection is empty.', 'woocommerce-s2member-x'),
 
-                    'displayOrderTitle' => __('Display Order', 's2member-x'),
+                    'displayOrderTitle' => __('Display Order', 'woocommerce-s2member-x'),
 
-                    'noDataContent'  => __('No permissions.', 's2member-x'),
-                    'notReadyToSave' => __('Not ready to save all changes yet...', 's2member-x'),
-                    'stillInserting' => __('A Customer Permission row is still pending insertion. Please click the green \'+\' icon to complete insertion. Or, empty the \'Access\' select menu in the green insertion row.', 's2member-x'),
-                    'stillEditing'   => __('A Customer Permission row (in yellow) is still open for editing. Please save your changes there first, or click the \'x\' icon to cancel editing in the open row.', 's2member-x'),
+                    'noDataContent'  => __('No permissions.', 'woocommerce-s2member-x'),
+                    'notReadyToSave' => __('Not ready to save all changes yet...', 'woocommerce-s2member-x'),
+                    'stillInserting' => __('A Customer Permission row is still pending insertion. Please click the green \'+\' icon to complete insertion. Or, empty the \'Access\' select menu in the green insertion row.', 'woocommerce-s2member-x'),
+                    'stillEditing'   => __('A Customer Permission row (in yellow) is still open for editing. Please save your changes there first, or click the \'x\' icon to cancel editing in the open row.', 'woocommerce-s2member-x'),
                 ],
                 'restrictionTitlesById'                   => a::restrictionTitlesById(),
                 'productPermissionAccessOffsetDirectives' => a::productPermissionAccessOffsetDirectives(true),
@@ -240,11 +240,11 @@ class Product extends SCoreClasses\SCore\Base\Core
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
         echo '<div class="'.esc_attr($this->client_side_prefix.'-product-meta options_group '.implode(' ', $this->visibility_classes)).'">';
-        echo    '<p style="margin-bottom:0 !important;">'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 's2member-x').'</p>';
+        echo    '<p style="margin-bottom:0 !important;">'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 'woocommerce-s2member-x').'</p>';
 
         if (!$restriction_titles_by_id) {
             echo '<div class="notice notice-info inline">';
-            echo    '<p>'.sprintf(__('It\'s not possible to configure Permissions yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
+            echo    '<p>'.sprintf(__('It\'s not possible to configure Permissions yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 'woocommerce-s2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
             echo '</div>';
         } else {
             $current_permissions = $this->getMeta($post->ID, 'permissions');
@@ -277,11 +277,11 @@ class Product extends SCoreClasses\SCore\Base\Core
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
         echo '<div class="'.esc_attr($this->client_side_prefix.'-product-meta '.implode(' ', $this->variation_visibility_classes)).'" data-variation-key="'.esc_attr($key).'">';
-        echo    '<p style="margin-bottom:.2em !important;">'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 's2member-x').'</p>';
+        echo    '<p style="margin-bottom:.2em !important;">'.__('Customer Permissions (<span class="dashicons dashicons-unlock"></span> Restriction Access)', 'woocommerce-s2member-x').'</p>';
 
         if (!$restriction_titles_by_id) {
             echo '<div class="notice notice-info inline">';
-            echo    '<p>'.sprintf(__('It\'s not possible to configure Permissions yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 's2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
+            echo    '<p>'.sprintf(__('It\'s not possible to configure Permissions yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 'woocommerce-s2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
             echo '</div>';
         } else {
             $current_permissions = $this->getMeta($post->ID, 'permissions');

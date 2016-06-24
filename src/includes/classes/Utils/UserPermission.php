@@ -1,14 +1,14 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Utils;
+namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
-use WebSharks\WpSharks\s2MemberX\Pro\Classes;
-use WebSharks\WpSharks\s2MemberX\Pro\Interfaces;
-use WebSharks\WpSharks\s2MemberX\Pro\Traits;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Interfaces;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits;
 #
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\AppFacades as a;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\SCoreFacades as s;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\CoreFacades as c;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\AppFacades as a;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\SCoreFacades as s;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\CoreFacades as c;
 #
 use WebSharks\WpSharks\Core\Classes as SCoreClasses;
 use WebSharks\WpSharks\Core\Interfaces as SCoreInterfaces;
@@ -50,23 +50,23 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
         parent::__construct($App);
 
         $this->statuses = s::applyFilters('user_permission_statuses', [
-            '--- '.__('Enabled', 's2member-x').' ---' => '---',
-            'enabled' => __('Enabled', 's2member-x'),
+            '--- '.__('Enabled', 'woocommerce-s2member-x').' ---' => '---',
+            'enabled' => __('Enabled', 'woocommerce-s2member-x'),
 
-            '--- '.__('Disabled', 's2member-x').' ---' => '---',
-            'pending'    => __('Pending', 's2member-x'),
-            'processing' => __('Processing', 's2member-x'),
-            'on-hold'    => __('On-Hold', 's2member-x'),
-            'expired'    => __('Expired', 's2member-x'),
-            'refunded'   => __('Refunded', 's2member-x'),
-            'cancelled'  => __('Cancelled', 's2member-x'),
-            'failed'     => __('Payment(s) Failed', 's2member-x'),
-            'switched'   => __('Subscription Switched', 's2member-x'),
+            '--- '.__('Disabled', 'woocommerce-s2member-x').' ---' => '---',
+            'pending'    => __('Pending', 'woocommerce-s2member-x'),
+            'processing' => __('Processing', 'woocommerce-s2member-x'),
+            'on-hold'    => __('On-Hold', 'woocommerce-s2member-x'),
+            'expired'    => __('Expired', 'woocommerce-s2member-x'),
+            'refunded'   => __('Refunded', 'woocommerce-s2member-x'),
+            'cancelled'  => __('Cancelled', 'woocommerce-s2member-x'),
+            'failed'     => __('Payment(s) Failed', 'woocommerce-s2member-x'),
+            'switched'   => __('Subscription Switched', 'woocommerce-s2member-x'),
 
             // This one does not apply. `trashed` has it's own flag.
             // Instead of a `trashed` status, we have the `is_trashed` property.
             // This allows `status` to be preserved if a permission is restored later.
-            // 'trashed' => __('Trashed', 's2member-x'),
+            // 'trashed' => __('Trashed', 'woocommerce-s2member-x'),
         ]);
     }
 

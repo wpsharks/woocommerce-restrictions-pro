@@ -1,14 +1,14 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Utils;
+namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
-use WebSharks\WpSharks\s2MemberX\Pro\Classes;
-use WebSharks\WpSharks\s2MemberX\Pro\Interfaces;
-use WebSharks\WpSharks\s2MemberX\Pro\Traits;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Interfaces;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits;
 #
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\AppFacades as a;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\SCoreFacades as s;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\CoreFacades as c;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\AppFacades as a;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\SCoreFacades as s;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\CoreFacades as c;
 #
 use WebSharks\WpSharks\Core\Classes as SCoreClasses;
 use WebSharks\WpSharks\Core\Interfaces as SCoreInterfaces;
@@ -121,7 +121,7 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
             if (!s::getOption('if_shortcode_expr_enable')) {
                 // This is disabled by default. If enabled, a filter can disable it on child sites of a network.
                 // add_filter('s2member_x_options', function(array $options) { $options['if_shortcode_expr_enable'] = '0'; return $options; });
-                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `expr=""` not enabled on this site.', 's2member-x'), $shortcode), E_USER_ERROR);
+                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `expr=""` not enabled on this site.', 'woocommerce-s2member-x'), $shortcode), E_USER_ERROR);
                 return ''; // Return empty string in case of error handlers allowing this to slide.
             }
             if ($conditions) { // Taken as-is; raw PHP expression.
@@ -159,15 +159,15 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
          */
         if ($atts['current_user_can']) {
             if (mb_strpos($atts['current_user_can'], "'") !== false) {
-                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_can="%2$s"` contains apostrophe.', 's2member-x'), $shortcode, $atts['current_user_can']), E_USER_ERROR);
+                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_can="%2$s"` contains apostrophe.', 'woocommerce-s2member-x'), $shortcode, $atts['current_user_can']), E_USER_ERROR);
                 return ''; // Return empty string in case of error handlers allowing this to slide.
             } elseif (!preg_match('/\((?:(?:[^()]+)|(?R))*\)/u', '('.$atts['current_user_can'].')', $_m) || $_m[0] !== '('.$atts['current_user_can'].')') {
-                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_can="%2$s"` contains unbalanced `()` brackets.', 's2member-x'), $shortcode, $atts['current_user_can']), E_USER_ERROR);
+                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_can="%2$s"` contains unbalanced `()` brackets.', 'woocommerce-s2member-x'), $shortcode, $atts['current_user_can']), E_USER_ERROR);
                 return ''; // Return empty string in case of error handlers allowing this to slide.
             } elseif ($atts['for_blog'] && $is_multisite && !s::getOption('if_shortcode_for_blog_enable')) {
                 // This is disabled by default. If enabled, a filter can disable it on child sites of a network.
                 // add_filter('s2member_x_options', function(array $options) { $options['if_shortcode_for_blog_enable'] = '0'; return $options; });
-                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `for_blog=""` not enabled on this site.', 's2member-x'), $shortcode), E_USER_ERROR);
+                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `for_blog=""` not enabled on this site.', 'woocommerce-s2member-x'), $shortcode), E_USER_ERROR);
                 return ''; // Return empty string in case of error handlers allowing this to slide.
             }
             $_current_user_can_conditions = ''; // Initialize conditions.

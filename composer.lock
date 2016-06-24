@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e408d353bcf874915d702a3a00339531",
-    "content-hash": "e65b7394ba56e43d23e5142148aa5823",
+    "hash": "fd0d0e40f0c565b4fe1afedab6ab1856",
+    "content-hash": "acab0c553ee09effd4b3163cc9a4d02a",
     "packages": [
         {
             "name": "websharks/wp-php-rv",
@@ -61,12 +61,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-sharks-core-rv.git",
-                "reference": "ffdfb590c60dd5aa5376a861705a7264bbded5af"
+                "reference": "84a0b1bb288d913527bce820a010377d12aa33aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/ffdfb590c60dd5aa5376a861705a7264bbded5af",
-                "reference": "ffdfb590c60dd5aa5376a861705a7264bbded5af",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/84a0b1bb288d913527bce820a010377d12aa33aa",
+                "reference": "84a0b1bb288d913527bce820a010377d12aa33aa",
                 "shasum": ""
             },
             "require": {
@@ -101,7 +101,7 @@
                 "wordpress",
                 "wpsharks"
             ],
-            "time": "2016-06-01 17:28:41"
+            "time": "2016-06-20 08:47:07"
         }
     ],
     "packages-dev": [],

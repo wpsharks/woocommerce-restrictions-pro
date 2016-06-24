@@ -1,4 +1,4 @@
-## $v
+## v160624.32326
 
 - Updating to latest WPSC.
 - Bug fix. `woocommerce_order_given` is an action not a filter.

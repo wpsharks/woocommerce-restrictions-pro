@@ -1,14 +1,14 @@
 <?php
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\s2MemberX\Pro\Classes\Utils;
+namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
-use WebSharks\WpSharks\s2MemberX\Pro\Classes;
-use WebSharks\WpSharks\s2MemberX\Pro\Interfaces;
-use WebSharks\WpSharks\s2MemberX\Pro\Traits;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Interfaces;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits;
 #
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\AppFacades as a;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\SCoreFacades as s;
-use WebSharks\WpSharks\s2MemberX\Pro\Classes\CoreFacades as c;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\AppFacades as a;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\SCoreFacades as s;
+use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\CoreFacades as c;
 #
 use WebSharks\WpSharks\Core\Classes as SCoreClasses;
 use WebSharks\WpSharks\Core\Interfaces as SCoreInterfaces;
@@ -94,10 +94,10 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
     {
         parent::__construct($App);
 
-        $this->access_offset_prefix     = __('after', 's2member-x');
+        $this->access_offset_prefix     = __('after', 'woocommerce-s2member-x');
         $this->access_offset_key_prefix = 'after'; // Hard-coded key.
 
-        $this->expire_offset_suffix     = __('later', 's2member-x');
+        $this->expire_offset_suffix     = __('later', 'woocommerce-s2member-x');
         $this->expire_offset_key_suffix = 'later'; // Hard-coded key.
         /*
          * Special offset directives:
@@ -121,154 +121,154 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
 
         # Define special access offset directives.
 
-        $most_common_optgroup_key                                  = '--- '.__('Most Common', 's2member-x').' ---';
+        $most_common_optgroup_key                                  = '--- '.__('Most Common', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$most_common_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
-        $this->access_offset_directives['immediately'] = __('immediately', 's2member-x');
+        $this->access_offset_directives['immediately'] = __('immediately', 'woocommerce-s2member-x');
 
         # Define special expire offset directives.
 
         $this->expire_offset_directives[$most_common_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
-        $this->expire_offset_directives['naturally']          = __('naturally', 's2member-x');
-        $this->expire_offset_directives['naturally -expired'] = __('naturally -expired', 's2member-x');
-        $this->expire_offset_directives['never']              = __('never (unequivocally)', 's2member-x');
+        $this->expire_offset_directives['naturally']          = __('naturally', 'woocommerce-s2member-x');
+        $this->expire_offset_directives['naturally -expired'] = __('naturally -expired', 'woocommerce-s2member-x');
+        $this->expire_offset_directives['never']              = __('never (unequivocally)', 'woocommerce-s2member-x');
 
         # Period-based offset directives. Starting with minutes and working down from there.
 
-        $minutes_optgroup_key                                  = '--- '.__('Minutes', 's2member-x').' ---';
+        $minutes_optgroup_key                                  = '--- '.__('Minutes', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$minutes_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$minutes_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         for ($_i = 1; $_i <= 60; $_i = $_i === 1 ? 5 : $_i + 5) {
             $_access_key                                  = $this->access_offset_key_prefix.' '.($_i === 1 ? $_i.' minute' : $_i.' minutes');
             $_expire_key                                  = ($_i === 1 ? $_i.' minute' : $_i.' minutes').' '.$this->expire_offset_key_suffix;
-            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s minute', '%1$s %2$s minutes', $_i, 's2member-x'), $this->access_offset_prefix, $_i);
-            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s minute %2$s', '%1$s minutes %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
+            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s minute', '%1$s %2$s minutes', $_i, 'woocommerce-s2member-x'), $this->access_offset_prefix, $_i);
+            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s minute %2$s', '%1$s minutes %2$s', $_i, 'woocommerce-s2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $hours_optgroup_key                                  = '--- '.__('Hours', 's2member-x').' ---';
+        $hours_optgroup_key                                  = '--- '.__('Hours', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$hours_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$hours_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         for ($_i = 1; $_i <= 24; $_i = $_i + 1) {
             $_access_key                                  = $this->access_offset_key_prefix.' '.($_i === 1 ? $_i.' hour' : $_i.' hours');
             $_expire_key                                  = ($_i === 1 ? $_i.' hour' : $_i.' hours').' '.$this->expire_offset_key_suffix;
-            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s hour', '%1$s %2$s hours', $_i, 's2member-x'), $this->access_offset_prefix, $_i);
-            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s hour %2$s', '%1$s hours %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
+            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s hour', '%1$s %2$s hours', $_i, 'woocommerce-s2member-x'), $this->access_offset_prefix, $_i);
+            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s hour %2$s', '%1$s hours %2$s', $_i, 'woocommerce-s2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $days_optgroup_key                                  = '--- '.__('Days', 's2member-x').' ---';
+        $days_optgroup_key                                  = '--- '.__('Days', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$days_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$days_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         for ($_i = 1; $_i <= 7; $_i = $_i + 1) {
             $_access_key                                  = $this->access_offset_key_prefix.' '.($_i === 1 ? $_i.' day' : $_i.' days').' 12:00 am';
             $_expire_key                                  = ($_i === 1 ? $_i.' day' : $_i.' days').' 11:59 pm '.$this->expire_offset_key_suffix;
-            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s day', '%1$s %2$s days', $_i, 's2member-x'), $this->access_offset_prefix, $_i);
-            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s day %2$s', '%1$s days %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
+            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s day', '%1$s %2$s days', $_i, 'woocommerce-s2member-x'), $this->access_offset_prefix, $_i);
+            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s day %2$s', '%1$s days %2$s', $_i, 'woocommerce-s2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $upcoming_day_based_optgroup_key                                  = '--- '.__('Upcoming Weekday', 's2member-x').' ---';
+        $upcoming_day_based_optgroup_key                                  = '--- '.__('Upcoming Weekday', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$upcoming_day_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$upcoming_day_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         foreach ([ // Special cases made easy.
-            'this sunday' => __('upcoming sunday', 's2member-x'),
-            'this monday' => __('upcoming monday', 's2member-x'),
-            'this tuesday' => __('upcoming tuesday', 's2member-x'),
-            'this wednesday' => __('upcoming wednesday', 's2member-x'),
-            'this thursday' => __('upcoming thursday', 's2member-x'),
-            'this friday' => __('upcoming friday', 's2member-x'),
-            'this saturday' => __('upcoming saturday', 's2member-x'),
+            'this sunday' => __('upcoming sunday', 'woocommerce-s2member-x'),
+            'this monday' => __('upcoming monday', 'woocommerce-s2member-x'),
+            'this tuesday' => __('upcoming tuesday', 'woocommerce-s2member-x'),
+            'this wednesday' => __('upcoming wednesday', 'woocommerce-s2member-x'),
+            'this thursday' => __('upcoming thursday', 'woocommerce-s2member-x'),
+            'this friday' => __('upcoming friday', 'woocommerce-s2member-x'),
+            'this saturday' => __('upcoming saturday', 'woocommerce-s2member-x'),
         ] as $_key => $_title) { // For access & expire.
             $this->access_offset_directives[$_key.' 12:00 am'] = $_title;
             $this->expire_offset_directives[$_key.' 11:59 pm'] = $_title;
         } // unset($_key, $_title); // Housekeeping.
 
-        $next_day_based_optgroup_key                                  = '--- '.__('Next (After Upcoming) Day', 's2member-x').' ---';
+        $next_day_based_optgroup_key                                  = '--- '.__('Next (After Upcoming) Day', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$next_day_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$next_day_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         foreach ([ // Special cases made easy.
-            'next sunday' => __('next sunday', 's2member-x'),
-            'next monday' => __('next monday', 's2member-x'),
-            'next tuesday' => __('next tuesday', 's2member-x'),
-            'next wednesday' => __('next wednesday', 's2member-x'),
-            'next thursday' => __('next thursday', 's2member-x'),
-            'next friday' => __('next friday', 's2member-x'),
-            'next saturday' => __('next saturday', 's2member-x'),
+            'next sunday' => __('next sunday', 'woocommerce-s2member-x'),
+            'next monday' => __('next monday', 'woocommerce-s2member-x'),
+            'next tuesday' => __('next tuesday', 'woocommerce-s2member-x'),
+            'next wednesday' => __('next wednesday', 'woocommerce-s2member-x'),
+            'next thursday' => __('next thursday', 'woocommerce-s2member-x'),
+            'next friday' => __('next friday', 'woocommerce-s2member-x'),
+            'next saturday' => __('next saturday', 'woocommerce-s2member-x'),
         ] as $_key => $_title) { // For access & expire.
             $this->access_offset_directives[$_key.' 12:00 am'] = $_title;
             $this->expire_offset_directives[$_key.' 11:59 pm'] = $_title;
         } // unset($_key, $_title); // Housekeeping.
 
-        $weeks_optgroup_key                                  = '--- '.__('Weeks', 's2member-x').' ---';
+        $weeks_optgroup_key                                  = '--- '.__('Weeks', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$weeks_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$weeks_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         for ($_i = 1; $_i <= 4; $_i = $_i + 1) {
             $_access_key                                  = $this->access_offset_key_prefix.' '.($_i === 1 ? $_i.' week' : $_i.' weeks').' 12:00 am';
             $_expire_key                                  = ($_i === 1 ? $_i.' week' : $_i.' weeks').' 11:59 pm '.$this->expire_offset_key_suffix;
-            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s week', '%1$s %2$s weeks', $_i, 's2member-x'), $this->access_offset_prefix, $_i);
-            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s week %2$s', '%1$s weeks %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
+            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s week', '%1$s %2$s weeks', $_i, 'woocommerce-s2member-x'), $this->access_offset_prefix, $_i);
+            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s week %2$s', '%1$s weeks %2$s', $_i, 'woocommerce-s2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $week_based_optgroup_key                                  = '--- '.__('Week-Based', 's2member-x').' ---';
+        $week_based_optgroup_key                                  = '--- '.__('Week-Based', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$week_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$week_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         foreach ([ // Special cases made easy.
-            'saturday this week' => __('last day (saturday) of current week', 's2member-x'),
-            'monday next week' => __('first day (monday) of next week', 's2member-x'),
-            'saturday next week' => __('last day (saturday) of next week', 's2member-x'),
+            'saturday this week' => __('last day (saturday) of current week', 'woocommerce-s2member-x'),
+            'monday next week' => __('first day (monday) of next week', 'woocommerce-s2member-x'),
+            'saturday next week' => __('last day (saturday) of next week', 'woocommerce-s2member-x'),
         ] as $_key => $_title) { // For access & expire.
             $this->access_offset_directives[$_key.' 12:00 am'] = $_title;
             $this->expire_offset_directives[$_key.' 11:59 pm'] = $_title;
         } // unset($_key, $_title); // Housekeeping.
 
-        $months_optgroup_key                                  = '--- '.__('Months', 's2member-x').' ---';
+        $months_optgroup_key                                  = '--- '.__('Months', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$months_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$months_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         for ($_i = 1; $_i <= 12; $_i = $_i + 1) {
             $_access_key                                  = $this->access_offset_key_prefix.' '.($_i === 1 ? $_i.' month' : $_i.' months').' 12:00 am';
             $_expire_key                                  = ($_i === 1 ? $_i.' month' : $_i.' months').' 11:59 pm '.$this->expire_offset_key_suffix;
-            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s month', '%1$s %2$s months', $_i, 's2member-x'), $this->access_offset_prefix, $_i);
-            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s month %2$s', '%1$s months %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
+            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s month', '%1$s %2$s months', $_i, 'woocommerce-s2member-x'), $this->access_offset_prefix, $_i);
+            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s month %2$s', '%1$s months %2$s', $_i, 'woocommerce-s2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $month_based_optgroup_key                                  = '--- '.__('Month-Based', 's2member-x').' ---';
+        $month_based_optgroup_key                                  = '--- '.__('Month-Based', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$month_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$month_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         foreach ([ // Special cases made easy.
-            'last day of this month' => __('last day of current month', 's2member-x'),
-            'first day of next month' => __('first day of next month', 's2member-x'),
-            'last day of next month' => __('last day of next month', 's2member-x'),
+            'last day of this month' => __('last day of current month', 'woocommerce-s2member-x'),
+            'first day of next month' => __('first day of next month', 'woocommerce-s2member-x'),
+            'last day of next month' => __('last day of next month', 'woocommerce-s2member-x'),
         ] as $_key => $_title) { // For access & expire.
             $this->access_offset_directives[$_key.' 12:00 am'] = $_title;
             $this->expire_offset_directives[$_key.' 11:59 pm'] = $_title;
         } // unset($_key, $_title); // Housekeeping.
 
-        $years_optgroup_key                                  = '--- '.__('Years', 's2member-x').' ---';
+        $years_optgroup_key                                  = '--- '.__('Years', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$years_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$years_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         for ($_i = 1; $_i <= 5; $_i = $_i + 1) {
             $_access_key                                  = $this->access_offset_key_prefix.' '.($_i === 1 ? $_i.' year' : $_i.' years').' 12:00 am';
             $_expire_key                                  = ($_i === 1 ? $_i.' year' : $_i.' years').' 11:59 pm '.$this->expire_offset_key_suffix;
-            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s year', '%1$s %2$s years', $_i, 's2member-x'), $this->access_offset_prefix, $_i);
-            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s year %2$s', '%1$s years %2$s', $_i, 's2member-x'), $_i, $this->expire_offset_suffix);
+            $this->access_offset_directives[$_access_key] = sprintf(_n('%1$s %2$s year', '%1$s %2$s years', $_i, 'woocommerce-s2member-x'), $this->access_offset_prefix, $_i);
+            $this->expire_offset_directives[$_expire_key] = sprintf(_n('%1$s year %2$s', '%1$s years %2$s', $_i, 'woocommerce-s2member-x'), $_i, $this->expire_offset_suffix);
         } // unset($_i, $_access_key, $_expire_key); // Housekeeping.
 
-        $year_based_optgroup_key                                  = '--- '.__('Year-Based', 's2member-x').' ---';
+        $year_based_optgroup_key                                  = '--- '.__('Year-Based', 'woocommerce-s2member-x').' ---';
         $this->access_offset_directives[$year_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
         $this->expire_offset_directives[$year_based_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
         foreach ([ // Special cases made easy.
-            '1/1 next year -1 day' => __('last day of current year', 's2member-x'),
-            '1/1 next year' => __('first day of next year', 's2member-x'),
+            '1/1 next year -1 day' => __('last day of current year', 'woocommerce-s2member-x'),
+            '1/1 next year' => __('first day of next year', 'woocommerce-s2member-x'),
         ] as $_key => $_title) { // For access & expire.
             $this->access_offset_directives[$_key.' 12:00 am'] = $_title;
             $this->expire_offset_directives[$_key.' 11:59 pm'] = $_title;
@@ -277,11 +277,11 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
         if (s::applyFilters('enable_other_product_permission_offset_directives', !defined('WPLANG') || !WPLANG || mb_stripos(WPLANG, 'en') === 0)) {
             // ↑ Must limit the use of `other` to the english language due to lack of support for a locale in PHP's `strtotime()` function.
 
-            $custom_entry_optgroup_key                                  = '--- '.__('Custom Entry', 's2member-x').' ---';
+            $custom_entry_optgroup_key                                  = '--- '.__('Custom Entry', 'woocommerce-s2member-x').' ---';
             $this->access_offset_directives[$custom_entry_optgroup_key] = '---'; // Creates an `<optgroup>`.
             $this->expire_offset_directives[$custom_entry_optgroup_key] = '---'; // Creates an `<optgroup>`.
 
-            $this->access_offset_directives['other'] = $this->expire_offset_directives['other'] = __('other', 's2member-x');
+            $this->access_offset_directives['other'] = $this->expire_offset_directives['other'] = __('other', 'woocommerce-s2member-x');
         }
     }
 

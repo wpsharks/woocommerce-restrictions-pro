@@ -1,16 +1,16 @@
-project_title                               = s2Member X Pro
+project_title                               = WooCommerce Restrictions — s2Member X Pro
 
 project_owner                               = websharks
-project_slug                                = s2member-x-pro
+project_slug                                = woocommerce-s2member-x-pro
 
-project_namespace                           = WebSharks\\WpSharks\\s2MemberX\\Pro
-project_sub_namespace                       = WpSharksS2MemberXPro
+project_namespace                           = WebSharks\\WpSharks\\WooCommerce\\s2MemberX\\Pro
+project_sub_namespace                       = WpSharksWooCommerceS2MemberXPro
 
-project_lite_title                          = s2Member X
-project_lite_slug                           = s2member-x
+project_lite_title                          = WooCommerce Restrictions — s2Member X
+project_lite_slug                           = woocommerce-s2member-x
 
-project_lite_namespace                      = WebSharks\\WpSharks\\s2MemberX
-project_lite_sub_namespace                  = WpSharksS2MemberX
+project_lite_namespace                      = WebSharks\\WpSharks\\WooCommerce\\s2MemberX
+project_lite_sub_namespace                  = WpSharksWooCommerceS2MemberX
 
 project_version                             = %y%m%d.%now
 
@@ -19,8 +19,8 @@ project_php_tested_up_to_version            = ${php.version}
 project_php_required_bits                   = 64
 project_php_required_extensions             =
 
-project_wp_required_version                 = 4.5.2
-project_wp_tested_up_to_version             = 4.5.2
+project_wp_required_version                 = 4.5.3
+project_wp_tested_up_to_version             = 4.5.3
 
 project_wp_sharks_core_required_version     = 160621.42233
 project_wp_sharks_core_tested_up_to_version = 160621.42233

@@ -1,16 +1,16 @@
-=== s2Member X Pro ===
+=== WooCommerce Restrictions — s2Member X Pro ===
 
-Stable tag: 160611.60015
+Stable tag: 160624.32326
 
-Tested up to: 4.5.2
-Requires at least: 4.5.2
+Tested up to: 4.5.3
+Requires at least: 4.5.3
 
-Text Domain: s2member-x
+Text Domain: woocommerce-s2member-x
 
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Donate: https://wpsharks.com/donate/
+Donate: https://wpsharks.com/donate
 Contributors: wpsharks, JasWSInc, raamdev, KristineDS, reedyseth, sitegeek
 Tags: member, members, membership, woocommerce, woo commerce, ecommerce, cart, shopping cart, payment, pay wall, paywall, login, protect, restrict, roles, capabilities, s2member
 
