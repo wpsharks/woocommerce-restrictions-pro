@@ -27,7 +27,8 @@
     });
     // Publish button translation enhancement.
 
-    $('input#publish[type="submit"], input#publish[type="button"]').val(data.i18n.publishButtonCreate);
-    $('button#publish').text(data.i18n.publishButtonCreate);
+    $('.post-new-php input#publish[type="submit"]').val(data.i18n.publishButtonCreate);
+    $('.post-new-php input#publish[type="button"]').val(data.i18n.publishButtonCreate);
+    $('.post-new-php button#publish').text(data.i18n.publishButtonCreate);
   });
 })(jQuery);
