@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the WooCommerce Restrictions — s2Member X Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Restrictions — s2Member X Pro 160624.34191\n"
+"Project-Id-Version: WooCommerce Restrictions — s2Member X Pro 160625.61236\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/woocommerce-s2member-x-pro\n"
-"POT-Creation-Date: 2016-06-24 09:31:51+00:00\n"
+"POT-Creation-Date: 2016-06-25 17:00:40+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,6 +15,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/App.php:126
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/App.php:126
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/App.php:126
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/App.php:126
 #: .~build/woocommerce-s2member-x/src/includes/classes/App.php:126
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/App.php:126
 #: src/includes/classes/App.php:126
@@ -24,6 +25,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/App.php:127
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/App.php:127
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/App.php:127
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/App.php:127
 #: .~build/woocommerce-s2member-x/src/includes/classes/App.php:127
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/App.php:127
 #: src/includes/classes/App.php:127
@@ -33,6 +35,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/App.php:132
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/App.php:132
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/App.php:132
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/App.php:132
 #: .~build/woocommerce-s2member-x/src/includes/classes/App.php:132
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/App.php:132
 #: src/includes/classes/App.php:132
@@ -45,6 +48,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:151
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:189
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:151
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:189
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:151
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:189
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:151
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:189
@@ -60,6 +65,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:154
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:191
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:154
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:191
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:154
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:191
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:154
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:191
@@ -72,6 +79,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:192
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:192
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:192
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:192
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:192
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:192
 #: src/includes/classes/Utils/Product.php:192
@@ -84,6 +92,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:156
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:193
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:156
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:193
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:156
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:193
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:156
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:193
@@ -99,6 +109,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:158
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:195
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:158
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:195
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:158
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:195
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:158
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:195
@@ -111,6 +123,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:196
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:196
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:196
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:196
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:196
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:196
 #: src/includes/classes/Utils/Product.php:196
@@ -120,6 +133,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:197
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:197
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:197
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:197
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:197
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:197
 #: src/includes/classes/Utils/Product.php:197
@@ -129,6 +143,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:198
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:198
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:198
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:198
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:198
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:198
 #: src/includes/classes/Utils/Product.php:198
@@ -141,6 +156,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:166
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:200
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:166
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:200
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:166
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:200
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:166
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:200
@@ -153,6 +170,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:201
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:201
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:201
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:201
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:201
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:201
 #: src/includes/classes/Utils/Product.php:201
@@ -162,6 +180,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:202
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:202
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:202
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:202
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:202
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:202
 #: src/includes/classes/Utils/Product.php:202
@@ -171,6 +190,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:203
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:203
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:203
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:203
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:203
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:203
 #: src/includes/classes/Utils/Product.php:203
@@ -180,6 +200,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:204
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:204
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:204
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:204
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:204
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:204
 #: src/includes/classes/Utils/Product.php:204
@@ -192,6 +213,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:185
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:206
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:185
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:206
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:185
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:206
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:185
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:206
@@ -204,6 +227,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:208
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:208
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:208
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:208
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:208
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:208
 #: src/includes/classes/Utils/Product.php:208
@@ -216,6 +240,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:192
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:209
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:192
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:209
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:192
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:209
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:192
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:209
@@ -231,6 +257,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:193
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:210
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:193
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:210
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:193
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:210
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:193
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:210
@@ -246,6 +274,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:194
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:211
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:194
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:211
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:194
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:211
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:194
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:211
@@ -264,6 +294,9 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:243
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:280
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:229
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:243
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:280
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:229
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:243
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:280
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:229
@@ -282,6 +315,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:284
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:247
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:284
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:247
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Product.php:284
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:247
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Product.php:284
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Product.php:247
@@ -294,6 +329,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:97
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:97
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:97
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:97
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:97
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:97
 #: src/includes/classes/Utils/ProductPermission.php:97
@@ -303,6 +339,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:100
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:100
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:100
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:100
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:100
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:100
 #: src/includes/classes/Utils/ProductPermission.php:100
@@ -312,6 +349,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:124
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:124
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:124
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:124
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:124
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:124
 #: src/includes/classes/Utils/ProductPermission.php:124
@@ -324,6 +362,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:163
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:127
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:163
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:127
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:163
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:127
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:163
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:127
@@ -336,6 +376,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:133
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:133
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:133
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:133
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:133
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:133
 #: src/includes/classes/Utils/ProductPermission.php:133
@@ -345,6 +386,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:134
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:134
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:134
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:134
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:134
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:134
 #: src/includes/classes/Utils/ProductPermission.php:134
@@ -354,6 +396,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:135
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:135
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:135
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:135
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:135
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:135
 #: src/includes/classes/Utils/ProductPermission.php:135
@@ -363,6 +406,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:139
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:139
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:139
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:139
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:139
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:139
 #: src/includes/classes/Utils/ProductPermission.php:139
@@ -372,6 +416,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:146
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:146
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:146
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:146
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:146
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:146
 #: src/includes/classes/Utils/ProductPermission.php:146
@@ -383,6 +428,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:147
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:147
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:147
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:147
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:147
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:147
 #: src/includes/classes/Utils/ProductPermission.php:147
@@ -394,6 +440,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:150
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:150
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:150
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:150
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:150
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:150
 #: src/includes/classes/Utils/ProductPermission.php:150
@@ -403,6 +450,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:157
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:157
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:157
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:157
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:157
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:157
 #: src/includes/classes/Utils/ProductPermission.php:157
@@ -414,6 +462,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:158
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:158
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:158
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:158
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:158
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:158
 #: src/includes/classes/Utils/ProductPermission.php:158
@@ -425,6 +474,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:161
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:161
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:161
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:161
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:161
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:161
 #: src/includes/classes/Utils/ProductPermission.php:161
@@ -434,6 +484,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:168
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:168
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:168
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:168
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:168
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:168
 #: src/includes/classes/Utils/ProductPermission.php:168
@@ -445,6 +496,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:169
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:169
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:169
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:169
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:169
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:169
 #: src/includes/classes/Utils/ProductPermission.php:169
@@ -456,6 +508,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:172
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:172
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:172
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:172
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:172
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:172
 #: src/includes/classes/Utils/ProductPermission.php:172
@@ -465,6 +518,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:177
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:177
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:177
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:177
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:177
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:177
 #: src/includes/classes/Utils/ProductPermission.php:177
@@ -474,6 +528,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:178
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:178
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:178
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:178
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:178
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:178
 #: src/includes/classes/Utils/ProductPermission.php:178
@@ -483,6 +538,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:179
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:179
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:179
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:179
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:179
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:179
 #: src/includes/classes/Utils/ProductPermission.php:179
@@ -492,6 +548,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:180
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:180
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:180
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:180
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:180
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:180
 #: src/includes/classes/Utils/ProductPermission.php:180
@@ -501,6 +558,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:181
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:181
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:181
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:181
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:181
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:181
 #: src/includes/classes/Utils/ProductPermission.php:181
@@ -510,6 +568,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:182
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:182
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:182
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:182
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:182
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:182
 #: src/includes/classes/Utils/ProductPermission.php:182
@@ -519,6 +578,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:183
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:183
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:183
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:183
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:183
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:183
 #: src/includes/classes/Utils/ProductPermission.php:183
@@ -528,6 +588,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:189
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:189
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:189
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:189
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:189
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:189
 #: src/includes/classes/Utils/ProductPermission.php:189
@@ -537,6 +598,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:194
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:194
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:194
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:194
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:194
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:194
 #: src/includes/classes/Utils/ProductPermission.php:194
@@ -546,6 +608,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:195
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:195
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:195
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:195
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:195
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:195
 #: src/includes/classes/Utils/ProductPermission.php:195
@@ -555,6 +618,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:196
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:196
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:196
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:196
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:196
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:196
 #: src/includes/classes/Utils/ProductPermission.php:196
@@ -564,6 +628,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:197
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:197
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:197
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:197
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:197
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:197
 #: src/includes/classes/Utils/ProductPermission.php:197
@@ -573,6 +638,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:198
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:198
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:198
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:198
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:198
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:198
 #: src/includes/classes/Utils/ProductPermission.php:198
@@ -582,6 +648,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:199
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:199
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:199
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:199
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:199
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:199
 #: src/includes/classes/Utils/ProductPermission.php:199
@@ -591,6 +658,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:200
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:200
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:200
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:200
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:200
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:200
 #: src/includes/classes/Utils/ProductPermission.php:200
@@ -600,6 +668,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:206
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:206
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:206
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:206
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:206
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:206
 #: src/includes/classes/Utils/ProductPermission.php:206
@@ -609,6 +678,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:213
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:213
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:213
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:213
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:213
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:213
 #: src/includes/classes/Utils/ProductPermission.php:213
@@ -620,6 +690,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:214
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:214
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:214
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:214
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:214
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:214
 #: src/includes/classes/Utils/ProductPermission.php:214
@@ -631,6 +702,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:217
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:217
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:217
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:217
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:217
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:217
 #: src/includes/classes/Utils/ProductPermission.php:217
@@ -640,6 +712,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:222
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:222
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:222
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:222
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:222
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:222
 #: src/includes/classes/Utils/ProductPermission.php:222
@@ -649,6 +722,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:223
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:223
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:223
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:223
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:223
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:223
 #: src/includes/classes/Utils/ProductPermission.php:223
@@ -658,6 +732,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:224
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:224
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:224
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:224
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:224
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:224
 #: src/includes/classes/Utils/ProductPermission.php:224
@@ -667,6 +742,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:230
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:230
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:230
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:230
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:230
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:230
 #: src/includes/classes/Utils/ProductPermission.php:230
@@ -676,6 +752,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:237
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:237
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:237
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:237
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:237
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:237
 #: src/includes/classes/Utils/ProductPermission.php:237
@@ -687,6 +764,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:238
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:238
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:238
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:238
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:238
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:238
 #: src/includes/classes/Utils/ProductPermission.php:238
@@ -698,6 +776,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:241
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:241
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:241
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:241
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:241
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:241
 #: src/includes/classes/Utils/ProductPermission.php:241
@@ -707,6 +786,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:246
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:246
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:246
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:246
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:246
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:246
 #: src/includes/classes/Utils/ProductPermission.php:246
@@ -716,6 +796,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:247
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:247
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:247
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:247
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:247
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:247
 #: src/includes/classes/Utils/ProductPermission.php:247
@@ -725,6 +806,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:248
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:248
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:248
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:248
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:248
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:248
 #: src/includes/classes/Utils/ProductPermission.php:248
@@ -734,6 +816,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:254
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:254
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:254
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:254
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:254
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:254
 #: src/includes/classes/Utils/ProductPermission.php:254
@@ -743,6 +826,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:261
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:261
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:261
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:261
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:261
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:261
 #: src/includes/classes/Utils/ProductPermission.php:261
@@ -754,6 +838,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:262
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:262
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:262
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:262
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:262
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:262
 #: src/includes/classes/Utils/ProductPermission.php:262
@@ -765,6 +850,7 @@ msgstr[1] ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:265
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:265
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:265
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:265
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:265
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:265
 #: src/includes/classes/Utils/ProductPermission.php:265
@@ -774,6 +860,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:270
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:270
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:270
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:270
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:270
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:270
 #: src/includes/classes/Utils/ProductPermission.php:270
@@ -783,6 +870,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:271
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:271
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:271
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:271
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:271
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:271
 #: src/includes/classes/Utils/ProductPermission.php:271
@@ -792,6 +880,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:280
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:280
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:280
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:280
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:280
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:280
 #: src/includes/classes/Utils/ProductPermission.php:280
@@ -801,6 +890,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:284
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:284
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:284
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/ProductPermission.php:284
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/ProductPermission.php:284
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/ProductPermission.php:284
 #: src/includes/classes/Utils/ProductPermission.php:284
@@ -810,6 +900,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:174
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:174
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:174
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:174
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:174
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:174
 #: src/includes/classes/Utils/Restriction.php:174
@@ -822,6 +913,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:198
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:177
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:198
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:177
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:198
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:177
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:198
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:177
@@ -837,6 +930,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:197
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:178
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:197
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:178
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:197
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:178
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:197
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:178
@@ -849,6 +944,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:179
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:179
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:179
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:179
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:179
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:179
 #: src/includes/classes/Utils/Restriction.php:179
@@ -858,6 +954,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:180
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:180
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:180
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:180
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:180
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:180
 #: src/includes/classes/Utils/Restriction.php:180
@@ -867,6 +964,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:181
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:181
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:181
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:181
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:181
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:181
 #: src/includes/classes/Utils/Restriction.php:181
@@ -876,6 +974,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:182
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:182
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:182
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:182
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:182
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:182
 #: src/includes/classes/Utils/Restriction.php:182
@@ -885,6 +984,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:183
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:183
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:183
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:183
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:183
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:183
 #: src/includes/classes/Utils/Restriction.php:183
@@ -894,6 +994,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:184
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:184
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:184
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:184
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:184
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:184
 #: src/includes/classes/Utils/Restriction.php:184
@@ -903,6 +1004,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:185
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:185
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:185
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:185
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:185
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:185
 #: src/includes/classes/Utils/Restriction.php:185
@@ -912,6 +1014,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:186
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:186
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:186
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:186
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:186
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:186
 #: src/includes/classes/Utils/Restriction.php:186
@@ -921,6 +1024,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:187
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:187
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:187
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:187
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:187
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:187
 #: src/includes/classes/Utils/Restriction.php:187
@@ -930,6 +1034,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:188
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:188
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:188
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:188
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:188
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:188
 #: src/includes/classes/Utils/Restriction.php:188
@@ -939,6 +1044,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:189
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:189
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:189
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:189
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:189
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:189
 #: src/includes/classes/Utils/Restriction.php:189
@@ -948,6 +1054,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:190
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:190
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:190
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:190
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:190
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:190
 #: src/includes/classes/Utils/Restriction.php:190
@@ -957,6 +1064,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:191
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:191
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:191
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:191
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:191
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:191
 #: src/includes/classes/Utils/Restriction.php:191
@@ -966,6 +1074,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:192
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:192
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:192
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:192
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:192
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:192
 #: src/includes/classes/Utils/Restriction.php:192
@@ -975,6 +1084,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:193
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:193
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:193
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:193
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:193
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:193
 #: src/includes/classes/Utils/Restriction.php:193
@@ -984,6 +1094,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:194
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:194
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:194
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:194
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:194
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:194
 #: src/includes/classes/Utils/Restriction.php:194
@@ -993,6 +1104,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:195
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:195
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:195
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:195
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:195
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:195
 #: src/includes/classes/Utils/Restriction.php:195
@@ -1002,6 +1114,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:196
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:196
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:196
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:196
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:196
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:196
 #: src/includes/classes/Utils/Restriction.php:196
@@ -1011,6 +1124,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:199
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:199
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:199
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:199
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:199
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:199
 #: src/includes/classes/Utils/Restriction.php:199
@@ -1020,6 +1134,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:226
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:226
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:226
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:226
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:226
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:226
 #: src/includes/classes/Utils/Restriction.php:226
@@ -1032,6 +1147,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:249
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:229
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:249
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:229
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:249
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:229
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:249
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:229
@@ -1047,6 +1164,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:248
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:230
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:248
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:230
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:248
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:230
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:248
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:230
@@ -1059,6 +1178,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:231
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:231
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:231
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:231
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:231
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:231
 #: src/includes/classes/Utils/Restriction.php:231
@@ -1068,6 +1188,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:232
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:232
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:232
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:232
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:232
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:232
 #: src/includes/classes/Utils/Restriction.php:232
@@ -1080,6 +1201,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:250
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:233
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:250
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:233
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:250
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:233
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:250
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:233
@@ -1092,6 +1215,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:234
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:234
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:234
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:234
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:234
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:234
 #: src/includes/classes/Utils/Restriction.php:234
@@ -1101,6 +1225,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:235
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:235
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:235
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:235
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:235
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:235
 #: src/includes/classes/Utils/Restriction.php:235
@@ -1110,6 +1235,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:236
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:236
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:236
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:236
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:236
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:236
 #: src/includes/classes/Utils/Restriction.php:236
@@ -1119,6 +1245,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:237
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:237
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:237
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:237
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:237
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:237
 #: src/includes/classes/Utils/Restriction.php:237
@@ -1128,6 +1255,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:238
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:238
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:238
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:238
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:238
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:238
 #: src/includes/classes/Utils/Restriction.php:238
@@ -1137,6 +1265,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:239
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:239
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:239
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:239
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:239
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:239
 #: src/includes/classes/Utils/Restriction.php:239
@@ -1146,6 +1275,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:240
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:240
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:240
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:240
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:240
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:240
 #: src/includes/classes/Utils/Restriction.php:240
@@ -1155,6 +1285,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:241
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:241
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:241
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:241
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:241
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:241
 #: src/includes/classes/Utils/Restriction.php:241
@@ -1164,6 +1295,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:242
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:242
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:242
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:242
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:242
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:242
 #: src/includes/classes/Utils/Restriction.php:242
@@ -1173,6 +1305,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:243
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:243
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:243
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:243
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:243
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:243
 #: src/includes/classes/Utils/Restriction.php:243
@@ -1182,6 +1315,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:244
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:244
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:244
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:244
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:244
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:244
 #: src/includes/classes/Utils/Restriction.php:244
@@ -1191,6 +1325,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:245
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:245
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:245
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:245
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:245
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:245
 #: src/includes/classes/Utils/Restriction.php:245
@@ -1200,6 +1335,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:246
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:246
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:246
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:246
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:246
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:246
 #: src/includes/classes/Utils/Restriction.php:246
@@ -1209,6 +1345,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:247
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:247
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:247
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:247
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:247
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:247
 #: src/includes/classes/Utils/Restriction.php:247
@@ -1221,6 +1358,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:282
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:279
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:282
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:279
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:282
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:279
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:282
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:279
@@ -1233,6 +1372,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:280
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:280
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:280
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:280
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:280
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:280
 #: src/includes/classes/Utils/Restriction.php:280
@@ -1242,6 +1382,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:281
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:281
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:281
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:281
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:281
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:281
 #: src/includes/classes/Utils/Restriction.php:281
@@ -1251,6 +1392,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:285
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:285
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:285
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:285
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:285
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:285
 #: src/includes/classes/Utils/Restriction.php:285
@@ -1260,6 +1402,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:288
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:288
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:288
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:288
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:288
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:288
 #: src/includes/classes/Utils/Restriction.php:288
@@ -1269,6 +1412,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:289
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:289
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:289
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:289
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:289
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:289
 #: src/includes/classes/Utils/Restriction.php:289
@@ -1278,6 +1422,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:290
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:290
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:290
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:290
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:290
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:290
 #: src/includes/classes/Utils/Restriction.php:290
@@ -1287,6 +1432,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:292
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:292
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:292
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:292
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:292
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:292
 #: src/includes/classes/Utils/Restriction.php:292
@@ -1296,6 +1442,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:293
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:293
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:293
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:293
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:293
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:293
 #: src/includes/classes/Utils/Restriction.php:293
@@ -1305,6 +1452,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:295
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:295
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:295
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:295
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:295
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:295
 #: src/includes/classes/Utils/Restriction.php:295
@@ -1314,6 +1462,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:378
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:378
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:378
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:378
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:378
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:378
 #: src/includes/classes/Utils/Restriction.php:378
@@ -1323,6 +1472,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:379
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:379
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:379
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:379
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:379
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:379
 #: src/includes/classes/Utils/Restriction.php:379
@@ -1332,6 +1482,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:380
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:380
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:380
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:380
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:380
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:380
 #: src/includes/classes/Utils/Restriction.php:380
@@ -1341,6 +1492,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:381
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:381
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:381
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:381
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:381
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:381
 #: src/includes/classes/Utils/Restriction.php:381
@@ -1350,6 +1502,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:382
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:382
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:382
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:382
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:382
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:382
 #: src/includes/classes/Utils/Restriction.php:382
@@ -1359,6 +1512,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:383
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:383
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:383
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:383
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:383
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:383
 #: src/includes/classes/Utils/Restriction.php:383
@@ -1368,6 +1522,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:384
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:384
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:384
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:384
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:384
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:384
 #: src/includes/classes/Utils/Restriction.php:384
@@ -1377,6 +1532,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:385
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:385
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:385
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:385
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:385
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:385
 #: src/includes/classes/Utils/Restriction.php:385
@@ -1386,6 +1542,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:447
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:447
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:447
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:447
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:447
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:447
 #: src/includes/classes/Utils/Restriction.php:447
@@ -1395,6 +1552,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:448
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:448
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:448
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:448
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:448
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:448
 #: src/includes/classes/Utils/Restriction.php:448
@@ -1404,6 +1562,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:449
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:449
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:449
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:449
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:449
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:449
 #: src/includes/classes/Utils/Restriction.php:449
@@ -1413,6 +1572,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:450
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:450
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:450
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:450
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:450
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:450
 #: src/includes/classes/Utils/Restriction.php:450
@@ -1422,6 +1582,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:451
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:451
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:451
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:451
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:451
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:451
 #: src/includes/classes/Utils/Restriction.php:451
@@ -1431,6 +1592,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:452
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:452
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:452
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:452
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:452
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:452
 #: src/includes/classes/Utils/Restriction.php:452
@@ -1440,6 +1602,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:470
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:470
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:470
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:470
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:470
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:470
 #: src/includes/classes/Utils/Restriction.php:470
@@ -1449,6 +1612,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:472
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:472
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:472
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:472
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:472
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:472
 #: src/includes/classes/Utils/Restriction.php:472
@@ -1458,6 +1622,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:473
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:473
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:473
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:473
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:473
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:473
 #: src/includes/classes/Utils/Restriction.php:473
@@ -1467,6 +1632,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:475
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:475
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:475
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:475
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:475
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:475
 #: src/includes/classes/Utils/Restriction.php:475
@@ -1476,6 +1642,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:476
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:476
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:476
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:476
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:476
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:476
 #: src/includes/classes/Utils/Restriction.php:476
@@ -1497,6 +1664,11 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:595
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:636
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:676
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:511
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:553
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:595
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:636
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:676
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:511
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:553
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:595
@@ -1518,6 +1690,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:514
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:514
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:514
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:514
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:514
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:514
 #: src/includes/classes/Utils/Restriction.php:514
@@ -1527,6 +1700,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:515
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:515
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:515
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:515
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:515
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:515
 #: src/includes/classes/Utils/Restriction.php:515
@@ -1536,6 +1710,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:518
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:518
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:518
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:518
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:518
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:518
 #: src/includes/classes/Utils/Restriction.php:518
@@ -1545,6 +1720,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:556
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:556
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:556
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:556
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:556
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:556
 #: src/includes/classes/Utils/Restriction.php:556
@@ -1554,6 +1730,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:557
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:557
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:557
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:557
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:557
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:557
 #: src/includes/classes/Utils/Restriction.php:557
@@ -1563,6 +1740,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:560
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:560
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:560
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:560
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:560
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:560
 #: src/includes/classes/Utils/Restriction.php:560
@@ -1572,6 +1750,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:598
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:598
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:598
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:598
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:598
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:598
 #: src/includes/classes/Utils/Restriction.php:598
@@ -1581,6 +1760,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:599
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:599
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:599
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:599
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:599
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:599
 #: src/includes/classes/Utils/Restriction.php:599
@@ -1590,6 +1770,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:602
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:602
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:602
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:602
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:602
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:602
 #: src/includes/classes/Utils/Restriction.php:602
@@ -1599,6 +1780,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:639
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:639
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:639
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:639
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:639
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:639
 #: src/includes/classes/Utils/Restriction.php:639
@@ -1608,6 +1790,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:640
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:640
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:640
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:640
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:640
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:640
 #: src/includes/classes/Utils/Restriction.php:640
@@ -1617,6 +1800,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:643
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:643
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:643
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:643
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:643
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:643
 #: src/includes/classes/Utils/Restriction.php:643
@@ -1626,6 +1810,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:673
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:673
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:673
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:673
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:673
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:673
 #: src/includes/classes/Utils/Restriction.php:673
@@ -1635,6 +1820,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:679
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:679
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:679
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:679
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:679
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:679
 #: src/includes/classes/Utils/Restriction.php:679
@@ -1644,6 +1830,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:680
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:680
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:680
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:680
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:680
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:680
 #: src/includes/classes/Utils/Restriction.php:680
@@ -1653,6 +1840,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:683
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:683
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:683
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:683
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:683
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:683
 #: src/includes/classes/Utils/Restriction.php:683
@@ -1662,6 +1850,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:705
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:705
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:705
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:705
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:705
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:705
 #: src/includes/classes/Utils/Restriction.php:705
@@ -1671,6 +1860,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:706
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:706
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:706
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:706
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:706
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:706
 #: src/includes/classes/Utils/Restriction.php:706
@@ -1680,6 +1870,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:708
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:708
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:708
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:708
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:708
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:708
 #: src/includes/classes/Utils/Restriction.php:708
@@ -1689,6 +1880,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:732
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:732
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:732
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:732
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:732
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:732
 #: src/includes/classes/Utils/Restriction.php:732
@@ -1698,6 +1890,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:733
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:733
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:733
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:733
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:733
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:733
 #: src/includes/classes/Utils/Restriction.php:733
@@ -1707,6 +1900,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:735
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:735
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:735
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:735
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:735
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:735
 #: src/includes/classes/Utils/Restriction.php:735
@@ -1716,6 +1910,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:738
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:738
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:738
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:738
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:738
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:738
 #: src/includes/classes/Utils/Restriction.php:738
@@ -1725,6 +1920,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:739
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:739
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:739
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:739
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:739
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:739
 #: src/includes/classes/Utils/Restriction.php:739
@@ -1734,6 +1930,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:741
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:741
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:741
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:741
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:741
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:741
 #: src/includes/classes/Utils/Restriction.php:741
@@ -1743,6 +1940,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:743
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:743
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:743
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:743
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:743
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:743
 #: src/includes/classes/Utils/Restriction.php:743
@@ -1752,6 +1950,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:744
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:744
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:744
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:744
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:744
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:744
 #: src/includes/classes/Utils/Restriction.php:744
@@ -1761,6 +1960,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:745
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:745
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:745
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:745
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:745
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:745
 #: src/includes/classes/Utils/Restriction.php:745
@@ -1770,6 +1970,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:746
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:746
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:746
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:746
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:746
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:746
 #: src/includes/classes/Utils/Restriction.php:746
@@ -1779,6 +1980,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:747
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:747
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:747
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:747
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:747
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:747
 #: src/includes/classes/Utils/Restriction.php:747
@@ -1788,6 +1990,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:748
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:748
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:748
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:748
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:748
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:748
 #: src/includes/classes/Utils/Restriction.php:748
@@ -1797,6 +2000,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:749
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:749
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:749
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:749
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:749
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:749
 #: src/includes/classes/Utils/Restriction.php:749
@@ -1806,6 +2010,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:750
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:750
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:750
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:750
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:750
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:750
 #: src/includes/classes/Utils/Restriction.php:750
@@ -1815,6 +2020,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:751
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:751
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:751
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:751
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:751
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:751
 #: src/includes/classes/Utils/Restriction.php:751
@@ -1824,6 +2030,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:752
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:752
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:752
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:752
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:752
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:752
 #: src/includes/classes/Utils/Restriction.php:752
@@ -1833,6 +2040,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:753
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:753
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:753
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:753
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:753
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:753
 #: src/includes/classes/Utils/Restriction.php:753
@@ -1842,6 +2050,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:756
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:756
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:756
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:756
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:756
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:756
 #: src/includes/classes/Utils/Restriction.php:756
@@ -1851,6 +2060,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:759
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:759
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:759
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:759
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:759
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:759
 #: src/includes/classes/Utils/Restriction.php:759
@@ -1860,6 +2070,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:760
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:760
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:760
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:760
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:760
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:760
 #: src/includes/classes/Utils/Restriction.php:760
@@ -1869,6 +2080,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:761
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:761
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:761
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:761
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:761
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:761
 #: src/includes/classes/Utils/Restriction.php:761
@@ -1878,6 +2090,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:763
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:763
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:763
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:763
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:763
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:763
 #: src/includes/classes/Utils/Restriction.php:763
@@ -1887,6 +2100,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:765
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:765
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:765
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:765
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:765
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:765
 #: src/includes/classes/Utils/Restriction.php:765
@@ -1896,6 +2110,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:767
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:767
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:767
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:767
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:767
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:767
 #: src/includes/classes/Utils/Restriction.php:767
@@ -1905,6 +2120,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:768
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:768
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:768
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:768
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:768
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:768
 #: src/includes/classes/Utils/Restriction.php:768
@@ -1914,6 +2130,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:769
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:769
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:769
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:769
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:769
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:769
 #: src/includes/classes/Utils/Restriction.php:769
@@ -1923,6 +2140,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:770
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:770
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:770
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:770
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:770
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:770
 #: src/includes/classes/Utils/Restriction.php:770
@@ -1932,6 +2150,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:771
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:771
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:771
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:771
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:771
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:771
 #: src/includes/classes/Utils/Restriction.php:771
@@ -1941,6 +2160,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:772
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:772
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:772
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/Restriction.php:772
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/Restriction.php:772
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/Restriction.php:772
 #: src/includes/classes/Utils/Restriction.php:772
@@ -1950,6 +2170,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserColumns.php:86
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserColumns.php:86
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserColumns.php:86
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserColumns.php:86
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserColumns.php:86
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserColumns.php:86
 #: src/includes/classes/Utils/UserColumns.php:86
@@ -1959,6 +2180,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserColumns.php:117
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserColumns.php:117
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserColumns.php:117
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserColumns.php:117
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserColumns.php:117
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserColumns.php:117
 #: src/includes/classes/Utils/UserColumns.php:117
@@ -1971,6 +2193,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:54
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:53
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:54
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermission.php:53
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermission.php:54
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:53
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:54
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:53
@@ -1983,6 +2207,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:56
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:56
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:56
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermission.php:56
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:56
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:56
 #: src/includes/classes/Utils/UserPermission.php:56
@@ -1992,6 +2217,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:57
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:57
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:57
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermission.php:57
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:57
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:57
 #: src/includes/classes/Utils/UserPermission.php:57
@@ -2001,6 +2227,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:58
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:58
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:58
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermission.php:58
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:58
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:58
 #: src/includes/classes/Utils/UserPermission.php:58
@@ -2010,6 +2237,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:59
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:59
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:59
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermission.php:59
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:59
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:59
 #: src/includes/classes/Utils/UserPermission.php:59
@@ -2019,6 +2247,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:60
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:60
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:60
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermission.php:60
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:60
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:60
 #: src/includes/classes/Utils/UserPermission.php:60
@@ -2028,6 +2257,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:61
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:61
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:61
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermission.php:61
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:61
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:61
 #: src/includes/classes/Utils/UserPermission.php:61
@@ -2037,6 +2267,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:62
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:62
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:62
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermission.php:62
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:62
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:62
 #: src/includes/classes/Utils/UserPermission.php:62
@@ -2046,6 +2277,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:63
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:63
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:63
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermission.php:63
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:63
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:63
 #: src/includes/classes/Utils/UserPermission.php:63
@@ -2055,6 +2287,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:64
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:64
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:64
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermission.php:64
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermission.php:64
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermission.php:64
 #: src/includes/classes/Utils/UserPermission.php:64
@@ -2064,6 +2297,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionShortcodes.php:124
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:124
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:124
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionShortcodes.php:124
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:124
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionShortcodes.php:124
 #: src/includes/classes/Utils/UserPermissionShortcodes.php:124
@@ -2073,6 +2307,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionShortcodes.php:162
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:162
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:162
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionShortcodes.php:162
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:162
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionShortcodes.php:162
 #: src/includes/classes/Utils/UserPermissionShortcodes.php:162
@@ -2082,6 +2317,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionShortcodes.php:165
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:165
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:165
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionShortcodes.php:165
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:165
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionShortcodes.php:165
 #: src/includes/classes/Utils/UserPermissionShortcodes.php:165
@@ -2091,6 +2327,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionShortcodes.php:170
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:170
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:170
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionShortcodes.php:170
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionShortcodes.php:170
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionShortcodes.php:170
 #: src/includes/classes/Utils/UserPermissionShortcodes.php:170
@@ -2100,6 +2337,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:146
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:146
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:146
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:146
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:146
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:146
 #: src/includes/classes/Utils/UserPermissionsWidget.php:146
@@ -2109,6 +2347,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:147
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:147
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:147
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:147
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:147
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:147
 #: src/includes/classes/Utils/UserPermissionsWidget.php:147
@@ -2118,6 +2357,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:149
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:149
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:149
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:149
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:149
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:149
 #: src/includes/classes/Utils/UserPermissionsWidget.php:149
@@ -2127,6 +2367,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:150
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:150
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:150
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:150
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:150
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:150
 #: src/includes/classes/Utils/UserPermissionsWidget.php:150
@@ -2136,6 +2377,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:152
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:152
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:152
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:152
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:152
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:152
 #: src/includes/classes/Utils/UserPermissionsWidget.php:152
@@ -2145,6 +2387,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:155
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:155
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:155
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:155
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:155
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:155
 #: src/includes/classes/Utils/UserPermissionsWidget.php:155
@@ -2154,6 +2397,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:159
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:159
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:159
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:159
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:159
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:159
 #: src/includes/classes/Utils/UserPermissionsWidget.php:159
@@ -2166,6 +2410,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:169
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:161
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:169
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:161
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:169
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:161
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:169
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:161
@@ -2181,6 +2427,8 @@ msgstr ""
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:170
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:162
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:170
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:162
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:170
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:162
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:170
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:162
@@ -2193,6 +2441,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:164
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:164
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:164
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:164
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:164
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:164
 #: src/includes/classes/Utils/UserPermissionsWidget.php:164
@@ -2202,6 +2451,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:167
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:167
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:167
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:167
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:167
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:167
 #: src/includes/classes/Utils/UserPermissionsWidget.php:167
@@ -2211,6 +2461,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:171
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:171
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:171
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:171
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:171
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:171
 #: src/includes/classes/Utils/UserPermissionsWidget.php:171
@@ -2220,6 +2471,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:172
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:172
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:172
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:172
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:172
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:172
 #: src/includes/classes/Utils/UserPermissionsWidget.php:172
@@ -2229,6 +2481,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:174
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:174
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:174
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:174
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:174
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:174
 #: src/includes/classes/Utils/UserPermissionsWidget.php:174
@@ -2238,6 +2491,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:175
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:175
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:175
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:175
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:175
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:175
 #: src/includes/classes/Utils/UserPermissionsWidget.php:175
@@ -2247,6 +2501,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:177
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:177
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:177
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:177
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:177
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:177
 #: src/includes/classes/Utils/UserPermissionsWidget.php:177
@@ -2256,6 +2511,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:178
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:178
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:178
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:178
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:178
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:178
 #: src/includes/classes/Utils/UserPermissionsWidget.php:178
@@ -2265,6 +2521,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:179
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:179
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:179
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:179
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:179
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:179
 #: src/includes/classes/Utils/UserPermissionsWidget.php:179
@@ -2274,6 +2531,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:181
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:181
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:181
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:181
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:181
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:181
 #: src/includes/classes/Utils/UserPermissionsWidget.php:181
@@ -2283,6 +2541,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:182
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:182
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:182
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:182
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:182
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:182
 #: src/includes/classes/Utils/UserPermissionsWidget.php:182
@@ -2292,6 +2551,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:183
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:183
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:183
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:183
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:183
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:183
 #: src/includes/classes/Utils/UserPermissionsWidget.php:183
@@ -2301,6 +2561,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:187
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:187
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:187
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:187
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:187
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:187
 #: src/includes/classes/Utils/UserPermissionsWidget.php:187
@@ -2310,6 +2571,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:188
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:188
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:188
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:188
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:188
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:188
 #: src/includes/classes/Utils/UserPermissionsWidget.php:188
@@ -2319,6 +2581,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:190
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:190
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:190
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:190
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:190
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:190
 #: src/includes/classes/Utils/UserPermissionsWidget.php:190
@@ -2328,6 +2591,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:191
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:191
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:191
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:191
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:191
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:191
 #: src/includes/classes/Utils/UserPermissionsWidget.php:191
@@ -2337,6 +2601,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:233
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:233
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:233
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/classes/Utils/UserPermissionsWidget.php:233
 #: .~build/woocommerce-s2member-x/src/includes/classes/Utils/UserPermissionsWidget.php:233
 #: .~build/woocommerce-s2member-x-pro/src/includes/classes/Utils/UserPermissionsWidget.php:233
 #: src/includes/classes/Utils/UserPermissionsWidget.php:233
@@ -2346,6 +2611,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/templates/s-core/notices/on-install.php:28
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/templates/s-core/notices/on-install.php:28
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/templates/s-core/notices/on-install.php:28
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/templates/s-core/notices/on-install.php:28
 #: .~build/woocommerce-s2member-x/src/includes/templates/s-core/notices/on-install.php:28
 #: .~build/woocommerce-s2member-x-pro/src/includes/templates/s-core/notices/on-install.php:28
 #: src/includes/templates/s-core/notices/on-install.php:28
@@ -2355,6 +2621,7 @@ msgstr ""
 #: .~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x-pro/src/includes/templates/s-core/notices/on-install.php:29
 #: .~build/woocommerce-s2member-x/.~build/.~/pkg-dirs/for-zip-tgz/woocommerce-s2member-x/src/includes/templates/s-core/notices/on-install.php:29
 #: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x/src/includes/templates/s-core/notices/on-install.php:29
+#: .~build/woocommerce-s2member-x/.~build/woocommerce-s2member-x-repo/src/includes/templates/s-core/notices/on-install.php:29
 #: .~build/woocommerce-s2member-x/src/includes/templates/s-core/notices/on-install.php:29
 #: .~build/woocommerce-s2member-x-pro/src/includes/templates/s-core/notices/on-install.php:29
 #: src/includes/templates/s-core/notices/on-install.php:29

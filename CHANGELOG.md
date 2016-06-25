@@ -1,4 +1,4 @@
-## $v
+## v160625.61236
 
 - Future-proofing `WC_Product` usage in code.
 
