@@ -1,3 +1,7 @@
+## $v
+
+- Future-proofing `WC_Product` usage in code.
+
 ## v160624.34191
 
 - Rebranding. Adding `woocommerce-` prefix.

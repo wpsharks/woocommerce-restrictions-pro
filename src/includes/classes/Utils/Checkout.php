@@ -62,20 +62,28 @@ class Checkout extends SCoreClasses\SCore\Base\Core
     protected function cartContainsPermissions()
     {
         if (($contains = &$this->cacheKey(__FUNCTION__)) !== null) {
-            return $contains; // ALready cached this.
+            return $contains; // Already cached this.
         }
         $WooCommerce = WC(); // `\WooCommerce` instance.
 
         if ($WooCommerce->cart->is_empty()) {
-            return $contains = false; // Cart is empty.
+            return $contains = false;
         }
         foreach ($WooCommerce->cart->get_cart() as $_cart_item) {
-            $_WC_Product = $_cart_item['data'];
-
-            if (a::getProductMeta($_WC_Product->get_id(), 'permissions')) {
+            if (!($_WC_Product = $_cart_item['data'])) {
+                debug(0, c::issue(vars(), 'Empty item data.'));
+                continue; // Not possible.
+            } elseif (!($_WC_Product instanceof \WC_Product)) {
+                debug(0, c::issue(vars(), 'Unexpected data.'));
+                continue; // Not possible.
+            } elseif (!$_WC_Product->exists() || !($_product_id = $_WC_Product->id)) {
+                debug(0, c::issue(vars(), 'Missing product ID.'));
+                continue; // Not possible.
+            }
+            if (a::getProductMeta($_product_id, 'permissions')) {
                 return $contains = true;
             }
-        } // unset($_cart_item); // Housekeeping.
+        } // unset($_cart_item, $_WC_Product, $_product_id);
 
         return $contains = false;
     }
