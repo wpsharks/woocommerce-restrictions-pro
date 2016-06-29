@@ -165,7 +165,7 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
          * - [if current_user_can="access_pkg_slug1 AND access_pkg_slug2" /]
          * - [if current_user_can="(access_pkg_slug1 AND access_pkg_slug2) OR (access_ccap_one AND access_ccap_two)" /]
          */
-        if ($atts['current_user_can'] && $current_user_id) {
+        if ($atts['current_user_can']) {
             if (mb_strpos($atts['current_user_can'], "'") !== false) {
                 trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_can="%2$s"` contains apostrophe.', 'woocommerce-s2member-x'), $shortcode, $atts['current_user_can']), E_USER_ERROR);
                 return ''; // Return empty string in case of error handlers allowing this to slide.
@@ -211,7 +211,7 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
          * - [if current_user_option="key = value OR key = value" /]
          * - [if current_user_option="(key != value AND key != value) OR (key AND another_key > 4)" /]
          */
-        if ($atts['current_user_option'] && $current_user_id) {
+        if ($atts['current_user_option']) {
             if (mb_strpos($atts['current_user_option'], "'") !== false) {
                 trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_option="%2$s"` contains apostrophe.', 'woocommerce-s2member-x'), $shortcode, $atts['current_user_option']), E_USER_ERROR);
                 return ''; // Return empty string in case of error handlers allowing this to slide.
@@ -259,7 +259,7 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
          * - [if current_user_meta="key = value OR key = value" /]
          * - [if current_user_meta="(key != value AND key != value) OR (key AND another_key > 4)" /]
          */
-        if ($atts['current_user_meta'] && $current_user_id) {
+        if ($atts['current_user_meta']) {
             if (mb_strpos($atts['current_user_meta'], "'") !== false) {
                 trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_meta="%2$s"` contains apostrophe.', 'woocommerce-s2member-x'), $shortcode, $atts['current_user_meta']), E_USER_ERROR);
                 return ''; // Return empty string in case of error handlers allowing this to slide.
