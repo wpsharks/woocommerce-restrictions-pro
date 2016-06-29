@@ -74,10 +74,11 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
     public function onIf(array $atts, $content, string $shortcode): string
     {
         $default_atts = [
-            'expr'              => '',
-            'is_user_logged_in' => '',
-            'current_user_can'  => '', 'for_blog' => '0',
-            'satisfy'           => 'all',
+            'expr'                => '',
+            'is_user_logged_in'   => '',
+            'current_user_can'    => '', 'for_blog' => '0',
+            'current_user_option' => '', 'current_user_meta' => '',
+            'satisfy'             => 'all',
         ];
         $atts    = c::mbTrim($atts);
         $atts    = shortcode_atts($default_atts, $atts, $shortcode);
@@ -91,11 +92,18 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
 
         $atts['current_user_can'] = (string) $atts['current_user_can'];
         $atts['current_user_can'] = $atts['current_user_can'] ? c::unescHtml($atts['current_user_can']) : '';
-        $atts['for_blog']         = (int) $atts['for_blog']; // Network-only.
 
-        $atts['satisfy'] = $atts['satisfy'] === 'any' ? 'any' : 'all';
+        $atts['current_user_option'] = (string) $atts['current_user_option'];
+        $atts['current_user_option'] = $atts['current_user_option'] ? c::unescHtml($atts['current_user_option']) : '';
 
-        $is_multisite    = is_multisite(); // Network installation?
+        $atts['current_user_meta'] = (string) $atts['current_user_meta'];
+        $atts['current_user_meta'] = $atts['current_user_meta'] ? c::unescHtml($atts['current_user_meta']) : '';
+
+        $atts['for_blog'] = (int) $atts['for_blog'];
+        $atts['satisfy']  = $atts['satisfy'] === 'any' ? 'any' : 'all';
+
+        $is_multisite    = is_multisite();
+        $current_user_id = (int) get_current_user_id();
         $shortcode_depth = strspn($shortcode, '_'); // Based on a zero index.
         $else_tag        = '['.str_repeat('_', $shortcode_depth).$this->else_shortcode_name.']';
         $conditions      = ''; // Initialize the full set of all conditions built below.
@@ -154,10 +162,10 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
          * Add conditions from the `current_user_can=""` attribute, if applicable.
          *
          * - [if current_user_can="access_pkg_slug1" /]
-         * - [if current_user_can="access_pkg_slug1 and access_pkg_slug2" /]
-         * - [if current_user_can="(access_pkg_slug1 and access_pkg_slug2) or (access_ccap_one and access_ccap_two)" /]
+         * - [if current_user_can="access_pkg_slug1 AND access_pkg_slug2" /]
+         * - [if current_user_can="(access_pkg_slug1 AND access_pkg_slug2) OR (access_ccap_one AND access_ccap_two)" /]
          */
-        if ($atts['current_user_can']) {
+        if ($atts['current_user_can'] && $current_user_id) {
             if (mb_strpos($atts['current_user_can'], "'") !== false) {
                 trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_can="%2$s"` contains apostrophe.', 'woocommerce-s2member-x'), $shortcode, $atts['current_user_can']), E_USER_ERROR);
                 return ''; // Return empty string in case of error handlers allowing this to slide.
@@ -166,7 +174,7 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
                 return ''; // Return empty string in case of error handlers allowing this to slide.
             } elseif ($atts['for_blog'] && $is_multisite && !s::getOption('if_shortcode_for_blog_enable')) {
                 // This is disabled by default. If enabled, a filter can disable it on child sites of a network.
-                // add_filter('s2member_x_options', function(array $options) { $options['if_shortcode_for_blog_enable'] = '0'; return $options; });
+                // add_filter('woocommerce_s2member_x_options', function(array $options) { $options['if_shortcode_for_blog_enable'] = '0'; return $options; });
                 trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `for_blog=""` not enabled on this site.', 'woocommerce-s2member-x'), $shortcode), E_USER_ERROR);
                 return ''; // Return empty string in case of error handlers allowing this to slide.
             }
@@ -195,6 +203,102 @@ class UserPermissionShortcodes extends SCoreClasses\SCore\Base\Core
                     $conditions = '('.$_current_user_can_conditions.')';
                 }
             } // unset($_current_user_can_conditions); // Housekeeping.
+        }
+        /*
+         * Add conditions from the `current_user_option=""` attribute, if applicable.
+         *
+         * - [if current_user_option="key" /]
+         * - [if current_user_option="key = value OR key = value" /]
+         * - [if current_user_option="(key != value AND key != value) OR (key AND another_key > 4)" /]
+         */
+        if ($atts['current_user_option'] && $current_user_id) {
+            if (mb_strpos($atts['current_user_option'], "'") !== false) {
+                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_option="%2$s"` contains apostrophe.', 'woocommerce-s2member-x'), $shortcode, $atts['current_user_option']), E_USER_ERROR);
+                return ''; // Return empty string in case of error handlers allowing this to slide.
+            } elseif (!preg_match('/\((?:(?:[^()]+)|(?R))*\)/u', '('.$atts['current_user_option'].')', $_m) || $_m[0] !== '('.$atts['current_user_option'].')') {
+                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_option="%2$s"` contains unbalanced `()` brackets.', 'woocommerce-s2member-x'), $shortcode, $atts['current_user_option']), E_USER_ERROR);
+                return ''; // Return empty string in case of error handlers allowing this to slide.
+            }
+            $_current_user_option_conditions = ''; // Initialize conditions.
+            $_previous_frag                  = ''; // Initialize previous fragment.
+
+            foreach (preg_split('/([()])|\s+/u', $atts['current_user_option'], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY) as $_frag) {
+                $_space = !$_current_user_option_conditions || !$_previous_frag || $_previous_frag === '(' || $_frag === '(' || $_frag === ')' ? '' : ' ';
+
+                if (in_array($_lc_frag = mb_strtolower($_frag), ['(', ')', 'and', 'or', '&&', '||'], true)) {
+                    $_frag = $_lc_frag === 'and' ? '&&' : $_frag;
+                    $_frag = $_lc_frag === 'or' ? '||' : $_frag;
+                    $_current_user_option_conditions .= $_space.$_frag;
+                } elseif (($_frag_parts = preg_split('/([<>!=]+)|\s+/u', $_frag, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY))) {
+                    $_operator = $_frag_parts[1] ?? ''; // Defaults to a boolean condition below; i.e., when empty.
+                    $_operator = $_operator && preg_match('/^\=+$/u', $_operator) ? '===' : $_operator;
+                    $_operator = $_operator && preg_match('/^\!\=+$/u', $_operator) ? '!==' : $_operator;
+                    $_value    = $_operator && isset($_frag_parts[2]) ? $_frag_parts[2] : '';
+
+                    if (!in_array($_operator, ['', '==', '!=', '===', '!==', '<=', '>=', '<>', '>', '<'], true)) {
+                        trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_option` contains invalid operator: %2$s.', 'woocommerce-s2member-x'), $shortcode, $_operator), E_USER_ERROR);
+                        return ''; // Return empty string in case of error handlers allowing this to slide.
+                    }
+                    $_current_user_option_conditions .= $_space.($_operator ? '(string)' : '').'get_user_option(\''.$_frag_parts[0].'\', '.$current_user_id.')'.($_operator ? ' '.$_operator.' \''.$_value.'\'' : '');
+                }
+                $_previous_frag = $_frag; // Previous fragment.
+            } // unset($_frag, $_lc_frag, $_previous_frag, $_space, $_frag_parts, $_operator, $_value); // Housekeeping.
+
+            if ($_current_user_option_conditions) {
+                if ($conditions) {
+                    $conditions .= ($atts['satisfy'] === 'any' ? ' || ' : ' && ').'('.$_current_user_can_conditions.')';
+                } else {
+                    $conditions = '('.$_current_user_option_conditions.')';
+                }
+            } // unset($_current_user_option_conditions); // Housekeeping.
+        }
+        /*
+         * Add conditions from the `current_user_meta=""` attribute, if applicable.
+         *
+         * - [if current_user_meta="key" /]
+         * - [if current_user_meta="key = value OR key = value" /]
+         * - [if current_user_meta="(key != value AND key != value) OR (key AND another_key > 4)" /]
+         */
+        if ($atts['current_user_meta'] && $current_user_id) {
+            if (mb_strpos($atts['current_user_meta'], "'") !== false) {
+                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_meta="%2$s"` contains apostrophe.', 'woocommerce-s2member-x'), $shortcode, $atts['current_user_meta']), E_USER_ERROR);
+                return ''; // Return empty string in case of error handlers allowing this to slide.
+            } elseif (!preg_match('/\((?:(?:[^()]+)|(?R))*\)/u', '('.$atts['current_user_meta'].')', $_m) || $_m[0] !== '('.$atts['current_user_meta'].')') {
+                trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_meta="%2$s"` contains unbalanced `()` brackets.', 'woocommerce-s2member-x'), $shortcode, $atts['current_user_meta']), E_USER_ERROR);
+                return ''; // Return empty string in case of error handlers allowing this to slide.
+            }
+            $_current_user_meta_conditions = ''; // Initialize conditions.
+            $_previous_frag                = ''; // Initialize previous fragment.
+
+            foreach (preg_split('/([()])|\s+/u', $atts['current_user_meta'], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY) as $_frag) {
+                $_space = !$_current_user_meta_conditions || !$_previous_frag || $_previous_frag === '(' || $_frag === '(' || $_frag === ')' ? '' : ' ';
+
+                if (in_array($_lc_frag = mb_strtolower($_frag), ['(', ')', 'and', 'or', '&&', '||'], true)) {
+                    $_frag = $_lc_frag === 'and' ? '&&' : $_frag;
+                    $_frag = $_lc_frag === 'or' ? '||' : $_frag;
+                    $_current_user_meta_conditions .= $_space.$_frag;
+                } elseif (($_frag_parts = preg_split('/([<>!=]+)|\s+/u', $_frag, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY))) {
+                    $_operator = $_frag_parts[1] ?? ''; // Defaults to a boolean condition below; i.e., when empty.
+                    $_operator = $_operator && preg_match('/^\=+$/u', $_operator) ? '===' : $_operator;
+                    $_operator = $_operator && preg_match('/^\!\=+$/u', $_operator) ? '!==' : $_operator;
+                    $_value    = $_operator && isset($_frag_parts[2]) ? $_frag_parts[2] : '';
+
+                    if (!in_array($_operator, ['', '==', '!=', '===', '!==', '<=', '>=', '<>', '>', '<'], true)) {
+                        trigger_error(sprintf(__('`[%1$s /]` shortcode attribute `current_user_meta` contains invalid operator: %2$s.', 'woocommerce-s2member-x'), $shortcode, $_operator), E_USER_ERROR);
+                        return ''; // Return empty string in case of error handlers allowing this to slide.
+                    }
+                    $_current_user_meta_conditions .= $_space.($_operator ? '(string)' : '').'get_user_meta('.$current_user_id.', \''.$_frag_parts[0].'\', true)'.($_operator ? ' '.$_operator.' \''.$_value.'\'' : '');
+                }
+                $_previous_frag = $_frag; // Previous fragment.
+            } // unset($_frag, $_lc_frag, $_previous_frag, $_space, $_frag_parts, $_operator, $_value); // Housekeeping.
+
+            if ($_current_user_meta_conditions) {
+                if ($conditions) {
+                    $conditions .= ($atts['satisfy'] === 'any' ? ' || ' : ' && ').'('.$_current_user_can_conditions.')';
+                } else {
+                    $conditions = '('.$_current_user_meta_conditions.')';
+                }
+            } // unset($_current_user_meta_conditions); // Housekeeping.
         }
         /*
          * Test the expression return value and deal with nested shortcodes.
