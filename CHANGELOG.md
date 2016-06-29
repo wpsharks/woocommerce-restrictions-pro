@@ -1,3 +1,11 @@
+## $v
+
+- Updating to latest WPSC.
+- Updating Git dotfiles.
+- Branch rename; `000000-dev` now just `dev`.
+- Adding `current_user_option=""` attribute to `[if /]` shortcode.
+- Adding `current_user_meta=""` attribute to `[if /]` shortcode.
+
 ## v160625.61236
 
 - Future-proofing `WC_Product` usage in code.
