@@ -79,9 +79,6 @@ class App extends SCoreClasses\App
 
                 '©short_slug' => 'wc-s2x',
                 '©short_var'  => 'wc_s2x',
-
-                '§domain'      => 'wpsharks.com',
-                '§domain_path' => '/product/woocommerce-s2member-x',
             ],
             '§pro_option_keys' => [
                 'if_shortcode_expr_enable',
