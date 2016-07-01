@@ -76,7 +76,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
             } elseif (!($_WC_Product instanceof \WC_Product)) {
                 debug(0, c::issue(vars(), 'Unexpected data.'));
                 continue; // Not possible.
-            } elseif (!$_WC_Product->exists() || !($_product_id = $_WC_Product->id)) {
+            } elseif (!$_WC_Product->exists() || !($_product_id = $_WC_Product->get_id())) {
                 debug(0, c::issue(vars(), 'Missing product ID.'));
                 continue; // Not possible.
             }

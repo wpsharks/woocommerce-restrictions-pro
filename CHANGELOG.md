@@ -1,3 +1,7 @@
+## $v
+
+- Bug fix. Use `WC_Product->get_id()` instead of `->id` property, which may not return the correct ID for variations.
+
 ## v160629.61863
 
 - Updating to latest WPSC.
