@@ -23,7 +23,7 @@ use function assert as debug;
 use function get_defined_vars as vars;
 
 /**
- * User permission shortcodes.
+ * User permission shortcodes. @TODO Move this to a separate plugin.
  *
  * @since 160524 Security gate.
  */
