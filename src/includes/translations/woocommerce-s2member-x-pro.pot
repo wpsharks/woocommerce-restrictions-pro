@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the WooCommerce Restrictions — s2Member X Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Restrictions — s2Member X Pro 160701.35116\n"
+"Project-Id-Version: WooCommerce Restrictions — s2Member X Pro 160707.3144\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/woocommerce-s2member-x-pro\n"
-"POT-Creation-Date: 2016-07-01 09:45:59+00:00\n"
+"POT-Creation-Date: 2016-07-07 00:52:59+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,15 +12,15 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: src/includes/classes/App.php:123
+#: src/includes/classes/App.php:119
 msgid "Fancy Permalinks"
 msgstr ""
 
-#: src/includes/classes/App.php:124
+#: src/includes/classes/App.php:120
 msgid "a Permalink Structure other than <em>plain</em>"
 msgstr ""
 
-#: src/includes/classes/App.php:129
+#: src/includes/classes/App.php:125
 msgid "<a href=\"%1$s\">change your Permalink settings</a> to anything but <em>plain</em>"
 msgstr ""
 
@@ -894,46 +894,6 @@ msgstr ""
 
 #: src/includes/classes/Utils/UserPermission.php:64
 msgid "Subscription Switched"
-msgstr ""
-
-#: src/includes/classes/Utils/UserPermissionShortcodes.php:132
-msgid "`[%1$s /]` shortcode attribute `expr=\"\"` not enabled on this site."
-msgstr ""
-
-#: src/includes/classes/Utils/UserPermissionShortcodes.php:170
-msgid "`[%1$s /]` shortcode attribute `current_user_can=\"%2$s\"` contains apostrophe."
-msgstr ""
-
-#: src/includes/classes/Utils/UserPermissionShortcodes.php:173
-msgid "`[%1$s /]` shortcode attribute `current_user_can=\"%2$s\"` contains unbalanced `()` brackets."
-msgstr ""
-
-#: src/includes/classes/Utils/UserPermissionShortcodes.php:178
-msgid "`[%1$s /]` shortcode attribute `for_blog=\"\"` not enabled on this site."
-msgstr ""
-
-#: src/includes/classes/Utils/UserPermissionShortcodes.php:216
-msgid "`[%1$s /]` shortcode attribute `current_user_option=\"%2$s\"` contains apostrophe."
-msgstr ""
-
-#: src/includes/classes/Utils/UserPermissionShortcodes.php:219
-msgid "`[%1$s /]` shortcode attribute `current_user_option=\"%2$s\"` contains unbalanced `()` brackets."
-msgstr ""
-
-#: src/includes/classes/Utils/UserPermissionShortcodes.php:239
-msgid "`[%1$s /]` shortcode attribute `current_user_option` contains invalid operator: %2$s."
-msgstr ""
-
-#: src/includes/classes/Utils/UserPermissionShortcodes.php:264
-msgid "`[%1$s /]` shortcode attribute `current_user_meta=\"%2$s\"` contains apostrophe."
-msgstr ""
-
-#: src/includes/classes/Utils/UserPermissionShortcodes.php:267
-msgid "`[%1$s /]` shortcode attribute `current_user_meta=\"%2$s\"` contains unbalanced `()` brackets."
-msgstr ""
-
-#: src/includes/classes/Utils/UserPermissionShortcodes.php:287
-msgid "`[%1$s /]` shortcode attribute `current_user_meta` contains invalid operator: %2$s."
 msgstr ""
 
 #: src/includes/classes/Utils/UserPermissionsWidget.php:146
