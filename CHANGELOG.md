@@ -1,3 +1,7 @@
+## $v
+
+- Pulling the `[if /]` shortcode out into a separate plugin before official release.
+
 ## v160701.35116
 
 - Bug fix. Use `WC_Product->get_id()` instead of `->id` property, which may not return the correct ID for variations.

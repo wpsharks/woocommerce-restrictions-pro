@@ -81,15 +81,11 @@ class App extends SCoreClasses\App
                 '©short_var'  => 'wc_s2x',
             ],
             '§pro_option_keys' => [
-                'if_shortcode_expr_enable',
-                'if_shortcode_for_blog_enable',
                 'security_gate_redirect_to_args_enable',
                 'orders_always_grant_immediate_access',
             ],
             '§default_options' => [
-                'if_shortcode_expr_enable'              => $is_multisite && !$is_main_site ? '0' : '1',
-                'if_shortcode_for_blog_enable'          => $is_multisite && !$is_main_site ? '0' : '1',
-                'security_gate_redirects_to_post_id'    => '0', // Post ID.
+                'security_gate_redirects_to_post_id'    => '0',
                 'security_gate_redirect_to_args_enable' => '1',
                 'orders_always_grant_immediate_access'  => '0',
             ],
@@ -196,16 +192,6 @@ class App extends SCoreClasses\App
 
             add_filter('user_has_cap', [$this->Utils->UserPermissions, 'onUserHasCap'], 1000, 4);
             add_action('clean_user_cache', [$this->Utils->UserPermissions, 'onCleanUserCache']);
-
-            for ($_i = 0, $if_shortcode_name = a::ifShortcodeName(), $if_shortcode_names = []; $_i < 5; ++$_i) {
-                add_shortcode($if_shortcode_names[] = str_repeat('_', $_i).$if_shortcode_name, [$this->Utils->UserPermissionShortcodes, 'onIf']);
-            } // unset($_i); // Housekeeping.
-
-            add_filter('no_texturize_shortcodes', function (array $shortcodes) use ($if_shortcode_names) {
-                return array_merge($shortcodes, $if_shortcode_names);
-            }); // See: <http://jas.xyz/24AusB7> for more about this filter.
-
-            add_filter('widget_text', 'do_shortcode'); // Enable shortcodes in widgets.
 
             if ($is_admin) { // Admin areas only.
                 add_action('current_screen', [$this->Utils->UserPermissionsWidget, 'onCurrentScreen']);
