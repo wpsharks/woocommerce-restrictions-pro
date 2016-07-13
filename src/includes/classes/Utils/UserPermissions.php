@@ -192,7 +192,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      */
     public function onRemoveUserFromBlog($user_id)
     {
-        if (!is_multisite()) {
+        if (!$this->Wp->is_multisite) {
             return; // Not applicable.
         }
         return $this->onDeleteUser($user_id);
@@ -209,7 +209,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      */
     public function onDeleteNetworkUser($user_id)
     {
-        if (!is_multisite()) {
+        if (!$this->Wp->is_multisite) {
             return; // Not applicable.
         } elseif (!($user_id = (int) $user_id)) {
             return; // Not possible.

@@ -47,15 +47,13 @@ class App extends SCoreClasses\App
      */
     public function __construct(array $instance = [])
     {
-        $is_multisite = is_multisite();
-        $is_main_site = !$is_multisite || is_main_site();
-
         $instance_base = [
             '©debug' => [
                 '©log_callback' => function (...$args) {
                     $this->Utils->Debugging->onLogEvent(...$args);
                 },
             ],
+
             '©di' => [
                 '©default_rule' => [
                     'new_instances' => [
@@ -64,22 +62,24 @@ class App extends SCoreClasses\App
                     ],
                 ],
             ],
+
             '§specs' => [
-                '§in_wp'           => false,
-                '§is_network_wide' => false,
+                '§type' => 'plugin',
+                '§file' => dirname(__FILE__, 4).'/plugin.php',
             ],
             '©brand' => [
-                '©name'    => 'WooCommerce Restrictions — s2Member X',
                 '©acronym' => 'WC S2X',
-
-                '©text_domain' => 'woocommerce-s2member-x',
+                '©name'    => 'WooCommerce Restrictions — s2Member X',
 
                 '©slug' => 'woocommerce-s2member-x',
                 '©var'  => 'woocommerce_s2member_x',
 
                 '©short_slug' => 'wc-s2x',
                 '©short_var'  => 'wc_s2x',
+
+                '©text_domain' => 'woocommerce-s2member-x',
             ],
+
             '§pro_option_keys' => [
                 'security_gate_redirect_to_args_enable',
                 'orders_always_grant_immediate_access',
@@ -89,6 +89,7 @@ class App extends SCoreClasses\App
                 'security_gate_redirect_to_args_enable' => '1',
                 'orders_always_grant_immediate_access'  => '0',
             ],
+
             '§conflicts' => [
                 '§plugins' => [
                     's2member'               => 's2Member Framework (Old)',
@@ -161,13 +162,9 @@ class App extends SCoreClasses\App
         }, 6); // Right after other WooCommerce post types.
 
         add_action('init', function () {
-            # Misc. variables.
-
-            $is_admin = is_admin();
-
             # Restriction-related hooks.
 
-            if ($is_admin) { // Admin areas only.
+            if ($this->Wp->is_admin) { // Admin areas only.
                 add_action('current_screen', [$this->Utils->Restriction, 'onCurrentScreen']);
 
                 add_filter('custom_menu_order', '__return_true'); // Enable custom order.
@@ -193,7 +190,7 @@ class App extends SCoreClasses\App
             add_filter('user_has_cap', [$this->Utils->UserPermissions, 'onUserHasCap'], 1000, 4);
             add_action('clean_user_cache', [$this->Utils->UserPermissions, 'onCleanUserCache']);
 
-            if ($is_admin) { // Admin areas only.
+            if ($this->Wp->is_admin) { // Admin areas only.
                 add_action('current_screen', [$this->Utils->UserPermissionsWidget, 'onCurrentScreen']);
 
                 add_action('admin_enqueue_scripts', [$this->Utils->UserPermissionsWidget, 'onAdminEnqueueScripts']);
@@ -249,7 +246,7 @@ class App extends SCoreClasses\App
             }
             # Product-data and other product-related WooCommerce events.
 
-            if ($is_admin) { // Admin areas only.
+            if ($this->Wp->is_admin) { // Admin areas only.
                 add_action('current_screen', [$this->Utils->Product, 'onCurrentScreen']);
 
                 add_action('admin_enqueue_scripts', [$this->Utils->Product, 'onAdminEnqueueScripts']);

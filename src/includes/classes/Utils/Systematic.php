@@ -135,7 +135,7 @@ class Systematic extends SCoreClasses\SCore\Base\Core
         $uri_patterns[] = c::urlToWRegxUriPattern(wp_login_url());
         $uri_patterns[] = c::urlToWRegxUriPattern(wp_registration_url());
 
-        if (is_multisite()) { // There is a network admin panel?
+        if ($this->Wp->is_multisite) { // There is a network admin panel?
             $uri_patterns[] = c::urlToWRegxUriPattern(network_admin_url());
         }
         foreach ($this->collectWcUrls() as $_wc_url) {

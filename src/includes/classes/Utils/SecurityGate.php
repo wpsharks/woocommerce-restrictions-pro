@@ -30,15 +30,6 @@ use function get_defined_vars as vars;
 class SecurityGate extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * In admin area?
-     *
-     * @since 160606 Initial release.
-     *
-     * @type bool In admin area?
-     */
-    protected $is_admin;
-
-    /**
      * Restriction-related data.
      *
      * @since 160524 Security gate.
@@ -58,8 +49,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->is_admin = is_admin();
-        $this->data     = []; // Initialize.
+        $this->data = []; // Initialize.
     }
 
     /**
@@ -72,7 +62,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         if (c::isCli()) {
             return; // Not applicable.
         }
-        if ($this->is_admin) {
+        if ($this->Wp->is_admin) {
             if ($this->restrictionsApply()) {
                 $this->denyRedirect();
             }
@@ -109,7 +99,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     {
         global $wp_the_query;
 
-        if ($this->is_admin) {
+        if ($this->Wp->is_admin) {
             $post_id = 0;
             $uri     = c::currentUri();
         } else {
@@ -141,8 +131,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         $redirect_to = $this->maybeAddRedirectArgs($redirect_to);
         $redirect_to = s::applyFilters('security_gate_redirect_to', $redirect_to);
 
-        wp_redirect($redirect_to, 307);
-        exit; // Stop here.
+        wp_redirect($redirect_to, 307).exit(); // Stop on redirection.
     }
 
     /**
