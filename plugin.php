@@ -4,7 +4,7 @@
  *
  * @wp-plugin
  *
- * Version: 160713.41153
+ * Version: 160714.37183
  * Text Domain: woocommerce-s2member-x
  * Plugin Name: WooCommerce Restrictions — s2Member X Pro
  *

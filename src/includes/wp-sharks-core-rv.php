@@ -6,6 +6,6 @@ if (!defined('WPINC')) {
     exit('Do NOT access this file directly: '.basename(__FILE__));
 }
 $GLOBALS['wp_sharks_core_rv'] = [
-    'min' => '160713.39957', //wp-sharks-core-required-version//
+    'min' => '160714.36962', //wp-sharks-core-required-version//
     'max' => '', //wp-sharks-core-max-compatible-version//
 ];
