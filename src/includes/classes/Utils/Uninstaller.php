@@ -34,12 +34,12 @@ class Uninstaller extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restrictions.
      *
-     * @param int $counter Site counter.
+     * @param int $site_counter Site counter.
      */
-    public function onOtherUninstallRoutines(int $counter)
+    public function onOtherUninstallRoutines(int $site_counter)
     {
         a::removeAllRestrictionCaps();
-        $this->deleteRestrictions($counter);
+        $this->deleteRestrictions($site_counter);
     }
 
     /**
@@ -47,9 +47,9 @@ class Uninstaller extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restrictions.
      *
-     * @param int $counter Site counter.
+     * @param int $site_counter Site counter.
      */
-    protected function deleteRestrictions(int $counter)
+    protected function deleteRestrictions(int $site_counter)
     {
         $WpDb = s::wpDb();
 
