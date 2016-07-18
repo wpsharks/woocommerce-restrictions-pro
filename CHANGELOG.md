@@ -1,3 +1,8 @@
+## $v
+
+- Updating to the latest WP Sharks Core v160718.53795.
+- Adding `REQUIRES.md` file to list WooCommerce as a formal requirement.
+
 ## v160715.32027
 
 - Updating to latest WPS Core.
