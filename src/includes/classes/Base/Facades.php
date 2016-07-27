@@ -49,6 +49,5 @@ abstract class Facades
     use Traits\Facades\Systematics;
     use Traits\Facades\UserPermission;
     use Traits\Facades\UserPermissions;
-    use Traits\Facades\UserPermissionShortcodes;
     use Traits\Facades\Webhook;
 }
