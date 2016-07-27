@@ -1,3 +1,9 @@
+## $v
+
+- Updating to the latest WP Sharks Core.
+- Enhancing docBlocks throughout the source code.
+- Updating template files. Use `$this->vars` instead of `$this->current_vars`.
+
 ## v160718.71135
 
 - Updating to the latest WP Sharks Core v160718.53795.
