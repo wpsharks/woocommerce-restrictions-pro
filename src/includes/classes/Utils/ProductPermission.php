@@ -1,4 +1,10 @@
 <?php
+/**
+ * Product permission utilities.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
      *
      * @since 160524 Product permissions.
      *
-     * @type array Access offset prefix.
+     * @var array Access offset prefix.
      */
     public $access_offset_prefix;
 
@@ -43,7 +49,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
      *
      * @since 160524 Product permissions.
      *
-     * @type array Access offset key prefix.
+     * @var array Access offset key prefix.
      */
     public $access_offset_key_prefix;
 
@@ -52,7 +58,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
      *
      * @since 160524 Product permissions.
      *
-     * @type array Expire offset suffix.
+     * @var array Expire offset suffix.
      */
     public $expire_offset_suffix;
 
@@ -61,7 +67,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
      *
      * @since 160524 Product permissions.
      *
-     * @type array Expire offset key suffix.
+     * @var array Expire offset key suffix.
      */
     public $expire_offset_key_suffix;
 
@@ -70,7 +76,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
      *
      * @since 160524 Product permissions.
      *
-     * @type array Access offset directives.
+     * @var array Access offset directives.
      */
     protected $access_offset_directives;
 
@@ -79,7 +85,7 @@ class ProductPermission extends SCoreClasses\SCore\Base\Core implements CoreInte
      *
      * @since 160524 Product permissions.
      *
-     * @type array Expire offset directives.
+     * @var array Expire offset directives.
      */
     protected $expire_offset_directives;
 

@@ -1,4 +1,10 @@
 <?php
+/**
+ * User permissions.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits\Facades;
 
@@ -22,10 +28,19 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 use function assert as debug;
 use function get_defined_vars as vars;
 
+/**
+ * User permissions.
+ *
+ * @since 160524
+ */
 trait UserPermissions
 {
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\UserPermissions::transfer()
      */
     public static function transferUserPermissions(...$args)
     {
@@ -34,6 +49,10 @@ trait UserPermissions
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\UserPermissions::hasAccessToRestrictions()
      */
     public static function userHas(...$args)
     {
@@ -42,6 +61,10 @@ trait UserPermissions
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\UserPermissions::currentHasAccessToRestrictions()
      */
     public static function currentUserHas(...$args)
     {
@@ -50,6 +73,10 @@ trait UserPermissions
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\UserPermissions::accessibleRestrictionIds()
      */
     public static function userAccessibleRestrictionIds(...$args)
     {
@@ -58,6 +85,10 @@ trait UserPermissions
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\UserPermissions::permissions()
      */
     public static function userPermissions(...$args)
     {
@@ -66,6 +97,10 @@ trait UserPermissions
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\UserPermissions::clearCache()
      */
     public static function clearUserPermissionsCache(...$args)
     {

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Application.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
 
@@ -23,7 +29,7 @@ use function assert as debug;
 use function get_defined_vars as vars;
 
 /**
- * App.
+ * Application.
  *
  * @since 160524 Initial release.
  */
@@ -34,7 +40,7 @@ class App extends SCoreClasses\App
      *
      * @since 160524
      *
-     * @type string Version.
+     * @var string Version.
      */
     const VERSION = '160727.6263'; //v//
 
@@ -267,7 +273,7 @@ class App extends SCoreClasses\App
 
             // See also: <https://github.com/wp-plugins/bbpress/blob/master/bbpress.php#L969>
             // bbPress runs its setup on `plugins_loaded` at the latest, so this comes after BBP.
-
+            //
         }, 10); // Default hook priority is OK here. On the front-end, this reattaches to the `wp` hook anyway.
         // On the admin side, this will run immediately (i.e., on `wp_loaded`); but again, default priority is fine.
     }

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Restriction caps.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class RestrictionCaps extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restrictions.
      *
-     * @type array All caps.
+     * @var array All caps.
      */
     public $caps;
 

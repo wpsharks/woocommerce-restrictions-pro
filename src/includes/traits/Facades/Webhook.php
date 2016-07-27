@@ -1,4 +1,10 @@
 <?php
+/**
+ * Webhook.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits\Facades;
 
@@ -22,10 +28,16 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 use function assert as debug;
 use function get_defined_vars as vars;
 
+/**
+ * Webhook.
+ *
+ * @since 160524
+ */
 trait Webhook
 {
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Webhook::$post_type
      */
     public static function webhookPostType()
     {

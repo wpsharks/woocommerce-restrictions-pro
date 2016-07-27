@@ -1,4 +1,10 @@
 <?php
+/**
+ * Restrictions.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits\Facades;
 
@@ -22,10 +28,19 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 use function assert as debug;
 use function get_defined_vars as vars;
 
+/**
+ * Restrictions.
+ *
+ * @since 160524
+ */
 trait Restrictions
 {
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Restrictions::clearCache()
      */
     public static function clearRestrictionsCache(...$args)
     {
@@ -34,6 +49,10 @@ trait Restrictions
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Restrictions::slugToId()
      */
     public static function restrictionSlugToId(...$args)
     {
@@ -42,6 +61,10 @@ trait Restrictions
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Restrictions::slugsToIds()
      */
     public static function restrictionSlugsToIds(...$args)
     {
@@ -50,6 +73,10 @@ trait Restrictions
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Restrictions::titlesById()
      */
     public static function restrictionTitlesById(...$args)
     {
@@ -58,6 +85,10 @@ trait Restrictions
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Restrictions::idsBySlug()
      */
     public static function restrictionIdsBySlug(...$args)
     {
@@ -66,6 +97,10 @@ trait Restrictions
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Restrictions::byMetaKey()
      */
     public static function restrictionsByMetaKey(...$args)
     {
@@ -74,6 +109,10 @@ trait Restrictions
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Restrictions::allWithMeta()
      */
     public static function restrictionsAllWithMeta(...$args)
     {

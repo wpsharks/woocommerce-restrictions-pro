@@ -1,4 +1,10 @@
 <?php
+/**
+ * Security check.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Security gate.
      *
-     * @type array Meta keys.
+     * @var array Meta keys.
      */
     protected $restriction_meta_keys;
 
@@ -43,7 +49,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Security gate.
      *
-     * @type array Integer meta keys.
+     * @var array Integer meta keys.
      */
     protected $restriction_int_meta_keys;
 

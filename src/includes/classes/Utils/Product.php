@@ -1,4 +1,10 @@
 <?php
+/**
+ * Product utilities.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class Product extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Product utilities.
      *
-     * @type string Post type.
+     * @var string Post type.
      */
     public $post_type;
 
@@ -43,7 +49,7 @@ class Product extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Product utilities.
      *
-     * @type string Type taxonomy.
+     * @var string Type taxonomy.
      */
     public $type_taxonomy;
 
@@ -52,7 +58,7 @@ class Product extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Product utilities.
      *
-     * @type string Meta prefix.
+     * @var string Meta prefix.
      */
     public $meta_prefix;
 
@@ -61,7 +67,7 @@ class Product extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Product utilities.
      *
-     * @type string Visibility classes.
+     * @var string Visibility classes.
      */
     public $visibility_classes;
 
@@ -70,7 +76,7 @@ class Product extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Product utilities.
      *
-     * @type string Variation visibility classes.
+     * @var string Variation visibility classes.
      */
     public $variation_visibility_classes;
 
@@ -79,7 +85,7 @@ class Product extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Product utilities.
      *
-     * @type string Client-side prefix.
+     * @var string Client-side prefix.
      */
     public $client_side_prefix;
 
@@ -88,7 +94,7 @@ class Product extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Product utilities.
      *
-     * @type \WP_Screen|null Screen.
+     * @var \WP_Screen|null Screen.
      */
     protected $screen;
 
@@ -97,7 +103,7 @@ class Product extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Product utilities.
      *
-     * @type bool Is screen mobile?
+     * @var bool Is screen mobile?
      */
     protected $screen_is_mobile;
 

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Restriction.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @type string Post type.
+     * @var string Post type.
      */
     public $post_type;
 
@@ -43,7 +49,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @type string Category taxonomy.
+     * @var string Category taxonomy.
      */
     public $category_taxonomy;
 
@@ -52,7 +58,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @type string Meta prefix.
+     * @var string Meta prefix.
      */
     public $meta_prefix;
 
@@ -61,7 +67,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @type string Access PKG prefix.
+     * @var string Access PKG prefix.
      */
     public $access_pkg_prefix;
 
@@ -70,7 +76,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @type string Access CCAP prefix.
+     * @var string Access CCAP prefix.
      */
     public $access_ccap_prefix;
 
@@ -79,7 +85,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @type string Client-side prefix.
+     * @var string Client-side prefix.
      */
     public $client_side_prefix;
 
@@ -88,7 +94,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @type array Meta keys.
+     * @var array Meta keys.
      */
     public $meta_keys;
 
@@ -97,7 +103,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @type array Meta keys.
+     * @var array Meta keys.
      */
     public $int_meta_keys;
 
@@ -106,7 +112,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @type \WP_Screen|null Screen.
+     * @var \WP_Screen|null Screen.
      */
     protected $screen;
 
@@ -115,7 +121,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @type bool Is screen mobile?
+     * @var bool Is screen mobile?
      */
     protected $screen_is_mobile;
 

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Systematics.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits\Facades;
 
@@ -22,10 +28,19 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 use function assert as debug;
 use function get_defined_vars as vars;
 
+/**
+ * Systematics.
+ *
+ * @since 160524
+ */
 trait Systematics
 {
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Systematic::clearCache()
      */
     public static function clearSystematicCache(...$args)
     {
@@ -34,6 +49,10 @@ trait Systematics
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Systematic::postIds()
      */
     public static function systematicPostIds(...$args)
     {
@@ -42,6 +61,10 @@ trait Systematics
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Systematic::postTypes()
      */
     public static function systematicPostTypes(...$args)
     {
@@ -50,6 +73,10 @@ trait Systematics
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Systematic::roles()
      */
     public static function systematicRoles(...$args)
     {
@@ -58,6 +85,10 @@ trait Systematics
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Systematic::uriPatterns()
      */
     public static function systematicUriPatterns(...$args)
     {

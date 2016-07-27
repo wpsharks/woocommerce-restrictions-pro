@@ -1,4 +1,10 @@
 <?php
+/**
+ * Product.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits\Facades;
 
@@ -22,10 +28,16 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 use function assert as debug;
 use function get_defined_vars as vars;
 
+/**
+ * Product.
+ *
+ * @since 160524
+ */
 trait Product
 {
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Product::$post_type
      */
     public static function productPostType()
     {
@@ -34,6 +46,7 @@ trait Product
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Product::$type_taxonomy
      */
     public static function productTypeTaxonomy()
     {
@@ -42,6 +55,7 @@ trait Product
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Product::$meta_prefix
      */
     public static function productMetaPrefix()
     {
@@ -50,6 +64,7 @@ trait Product
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Product::$visibility_classes
      */
     public static function productVisibilityClasses()
     {
@@ -58,6 +73,7 @@ trait Product
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Product::$variation_visibility_classes
      */
     public static function productVariationVisibilityClasses()
     {
@@ -66,6 +82,7 @@ trait Product
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Product::$client_side_prefix
      */
     public static function productClientSidePrefix()
     {
@@ -74,6 +91,10 @@ trait Product
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Product::getMeta()
      */
     public static function getProductMeta(...$args)
     {
@@ -82,6 +103,10 @@ trait Product
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Product::updateMeta()
      */
     public static function updateProductMeta(...$args)
     {
@@ -90,6 +115,10 @@ trait Product
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Product::deleteMeta()
      */
     public static function deleteProductMeta(...$args)
     {
@@ -98,6 +127,10 @@ trait Product
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Product::createUrl()
      */
     public static function createProductUrl(...$args)
     {

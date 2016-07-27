@@ -1,4 +1,10 @@
 <?php
+/**
+ * Restrictions.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524
      *
-     * @type string Post type.
+     * @var string Post type.
      */
     protected $post_type;
 
@@ -43,7 +49,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524
      *
-     * @type string Meta prefix.
+     * @var string Meta prefix.
      */
     protected $meta_prefix;
 
@@ -52,7 +58,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524
      *
-     * @type array Meta keys.
+     * @var array Meta keys.
      */
     protected $meta_keys;
 
@@ -61,7 +67,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524
      *
-     * @type array Full meta keys.
+     * @var array Full meta keys.
      */
     protected $full_meta_keys;
 
@@ -70,7 +76,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524
      *
-     * @type array Meta keys.
+     * @var array Meta keys.
      */
     protected $int_meta_keys;
 

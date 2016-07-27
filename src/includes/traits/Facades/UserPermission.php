@@ -1,4 +1,10 @@
 <?php
+/**
+ * User permission.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits\Facades;
 
@@ -22,10 +28,19 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 use function assert as debug;
 use function get_defined_vars as vars;
 
+/**
+ * User permission.
+ *
+ * @since 160524
+ */
 trait UserPermission
 {
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\UserPermission::statuses()
      */
     public static function userPermissionStatuses(...$args)
     {
@@ -34,6 +49,10 @@ trait UserPermission
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\UserPermission::add()
      */
     public static function addUserPermission(...$args)
     {
@@ -42,6 +61,10 @@ trait UserPermission
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\UserPermission::remove()
      */
     public static function removeUserPermissions(...$args)
     {

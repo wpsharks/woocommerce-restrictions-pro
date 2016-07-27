@@ -1,4 +1,10 @@
 <?php
+/**
+ * User permission utilities.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class UserPermission extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 User permissions.
      *
-     * @type array Permission statuses.
+     * @var array Permission statuses.
      */
     protected $statuses;
 

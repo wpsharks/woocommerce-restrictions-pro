@@ -1,4 +1,10 @@
 <?php
+/**
+ * Order status.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits\Facades;
 
@@ -22,10 +28,19 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 use function assert as debug;
 use function get_defined_vars as vars;
 
+/**
+ * Order status.
+ *
+ * @since 160524
+ */
 trait OrderStatus
 {
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\OrderStatus::psuedoOrderStatusChanged()
      */
     public static function psuedoOrderStatusChanged(...$args)
     {
@@ -34,6 +49,10 @@ trait OrderStatus
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\OrderStatus::psuedoSubscriptionStatusChanged()
      */
     public static function psuedoSubscriptionStatusChanged(...$args)
     {

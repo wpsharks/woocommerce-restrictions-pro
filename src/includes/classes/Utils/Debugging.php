@@ -1,4 +1,10 @@
 <?php
+/**
+ * Debugging utils.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class Debugging extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Debugging utils.
      *
-     * @type \WC_Logger|null Class instance.
+     * @var \WC_Logger|null Class instance.
      */
     protected $WC_Logger;
 

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Product permission.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits\Facades;
 
@@ -22,10 +28,16 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 use function assert as debug;
 use function get_defined_vars as vars;
 
+/**
+ * Product permission.
+ *
+ * @since 160524
+ */
 trait ProductPermission
 {
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\ProductPermission::$access_offset_prefix
      */
     public static function productPermissionAccessOffsetPrefix()
     {
@@ -34,6 +46,7 @@ trait ProductPermission
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\ProductPermission::$access_offset_key_prefix
      */
     public static function productPermissionAccessOffsetKeyPrefix()
     {
@@ -42,6 +55,7 @@ trait ProductPermission
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\ProductPermission::$expire_offset_suffix
      */
     public static function productPermissionExpireOffsetSuffix()
     {
@@ -50,6 +64,7 @@ trait ProductPermission
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\ProductPermission::$expire_offset_key_suffix
      */
     public static function productPermissionExpireOffsetKeySuffix()
     {
@@ -58,6 +73,10 @@ trait ProductPermission
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\ProductPermission::accessOffsetDirectives()
      */
     public static function productPermissionAccessOffsetDirectives(...$args)
     {
@@ -66,6 +85,10 @@ trait ProductPermission
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\ProductPermission::expireOffsetDirectives()
      */
     public static function productPermissionExpireOffsetDirectives(...$args)
     {

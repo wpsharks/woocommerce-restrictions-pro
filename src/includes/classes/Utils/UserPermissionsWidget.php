@@ -1,4 +1,10 @@
 <?php
+/**
+ * User permissions widget.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524
      *
-     * @type string Client-side prefix.
+     * @var string Client-side prefix.
      */
     protected $client_side_prefix;
 
@@ -43,7 +49,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524
      *
-     * @type \WP_Screen|null Screen.
+     * @var \WP_Screen|null Screen.
      */
     protected $screen;
 
@@ -52,7 +58,7 @@ class UserPermissionsWidget extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524
      *
-     * @type bool Is screen mobile?
+     * @var bool Is screen mobile?
      */
     protected $screen_is_mobile;
 

@@ -1,4 +1,10 @@
 <?php
+/**
+ * User permission utilities.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Security gate.
      *
-     * @type string Access PKG prefix.
+     * @var string Access PKG prefix.
      */
     protected $access_pkg_prefix;
 
@@ -43,7 +49,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Security gate.
      *
-     * @type string Access CCAP prefix.
+     * @var string Access CCAP prefix.
      */
     protected $access_ccap_prefix;
 
@@ -52,7 +58,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Security gate.
      *
-     * @type string Access PKG prefix regex.
+     * @var string Access PKG prefix regex.
      */
     protected $access_pkg_prefix_regex;
 
@@ -61,7 +67,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Security gate.
      *
-     * @type string Access CCAP prefix regex.
+     * @var string Access CCAP prefix regex.
      */
     protected $access_ccap_prefix_regex;
 

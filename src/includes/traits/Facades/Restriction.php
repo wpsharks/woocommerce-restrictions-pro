@@ -1,4 +1,10 @@
 <?php
+/**
+ * Restriction.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits\Facades;
 
@@ -22,10 +28,16 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 use function assert as debug;
 use function get_defined_vars as vars;
 
+/**
+ * Restriction.
+ *
+ * @since 160524
+ */
 trait Restriction
 {
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Restriction::$icon
      */
     public static function restrictionIcon()
     {
@@ -34,6 +46,7 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Restriction::$post_type
      */
     public static function restrictionPostType()
     {
@@ -42,6 +55,7 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Restriction::$category_taxonomy
      */
     public static function restrictionCategoryTaxonomy()
     {
@@ -50,6 +64,7 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Restriction::$meta_prefix
      */
     public static function restrictionMetaPrefix()
     {
@@ -58,6 +73,7 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Restriction::$access_pkg_prefix
      */
     public static function restrictionAccessPkgPrefix()
     {
@@ -66,6 +82,7 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Restriction::$access_ccap_prefix
      */
     public static function restrictionAccessCcapPrefix()
     {
@@ -74,6 +91,7 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Restriction::$client_side_prefix
      */
     public static function restrictionClientSidePrefix()
     {
@@ -82,6 +100,7 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Restriction::$meta_keys
      */
     public static function restrictionMetaKeys()
     {
@@ -90,6 +109,7 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     * @see Classes\Utils\Restriction::$int_meta_keys
      */
     public static function restrictionIntMetaKeys()
     {
@@ -98,6 +118,10 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Restriction::getMeta()
      */
     public static function getRestrictionMeta(...$args)
     {
@@ -106,6 +130,10 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Restriction::updateMeta()
      */
     public static function updateRestrictionMeta(...$args)
     {
@@ -114,6 +142,10 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Restriction::deleteMeta()
      */
     public static function deleteRestrictionMeta(...$args)
     {
@@ -122,6 +154,10 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
+     *
+     * @param mixed ...$args Variadic args to underlying utility.
+     *
+     * @see Classes\Utils\Restriction::createUrl()
      */
     public static function createRestrictionUrl(...$args)
     {

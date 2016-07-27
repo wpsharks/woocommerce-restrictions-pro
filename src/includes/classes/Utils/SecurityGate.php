@@ -1,4 +1,10 @@
 <?php
+/**
+ * Security gate.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Security gate.
      *
-     * @type array See {@link SecurityCheck{}).
+     * @var array See {@link SecurityCheck{}).
      */
     protected $data; // See {@link SecurityCheck{}).
 

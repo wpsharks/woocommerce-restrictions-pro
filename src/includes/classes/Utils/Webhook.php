@@ -1,4 +1,10 @@
 <?php
+/**
+ * Webhook utilities.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class Webhook extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Webhook utilities.
      *
-     * @type string Post type.
+     * @var string Post type.
      */
     public $post_type;
 

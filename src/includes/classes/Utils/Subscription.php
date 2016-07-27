@@ -1,4 +1,10 @@
 <?php
+/**
+ * Subscription utilities.
+ *
+ * @author @jaswsinc
+ * @copyright WebSharks™
+ */
 declare (strict_types = 1);
 namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
@@ -34,7 +40,7 @@ class Subscription extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Subscription utilities.
      *
-     * @type string Post type.
+     * @var string Post type.
      */
     public $post_type;
 
