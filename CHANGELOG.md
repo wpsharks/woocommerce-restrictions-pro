@@ -1,3 +1,9 @@
+## $v
+
+- Tested for compatibility against WordPress v4.6.
+- Bug fix. Editors should be granted permission to create Restrictions by default.
+- Bug fix. The uninstall handler now removes the Restriction Taxonomy Terms automatically as it should.
+
 ## v160727.6263
 
 - Updating to the latest WP Sharks Core.

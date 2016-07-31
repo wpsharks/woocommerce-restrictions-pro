@@ -36,7 +36,7 @@ use function get_defined_vars as vars;
 class Uninstaller extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Other install routines.
+     * Other uninstall routines.
      *
      * @since 160524 Restrictions.
      *
@@ -44,22 +44,23 @@ class Uninstaller extends SCoreClasses\SCore\Base\Core
      */
     public function onOtherUninstallRoutines(int $site_counter)
     {
+        $this->deletePosts($site_counter);
+        $this->deleteTaxonomies($site_counter);
         a::removeAllRestrictionCaps();
-        $this->deleteRestrictions($site_counter);
     }
 
     /**
-     * Delete all restrictions.
+     * Delete posts.
      *
-     * @since 160524 Restrictions.
+     * @since 160729 Uninstaller.
      *
      * @param int $site_counter Site counter.
      */
-    protected function deleteRestrictions(int $site_counter)
+    protected function deletePosts(int $site_counter)
     {
         $WpDb = s::wpDb();
 
-        $sql = /* Restriction post IDs. */ '
+        $sql = /* Post IDs. */ '
             SELECT `ID`
                 FROM `'.esc_sql($WpDb->posts).'`
             WHERE `post_type` = %s
@@ -69,8 +70,29 @@ class Uninstaller extends SCoreClasses\SCore\Base\Core
         if (!($results = $WpDb->get_results($sql))) {
             return; // Nothing to delete.
         }
-        foreach ($results as $_key => $_result) {
+        foreach ($results as $_result) {
             wp_delete_post($_result->ID, true);
-        } // unset($_key, $_result); // Housekeeping.
+        } // unset($_result); // Housekeeping.
+    }
+
+    /**
+     * Delete taxonomies.
+     *
+     * @since 160729 Uninstaller.
+     *
+     * @param int $site_counter Site counter.
+     */
+    protected function deleteTaxonomies(int $site_counter)
+    {
+        $term_ids = get_terms([
+            'taxonomy'   => ($taxonomy = a::restrictionCategoryTaxonomy()),
+            'hide_empty' => false,
+            'fields'     => 'ids',
+        ]);
+        $term_ids = is_array($term_ids) ? $term_ids : [];
+
+        foreach ($term_ids as $_term_id) {
+            wp_delete_term($_term_id, $taxonomy);
+        } // unset($_term_id); // Houskeeping.
     }
 }
