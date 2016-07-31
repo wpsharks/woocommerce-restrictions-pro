@@ -1,4 +1,4 @@
-## $v
+## v160731.38265
 
 - Tested for compatibility against WordPress v4.6.
 - Bug fix. Editors should be granted permission to create Restrictions by default.
