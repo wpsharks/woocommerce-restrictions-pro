@@ -36,15 +36,6 @@ use function get_defined_vars as vars;
 class OrderStatus extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Subscription post type.
-     *
-     * @since 160611 Orders being given.
-     *
-     * @param string Subscription post type.
-     */
-    protected $subscription_post_type;
-
-    /**
      * Subscription product types.
      *
      * @since 160524 Order status changes.
@@ -52,15 +43,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      * @param array Subscription product types.
      */
     protected $subscription_product_types;
-
-    /**
-     * Product meta prefix.
-     *
-     * @since 160524 Order status changes.
-     *
-     * @param string Product meta prefix.
-     */
-    protected $product_meta_prefix;
 
     /**
      * User permission status map.
@@ -131,7 +113,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
          * `grouped` A collection of other products; i.e., a group of products.
          * A group product is never a line-item; it only forms a group of others.
          */
-        $this->subscription_post_type     = a::subscriptionPostType();
         $this->subscription_product_types = [
             'subscription', // Covers most subscriptions sold via WooCommerce.
             'subscription-variation', 'subscription_variation', // A subscription variation.
@@ -162,7 +143,6 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
         ];
         $this->subscription_product_types = s::applyFilters('order_status_subscription_product_types', $this->subscription_product_types);
         $this->user_permission_status_map = s::applyFilters('order_to_user_permission_status_map', $this->user_permission_status_map);
-        $this->product_meta_prefix        = a::productMetaPrefix().'product_'; // Plugin-specific meta prefix.
         /*
          * Order statuses explained in greater detail below.
          * See also: `array_keys(wc_get_order_statuses())`.
@@ -301,7 +281,7 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
 
         switch ($order_type) { // Either an order or subscription.
 
-            case $this->subscription_post_type:
+            case 'shop_subscription':
                 $subscription_id = $order_id; // Subscription.
                 $this->psuedoSubscriptionStatusChanged($subscription_id, 'pending', $WC_Order->get_status());
                 break; // Fake status change so permissions are updated accordingly.
@@ -724,7 +704,8 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     protected function itemProductType(int $item_id): string
     {
-        return (string) wc_get_order_item_meta($item_id, $this->product_meta_prefix.'type', true);
+        $product_type_meta_key = s::postMetaKey('_product_type');
+        return (string) wc_get_order_item_meta($item_id, $product_type_meta_key, true);
     }
 
     /**
@@ -738,9 +719,11 @@ class OrderStatus extends SCoreClasses\SCore\Base\Core
      */
     protected function itemProductPermissions(int $item_id): array
     {
-        $product_permissions  = []; // Initialize.
-        $_product_permissions = wc_get_order_item_meta($item_id, $this->product_meta_prefix.'permissions', false);
-        $_product_permissions = is_array($_product_permissions) ? $_product_permissions : [];
+        $product_permissions          = []; // Initialize.
+        $product_permissions_meta_key = s::postMetaKey('_product_permissions');
+
+        $_product_permissions = wc_get_order_item_meta($item_id, $product_permissions_meta_key, false);
+        $_product_permissions = !is_array($_product_permissions) ? [] : $_product_permissions;
 
         foreach ($_product_permissions as $_product_permission) {
             if (!($_product_permission instanceof \StdClass)) {

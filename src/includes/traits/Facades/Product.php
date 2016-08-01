@@ -37,33 +37,6 @@ trait Product
 {
     /**
      * @since 160524 Initial release.
-     * @see Classes\Utils\Product::$post_type
-     */
-    public static function productPostType()
-    {
-        return $GLOBALS[static::class]->Utils->Product->post_type;
-    }
-
-    /**
-     * @since 160524 Initial release.
-     * @see Classes\Utils\Product::$type_taxonomy
-     */
-    public static function productTypeTaxonomy()
-    {
-        return $GLOBALS[static::class]->Utils->Product->type_taxonomy;
-    }
-
-    /**
-     * @since 160524 Initial release.
-     * @see Classes\Utils\Product::$meta_prefix
-     */
-    public static function productMetaPrefix()
-    {
-        return $GLOBALS[static::class]->Utils->Product->meta_prefix;
-    }
-
-    /**
-     * @since 160524 Initial release.
      * @see Classes\Utils\Product::$visibility_classes
      */
     public static function productVisibilityClasses()
@@ -87,42 +60,6 @@ trait Product
     public static function productClientSidePrefix()
     {
         return $GLOBALS[static::class]->Utils->Product->client_side_prefix;
-    }
-
-    /**
-     * @since 160524 Initial release.
-     *
-     * @param mixed ...$args Variadic args to underlying utility.
-     *
-     * @see Classes\Utils\Product::getMeta()
-     */
-    public static function getProductMeta(...$args)
-    {
-        return $GLOBALS[static::class]->Utils->Product->getMeta(...$args);
-    }
-
-    /**
-     * @since 160524 Initial release.
-     *
-     * @param mixed ...$args Variadic args to underlying utility.
-     *
-     * @see Classes\Utils\Product::updateMeta()
-     */
-    public static function updateProductMeta(...$args)
-    {
-        return $GLOBALS[static::class]->Utils->Product->updateMeta(...$args);
-    }
-
-    /**
-     * @since 160524 Initial release.
-     *
-     * @param mixed ...$args Variadic args to underlying utility.
-     *
-     * @see Classes\Utils\Product::deleteMeta()
-     */
-    public static function deleteProductMeta(...$args)
-    {
-        return $GLOBALS[static::class]->Utils->Product->deleteMeta(...$args);
     }
 
     /**

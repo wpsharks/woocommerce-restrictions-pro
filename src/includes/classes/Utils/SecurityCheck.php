@@ -126,50 +126,56 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
         if (!$post_id) { // Empty?
             return; // Not possible.
         }
-        if (!($post = get_post($post_id))) {
+        if (!($WP_Post = get_post($post_id))) {
             return; // Not possible.
         }
-        $accessing['post_ids'][]   = $post->ID;
-        $accessing['post_types'][] = $post->post_type;
-        $accessing['author_ids'][] = $post->post_author;
+        $accessing['post_ids'][]   = $WP_Post->ID;
+        $accessing['post_types'][] = $WP_Post->post_type;
+        $accessing['author_ids'][] = $WP_Post->post_author;
 
-        if (($permalink = get_permalink($post->ID))) {
+        if (($permalink = get_permalink($WP_Post->ID))) {
             $this->compileUriAccess($permalink, $accessing);
         }
-        foreach (get_post_taxonomies($post) as $_taxonomy) {
-            $_terms = wp_get_post_terms($post->ID, $_taxonomy);
+        foreach (get_post_taxonomies($WP_Post) as $_taxonomy) {
+            $_terms = wp_get_post_terms($WP_Post->ID, $_taxonomy);
+
             if (!$_terms || !is_array($_terms)) {
                 continue; // No terms.
             }
-            foreach ($_terms as $_term) {
-                $accessing['tax_term_ids'][] = $_taxonomy.':'.$_term->term_id;
-                foreach (get_ancestors($_term->term_id, $_taxonomy) as $_ancestor_term_id) {
+            foreach ($_terms as $_WP_Term) {
+                $accessing['tax_term_ids'][] = $_taxonomy.':'.$_WP_Term->term_id;
+
+                foreach (get_ancestors($_WP_Term->term_id, $_taxonomy) as $_ancestor_term_id) {
                     $accessing['tax_term_ids'][] = $_taxonomy.':'.$_ancestor_term_id;
                 } // unset($_ancestor_term_id);
-            } // unset($_term); // Housekeeping.
+                //
+            } // unset($_WP_Term); // Housekeeping.
         } // unset($_taxonomy, $_terms); // Housekeeping.
 
-        foreach (get_post_ancestors($post) as $_ancestor_post_id) {
-            if (!($_ancestor_post = get_post($_ancestor_post_id))) {
+        foreach (get_post_ancestors($WP_Post) as $_ancestor_post_id) {
+            if (!($_ancestor_WP_Post = get_post($_ancestor_post_id))) {
                 continue; // Nothing to do.
             }
-            $accessing['post_ids'][]   = $_ancestor_post->ID;
-            $accessing['post_types'][] = $_ancestor_post->post_type;
-            $accessing['author_ids'][] = $_ancestor_post->post_author;
+            $accessing['post_ids'][]   = $_ancestor_WP_Post->ID;
+            $accessing['post_types'][] = $_ancestor_WP_Post->post_type;
+            $accessing['author_ids'][] = $_ancestor_WP_Post->post_author;
 
-            foreach (get_post_taxonomies($_ancestor_post) as $_taxonomy) {
-                $_terms = wp_get_post_terms($_ancestor_post->ID, $_taxonomy);
+            foreach (get_post_taxonomies($_ancestor_WP_Post) as $_taxonomy) {
+                $_terms = wp_get_post_terms($_ancestor_WP_Post->ID, $_taxonomy);
+
                 if (!$_terms || !is_array($_terms)) {
                     continue; // No terms.
                 }
-                foreach ($_terms as $_term) {
-                    $accessing['tax_term_ids'][] = $_taxonomy.':'.$_term->term_id;
-                    foreach (get_ancestors($_term->term_id, $_taxonomy) as $_ancestor_term_id) {
+                foreach ($_terms as $_WP_Term) {
+                    $accessing['tax_term_ids'][] = $_taxonomy.':'.$_WP_Term->term_id;
+
+                    foreach (get_ancestors($_WP_Term->term_id, $_taxonomy) as $_ancestor_term_id) {
                         $accessing['tax_term_ids'][] = $_taxonomy.':'.$_ancestor_term_id;
                     } // unset($_ancestor_term_id);
-                } // unset($_term); // Housekeeping.
+                    //
+                } // unset($_WP_Term); // Housekeeping.
             } // unset($_taxonomy, $_terms); // Housekeeping.
-        } // unset($_ancestor_post_id, $_ancestor_post); // Housekeeping.
+        } // unset($_ancestor_post_id, $_ancestor_WP_Post); // Housekeeping.
     }
 
     /**
@@ -188,7 +194,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
         if (!($parts = c::parseUrl($url_uri))) {
             return; // Not possible.
         }
-        $uri  = '/'.c::mbLTrim(preg_split('/#/u', $parts['uri'] ?? '', 2)[0], '/');
+        $uri  = '/'.c::mbLTrim(c::stripUrlFragment($parts['uri']), '/');
         $path = '/'.c::mbLTrim($parts['path'] ?? '', '/');
 
         $accessing['uris'][]      = $uri;
@@ -231,7 +237,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
                     continue; // Not accessing.
                 }
             } elseif (!$accessing[$_meta_key]) { // Everything else.
-                continue; // Not accessing.
+                continue; // Not accessing; nothing more to do in this case.
             }
             foreach (${'systematic_'.$_meta_key} as $_systematic) {
                 if ($_meta_key === 'uri_patterns') {
@@ -277,7 +283,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
                     continue; // Not accessing.
                 }
             } elseif (!$accessing[$_meta_key]) { // Everything else.
-                continue; // Not accessing.
+                continue; // Not accessing; nothing more to do in this case.
             }
             foreach ($restrictions[$_meta_key] as $_restriction) {
                 if ($_meta_key === 'uri_patterns') {

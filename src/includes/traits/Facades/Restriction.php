@@ -46,33 +46,6 @@ trait Restriction
 
     /**
      * @since 160524 Initial release.
-     * @see Classes\Utils\Restriction::$post_type
-     */
-    public static function restrictionPostType()
-    {
-        return $GLOBALS[static::class]->Utils->Restriction->post_type;
-    }
-
-    /**
-     * @since 160524 Initial release.
-     * @see Classes\Utils\Restriction::$category_taxonomy
-     */
-    public static function restrictionCategoryTaxonomy()
-    {
-        return $GLOBALS[static::class]->Utils->Restriction->category_taxonomy;
-    }
-
-    /**
-     * @since 160524 Initial release.
-     * @see Classes\Utils\Restriction::$meta_prefix
-     */
-    public static function restrictionMetaPrefix()
-    {
-        return $GLOBALS[static::class]->Utils->Restriction->meta_prefix;
-    }
-
-    /**
-     * @since 160524 Initial release.
      * @see Classes\Utils\Restriction::$access_pkg_prefix
      */
     public static function restrictionAccessPkgPrefix()
@@ -114,42 +87,6 @@ trait Restriction
     public static function restrictionIntMetaKeys()
     {
         return $GLOBALS[static::class]->Utils->Restriction->int_meta_keys;
-    }
-
-    /**
-     * @since 160524 Initial release.
-     *
-     * @param mixed ...$args Variadic args to underlying utility.
-     *
-     * @see Classes\Utils\Restriction::getMeta()
-     */
-    public static function getRestrictionMeta(...$args)
-    {
-        return $GLOBALS[static::class]->Utils->Restriction->getMeta(...$args);
-    }
-
-    /**
-     * @since 160524 Initial release.
-     *
-     * @param mixed ...$args Variadic args to underlying utility.
-     *
-     * @see Classes\Utils\Restriction::updateMeta()
-     */
-    public static function updateRestrictionMeta(...$args)
-    {
-        return $GLOBALS[static::class]->Utils->Restriction->updateMeta(...$args);
-    }
-
-    /**
-     * @since 160524 Initial release.
-     *
-     * @param mixed ...$args Variadic args to underlying utility.
-     *
-     * @see Classes\Utils\Restriction::deleteMeta()
-     */
-    public static function deleteRestrictionMeta(...$args)
-    {
-        return $GLOBALS[static::class]->Utils->Restriction->deleteMeta(...$args);
     }
 
     /**

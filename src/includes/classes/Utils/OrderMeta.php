@@ -36,15 +36,6 @@ use function get_defined_vars as vars;
 class OrderMeta extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Subscription post type.
-     *
-     * @since 160524 Order meta utilities.
-     *
-     * @param string Subscription post type.
-     */
-    protected $subscription_post_type;
-
-    /**
      * All order post types.
      *
      * @since 160524 Order meta utilities.
@@ -64,8 +55,7 @@ class OrderMeta extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->subscription_post_type = a::subscriptionPostType();
-        $this->all_order_post_types   = wc_get_order_types();
+        $this->all_order_post_types = wc_get_order_types();
     }
 
     /**
@@ -105,7 +95,7 @@ class OrderMeta extends SCoreClasses\SCore\Base\Core
         if ($old_user_id && $new_user_id && $old_user_id !== $new_user_id) {
             switch ($order_type) { // Either an order or subscription.
 
-                case $this->subscription_post_type:
+                case 'shop_subscription':
                     $subscription_id = $order_id; // Subscription.
                     a::transferUserPermissions($old_user_id, $new_user_id, ['where' => compact('subscription_id')]);
                     break; // Transfers permissions to new customer when user ID is changed on an order.

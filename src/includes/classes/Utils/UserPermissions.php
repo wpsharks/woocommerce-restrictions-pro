@@ -72,24 +72,6 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
     protected $access_ccap_prefix_regex;
 
     /**
-     * Subscription post type.
-     *
-     * @since 160524 Order-related events.
-     *
-     * @param string Subscription post type.
-     */
-    protected $subscription_post_type;
-
-    /**
-     * Restriction post type.
-     *
-     * @since 160524 Order-related events.
-     *
-     * @param string Restriction post type.
-     */
-    protected $restriction_post_type;
-
-    /**
      * All order post types.
      *
      * @since 160524 Order-related events.
@@ -113,7 +95,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         $this->access_ccap_prefix = a::restrictionAccessCcapPrefix();
 
         // This allows us to match `access_pkg_a_` or a mixture like: `access-pkg_a`.
-        // WP slugs use `-` dashes by default. This allows site owners to type a prefix either way.
+        // WP slugs use `-` dashes by default. This allows site owners to type a prefix either way want to.
         // For instance, if you have `pro-membership`, you might prefer to test that with `access-pkg-pro-membership`.
         // Even better, change the slug to `pro_membership` and use `access_pkg_pro_membership` — which is possible in WP.
 
@@ -128,9 +110,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         // As long as `has_cap()` and other conditionals are written in lowercase, there's very little chance of error.
         // What we do allow (as seen above) is a mixture of either `_` or `-` as word separators.
 
-        $this->subscription_post_type = a::subscriptionPostType();
-        $this->restriction_post_type  = a::restrictionPostType();
-        $this->all_order_post_types   = wc_get_order_types();
+        $this->all_order_post_types = wc_get_order_types();
     }
 
     /**
@@ -255,7 +235,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         }
         $applicable_post_types = array_merge(
             $this->all_order_post_types,
-            [$this->restriction_post_type]
+            ['restriction']
         ); // Any of these are applicable here.
 
         $post_type = get_post_type($post_id); // This post type.
@@ -264,22 +244,23 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         }
         switch ($post_type) { // Based on post type.
 
-            case $this->subscription_post_type:
-                $subscription_id = $post_id; // Subscription.
+            case 'shop_subscription':
+                $subscription_id = $post_id;
                 $where           = compact('subscription_id');
                 break;
 
-            case $this->restriction_post_type:
-                $restriction_id = $post_id; // Restriction.
+            case 'restriction':
+                $restriction_id = $post_id;
                 $where          = compact('restriction_id');
                 break;
 
-            default: // Any other order type.
-                $order_id = $post_id; // Order of some type.
+            default: // Any other.
+                $order_id = $post_id;
                 $where    = compact('order_id');
                 break;
-        }
-        $WpDb        = s::wpDb(); // DB instance.
+        } // This includes data for the review logging below.
+
+        $WpDb        = s::wpDb();
         $update_data = ['is_trashed' => 1];
 
         s::doAction('before_user_permissions_update', $where, $update_data);
@@ -312,7 +293,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         }
         $applicable_post_types = array_merge(
             $this->all_order_post_types,
-            [$this->restriction_post_type]
+            ['restriction']
         ); // Any of these are applicable here.
 
         $post_type = get_post_type($post_id); // This post type.
@@ -321,22 +302,23 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         }
         switch ($post_type) { // Based on post type.
 
-            case $this->subscription_post_type:
-                $subscription_id = $post_id; // Subscription.
+            case 'shop_subscription':
+                $subscription_id = $post_id;
                 $where           = compact('subscription_id');
                 break;
 
-            case $this->restriction_post_type:
-                $restriction_id = $post_id; // Restriction.
+            case 'restriction':
+                $restriction_id = $post_id;
                 $where          = compact('restriction_id');
                 break;
 
-            default: // Any other order type.
-                $order_id = $post_id; // Order of some type.
+            default: // Any other.
+                $order_id = $post_id;
                 $where    = compact('order_id');
                 break;
-        }
-        $WpDb        = s::wpDb(); // DB instance.
+        } // This includes data for the review logging below.
+
+        $WpDb        = s::wpDb();
         $update_data = ['is_trashed' => 0];
 
         s::doAction('before_user_permissions_update', $where, $update_data);
@@ -369,7 +351,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         }
         $applicable_post_types = array_merge(
             $this->all_order_post_types,
-            [$this->restriction_post_type]
+            ['restriction']
         ); // Any of these are applicable here.
 
         $post_type = get_post_type($post_id); // This post type.
@@ -378,21 +360,22 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         }
         switch ($post_type) { // Based on post type.
 
-            case $this->subscription_post_type:
-                $subscription_id = $post_id; // Subscription.
+            case 'shop_subscription':
+                $subscription_id = $post_id;
                 $where           = compact('subscription_id');
                 break;
 
-            case $this->restriction_post_type:
-                $restriction_id = $post_id; // Restriction.
+            case 'restriction':
+                $restriction_id = $post_id;
                 $where          = compact('restriction_id');
                 break;
 
-            default: // Any other order type.
-                $order_id = $post_id; // Order of some type.
+            default: // Any other.
+                $order_id = $post_id;
                 $where    = compact('order_id');
                 break;
-        }
+        } // This includes data for the review logging below.
+
         $WpDb = s::wpDb(); // DB instance.
 
         s::doAction('before_user_permissions_delete', $where);
@@ -495,6 +478,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
                 return false; // Not accessible (must satisfy all).
             }
         } // unset($_restriction_id); // Housekeeping.
+
         return $satisfy === 'any' ? false : true; // Default handling.
     }
 
@@ -524,11 +508,11 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         // Add role-based caps granted by restrictions the user can access.
         foreach ($restriction_ids['roles'] as $_role => $_restriction_ids) {
             if ($this->hasAccessToRestrictions($WP_User->ID, $_restriction_ids, 'any')) {
-                if (!in_array($_role, $systematic_roles, true) && ($_role_object = get_role($_role))) {
-                    $user_caps = array_merge($user_caps, $_role_object->capabilities);
+                if (!in_array($_role, $systematic_roles, true) && ($_WP_Role = get_role($_role))) {
+                    $user_caps = array_merge($user_caps, $_WP_Role->capabilities);
                 }
             }
-        } // unset($_role, $_restriction_ids, $_role_object); // Housekeeping.
+        } // unset($_role, $_restriction_ids, $_WP_Role); // Housekeeping.
 
         // Check for the special `access_pkg_` prefix.
         if (preg_match($this->access_pkg_prefix_regex, $has_cap)) {
@@ -610,12 +594,18 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         if (($permissions = &$this->cacheGet(__FUNCTION__, $cache_key)) !== null) {
             return $permissions; // Cached already.
         }
-        $WpDb = s::wpDb(); // WP database object class.
+        $WpDb  = s::wpDb(); // Database class.
+        $table = s::dbPrefix().'user_permissions';
 
-        $sql = /* Query all user permissions. */ '
-            SELECT * FROM `'.esc_sql(s::dbPrefix().'user_permissions').'`
-                WHERE `user_id` = %s'.(!$include_trash ? ' AND `is_trashed` = 0' : '').
-            ' ORDER BY `display_order` ASC';
+        $sql = /* User's permissions. */ '
+            SELECT *
+                FROM `'.esc_sql($table).'`
+
+            WHERE `user_id` = %s
+                '.(!$include_trash ? ' AND `is_trashed` = 0' : '').'
+
+            ORDER BY `display_order` ASC
+        ';
         $sql = $WpDb->prepare($sql, $user_id);
 
         if (!($results = $WpDb->get_results($sql))) {
@@ -627,6 +617,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         foreach ($results as $_key => $_data) {
             $_data->ID             = (int) $_data->ID;
             $_data->restriction_id = (int) $_data->restriction_id;
+
             if (in_array($_data->restriction_id, $restriction_ids_by_slug, true)) {
                 $permissions[$_data->ID] = $this->App->Di->get(Classes\UserPermission::class, ['data' => $_data]);
             }

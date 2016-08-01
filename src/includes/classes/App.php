@@ -42,7 +42,7 @@ class App extends SCoreClasses\App
      *
      * @var string Version.
      */
-    const VERSION = '160731.38265'; //v//
+    const VERSION = '160801.2178'; //v//
 
     /**
      * Constructor.
@@ -63,8 +63,8 @@ class App extends SCoreClasses\App
             '©di' => [
                 '©default_rule' => [
                     'new_instances' => [
-                        ProductPermission::class,
                         UserPermission::class,
+                        ProductPermission::class,
                     ],
                 ],
             ],
@@ -91,9 +91,9 @@ class App extends SCoreClasses\App
                 'orders_always_grant_immediate_access',
             ],
             '§default_options' => [
-                'security_gate_redirects_to_post_id'    => '0',
-                'security_gate_redirect_to_args_enable' => '1',
-                'orders_always_grant_immediate_access'  => '0',
+                'security_gate_redirects_to_post_id'    => 0,
+                'security_gate_redirect_to_args_enable' => true,
+                'orders_always_grant_immediate_access'  => false,
             ],
 
             '§conflicts' => [
@@ -148,7 +148,7 @@ class App extends SCoreClasses\App
      */
     protected function onSetupEarlyHooks()
     {
-        parent::onSetupEarlyHooks(); // Core hooks.
+        parent::onSetupEarlyHooks();
 
         s::addAction('other_install_routines', [$this->Utils->Installer, 'onOtherInstallRoutines']);
         s::addAction('other_uninstall_routines', [$this->Utils->Uninstaller, 'onOtherUninstallRoutines']);
@@ -161,10 +161,10 @@ class App extends SCoreClasses\App
      */
     protected function onSetupOtherHooks()
     {
-        parent::onSetupOtherHooks(); // Core hooks.
+        parent::onSetupOtherHooks();
 
         add_action('init', function () {
-            $this->Utils->Restriction->onInitRegisterPostType();
+            $this->Utils->Restriction->onInit();
         }, 6); // Right after other WooCommerce post types.
 
         add_action('init', function () {
@@ -173,12 +173,13 @@ class App extends SCoreClasses\App
             if ($this->Wp->is_admin) { // Admin areas only.
                 add_action('current_screen', [$this->Utils->Restriction, 'onCurrentScreen']);
 
+                add_action('admin_menu', [$this->Utils->MenuPage, 'onAdminMenu']);
                 add_filter('custom_menu_order', '__return_true'); // Enable custom order.
                 add_filter('menu_order', [$this->Utils->Restriction, 'onMenuOrder'], 1000);
 
                 add_action('add_meta_boxes', [$this->Utils->Restriction, 'onAddMetaBoxes']);
                 add_filter('default_hidden_meta_boxes', [$this->Utils->Restriction, 'onDefaultHiddenMetaBoxes'], 10, 2);
-                add_action('save_post_'.$this->Utils->Restriction->post_type, [$this->Utils->Restriction, 'onSaveRestriction']);
+                add_action('save_post_restriction', [$this->Utils->Restriction, 'onSaveRestriction']);
                 add_filter('post_updated_messages', [$this->Utils->Restriction, 'onPostUpdatedMessages']);
 
                 add_action('admin_enqueue_scripts', [$this->Utils->Restriction, 'onAdminEnqueueScripts']);
@@ -260,7 +261,7 @@ class App extends SCoreClasses\App
                 add_action('woocommerce_product_options_general_product_data', [$this->Utils->Product, 'onGeneralProductData']);
                 add_action('woocommerce_product_after_variable_attributes', [$this->Utils->Product, 'onAfterVariableAttributes'], 10, 3);
 
-                add_action('save_post_'.$this->Utils->Product->post_type, [$this->Utils->Product, 'onSaveProduct']);
+                add_action('save_post_product', [$this->Utils->Product, 'onSaveProduct']);
                 add_action('woocommerce_save_product_variation', [$this->Utils->Product, 'onSaveProductVariation'], 10, 2);
             }
         }, 10); // After hook priority `9`; i.e., after post types/statues have been registered by WooCommerce & WC extensions.

@@ -1,12 +1,12 @@
 <?php
 /**
- * Order.
+ * Menu page utils.
  *
  * @author @jaswsinc
- * @copyright WebSharks™
+ * @copyright WP Sharks™
  */
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits\Facades;
+namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
 
 use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
 use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Interfaces;
@@ -29,18 +29,31 @@ use function assert as debug;
 use function get_defined_vars as vars;
 
 /**
- * Order.
+ * Menu page utils.
  *
- * @since 160524
+ * @since 160731 Initial release.
  */
-trait Order
+class MenuPage extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * @since 160524 Initial release.
-     * @see Classes\Utils\Order::$post_type
+     * Adds menu pages.
+     *
+     * @since 160731 Initial release.
      */
-    public static function orderPostType()
+    public function onAdminMenu()
     {
-        return $GLOBALS[static::class]->Utils->Order->post_type;
+        s::addMenuPageItem([
+            'menu_title'    => __('Options'),
+            'parent_page'   => 'edit.php?post_type=restriction',
+            'template_file' => 'admin/menu-pages/options/default.php',
+
+            'tabs' => [
+                'default' => sprintf(__('%1$s'), esc_html($this->App->Config->©brand['©name'])),
+                'restore' => [
+                    'label' => __('Restore Default Options'),
+                    'url'   => s::restoreDefaultOptionsUrl(), 'onclick' => 'confirm',
+                ],
+            ],
+        ]);
     }
 }

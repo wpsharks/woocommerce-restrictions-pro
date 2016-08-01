@@ -85,9 +85,9 @@ class Systematic extends SCoreClasses\SCore\Base\Core
             return $post_types; // Cached already.
         }
         $post_types = []; // Initialize.
-        $post_types = array_merge($post_types, [a::restrictionPostType()]);
+        $post_types = array_merge($post_types, ['restriction']);
         $post_types = array_merge($post_types, ['attachment', 'nav_menu_item']);
-        $post_types = array_merge($post_types, [a::orderPostType(), a::subscriptionPostType(), a::couponPostType(), a::webhookPostType()]);
+        $post_types = array_merge($post_types, ['shop_order', 'shop_subscription', 'shop_coupon', 'shop_webhook']);
         $post_types = array_merge($post_types, wc_get_order_types());
         $post_types = array_unique(c::removeEmptys($post_types));
 
@@ -211,9 +211,8 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     protected function collectWcUrls(): array
     {
         $transient_cache_key = 'systematic_wc_urls';
-        $post_type           = a::restrictionPostType();
+        $no_cache            = s::isMenuPageForPostType('restriction');
 
-        $no_cache = s::isMenuPageForPostType($post_type);
         if (!$no_cache && is_array($wc_urls = s::getTransient($transient_cache_key))) {
             return $wc_urls; // Cached already.
         }
@@ -273,9 +272,8 @@ class Systematic extends SCoreClasses\SCore\Base\Core
     protected function collectBpUrls(): array
     {
         $transient_cache_key = 'systematic_bp_urls';
-        $post_type           = a::restrictionPostType();
+        $no_cache            = s::isMenuPageForPostType('restriction');
 
-        $no_cache = s::isMenuPageForPostType($post_type);
         if (!$no_cache && is_array($bp_urls = s::getTransient($transient_cache_key))) {
             return $bp_urls; // Cached already.
         }

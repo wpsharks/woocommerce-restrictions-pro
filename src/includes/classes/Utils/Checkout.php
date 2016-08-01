@@ -86,7 +86,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
                 debug(0, c::issue(vars(), 'Missing product ID.'));
                 continue; // Not possible.
             }
-            if (a::getProductMeta($_product_id, 'permissions')) {
+            if (a::collectPostMeta($_product_id, '_permissions')) {
                 return $contains = true;
             }
         } // unset($_cart_item, $_WC_Product, $_product_id);

@@ -36,24 +36,6 @@ use function get_defined_vars as vars;
 class Restrictions extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Post type.
-     *
-     * @since 160524
-     *
-     * @var string Post type.
-     */
-    protected $post_type;
-
-    /**
-     * Meta prefix.
-     *
-     * @since 160524
-     *
-     * @var string Meta prefix.
-     */
-    protected $meta_prefix;
-
-    /**
      * Meta keys.
      *
      * @since 160524
@@ -63,15 +45,6 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     protected $meta_keys;
 
     /**
-     * Full meta keys.
-     *
-     * @since 160524
-     *
-     * @var array Full meta keys.
-     */
-    protected $full_meta_keys;
-
-    /**
      * Meta keys.
      *
      * @since 160524
@@ -79,6 +52,15 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
      * @var array Meta keys.
      */
     protected $int_meta_keys;
+
+    /**
+     * Full meta keys.
+     *
+     * @since 160524
+     *
+     * @var array Full meta keys.
+     */
+    protected $full_meta_keys;
 
     /**
      * Class constructor.
@@ -91,15 +73,12 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->post_type = a::restrictionPostType();
-
-        $this->meta_prefix   = a::restrictionMetaPrefix();
         $this->meta_keys     = a::restrictionMetaKeys();
         $this->int_meta_keys = a::restrictionIntMetaKeys();
 
         $this->full_meta_keys = []; // Initialize.
         foreach ($this->meta_keys as $_meta_key) {
-            $this->full_meta_keys[] = $this->meta_prefix.$_meta_key;
+            $this->full_meta_keys[s::postMetaKey('_'.$_meta_key)] = $_meta_key;
         } // unset($_meta_key); // Housekeeping.
     }
 
@@ -222,7 +201,7 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     public function byMetaKey(): array
     {
         $transient_cache_key = 'restrictions_by_meta_key';
-        $no_cache            = s::isMenuPageForPostType($this->post_type);
+        $no_cache            = s::isMenuPageForPostType('restriction');
 
         if (!$no_cache && is_array($by_meta_key = s::getTransient($transient_cache_key))) {
             return $by_meta_key; // Already cached these recently.
@@ -274,18 +253,20 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
     public function allWithMeta(): array
     {
         $transient_cache_key = 'restrictions_all_with_meta';
-        $no_cache            = s::isMenuPageForPostType($this->post_type);
+        $no_cache            = s::isMenuPageForPostType('restriction');
 
         if (!$no_cache && is_array($all = s::getTransient($transient_cache_key))) {
             return $all; // Already cached these recently.
         }
         $WpDb = $this->s::wpDb(); // DB object instance.
 
-        $sql = // Restrictions.
-            'SELECT * FROM `'.esc_sql($WpDb->posts).'`'.
-                " WHERE `post_type` = %s AND `post_status` = 'publish'";
-        $sql = $WpDb->prepare($sql, $this->post_type);
+        $sql = /* All restriction data. */ '
+            SELECT *
+                FROM `'.esc_sql($WpDb->posts).'`
 
+            WHERE `post_type` = \'restriction\'
+                AND `post_status` = \'publish\'
+        ';
         if (!($results = $WpDb->get_results($sql))) {
             s::setTransient($transient_cache_key, [], MINUTE_IN_SECONDS * 15);
             return $all = []; // Nothing.
@@ -296,27 +277,36 @@ class Restrictions extends SCoreClasses\SCore\Base\Core
             $all[$_result->ID]['meta'] = array_fill_keys($this->meta_keys, []);
         } // unset($_key, $_result); // Housekeeping.
 
-        $post_ids_sub_query = // Restriction IDs.
-            'SELECT `ID` FROM `'.esc_sql($WpDb->posts).'`'.
-                " WHERE `post_type` = %s AND `post_status` = 'publish'";
-        $post_ids_sub_query = $WpDb->prepare($post_ids_sub_query, $this->post_type);
+        $post_ids_sub_query = /* All restriction IDs. */ '
+            SELECT `ID`
+                FROM `'.esc_sql($WpDb->posts).'`
 
-        $meta_sql = 'SELECT `post_id`, `meta_key` AS `full_meta_key`, `meta_value` FROM `'.esc_sql($WpDb->postmeta).'`'.
-                ' WHERE `post_id` IN('.$post_ids_sub_query.')'.// For published Restrictions.
-                ' AND `meta_key` IN('.c::quoteSqlIn($this->full_meta_keys).')';// Restriction keys.
+            WHERE `post_type` = \'restriction\'
+                AND `post_status` = \'publish\'
+        ';
+        $meta_sql = /* All restriction meta values. */ '
+            SELECT
+                `post_id`,
+                `meta_value`,
+                `meta_key` AS `full_meta_key`
+                FROM `'.esc_sql($WpDb->postmeta).'`
 
-        if (($meta_results = $WpDb->get_results($meta_sql))) { // Multiple values per key.
+            WHERE `post_id` IN('.$post_ids_sub_query.')
+                AND `meta_key` IN('.c::quoteSqlIn(array_keys($this->full_meta_keys)).')
+        ';
+        if (($meta_results = $WpDb->get_results($meta_sql))) {
             foreach ($meta_results as $_key => $_result) {
                 $_result->post_id = (int) $_result->post_id;
                 if (empty($all[$_result->post_id])) {
                     continue; // No matching restriction.
                 } // ↑ This can happen with stale DB rows or corruption.
-                $_meta_key                                    = preg_replace('/^'.c::escRegex($this->meta_prefix).'/u', '', $_result->full_meta_key);
+                $_meta_key                                    = $this->full_meta_keys[$_result->full_meta_key];
                 $_meta_value                                  = in_array($_meta_key, $this->int_meta_keys, true) ? (int) $_result->meta_value : (string) $_result->meta_value;
                 $all[$_result->post_id]['meta'][$_meta_key][] = $_meta_value;
             } // unset($_key, $_result, $_meta_key, $_meta_value); // Housekeeping.
         }
         s::setTransient($transient_cache_key, $all, MINUTE_IN_SECONDS * 15);
+
         return $all; // All restrictions w/ meta.
     }
 }

@@ -1,6 +1,6 @@
 === WooCommerce Restrictions — s2Member X Pro ===
 
-Stable tag: 160731.38265
+Stable tag: 160801.2178
 
 Tested up to: 4.6
 Requires at least: 4.5.3

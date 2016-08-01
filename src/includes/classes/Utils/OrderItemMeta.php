@@ -36,52 +36,19 @@ use function get_defined_vars as vars;
 class OrderItemMeta extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Subscription post type.
-     *
-     * @since 160524 Order item meta utilities.
-     *
-     * @param string Subscription post type.
-     */
-    protected $subscription_post_type;
-
-    /**
-     * Product meta prefix.
-     *
-     * @since 160524 Order item meta utilities.
-     *
-     * @param string Product meta prefix.
-     */
-    protected $product_meta_prefix;
-
-    /**
-     * Class constructor.
-     *
-     * @since 160524 Order item meta utilities.
-     *
-     * @param Classes\App $App Instance.
-     */
-    public function __construct(Classes\App $App)
-    {
-        parent::__construct($App);
-
-        $this->subscription_post_type = a::subscriptionPostType();
-        $this->product_meta_prefix    = a::productMetaPrefix().'product_';
-    }
-
-    /**
      * Hidden meta keys.
      *
      * @since 160524 Order item meta utilities.
      *
      * @param array $meta_keys Hidden meta keys.
      *
-     * @note This works for Subscriptions also.
+     * @note This works for subscriptions also.
      */
     public function onHiddenOrderItemMeta(array $meta_keys): array
     {
         return array_merge($meta_keys, [
-            $this->product_meta_prefix.'type',
-            $this->product_meta_prefix.'permissions',
+            s::postMetaKey('_product_type'),
+            s::postMetaKey('_product_permissions'),
         ]);
     }
 
@@ -115,14 +82,17 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             debug(0, c::issue(vars(), 'Unable to acquire product type.'));
             return; // Not possible; unable to acquire product type.
         }
-        $product_permissions = a::getProductMeta($product_id, 'permissions');
+        $product_type_meta_key        = s::postMetaKey('_product_type');
+        $product_permissions_meta_key = s::postMetaKey('_product_permissions');
 
-        wc_delete_order_item_meta($item_id, $this->product_meta_prefix.'type');
-        wc_add_order_item_meta($item_id, $this->product_meta_prefix.'type', $product_type);
+        $product_permissions = s::collectPostMeta($product_id, '_permissions');
 
-        wc_delete_order_item_meta($item_id, $this->product_meta_prefix.'permissions');
+        wc_delete_order_item_meta($item_id, $product_type_meta_key);
+        wc_add_order_item_meta($item_id, $product_type_meta_key, $product_type);
+
+        wc_delete_order_item_meta($item_id, $product_permissions_meta_key);
         foreach ($product_permissions as $_product_permission) { // Each permission.
-            wc_add_order_item_meta($item_id, $this->product_meta_prefix.'permissions', $_product_permission);
+            wc_add_order_item_meta($item_id, $product_permissions_meta_key, $_product_permission);
         } // unset($_product_permission); // Housekeeping.
 
         c::review(compact(// Log for review.
@@ -188,6 +158,9 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
             debug(0, c::issue(vars(), 'Unexpected order item IDs.'));
             return; // Not possible.
         }
+        $product_type_meta_key        = s::postMetaKey('_product_type');
+        $product_permissions_meta_key = s::postMetaKey('_product_permissions');
+
         foreach ((array) $data['order_item_id'] as $_item_id) {
             if (!($_item_id = (int) $_item_id)) {
                 debug(0, c::issue(vars(), 'Empty item ID.'));
@@ -201,14 +174,14 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
                 debug(0, c::issue(vars(), 'Unable to acquire product type.'));
                 continue; // Not possible; unable to acquire product type.
             }
-            $_product_permissions = a::getProductMeta($_product_id, 'permissions');
+            $_product_permissions = s::collectPostMeta($_product_id, '_permissions');
 
-            wc_delete_order_item_meta($_item_id, $this->product_meta_prefix.'type');
-            wc_add_order_item_meta($_item_id, $this->product_meta_prefix.'type', $_product_type);
+            wc_delete_order_item_meta($_item_id, $product_type_meta_key);
+            wc_add_order_item_meta($_item_id, $product_type_meta_key, $_product_type);
 
-            wc_delete_order_item_meta($_item_id, $this->product_meta_prefix.'permissions');
+            wc_delete_order_item_meta($_item_id, $product_permissions_meta_key);
             foreach ($_product_permissions as $_product_permission) { // Each permission.
-                wc_add_order_item_meta($_item_id, $this->product_meta_prefix.'permissions', $_product_permission);
+                wc_add_order_item_meta($_item_id, $product_permissions_meta_key, $_product_permission);
             } // unset($_product_permission); // Housekeeping.
 
             c::review(compact(// Log for review.
@@ -231,7 +204,7 @@ class OrderItemMeta extends SCoreClasses\SCore\Base\Core
 
             switch ($order_type) { // Either an order or subscription.
 
-                case $this->subscription_post_type:
+                case 'shop_subscription':
                     $subscription_id = $order_id; // Subscription.
                     a::psuedoSubscriptionStatusChanged($subscription_id, $old_status, $new_status);
                     break; // Fake status change so permissions are updated accordingly.

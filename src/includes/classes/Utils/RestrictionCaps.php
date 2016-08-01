@@ -55,24 +55,22 @@ class RestrictionCaps extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $post_type = a::restrictionPostType();
+        $this->caps = [
+            'create_restrictions',
 
-        $this->caps = [ // All capabilities.
-            'create_'.$post_type.'s',
+            'edit_restrictions',
+            'edit_others_restrictions',
+            'edit_published_restrictions',
+            'edit_private_restrictions',
 
-            'edit_'.$post_type.'s',
-            'edit_others_'.$post_type.'s',
-            'edit_published_'.$post_type.'s',
-            'edit_private_'.$post_type.'s',
+            'publish_restrictions',
 
-            'publish_'.$post_type.'s',
+            'delete_restrictions',
+            'delete_private_restrictions',
+            'delete_published_restrictions',
+            'delete_others_restrictions',
 
-            'delete_'.$post_type.'s',
-            'delete_private_'.$post_type.'s',
-            'delete_published_'.$post_type.'s',
-            'delete_others_'.$post_type.'s',
-
-            'read_private_'.$post_type.'s',
+            'read_private_restrictions',
         ];
     }
 

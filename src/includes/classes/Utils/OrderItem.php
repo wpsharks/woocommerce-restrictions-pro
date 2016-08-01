@@ -36,36 +36,13 @@ use function get_defined_vars as vars;
 class OrderItem extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Subscription post type.
-     *
-     * @since 160524 Order item utilities.
-     *
-     * @param string Subscription post type.
-     */
-    protected $subscription_post_type;
-
-    /**
-     * Class constructor.
-     *
-     * @since 160524 Order item utilities.
-     *
-     * @param Classes\App $App Instance.
-     */
-    public function __construct(Classes\App $App)
-    {
-        parent::__construct($App);
-
-        $this->subscription_post_type = a::subscriptionPostType();
-    }
-
-    /**
      * On item deleted from order.
      *
      * @since 160524 Order item utilities.
      *
      * @param string|int $item_id Order item ID.
      *
-     * @note This works for Subscriptions also.
+     * @note This works for subscriptions also.
      */
     public function onBeforeDeleteOrderItem($item_id)
     {
@@ -91,7 +68,7 @@ class OrderItem extends SCoreClasses\SCore\Base\Core
 
         switch ($order_type) { // Based on post type.
 
-            case $this->subscription_post_type:
+            case 'shop_subscription':
                 $WC_Subscription = $WC_Order;
                 $subscription_id = $order_id;
                 $where           = [

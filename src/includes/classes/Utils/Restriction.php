@@ -36,33 +36,6 @@ use function get_defined_vars as vars;
 class Restriction extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Post type.
-     *
-     * @since 160524 Restriction.
-     *
-     * @var string Post type.
-     */
-    public $post_type;
-
-    /**
-     * Category taxonomy.
-     *
-     * @since 160524 Restriction.
-     *
-     * @var string Category taxonomy.
-     */
-    public $category_taxonomy;
-
-    /**
-     * Meta prefix.
-     *
-     * @since 160524 Restriction.
-     *
-     * @var string Meta prefix.
-     */
-    public $meta_prefix;
-
-    /**
      * Access PKG prefix.
      *
      * @since 160524 Restriction.
@@ -136,10 +109,6 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->post_type         = $this->App->Config->©brand['©short_var'].'_restriction';
-        $this->category_taxonomy = $this->App->Config->©brand['©short_var'].'_restriction_category';
-        $this->meta_prefix       = '_'.$this->App->Config->©brand['©var'].'_';
-
         $this->access_pkg_prefix  = s::applyFilters('restriction_pkg_prefix', 'access_pkg_');
         $this->access_ccap_prefix = s::applyFilters('restriction_ccap_prefix', 'access_ccap_');
         $this->client_side_prefix = 'fdbmjuxwzjfjtaucytprkbcqfpftudyg'; // JS, CSS, forms, etc.
@@ -151,15 +120,15 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * Register post type.
+     * On `init` hook.
      *
-     * @since 160524 Restrictions.
+     * @since 160731 Restrictions.
      */
-    public function onInitRegisterPostType()
+    public function onInit()
     {
         register_post_type(
-            $this->post_type, // Args can be filtered by plugins.
-            s::applyFilters('register_post_type_'.$this->post_type.'_args', [
+            'restriction', // Args can be filtered by plugins.
+            s::applyFilters('register_post_type_restriction_args', [
                 'public'       => false,
                 'hierarchical' => false,
 
@@ -180,42 +149,49 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                 'description'   => __('Content restriction for membership.', 'woocommerce-s2member-x'),
 
                 'labels' => [ // See: <http://jas.xyz/244m2Sd>
-                    'name'                  => __('Restrictions', 'woocommerce-s2member-x'),
-                    'singular_name'         => __('Restriction', 'woocommerce-s2member-x'),
-                    'add_new'               => __('Add Restriction', 'woocommerce-s2member-x'),
-                    'add_new_item'          => __('Add New Restriction', 'woocommerce-s2member-x'),
-                    'edit_item'             => __('Edit Restriction', 'woocommerce-s2member-x'),
-                    'new_item'              => __('New Restriction', 'woocommerce-s2member-x'),
-                    'view_item'             => __('View Restriction', 'woocommerce-s2member-x'),
-                    'search_items'          => __('Search Restrictions', 'woocommerce-s2member-x'),
-                    'not_found'             => __('No Restrictions found', 'woocommerce-s2member-x'),
-                    'not_found_in_trash'    => __('No Restrictions found in Trash', 'woocommerce-s2member-x'),
-                    'parent_item_colon'     => __('Parent Restriction:', 'woocommerce-s2member-x'),
-                    'archives'              => __('Restriction Archives', 'woocommerce-s2member-x'),
-                    'insert_into_item'      => __('Insert into Restriction', 'woocommerce-s2member-x'),
+                    'name'          => __('Restrictions', 'woocommerce-s2member-x'),
+                    'singular_name' => __('Restriction', 'woocommerce-s2member-x'),
+
+                    'name_admin_bar' => __('Restriction', 'woocommerce-s2member-x'),
+                    'menu_name'      => __('Restrictions', 'woocommerce-s2member-x'),
+
+                    'all_items'    => __('All Restrictions', 'woocommerce-s2member-x'),
+                    'add_new'      => __('Add Restriction', 'woocommerce-s2member-x'),
+                    'add_new_item' => __('Add New Restriction', 'woocommerce-s2member-x'),
+                    'new_item'     => __('New Restriction', 'woocommerce-s2member-x'),
+                    'edit_item'    => __('Edit Restriction', 'woocommerce-s2member-x'),
+                    'view_item'    => __('View Restriction', 'woocommerce-s2member-x'),
+
+                    'search_items'       => __('Search Restrictions', 'woocommerce-s2member-x'),
+                    'not_found'          => __('No Restrictions Found', 'woocommerce-s2member-x'),
+                    'not_found_in_trash' => __('No Restrictions Found in Trash', 'woocommerce-s2member-x'),
+
+                    'insert_into_item'      => __('Insert Into Restriction', 'woocommerce-s2member-x'),
                     'uploaded_to_this_item' => __('Upload to this Restriction', 'woocommerce-s2member-x'),
+
                     'featured_image'        => __('Set Featured Image', 'woocommerce-s2member-x'),
                     'remove_featured_image' => __('Remove Featured Image', 'woocommerce-s2member-x'),
                     'use_featured_image'    => __('Use as Featured Image', 'woocommerce-s2member-x'),
-                    'filter_items_list'     => __('Filter Restrictions List', 'woocommerce-s2member-x'),
-                    'items_list_navigation' => __('Restrictions List Navigation', 'woocommerce-s2member-x'),
+
                     'items_list'            => __('Restrictions List', 'woocommerce-s2member-x'),
-                    'name_admin_bar'        => __('Restriction', 'woocommerce-s2member-x'),
-                    'menu_name'             => __('Restrictions', 'woocommerce-s2member-x'),
-                    'all_items'             => __('All Restrictions', 'woocommerce-s2member-x'),
+                    'items_list_navigation' => __('Restrictions List Navigation', 'woocommerce-s2member-x'),
+
+                    'archives'          => __('Restriction Archives', 'woocommerce-s2member-x'),
+                    'filter_items_list' => __('Filter Restrictions List', 'woocommerce-s2member-x'),
+                    'parent_item_colon' => __('Parent Restriction:', 'woocommerce-s2member-x'),
                 ],
 
                 'map_meta_cap'    => true,
                 'capability_type' => [
-                    $this->post_type,
-                    $this->post_type.'s',
+                    'restriction',
+                    'restrictions',
                 ],
             ])
         );
         register_taxonomy(
-            $this->category_taxonomy,
-            $this->post_type, // Args can be filtered by plugins.
-            s::applyFilters('register_taxonomy_'.$this->category_taxonomy.'_args', [
+            'restriction_category',
+            'restriction', // Args can be filtered by plugins.
+            s::applyFilters('register_taxonomy_restriction_category_args', [
                 'public'       => false,
                 'hierarchical' => true,
 
@@ -229,38 +205,44 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                 'rewrite'   => false,
                 'query_var' => false,
 
-                'description' => __('Content restriction tags/categories.', 'woocommerce-s2member-x'),
+                'description' => __('Content restriction categories.', 'woocommerce-s2member-x'),
 
                 'labels' => [ // See: <http://jas.xyz/244m1Oc>
-                    'name'                       => __('Categories', 'woocommerce-s2member-x'),
-                    'singular_name'              => __('Category', 'woocommerce-s2member-x'),
-                    'search_items'               => __('Search Categories', 'woocommerce-s2member-x'),
-                    'popular_items'              => __('Popular Categories', 'woocommerce-s2member-x'),
-                    'all_items'                  => __('All Categories', 'woocommerce-s2member-x'),
-                    'parent_item'                => __('Parent Category', 'woocommerce-s2member-x'),
-                    'parent_item_colon'          => __('Parent Category:', 'woocommerce-s2member-x'),
-                    'edit_item'                  => __('Edit Category', 'woocommerce-s2member-x'),
-                    'view_item'                  => __('View Category', 'woocommerce-s2member-x'),
-                    'update_item'                => __('Update Category', 'woocommerce-s2member-x'),
-                    'add_new_item'               => __('Add New Category', 'woocommerce-s2member-x'),
-                    'new_item_name'              => __('New Category Name', 'woocommerce-s2member-x'),
-                    'separate_items_with_commas' => __('Separate Categories w/ Commas', 'woocommerce-s2member-x'),
-                    'add_or_remove_items'        => __('Add or Remove Categories', 'woocommerce-s2member-x'),
+                    'name'          => __('Restriction Categories', 'woocommerce-s2member-x'),
+                    'singular_name' => __('Restriction Category', 'woocommerce-s2member-x'),
+
+                    'name_admin_bar' => __('Restriction Category', 'woocommerce-s2member-x'),
+                    'menu_name'      => __('Categories', 'woocommerce-s2member-x'),
+
+                    'all_items'           => __('All Categories', 'woocommerce-s2member-x'),
+                    'add_new_item'        => __('Add New Category', 'woocommerce-s2member-x'),
+                    'new_item_name'       => __('New Category Name', 'woocommerce-s2member-x'),
+                    'add_or_remove_items' => __('Add or Remove Categories', 'woocommerce-s2member-x'),
+                    'view_item'           => __('View Category', 'woocommerce-s2member-x'),
+                    'edit_item'           => __('Edit Category', 'woocommerce-s2member-x'),
+                    'update_item'         => __('Update Category', 'woocommerce-s2member-x'),
+
+                    'search_items' => __('Search Categories', 'woocommerce-s2member-x'),
+                    'not_found'    => __('No Categories Found', 'woocommerce-s2member-x'),
+                    'no_terms'     => __('No Categories', 'woocommerce-s2member-x'),
+
                     'choose_from_most_used'      => __('Choose From the Most Used Categories', 'woocommerce-s2member-x'),
-                    'not_found'                  => __('No Categories Found', 'woocommerce-s2member-x'),
-                    'no_terms'                   => __('No Categories', 'woocommerce-s2member-x'),
-                    'items_list_navigation'      => __('Categories List Navigation', 'woocommerce-s2member-x'),
-                    'items_list'                 => __('Categories List', 'woocommerce-s2member-x'),
-                    'name_admin_bar'             => __('Category', 'woocommerce-s2member-x'),
-                    'menu_name'                  => __('Categories', 'woocommerce-s2member-x'),
-                    'archives'                   => __('All Categories', 'woocommerce-s2member-x'),
+                    'separate_items_with_commas' => __('Separate Categories w/ Commas', 'woocommerce-s2member-x'),
+
+                    'items_list'            => __('Categories List', 'woocommerce-s2member-x'),
+                    'items_list_navigation' => __('Categories List Navigation', 'woocommerce-s2member-x'),
+
+                    'archives'          => __('All Categories', 'woocommerce-s2member-x'),
+                    'popular_items'     => __('Popular Categories', 'woocommerce-s2member-x'),
+                    'parent_item'       => __('Parent Category', 'woocommerce-s2member-x'),
+                    'parent_item_colon' => __('Parent Category:', 'woocommerce-s2member-x'),
                 ],
 
                 'capabilities' => [
-                    'assign_terms' => 'edit_'.$this->post_type.'s',
-                    'edit_terms'   => 'edit_'.$this->post_type.'s',
-                    'manage_terms' => 'edit_others_'.$this->post_type.'s',
-                    'delete_terms' => 'delete_others_'.$this->post_type.'s',
+                    'assign_terms' => 'edit_restrictions',
+                    'edit_terms'   => 'edit_restrictions',
+                    'manage_terms' => 'edit_others_restrictions',
+                    'delete_terms' => 'delete_others_restrictions',
                 ],
             ])
         );
@@ -280,7 +262,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         if (!($post = get_post())) {
             return $messages; // Not possible.
         }
-        $messages[$this->post_type] = [
+        $messages['restriction'] = [
             0 => '', // Not applicable.
             1 => __('Restriction updated.', 'woocommerce-s2member-x'),
             2 => __('Custom field updated.', 'woocommerce-s2member-x'),
@@ -312,7 +294,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     protected function currentUserCan(): bool
     {
-        return (bool) current_user_can('edit_'.$this->post_type.'s');
+        return (bool) current_user_can('edit_restrictions');
     }
 
     /**
@@ -322,7 +304,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function onCurrentScreen(\WP_Screen $screen)
     {
-        if (!s::isMenuPageForPostType($this->post_type)) {
+        if (!s::isMenuPageForPostType('restriction')) {
             return; // Not applicable.
         } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
@@ -344,7 +326,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         $woocommerce_item = 'woocommerce'; // Position after this.
         $woocommerce_key  = array_search($woocommerce_item, $menu_items, true);
 
-        $restriction_item = 'edit.php?post_type='.$this->post_type;
+        $restriction_item = 'edit.php?post_type=restriction';
         $restriction_key  = array_search($restriction_item, $menu_items, true);
 
         if ($woocommerce_key !== false && $restriction_key !== false) {
@@ -373,14 +355,14 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function onAddMetaBoxes(string $post_type)
     {
-        if (!s::isMenuPageForPostType($this->post_type)) {
+        if (!s::isMenuPageForPostType('restriction')) {
             return; // Not applicable.
         } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
-        } elseif ($post_type !== $this->post_type) {
+        } elseif ($post_type !== 'restriction') {
             return; // Not applicable.
         }
-        $meta_boxes = [
+        $meta_boxes = [ // @TODO Update these to WPSC meta boxes.
             $this->client_side_prefix.'-about'        => ['title' => __('About Restrictions', 'woocommerce-s2member-x'), 'callback' => 'aboutRestrictionsMetaBox'],
             $this->client_side_prefix.'-post-ids'     => ['title' => __('Protected Posts/Pages', 'woocommerce-s2member-x'), 'callback' => 'restrictsPostIdsMetaBox'],
             $this->client_side_prefix.'-post-types'   => ['title' => __('Protected Post Types', 'woocommerce-s2member-x'), 'callback' => 'restrictsPostTypesMetaBox'],
@@ -390,11 +372,11 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             $this->client_side_prefix.'-ccaps'        => ['title' => __('Protected Custom Capabilities', 'woocommerce-s2member-x'), 'callback' => 'restrictsCcapsMetaBox'],
             $this->client_side_prefix.'-uri-patterns' => ['title' => __('Protected URI Patterns', 'woocommerce-s2member-x'), 'callback' => 'restrictsUriPatternsMetaBox'],
         ];
-        $closed_meta_boxes = get_user_option('closedpostboxes_'.$this->post_type);
+        $closed_meta_boxes = get_user_option('closedpostboxes_restriction');
 
         foreach ($meta_boxes as $_id => $_data) {
             add_meta_box($_id, $_data['title'], [$this, $_data['callback']], null, 'normal', 'default', []);
-            add_filter('postbox_classes_'.$this->post_type.'_'.$_id, function (array $classes) use ($closed_meta_boxes, $_id) : array {
+            add_filter('postbox_classes_restriction_'.$_id, function (array $classes) use ($closed_meta_boxes, $_id) : array {
                 return !is_array($closed_meta_boxes) && (int) ($_GET['edit'] ?? '') !== $_id
                     && !in_array($_id, [$this->client_side_prefix.'-about'], true)
                     ? array_merge($classes, ['closed']) : $classes;
@@ -414,7 +396,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function onDefaultHiddenMetaBoxes(array $hidden, \WP_Screen $screen)
     {
-        if (!s::isMenuPageForPostType($this->post_type)) {
+        if (!s::isMenuPageForPostType('restriction')) {
             return $hidden; // Not applicable.
         } elseif (!$this->currentUserCan()) {
             return $hidden; // Not applicable.
@@ -431,7 +413,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function onAdminEnqueueScripts()
     {
-        if (!s::isMenuPageForPostType($this->post_type)) {
+        if (!s::isMenuPageForPostType('restriction')) {
             return; // Not applicable.
         } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
@@ -476,7 +458,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         echo    '<h4>'.__('Each \'Restriction\' Serves Two Purposes:', 'woocommerce-s2member-x').'</h4>';
         echo    '<ol>';
         echo        '<li>'.__('A Restriction allows you to protect content in WordPress. A single Restriction can protect multiple Posts, Pages, and more.', 'woocommerce-s2member-x').'</li>';
-        echo        '<li>'.__('It defines a set of permissions, because you can sell via WooCommerce Products, or otherwise allow, access to what a Restriction protects.', 'woocommerce-s2member-x').'</li>';
+        echo        '<li>'.__('It defines a set of permissions, because you can sell (via WooCommerce Products), or otherwise allow, access to what a Restriction protects.', 'woocommerce-s2member-x').'</li>';
         echo    '</ol>';
         echo    '<p style="font-style:italic;">'.__('So you can think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others.', 'woocommerce-s2member-x').'</p>';
         echo    '<p><span class="dashicons dashicons-book"></span> '.sprintf(__('If you\'d like to learn more about Restrictions, see: <a href="%1$s" target="_blank">%2$s Knowledge Base</a>', 'woocommerce-s2member-x'), esc_url(s::brandUrl('/kb')), esc_html($this->App->Config->©brand['©name'])).'</p>';
@@ -496,7 +478,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         $field_name       = $this->client_side_prefix.'_post_ids';
         $field_id         = 'f-'.$this->client_side_prefix.'-post-ids';
-        $current_post_ids = $this->getMeta($post->ID, 'post_ids');
+        $current_post_ids = s::collectPostMeta($post->ID, '_post_ids');
 
         $post_id_select_options = s::postSelectOptions(
             s::applyFilters('restriction_ui_post_id_select_option_args', [
@@ -538,12 +520,12 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         $field_name         = $this->client_side_prefix.'_post_types';
         $field_id           = 'f-'.$this->client_side_prefix.'-post-types';
-        $current_post_types = $this->getMeta($post->ID, 'post_types');
+        $current_post_types = s::collectPostMeta($post->ID, '_post_types');
 
         $post_type_select_options = s::postTypeSelectOptions(
             s::applyFilters('restriction_ui_post_type_select_option_args', [
                 'include' => get_post_types(['public' => true]),
-                'exclude' => array_merge(a::systematicPostTypes(), [a::productPostType()]),
+                'exclude' => array_merge(a::systematicPostTypes(), ['product']),
                 // Note that we exclude `product` here also, because protecting *all* product post types
                 // would make no sense; i.e., that would prevent anyone from buying access.
                 'allow_empty'        => false,
@@ -580,7 +562,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         $field_name         = $this->client_side_prefix.'_author_ids';
         $field_id           = 'f-'.$this->client_side_prefix.'-author-ids';
-        $current_author_ids = $this->getMeta($post->ID, 'author_ids');
+        $current_author_ids = s::collectPostMeta($post->ID, '_author_ids');
 
         $author_id_select_options = s::userSelectOptions(
             s::applyFilters('restriction_ui_author_id_select_option_args', [
@@ -622,14 +604,14 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         $field_name           = $this->client_side_prefix.'_tax_term_ids';
         $field_id             = 'f-'.$this->client_side_prefix.'-tax-term-ids';
-        $current_tax_term_ids = $this->getMeta($post->ID, 'tax_term_ids');
+        $current_tax_term_ids = s::collectPostMeta($post->ID, '_tax_term_ids');
 
         $tax_term_id_select_options = s::termSelectOptions(
             s::applyFilters('restriction_ui_tax_term_id_select_option_args', [
                 'allow_empty'              => false,
                 'option_child_indent_char' => '|',
                 'taxonomy_filters'         => ['public' => true],
-                'taxonomies_exclude'       => [$this->category_taxonomy, a::productTypeTaxonomy()],
+                'taxonomies_exclude'       => ['restriction_category', 'product_type'],
                 'current_tax_term_ids'     => $current_tax_term_ids,
             ])
         );
@@ -663,7 +645,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         $field_name    = $this->client_side_prefix.'_roles';
         $field_id      = 'f-'.$this->client_side_prefix.'-roles';
-        $current_roles = $this->getMeta($post->ID, 'roles');
+        $current_roles = s::collectPostMeta($post->ID, '_roles');
 
         $role_select_options = s::roleSelectOptions(
             s::applyFilters('restriction_ui_role_select_option_args', [
@@ -703,7 +685,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         $field_name    = $this->client_side_prefix.'_ccaps';
         $field_id      = 'f-'.$this->client_side_prefix.'-ccaps';
-        $current_ccaps = $this->getMeta($post->ID, 'ccaps');
+        $current_ccaps = s::collectPostMeta($post->ID, '_ccaps');
 
         echo '<div class="-ccaps -section">';
 
@@ -730,7 +712,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         $field_name           = $this->client_side_prefix.'_uri_patterns';
         $field_id             = 'f-'.$this->client_side_prefix.'-uri-patterns';
-        $current_uri_patterns = $this->getMeta($post->ID, 'uri_patterns');
+        $current_uri_patterns = s::collectPostMeta($post->ID, '_uri_patterns');
 
         echo '<div class="-uri-patterns -section">';
 
@@ -801,7 +783,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
     {
         if (!($post_id = (int) $post_id)) {
             return; // Not possible.
-        } elseif (get_post_type($post_id) !== $this->post_type) {
+        } elseif (get_post_type($post_id) !== 'restriction') {
             return; // Not applicable.
         } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
@@ -815,67 +797,10 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             $_meta_values = array_map($_array_map_callback, is_array($_meta_values) ? $_meta_values : []);
             $_meta_values = array_unique(c::removeEmptys($_meta_values));
 
-            $this->updateMeta($post_id, $_meta_key, $_meta_values);
+            s::setPostMeta($post_id, '_'.$_meta_key, $_meta_values);
         } // unset($_meta_key, $_split_regex, $_array_map_callback, $_meta_values); // Housekeeping.
 
         a::clearRestrictionsCache(); // Clear the cache now.
-    }
-
-    /**
-     * Get meta values.
-     *
-     * @since 160524 Restrictions.
-     *
-     * @param string|int $post_id Post ID.
-     * @param string     $key     Meta key.
-     *
-     * @return array Meta values.
-     */
-    public function getMeta($post_id, string $key): array
-    {
-        if (!($post_id = (int) $post_id)) {
-            return []; // Not possible.
-        }
-        $values = get_post_meta($post_id, $this->meta_prefix.$key);
-
-        return is_array($values) ? $values : [];
-    }
-
-    /**
-     * Update meta values.
-     *
-     * @since 160524 Restrictions.
-     *
-     * @param string|int $post_id Post ID.
-     * @param string     $key     Meta key.
-     * @param array      $values  Meta values.
-     */
-    public function updateMeta($post_id, string $key, array $values)
-    {
-        if (!($post_id = (int) $post_id)) {
-            return; // Not possible.
-        }
-        $this->deleteMeta($post_id, /* No prefix here.*/ $key);
-
-        foreach ($values as $_value) {
-            add_post_meta($post_id, $this->meta_prefix.$key, $_value);
-        } // unset($_value); // Housekeeping.
-    }
-
-    /**
-     * Delete meta values.
-     *
-     * @since 160524 Restrictions.
-     *
-     * @param string|int $post_id Post ID.
-     * @param string     $key     Meta key.
-     */
-    public function deleteMeta($post_id, string $key)
-    {
-        if (!($post_id = (int) $post_id)) {
-            return; // Not possible.
-        }
-        delete_post_meta($post_id, $this->meta_prefix.$key);
     }
 
     /**
@@ -887,6 +812,6 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      */
     public function createUrl(): string
     {
-        return admin_url('/post-new.php?post_type='.urlencode($this->post_type));
+        return admin_url('/post-new.php?post_type=restriction');
     }
 }

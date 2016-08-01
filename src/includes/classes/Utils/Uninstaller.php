@@ -63,10 +63,8 @@ class Uninstaller extends SCoreClasses\SCore\Base\Core
         $sql = /* Post IDs. */ '
             SELECT `ID`
                 FROM `'.esc_sql($WpDb->posts).'`
-            WHERE `post_type` = %s
+            WHERE `post_type` = \'restriction\'
         ';
-        $sql = $WpDb->prepare($sql, a::restrictionPostType());
-
         if (!($results = $WpDb->get_results($sql))) {
             return; // Nothing to delete.
         }
@@ -85,14 +83,14 @@ class Uninstaller extends SCoreClasses\SCore\Base\Core
     protected function deleteTaxonomies(int $site_counter)
     {
         $term_ids = get_terms([
-            'taxonomy'   => ($taxonomy = a::restrictionCategoryTaxonomy()),
+            'taxonomy'   => 'restriction_category',
             'hide_empty' => false,
             'fields'     => 'ids',
         ]);
         $term_ids = is_array($term_ids) ? $term_ids : [];
 
         foreach ($term_ids as $_term_id) {
-            wp_delete_term($_term_id, $taxonomy);
+            wp_delete_term($_term_id, 'restriction_category');
         } // unset($_term_id); // Houskeeping.
     }
 }

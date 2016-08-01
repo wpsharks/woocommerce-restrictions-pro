@@ -1,3 +1,9 @@
+## $v
+
+- Adding a configurable options page. See: **Dashboard → Restrictions → Options**
+- Refactored Product/Restriction methods related to meta keys. Now taking advantage of WP Sharks Core utilities.
+- Reduced complexity of codebase by removing several classes where the only reason for it existing was to reference a WooCommerce post type.
+
 ## v160731.38265
 
 - Tested for compatibility against WordPress v4.6.

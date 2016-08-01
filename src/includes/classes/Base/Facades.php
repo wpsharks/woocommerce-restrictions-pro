@@ -35,8 +35,6 @@ use function get_defined_vars as vars;
  */
 abstract class Facades
 {
-    use Traits\Facades\Coupon;
-    use Traits\Facades\Order;
     use Traits\Facades\OrderStatus;
     use Traits\Facades\Product;
     use Traits\Facades\ProductPermission;
@@ -45,9 +43,7 @@ abstract class Facades
     use Traits\Facades\Restrictions;
     use Traits\Facades\SecurityChecks;
     use Traits\Facades\SecurityGate;
-    use Traits\Facades\Subscription;
     use Traits\Facades\Systematics;
     use Traits\Facades\UserPermission;
     use Traits\Facades\UserPermissions;
-    use Traits\Facades\Webhook;
 }

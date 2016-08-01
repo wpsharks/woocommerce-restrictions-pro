@@ -36,33 +36,6 @@ use function get_defined_vars as vars;
 class Product extends SCoreClasses\SCore\Base\Core
 {
     /**
-     * Post type.
-     *
-     * @since 160524 Product utilities.
-     *
-     * @var string Post type.
-     */
-    public $post_type;
-
-    /**
-     * Type taxonomy.
-     *
-     * @since 160524 Product utilities.
-     *
-     * @var string Type taxonomy.
-     */
-    public $type_taxonomy;
-
-    /**
-     * Meta prefix.
-     *
-     * @since 160524 Product utilities.
-     *
-     * @var string Meta prefix.
-     */
-    public $meta_prefix;
-
-    /**
      * Visibility classes.
      *
      * @since 160524 Product utilities.
@@ -118,10 +91,6 @@ class Product extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->post_type     = 'product';
-        $this->type_taxonomy = 'product_type';
-        $this->meta_prefix   = '_'.$this->App->Config->©brand['©var'].'_';
-
         $this->visibility_classes = [
             'hide_if_external',
             'hide_if_grouped',
@@ -147,7 +116,7 @@ class Product extends SCoreClasses\SCore\Base\Core
      */
     protected function currentUserCan(): bool
     {
-        return (bool) current_user_can('edit_'.$this->post_type.'s');
+        return (bool) current_user_can('edit_products');
     }
 
     /**
@@ -157,7 +126,7 @@ class Product extends SCoreClasses\SCore\Base\Core
      */
     public function onCurrentScreen(\WP_Screen $screen)
     {
-        if (!s::isMenuPageForPostType($this->post_type)) {
+        if (!s::isMenuPageForPostType('product')) {
             return; // Not applicable.
         } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
@@ -173,7 +142,7 @@ class Product extends SCoreClasses\SCore\Base\Core
      */
     public function onAdminEnqueueScripts()
     {
-        if (!s::isMenuPageForPostType($this->post_type)) {
+        if (!s::isMenuPageForPostType('product')) {
             return; // Not applicable.
         } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
@@ -232,17 +201,17 @@ class Product extends SCoreClasses\SCore\Base\Core
     {
         global $post; // Needed below.
 
-        if (!s::isMenuPageForPostType($this->post_type)) {
+        if (!s::isMenuPageForPostType('product')) {
             return; // Not applicable.
         } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
         } elseif (!($post instanceof \WP_Post)) {
             return; // Not applicable.
-        } elseif (get_post_type($post) !== $this->post_type) {
+        } elseif (get_post_type($post) !== 'product') {
             return; // Not applicable.
         }
         $restriction_titles_by_id = a::restrictionTitlesById();
-        if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType().'s')) {
+        if (!$restriction_titles_by_id && !current_user_can('create_restrictions')) {
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
         echo '<div class="'.esc_attr($this->client_side_prefix.'-product-meta options_group '.implode(' ', $this->visibility_classes)).'">';
@@ -253,7 +222,7 @@ class Product extends SCoreClasses\SCore\Base\Core
             echo    '<p>'.sprintf(__('It\'s not possible to configure Permissions yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 'woocommerce-s2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
             echo '</div>';
         } else {
-            $current_permissions = $this->getMeta($post->ID, 'permissions');
+            $current_permissions = s::collectPostMeta($post->ID, '_permissions');
             echo '<input class="-product-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_permissions').'" value="'.esc_attr(json_encode($current_permissions)).'" />';
             echo '<div class="-permissions-grid" data-toggle="jquery-jsgrid"></div>';
         }
@@ -275,11 +244,11 @@ class Product extends SCoreClasses\SCore\Base\Core
             return; // Not applicable.
         } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
-        } elseif (get_post_type($post) !== $this->post_type.'_variation') {
+        } elseif (get_post_type($post) !== 'product_variation') {
             return; // Not applicable.
         }
         $restriction_titles_by_id = a::restrictionTitlesById();
-        if (!$restriction_titles_by_id && !current_user_can('create_'.a::restrictionPostType().'s')) {
+        if (!$restriction_titles_by_id && !current_user_can('create_restrictions')) {
             return; // Not possible to grant access yet, and they can't create restrictions.
         }
         echo '<div class="'.esc_attr($this->client_side_prefix.'-product-meta '.implode(' ', $this->variation_visibility_classes)).'" data-variation-key="'.esc_attr($key).'">';
@@ -290,7 +259,7 @@ class Product extends SCoreClasses\SCore\Base\Core
             echo    '<p>'.sprintf(__('It\'s not possible to configure Permissions yet, because no Restrictions have been configured. To create your first Restriction, <a href="%1$s">click here</a>.', 'woocommerce-s2member-x'), esc_url(a::createRestrictionUrl())).'</p>';
             echo '</div>';
         } else {
-            $current_permissions = $this->getMeta($post->ID, 'permissions');
+            $current_permissions = s::collectPostMeta($post->ID, '_permissions');
             echo '<input class="-product-permissions" type="hidden" name="'.esc_attr($this->client_side_prefix.'_variation_permissions['.$key.']').'" value="'.esc_attr(json_encode($current_permissions)).'" />';
             echo '<div class="-permissions-grid" data-toggle="jquery-jsgrid"></div>';
         }
@@ -310,7 +279,7 @@ class Product extends SCoreClasses\SCore\Base\Core
             return; // Not possible.
         } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
-        } elseif (get_post_type($post_id) !== $this->post_type) {
+        } elseif (get_post_type($post_id) !== 'product') {
             return; // Not applicable.
         } elseif (!isset($_REQUEST[$this->client_side_prefix.'_permissions'])) {
             return; // Not applicable.
@@ -336,7 +305,7 @@ class Product extends SCoreClasses\SCore\Base\Core
             return; // Not possible.
         } elseif (!$this->currentUserCan()) {
             return; // Not applicable.
-        } elseif (get_post_type($post_id) !== $this->post_type.'_variation') {
+        } elseif (get_post_type($post_id) !== 'product_variation') {
             return; // Not applicable.
         } elseif (!isset($_REQUEST[$this->client_side_prefix.'_variation_permissions'][$loop_index])) {
             return; // Not applicable.
@@ -371,64 +340,7 @@ class Product extends SCoreClasses\SCore\Base\Core
             $permissions[]             = (object) $_ProductPermission->overloadArray();
         } // unset($_key, $_r_permission, $_ProductPermission); // Houskeeping.
 
-        $this->updateMeta($post_id, 'permissions', $permissions);
-    }
-
-    /**
-     * Get meta values.
-     *
-     * @since 160524 Product utilities.
-     *
-     * @param string|int $post_id Post ID.
-     * @param string     $key     Meta key.
-     *
-     * @return array Meta values.
-     */
-    public function getMeta($post_id, string $key): array
-    {
-        if (!($post_id = (int) $post_id)) {
-            return []; // Not possible.
-        }
-        $values = get_post_meta($post_id, $this->meta_prefix.$key);
-
-        return is_array($values) ? $values : [];
-    }
-
-    /**
-     * Update meta values.
-     *
-     * @since 160524 Product utilities.
-     *
-     * @param string|int $post_id Post ID.
-     * @param string     $key     Meta key.
-     * @param array      $values  Meta values.
-     */
-    public function updateMeta($post_id, string $key, array $values)
-    {
-        if (!($post_id = (int) $post_id)) {
-            return; // Not possible.
-        }
-        $this->deleteMeta($post_id, /* No prefix here.*/ $key);
-
-        foreach ($values as $_value) {
-            add_post_meta($post_id, $this->meta_prefix.$key, $_value);
-        } // unset($_value); // Housekeeping.
-    }
-
-    /**
-     * Delete meta values.
-     *
-     * @since 160524 Product utilities.
-     *
-     * @param string|int $post_id Post ID.
-     * @param string     $key     Meta key.
-     */
-    public function deleteMeta($post_id, string $key)
-    {
-        if (!($post_id = (int) $post_id)) {
-            return; // Not possible.
-        }
-        delete_post_meta($post_id, $this->meta_prefix.$key);
+        s::setPostMeta($post_id, '_permissions', $permissions);
     }
 
     /**
@@ -440,6 +352,6 @@ class Product extends SCoreClasses\SCore\Base\Core
      */
     public function createUrl(): string
     {
-        return admin_url('/post-new.php?post_type='.urlencode($this->post_type));
+        return admin_url('/post-new.php?post_type=product');
     }
 }
