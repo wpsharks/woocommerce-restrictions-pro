@@ -1,4 +1,4 @@
-## $v
+## v160801.34929
 
 - Adding a configurable options page. See: **Dashboard → Restrictions → Options**
 - Refactored Product/Restriction methods related to meta keys. Now taking advantage of WP Sharks Core utilities.

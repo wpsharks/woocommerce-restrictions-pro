@@ -43,14 +43,14 @@ class MenuPage extends SCoreClasses\SCore\Base\Core
     public function onAdminMenu()
     {
         s::addMenuPageItem([
-            'menu_title'    => __('Options'),
+            'menu_title'    => __('Options', 'woocommerce-s2member-x'),
             'parent_page'   => 'edit.php?post_type=restriction',
             'template_file' => 'admin/menu-pages/options/default.php',
 
             'tabs' => [
-                'default' => sprintf(__('%1$s'), esc_html($this->App->Config->©brand['©name'])),
+                'default' => sprintf(__('%1$s', 'woocommerce-s2member-x'), esc_html($this->App->Config->©brand['©name'])),
                 'restore' => [
-                    'label' => __('Restore Default Options'),
+                    'label' => __('Restore Default Options', 'woocommerce-s2member-x'),
                     'url'   => s::restoreDefaultOptionsUrl(), 'onclick' => 'confirm',
                 ],
             ],
