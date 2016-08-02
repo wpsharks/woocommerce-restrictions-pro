@@ -93,6 +93,7 @@ class App extends SCoreClasses\App
             '§default_options' => [
                 'security_gate_redirects_to_post_id'    => 0,
                 'security_gate_redirect_to_args_enable' => true,
+                'security_gate_redirect_arg_name'       => 'requires',
                 'orders_always_grant_immediate_access'  => false,
             ],
 

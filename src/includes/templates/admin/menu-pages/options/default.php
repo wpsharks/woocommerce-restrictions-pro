@@ -52,18 +52,6 @@ $Form = $this->s::menuPageForm('§save-options');
             ]),
         ]); ?>
 
-        <?= $Form->selectRow([
-            'label' => __('Enable Redirection Args?', 'woocommerce-s2member-x'),
-            'tip'   => __('When a redirection occurs, arguments in the URL (i.e., query string variables added by this plugin) can be used by WordPress themes to present context-specific messages to a user. This must be enabled if you intend to use them.', 'woocommerce-s2member-x'),
-
-            'name'    => 'security_gate_redirect_to_args_enable',
-            'value'   => s::getOption('security_gate_redirect_to_args_enable'),
-            'options' => [
-                '1' => __('Yes', 'woocommerce-s2member-x'),
-                '0' => __('No', 'woocommerce-s2member-x'),
-            ],
-        ]); ?>
-
     <?= $Form->closeTable(); ?>
 
     <hr />

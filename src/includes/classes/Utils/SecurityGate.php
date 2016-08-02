@@ -36,6 +36,15 @@ use function get_defined_vars as vars;
 class SecurityGate extends SCoreClasses\SCore\Base\Core
 {
     /**
+     * Did security check?
+     *
+     * @since 160801 Security gate.
+     *
+     * @var bool Did check?
+     */
+    protected $did_check;
+
+    /**
      * Restriction-related data.
      *
      * @since 160524 Security gate.
@@ -55,11 +64,12 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     {
         parent::__construct($App);
 
-        $this->data = []; // Initialize.
+        $this->data      = [];
+        $this->did_check = false;
     }
 
     /**
-     * Guard restrictions.
+     * On `wp_loaded` hook.
      *
      * @since 160524 Security gate.
      */
@@ -69,25 +79,36 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
             return; // Not applicable.
         }
         if ($this->Wp->is_admin) {
-            if ($this->restrictionsApply()) {
-                $this->denyRedirect();
-            }
-        } else { // Wait until the main query is ready.
-            add_action('wp', [$this, 'onWpGuardRestrictions'], -(PHP_INT_MAX - 10));
+            $this->doCheck(); // Right now.
+            //
+        } else { // Wait until main query is ready.
+            add_action('wp', [$this, 'onWp'], -100000);
         }
+    }
+
+    /**
+     * On `wp` hook.
+     *
+     * @since 160524 Security gate.
+     *
+     * @param \WP $WP WordPress class.
+     */
+    public function onWp(\WP $WP)
+    {
+        $this->doCheck();
     }
 
     /**
      * Guard restrictions.
      *
-     * @since 160524 Security gate.
-     *
-     * @param \WP $WP WordPress base instance.
+     * @since 160801 Security gate.
      */
-    public function onWpGuardRestrictions(\WP $WP)
+    protected function doCheck()
     {
-        // This should fire once only, so let's remove it.
-        remove_action('wp', [$this, 'onWpGuardRestrictions'], -(PHP_INT_MAX - 10));
+        if ($this->did_check) {
+            return; // Done already.
+        }
+        $this->did_check = true; // Doing it now.
 
         if ($this->restrictionsApply()) {
             $this->denyRedirect();
@@ -103,23 +124,19 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      */
     protected function restrictionsApply(): array
     {
-        global $wp_the_query;
-
-        if ($this->Wp->is_admin) {
-            $post_id = 0;
-            $uri     = c::currentUri();
-        } else {
-            if (!$wp_the_query->is_singular) {
-                return []; // Not applicable.
-            }
-            if (!($post = $wp_the_query->get_queried_object())) {
-                return []; // Not possible.
-            }
-            $post_id = $post->ID;
-            $uri     = c::currentUri();
-        }
+        $post_id = 0; // Initialize.
+        $uri     = c::currentUri();
         $WP_User = wp_get_current_user();
 
+        if (!$this->Wp->is_admin) {
+            global $wp_the_query;
+            $WP_Query = $wp_the_query;
+
+            if ($WP_Query && $WP_Query->is_singular()) {
+                $WP_Post = $WP_Query->get_queried_object();
+                $post_id = $WP_Post instanceof \WP_Post ? (int) $WP_Post->ID : 0;
+            }
+        }
         return $this->data = a::restrictionsApply($post_id, $uri, $WP_User);
     }
 
@@ -135,7 +152,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         $redirect_to         = !$redirect_to ? wp_login_url() : $redirect_to;
 
         $redirect_to = $this->maybeAddRedirectArgs($redirect_to);
-        $redirect_to = s::applyFilters('security_gate_redirect_to', $redirect_to);
+        $redirect_to = s::applyFilters('security_gate_redirect_to', $redirect_to, $this->data);
 
         wp_redirect($redirect_to, 307).exit(); // Stop on redirection.
     }
@@ -153,37 +170,18 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     {
         if (!s::getOption('security_gate_redirect_to_args_enable')) {
             return $redirect_to; // Not applicable.
+        } elseif (!($arg_name = s::getOption('security_gate_redirect_arg_name'))) {
+            return $redirect_to; // Not possible.
         }
-        $args = $restriction_ids = []; // Initialize.
+        $restriction_ids = []; // Intialize array of required restriction IDs.
 
         foreach ($this->data['restricted_by'] as $_meta_key => $_restriction_ids) {
             $restriction_ids = array_merge($restriction_ids, $_restriction_ids);
         } // unset($_meta_key, $_restriction_ids); // Housekeeping.
 
-        if (($restriction_ids = array_unique($restriction_ids))) {
-            $args[$this->redirectArg('requires')] = implode('.', $restriction_ids);
+        if ($restriction_ids && ($restriction_ids = array_unique($restriction_ids))) {
+            $redirect_to = c::addUrlQueryArgs([$arg_name => implode('.', $restriction_ids)], $redirect_to);
         }
-        $redirect_to = c::addUrlQueryArgs($args, $redirect_to);
-
         return $redirect_to;
-    }
-
-    /**
-     * Redirect argument.
-     *
-     * @since 160524 Security gate.
-     *
-     * @param string $type Type of argument.
-     *
-     * @return string Query string argument name.
-     */
-    public function redirectArg(string $type): string
-    {
-        if ($type === 'requires') {
-            $default = 'requires';
-        } else {
-            $default = $type; // Future consideration.
-        }
-        return s::applyFilters('security_gate_redirect_arg_'.$type, $default);
     }
 }
