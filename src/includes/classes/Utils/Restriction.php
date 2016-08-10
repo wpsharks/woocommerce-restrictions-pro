@@ -524,6 +524,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         $post_type_select_options = s::postTypeSelectOptions(
             s::applyFilters('restriction_ui_post_type_select_option_args', [
+                'filters' => [], // No other filters.
                 'include' => get_post_types(['public' => true]),
                 'exclude' => array_merge(a::systematicPostTypes(), ['product']),
                 // Note that we exclude `product` here also, because protecting *all* product post types
