@@ -99,8 +99,10 @@ class App extends SCoreClasses\App
 
             '§conflicts' => [
                 '§plugins' => [
-                    's2member'               => 's2Member Framework (Old)',
-                    's2member-pro'           => 's2Member Pro Add-On (Old)',
+                    /*  Disable for now. Allow migrations.
+                        's2member'     => 's2Member Framework (Old)',
+                        's2member-pro' => 's2Member Pro Add-On (Old)',
+                     */
                     'woocommerce-membership' => 'WooCommerce Membership',
                 ], // <https://www.woothemes.com/products/woocommerce-memberships/>
             ],
