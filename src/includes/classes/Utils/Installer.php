@@ -39,8 +39,10 @@ class Installer extends SCoreClasses\SCore\Base\Core
      * Other install routines.
      *
      * @since 160524 Restrictions.
+     *
+     * @param array $history Install history.
      */
-    public function onOtherInstallRoutines()
+    public function onOtherInstallRoutines(array $history)
     {
         a::addDefaultRestrictionCaps();
 
