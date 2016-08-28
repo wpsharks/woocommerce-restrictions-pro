@@ -153,6 +153,7 @@ class App extends SCoreClasses\App
     {
         parent::onSetupEarlyHooks();
 
+        s::addAction('vs_upgrades', [$this->Utils->Installer, 'onVsUpgrades']);
         s::addAction('other_install_routines', [$this->Utils->Installer, 'onOtherInstallRoutines']);
         s::addAction('other_uninstall_routines', [$this->Utils->Uninstaller, 'onOtherUninstallRoutines']);
     }

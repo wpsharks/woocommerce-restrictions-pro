@@ -1,6 +1,6 @@
 <?php
 /**
- * Installer.
+ * VS upgrades.
  *
  * @author @jaswsinc
  * @copyright WebSharks™
@@ -29,39 +29,20 @@ use function assert as debug;
 use function get_defined_vars as vars;
 
 /**
- * Installer.
+ * VS upgrades.
  *
- * @since 160524 Installer.
+ * @since 160826
  */
-class Installer extends SCoreClasses\SCore\Base\Core
+class VsUpgrades extends SCoreClasses\SCore\Base\Core
 {
     /**
      * Version-specific upgrades.
      *
-     * @since 160826 Version-specific upgrade.
+     * @since 000000 Version-specific upgrade.
      *
      * @param array $history Install history.
      */
-    public function onVsUpgrades(array $history)
+    public function fromLtXXXXXX()
     {
-        // if (version_compare($history['last_version'], 'XXXXXX', '<')) {
-        //     $this->App->Utils->VsUpgrades->fromLtXXXXXX();
-        // }
-    }
-
-    /**
-     * Other install routines.
-     *
-     * @since 160524 Restrictions.
-     *
-     * @param array $history Install history.
-     */
-    public function onOtherInstallRoutines(array $history)
-    {
-        a::addDefaultRestrictionCaps();
-
-        a::clearSystematicCache();
-        a::clearRestrictionsCache();
-        a::clearUserPermissionsCache();
     }
 }
