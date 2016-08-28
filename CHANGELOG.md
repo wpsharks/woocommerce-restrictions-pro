@@ -1,4 +1,4 @@
-## [coming soon]
+## v160828.49771
 
 - Bug fix. Security gate expanded to now cover archive views and other non-singular queries.
 - Options UI. Removing configurable option `security_gate_redirect_to_args_enable` in favor of a filter.
