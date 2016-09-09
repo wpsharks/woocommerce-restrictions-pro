@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the WooCommerce Restrictions Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Restrictions Pro 160909.18102\n"
+"Project-Id-Version: WooCommerce Restrictions Pro 160909.19944\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/woocommerce-restrictions-pro\n"
-"POT-Creation-Date: 2016-09-09 05:01:46+00:00\n"
+"POT-Creation-Date: 2016-09-09 05:32:42+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
