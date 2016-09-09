@@ -6,15 +6,15 @@
  * @copyright WebSharks™
  */
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
+namespace WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes;
 
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Interfaces;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Interfaces;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Traits;
 #
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\AppFacades as a;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\SCoreFacades as s;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\CoreFacades as c;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\AppFacades as a;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\SCoreFacades as s;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\CoreFacades as c;
 #
 use WebSharks\WpSharks\Core\Classes as SCoreClasses;
 use WebSharks\WpSharks\Core\Interfaces as SCoreInterfaces;
@@ -42,7 +42,7 @@ class App extends SCoreClasses\App
      *
      * @var string Version.
      */
-    const VERSION = '160828.49771'; //v//
+    const VERSION = '160909.18102'; //v//
 
     /**
      * Constructor.
@@ -74,16 +74,16 @@ class App extends SCoreClasses\App
                 '§file' => dirname(__FILE__, 4).'/plugin.php',
             ],
             '©brand' => [
-                '©acronym' => 'WC S2X',
-                '©name'    => 'WooCommerce Restrictions — s2Member X',
+                '©acronym' => 'WC RES',
+                '©name'    => 'WooCommerce Restrictions',
 
-                '©slug' => 'woocommerce-s2member-x',
-                '©var'  => 'woocommerce_s2member_x',
+                '©slug' => 'woocommerce-restrictions',
+                '©var'  => 'woocommerce_restrictions',
 
-                '©short_slug' => 'wc-s2x',
-                '©short_var'  => 'wc_s2x',
+                '©short_slug' => 'wc-res',
+                '©short_var'  => 'wc_res',
 
-                '©text_domain' => 'woocommerce-s2member-x',
+                '©text_domain' => 'woocommerce-restrictions',
             ],
 
             '§pro_option_keys' => [
@@ -99,10 +99,8 @@ class App extends SCoreClasses\App
 
             '§conflicts' => [
                 '§plugins' => [
-                    /*  Disable for now. Allow migrations.
-                        's2member'     => 's2Member Framework (Old)',
-                        's2member-pro' => 's2Member Pro Add-On (Old)',
-                     */
+                    's2member'               => 's2Member Framework (Old)',
+                    's2member-pro'           => 's2Member Pro Add-On (Old)',
                     'woocommerce-membership' => 'WooCommerce Membership',
                 ], // <https://www.woothemes.com/products/woocommerce-memberships/>
             ],
@@ -126,13 +124,13 @@ class App extends SCoreClasses\App
                 ],
                 '§others' => [
                     'fancy_permalinks' => [
-                        'name'        => __('Fancy Permalinks', 'woocommerce-s2member-x'),
-                        'description' => __('a Permalink Structure other than <em>plain</em>', 'woocommerce-s2member-x'),
+                        'name'        => __('Fancy Permalinks', 'woocommerce-restrictions'),
+                        'description' => __('a Permalink Structure other than <em>plain</em>', 'woocommerce-restrictions'),
 
                         'test' => function (string $key) {
                             if (!get_option('permalink_structure')) {
                                 return [
-                                    'how_to_resolve' => sprintf(__('<a href="%1$s">change your Permalink settings</a> to anything but <em>plain</em>', 'woocommerce-s2member-x'), esc_url(admin_url('/options-permalink.php'))),
+                                    'how_to_resolve' => sprintf(__('<a href="%1$s">change your Permalink settings</a> to anything but <em>plain</em>', 'woocommerce-restrictions'), esc_url(admin_url('/options-permalink.php'))),
                                     'cap_to_resolve' => 'manage_options',
                                 ];
                             }

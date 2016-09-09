@@ -6,7 +6,7 @@
  * @copyright WebSharks™
  */
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro;
+namespace WebSharks\WpSharks\WooCommerce\Restrictions\Pro;
 
 if (!defined('WPINC')) {
     exit('Do NOT access this file directly: '.basename(__FILE__));

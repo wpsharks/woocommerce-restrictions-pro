@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fd0d0e40f0c565b4fe1afedab6ab1856",
-    "content-hash": "acab0c553ee09effd4b3163cc9a4d02a",
+    "hash": "55c1571f68466976eeac9d3ff7901c48",
+    "content-hash": "be9f3be86163d59e74660d273f35553e",
     "packages": [
         {
             "name": "websharks/wp-php-rv",

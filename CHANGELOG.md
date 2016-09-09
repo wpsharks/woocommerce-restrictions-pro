@@ -1,3 +1,7 @@
+## [coming soon]
+
+- Removing references to s2Member in favor of just 'WooCommerce Restrictions'.
+
 ## v160828.49771
 
 - Bug fix. Security gate expanded to now cover archive views and other non-singular queries.
@@ -92,7 +96,7 @@
 - Updating to latest WP Sharks core.
 - Adding support for WC logging and WC log files.
 - Enhance debugging utilities and log file generation.
-- Enhancing Restriction UI. See: https://github.com/websharks/s2member-x/issues/3
+- Enhancing Restriction UI. See: https://github.com/websharks/woocommerce-restrictions/issues/3
 - Bug fix. `E_NOTICE` level error whenever WC Subscriptions was missing and Order was saved.
 
 ## v160524

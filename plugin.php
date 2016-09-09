@@ -4,9 +4,9 @@
  *
  * @wp-plugin
  *
- * Version: 160828.49771
- * Text Domain: woocommerce-s2member-x
- * Plugin Name: WooCommerce Restrictions — s2Member X Pro
+ * Version: 160909.18102
+ * Text Domain: woocommerce-restrictions
+ * Plugin Name: WooCommerce Restrictions Pro
  *
  * Author: WP Sharks™
  * Author URI: https://wpsharks.com
@@ -14,7 +14,7 @@
  * License: GPL-3.0+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  *
- * Plugin URI: https://wpsharks.com/product/woocommerce-s2member-x-pro
+ * Plugin URI: https://wpsharks.com/product/woocommerce-restrictions-pro
  * Description: Membership functionality for WooCommerce.
  */
 // PHP v5.2 compatible.
@@ -27,5 +27,5 @@ require dirname(__FILE__).'/src/includes/wp-php-rv.php';
 if (require(dirname(__FILE__).'/src/vendor/websharks/wp-php-rv/src/includes/check.php')) {
     require_once dirname(__FILE__).'/src/includes/plugin.php';
 } else {
-    wp_php_rv_notice('WooCommerce Restrictions — s2Member X');
+    wp_php_rv_notice('WooCommerce Restrictions Pro');
 }

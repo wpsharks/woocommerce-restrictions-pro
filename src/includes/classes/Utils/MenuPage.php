@@ -6,15 +6,15 @@
  * @copyright WP Sharks™
  */
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
+namespace WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\Utils;
 
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Interfaces;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Interfaces;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Traits;
 #
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\AppFacades as a;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\SCoreFacades as s;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\CoreFacades as c;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\AppFacades as a;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\SCoreFacades as s;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\CoreFacades as c;
 #
 use WebSharks\WpSharks\Core\Classes as SCoreClasses;
 use WebSharks\WpSharks\Core\Interfaces as SCoreInterfaces;
@@ -43,14 +43,14 @@ class MenuPage extends SCoreClasses\SCore\Base\Core
     public function onAdminMenu()
     {
         s::addMenuPageItem([
-            'menu_title'    => __('Options', 'woocommerce-s2member-x'),
+            'menu_title'    => __('Options', 'woocommerce-restrictions'),
             'parent_page'   => 'edit.php?post_type=restriction',
             'template_file' => 'admin/menu-pages/options/default.php',
 
             'tabs' => [
-                'default' => sprintf(__('%1$s', 'woocommerce-s2member-x'), esc_html($this->App->Config->©brand['©name'])),
+                'default' => sprintf(__('%1$s', 'woocommerce-restrictions'), esc_html($this->App->Config->©brand['©name'])),
                 'restore' => [
-                    'label' => __('Restore Default Options', 'woocommerce-s2member-x'),
+                    'label' => __('Restore Default Options', 'woocommerce-restrictions'),
                     'url'   => s::restoreDefaultOptionsUrl(), 'onclick' => 'confirm',
                 ],
             ],

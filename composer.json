@@ -1,8 +1,8 @@
 {
-  "name": "websharks/woocommerce-s2member-x-pro",
-  "homepage": "https://github.com/websharks/woocommerce-s2member-x-pro",
+  "name": "websharks/woocommerce-restrictions-pro",
+  "homepage": "https://github.com/websharks/woocommerce-restrictions-pro",
   "description": "Membership management for WordPress.",
-  "keywords": ["websharks", "wpsharks", "woocommerce", "s2member x", "s2member"],
+  "keywords": ["websharks", "wpsharks", "woocommerce", "restrictions"],
 
   "type": "project",
   "license": "GPL-3.0+",
@@ -22,8 +22,8 @@
   }],
 
   "support": {
-    "source": "https://github.com/websharks/woocommerce-s2member-x-pro",
-    "issues": "https://github.com/websharks/woocommerce-s2member-x-pro/issues"
+    "source": "https://github.com/websharks/woocommerce-restrictions-pro",
+    "issues": "https://github.com/websharks/woocommerce-restrictions-pro/issues"
   },
 
   "require": {
@@ -38,10 +38,10 @@
 
   "autoload": {
     "psr-4": {
-      "WebSharks\\WpSharks\\WooCommerce\\s2MemberX\\Pro\\Classes\\": "src/includes/classes",
-      "WebSharks\\WpSharks\\WooCommerce\\s2MemberX\\Pro\\Functions\\": "src/includes/functions",
-      "WebSharks\\WpSharks\\WooCommerce\\s2MemberX\\Pro\\Interfaces\\": "src/includes/interfaces",
-      "WebSharks\\WpSharks\\WooCommerce\\s2MemberX\\Pro\\Traits\\": "src/includes/traits"
+      "WebSharks\\WpSharks\\WooCommerce\\Restrictions\\Pro\\Classes\\": "src/includes/classes",
+      "WebSharks\\WpSharks\\WooCommerce\\Restrictions\\Pro\\Functions\\": "src/includes/functions",
+      "WebSharks\\WpSharks\\WooCommerce\\Restrictions\\Pro\\Interfaces\\": "src/includes/interfaces",
+      "WebSharks\\WpSharks\\WooCommerce\\Restrictions\\Pro\\Traits\\": "src/includes/traits"
     }
   },
 

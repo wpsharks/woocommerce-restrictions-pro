@@ -6,15 +6,15 @@
  * @copyright WebSharks™
  */
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\Utils;
+namespace WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\Utils;
 
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Interfaces;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Traits;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Interfaces;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Traits;
 #
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\AppFacades as a;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\SCoreFacades as s;
-use WebSharks\WpSharks\WooCommerce\s2MemberX\Pro\Classes\CoreFacades as c;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\AppFacades as a;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\SCoreFacades as s;
+use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\CoreFacades as c;
 #
 use WebSharks\WpSharks\Core\Classes as SCoreClasses;
 use WebSharks\WpSharks\Core\Interfaces as SCoreInterfaces;
@@ -102,7 +102,7 @@ class UserPermissions extends SCoreClasses\SCore\Base\Core
         $this->access_pkg_prefix_regex  = '/^'.preg_replace('/(?:_|\\\\-)/u', '[_\\-]', c::escRegex($this->access_pkg_prefix)).'/u';
         $this->access_ccap_prefix_regex = '/^'.preg_replace('/(?:_|\\\\-)/u', '[_\\-]', c::escRegex($this->access_ccap_prefix)).'/u';
 
-        // Note: For performance, slug comparisons are caSe-sensitive throughout s2Member X.
+        // Note: For performance, slug comparisons are caSe-sensitive throughout WC RES.
         // In short, we make no assumption about caSe and therefore it is always caSe-sensitive.
         // This allows for `in_array()` and `isset()` without needing caSe-comparison when testing permissions.
 
