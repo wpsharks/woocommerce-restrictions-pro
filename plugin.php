@@ -4,7 +4,7 @@
  *
  * @wp-plugin
  *
- * Version: 160909.20188
+ * Version: 160909.20528
  * Text Domain: woocommerce-restrictions
  * Plugin Name: WooCommerce Restrictions Pro
  *
