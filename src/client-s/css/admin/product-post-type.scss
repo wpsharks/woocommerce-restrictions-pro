@@ -127,8 +127,12 @@ $tiptip-hr-gradient-color-2: rgba(255, 255, 255, 0.5);
  * Tooltip styles.
  */
 .rsxqjzypgdqmrnnkkkrmgshvnnnkzzvu-product-meta {
-  .woocommerce-help-tip + .woocommerce-help-tip {
-    margin-left:              1px;
+  .woocommerce-help-tip {
+    font-size:                1.4em;
+
+    + .woocommerce-help-tip {
+      margin-left:            1px;
+    }
   }
 }
 
