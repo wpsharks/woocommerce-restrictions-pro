@@ -1,4 +1,4 @@
-## v160909.19944
+## $v
 
 - Enhancing Dashboard styles and help icons.
 - Removing references to s2Member in favor of just 'WooCommerce Restrictions'.
