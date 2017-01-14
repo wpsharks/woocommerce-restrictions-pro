@@ -28,6 +28,9 @@ use WebSharks\Core\WpSharksCore\Traits as CoreTraits;
 use function assert as debug;
 use function get_defined_vars as vars;
 
+if (!defined('WPINC')) {
+    exit('Do NOT access this file directly.');
+}
 $Form = $this->s::menuPageForm('§save-options');
 ?>
 <?= $Form->openTag(); ?>

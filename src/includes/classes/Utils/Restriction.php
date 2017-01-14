@@ -5,7 +5,7 @@
  * @author @jaswsinc
  * @copyright WebSharks™
  */
-declare (strict_types = 1);
+declare(strict_types=1);
 namespace WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\Utils;
 
 use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes;
@@ -40,7 +40,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @var string Access PKG prefix.
+     * @type string Access PKG prefix.
      */
     public $access_pkg_prefix;
 
@@ -49,7 +49,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @var string Access CCAP prefix.
+     * @type string Access CCAP prefix.
      */
     public $access_ccap_prefix;
 
@@ -58,7 +58,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @var string Client-side prefix.
+     * @type string Client-side prefix.
      */
     public $client_side_prefix;
 
@@ -67,7 +67,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @var array Meta keys.
+     * @type array Meta keys.
      */
     public $meta_keys;
 
@@ -76,7 +76,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @var array Meta keys.
+     * @type array Meta keys.
      */
     public $int_meta_keys;
 
@@ -85,7 +85,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @var \WP_Screen|null Screen.
+     * @type \WP_Screen|null Screen.
      */
     protected $screen;
 
@@ -94,7 +94,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Restriction.
      *
-     * @var bool Is screen mobile?
+     * @type bool Is screen mobile?
      */
     protected $screen_is_mobile;
 
@@ -376,7 +376,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         foreach ($meta_boxes as $_id => $_data) {
             add_meta_box($_id, $_data['title'], [$this, $_data['callback']], null, 'normal', 'default', []);
-            add_filter('postbox_classes_restriction_'.$_id, function (array $classes) use ($closed_meta_boxes, $_id) : array {
+            add_filter('postbox_classes_restriction_'.$_id, function (array $classes) use ($closed_meta_boxes, $_id): array {
                 return !is_array($closed_meta_boxes) && (int) ($_GET['edit'] ?? '') !== $_id
                     && !in_array($_id, [$this->client_side_prefix.'-about'], true)
                     ? array_merge($classes, ['closed']) : $classes;
@@ -754,7 +754,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
             echo            '<li>'.__('Your current Permalink Settings in WordPress indicate that URIs on this site will not end with a trailing slash. Your patterns should not depend on there always being a trailing slash.', 'woocommerce-restrictions').'</li>';
         }
         echo                '<li>'.sprintf(__('In WordPress it is common for any given URI to accept additional endpoint directives. For instance, paginated locations: <em>/example-post/page/2%1$s</em>, <em>/example-post/comments-page/2%1$s</em>. Therefore, we suggest a pattern that covers all possible endpoint variations. For instance: <em>/example-post{/**,}</em> will match the base URI by itself, and also match a possible trailing slash with any endpoint directives it may accept.', 'woocommerce-restrictions'), $wp_rewrite->use_trailing_slashes ? '/' : '').'</li>';
-        echo                '<li>'.__('Any query string variables on the end of a URI (example: <em>?p=123&amp;key=value</em>) are stripped before comparison so you don\'t need to worry about them. However, if your pattern contains: <em>[?]</em> (literally, a <em>?</em> question mark in square brackets) it indicates that you DO want to check the query string, and they are NOT stripped away in that case; so your pattern will be capable of matching. Just remember that query string variables can appear in any order, as entered by a user. If you check for query strings, use <em>{**&,}</em> and <em>{&**,}</em> around the key=value pair you\'re looking for. For instance: <em>/example-post{/**,}[?]{**&,}key=value{&**,}</em>. If you\'re forced to look for multiple variables, the best you can do is: <em>{**&,}key=value{&**&,&,}another=value{&**,}</em>. This still expects <em>key=value</em> to be first, but <em>{&**&,&,}</em> helps some.', 'woocommerce-restrictions').'</li>';
+        echo                '<li>'.__('Any query string variables on the end of a URI (example: <em>?p=123&amp;key=value</em>) are stripped before comparison so you don\'t need to worry about them. However, if your pattern contains: <em>[?]</em> (literally, a <em>?</em> question mark in square brackets) it indicates that you DO want to check the query string, and they are NOT stripped away in that case; so your pattern will be capable of matching. Just remember that query string variables can appear in any order, as entered by a user. If you check for query strings, use <em>{**&,}</em> and <em>{&**,}</em> around the key=value pair you\'re looking for. For instance: <em>/example-post{/**,}[?]{**&,}key=value{&**,}</em>. If you\'re forced to look for multiple variables, the best you can do is: <em>{**&,}key=value{&**&,&}another=value{&**,}</em>. This still expects <em>key=value</em> to be first, but <em>{&**&,&}</em> helps find the second one amidst others.', 'woocommerce-restrictions').'</li>';
         echo                '<li>'.__('It is possible to protect (and grant) access to portions of <em>/wp-admin/</em> with URI Patterns too. However, please remember that in order for a user to actually do anything inside the admin panel they will also need to have Capabilities which grant them additional permissions; such as the ability to <em>edit_posts</em>. See: <strong>Role Capabilities</strong> as a form of protection if you\'d like more information.', 'woocommerce-restrictions').'</li>';
         echo                '<li>'.__('It is possible to restrict access to every page on the entire site using the pattern <em>/**</em> as a catch-all. In this scenario, everything is off-limits, except for the Systematic URIs listed below. Having said that, please be careful when using a catch-all pattern. Everything (yes, everything) will be off-limits, including your home page! We suggest this as a last resort only. Instead, restrict Posts, Pages, Categories, Tags and/or other specific URIs; i.e., it is best to restrict only portions of a site from public access.', 'woocommerce-restrictions').'</li>';
         echo                '<li>'.__('Restrictions rely upon PHP as a server-side scripting language. Therefore, you can protect any location (page) served by WordPress via PHP, but you can\'t protect static files. For instance: <em>.jpg</em>, <em>.pdf</em>, and <em>.zip</em> are static. Generally speaking, if you upload something to the Media Library, it\'s a static asset. It cannot be protected here. Instead, configure a "Downloadable Product" with WooCommerce.', 'woocommerce-restrictions').'</li>';

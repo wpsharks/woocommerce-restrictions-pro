@@ -1,3 +1,7 @@
+## $v
+
+- Enhancing security by removing `basename(__FILE__)` from direct access notices.
+
 ## v160909.58455
 
 - Enhancing Dashboard styles and help icons.
