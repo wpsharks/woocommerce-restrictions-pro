@@ -376,7 +376,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         foreach ($meta_boxes as $_id => $_data) {
             add_meta_box($_id, $_data['title'], [$this, $_data['callback']], null, 'normal', 'default', []);
-            add_filter('postbox_classes_restriction_'.$_id, function (array $classes) use ($closed_meta_boxes, $_id): array {
+            add_filter('postbox_classes_restriction_'.$_id, function (array $classes) use ($closed_meta_boxes, $_id) : array {
                 return !is_array($closed_meta_boxes) && (int) ($_GET['edit'] ?? '') !== $_id
                     && !in_array($_id, [$this->client_side_prefix.'-about'], true)
                     ? array_merge($classes, ['closed']) : $classes;
