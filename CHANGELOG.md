@@ -1,4 +1,4 @@
-## $v
+## v170120.55403
 
 - Bug fix. Illegal offset set when protecting by URI Pattern.
 - Enhancing security by removing `basename(__FILE__)` from direct access notices.
