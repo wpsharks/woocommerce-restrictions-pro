@@ -5,7 +5,7 @@
  * @author @jaswsinc
  * @copyright WebSharks™
  */
-declare (strict_types = 1);
+declare(strict_types=1);
 namespace WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\Utils;
 
 use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes;
@@ -40,7 +40,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Security gate.
      *
-     * @var array Meta keys.
+     * @type array Meta keys.
      */
     protected $restriction_meta_keys;
 
@@ -49,7 +49,7 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Security gate.
      *
-     * @var array Integer meta keys.
+     * @type array Integer meta keys.
      */
     protected $restriction_int_meta_keys;
 
@@ -295,9 +295,9 @@ class SecurityCheck extends SCoreClasses\SCore\Base\Core
                         if (!preg_grep($_restriction['regex'], $accessing['uri_paths'])) {
                             continue; // Not accessing.
                         }
-                    } else { // `wregx` key (original).
-                        $_restriction = $_restriction['wregx'];
-                    } // ↓ Everything else is a simple `in_array()` scan.
+                    } // `wregx` key (original).
+                    $_restriction = $_restriction['wregx'];
+                    // ↓ Everything else is a simple `in_array()` scan.
                 } elseif (!in_array($_restriction, $accessing[$_meta_key], true)) {
                     continue; // Not accessing.
                 }
