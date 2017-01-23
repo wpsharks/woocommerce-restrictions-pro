@@ -1,6 +1,7 @@
 ## v170120.55403
 
 - Bug fix. Illegal offset set when protecting by URI Pattern.
+- Bug fix. Call to undefined method `a::collectPostMeta()`. Should be `s::`.
 - Enhancing security by removing `basename(__FILE__)` from direct access notices.
 
 ## v160909.58455

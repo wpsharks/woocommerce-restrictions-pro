@@ -5,7 +5,7 @@
  * @author @jaswsinc
  * @copyright WebSharks™
  */
-declare (strict_types = 1);
+declare(strict_types=1);
 namespace WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\Utils;
 
 use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes;
@@ -86,7 +86,7 @@ class Checkout extends SCoreClasses\SCore\Base\Core
                 debug(0, c::issue(vars(), 'Missing product ID.'));
                 continue; // Not possible.
             }
-            if (a::collectPostMeta($_product_id, '_permissions')) {
+            if (s::collectPostMeta($_product_id, '_permissions')) {
                 return $contains = true;
             }
         } // unset($_cart_item, $_WC_Product, $_product_id);
