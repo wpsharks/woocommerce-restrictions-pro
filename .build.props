@@ -2,6 +2,7 @@ project_title                               = WooCommerce Restrictions
 
 project_owner                               = websharks
 project_slug                                = woocommerce-restrictions-pro
+
 project_text_domain                         = woocommerce-restrictions
 project_slack_channel                       = wc-restrictions
 
@@ -10,6 +11,7 @@ project_sub_namespace                       = WpSharksWooCommerceRestrictionsPro
 
 project_lite_title                          = WooCommerce Restrictions
 project_lite_slug                           = woocommerce-restrictions
+
 project_lite_text_domain                    = woocommerce-restrictions
 
 project_lite_namespace                      = WebSharks\\WpSharks\\WooCommerce\\Restrictions
@@ -23,7 +25,7 @@ project_php_required_bits                   = 64
 project_php_required_extensions             =
 
 project_wp_required_version                 = 4.5.3
-project_wp_tested_up_to_version             = 4.6
+project_wp_tested_up_to_version             = 4.8-beta
 
-project_wp_sharks_core_required_version     = 160828.35574
-project_wp_sharks_core_tested_up_to_version = 160828.35574
+project_wp_sharks_core_required_version     = 170127
+project_wp_sharks_core_tested_up_to_version = 170127

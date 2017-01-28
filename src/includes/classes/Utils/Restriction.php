@@ -180,7 +180,6 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                     'filter_items_list' => __('Filter Restrictions List', 'woocommerce-restrictions'),
                     'parent_item_colon' => __('Parent Restriction:', 'woocommerce-restrictions'),
                 ],
-
                 'map_meta_cap'    => true,
                 'capability_type' => [
                     'restriction',
@@ -237,7 +236,6 @@ class Restriction extends SCoreClasses\SCore\Base\Core
                     'parent_item'       => __('Parent Category', 'woocommerce-restrictions'),
                     'parent_item_colon' => __('Parent Category:', 'woocommerce-restrictions'),
                 ],
-
                 'capabilities' => [
                     'assign_terms' => 'edit_restrictions',
                     'edit_terms'   => 'edit_restrictions',
@@ -376,7 +374,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
 
         foreach ($meta_boxes as $_id => $_data) {
             add_meta_box($_id, $_data['title'], [$this, $_data['callback']], null, 'normal', 'default', []);
-            add_filter('postbox_classes_restriction_'.$_id, function (array $classes) use ($closed_meta_boxes, $_id) : array {
+            add_filter('postbox_classes_restriction_'.$_id, function (array $classes) use ($closed_meta_boxes, $_id): array {
                 return !is_array($closed_meta_boxes) && (int) ($_GET['edit'] ?? '') !== $_id
                     && !in_array($_id, [$this->client_side_prefix.'-about'], true)
                     ? array_merge($classes, ['closed']) : $classes;
@@ -421,7 +419,7 @@ class Restriction extends SCoreClasses\SCore\Base\Core
         s::enqueueJQueryChosenLibs(); // Enqueue jQuery Chosen plugin.
 
         wp_enqueue_style($this->client_side_prefix.'-restriction-post-type', c::appUrl('/client-s/css/admin/restriction-post-type.min.css'), [], $this->App::VERSION, 'all');
-        wp_enqueue_script($this->client_side_prefix.'-restriction-post-type', c::appUrl('/client-s/js/admin/restriction-post-type.min.js'), ['jquery', 'underscore', 'jquery-chosen'], $this->App::VERSION, true);
+        wp_enqueue_script($this->client_side_prefix.'-restriction-post-type', c::appUrl('/client-s/js/admin/restriction-post-type.min.js'), ['jquery', 'jquery-chosen', 'underscore'], $this->App::VERSION, true);
 
         wp_localize_script(
             $this->client_side_prefix.'-restriction-post-type',

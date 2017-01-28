@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the WooCommerce Restrictions Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Restrictions Pro 170123.79361\n"
+"Project-Id-Version: WooCommerce Restrictions Pro 170128.1471\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/woocommerce-restrictions-pro\n"
-"POT-Creation-Date: 2017-01-23 22:02:46+00:00\n"
+"POT-Creation-Date: 2017-01-28 00:24:35+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -459,406 +459,406 @@ msgstr ""
 msgid "Parent Restriction:"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:208
+#: src/includes/classes/Utils/Restriction.php:207
 msgid "Content restriction categories."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:211
+#: src/includes/classes/Utils/Restriction.php:210
 msgid "Restriction Categories"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:212
-#: src/includes/classes/Utils/Restriction.php:214
+#: src/includes/classes/Utils/Restriction.php:211
+#: src/includes/classes/Utils/Restriction.php:213
 msgid "Restriction Category"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:215
+#: src/includes/classes/Utils/Restriction.php:214
 msgid "Categories"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:217
-#: src/includes/classes/Utils/Restriction.php:235
+#: src/includes/classes/Utils/Restriction.php:216
+#: src/includes/classes/Utils/Restriction.php:234
 msgid "All Categories"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:218
+#: src/includes/classes/Utils/Restriction.php:217
 msgid "Add New Category"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:219
+#: src/includes/classes/Utils/Restriction.php:218
 msgid "New Category Name"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:220
+#: src/includes/classes/Utils/Restriction.php:219
 msgid "Add or Remove Categories"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:221
+#: src/includes/classes/Utils/Restriction.php:220
 msgid "View Category"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:222
+#: src/includes/classes/Utils/Restriction.php:221
 msgid "Edit Category"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:223
+#: src/includes/classes/Utils/Restriction.php:222
 msgid "Update Category"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:225
+#: src/includes/classes/Utils/Restriction.php:224
 msgid "Search Categories"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:226
+#: src/includes/classes/Utils/Restriction.php:225
 msgid "No Categories Found"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:227
+#: src/includes/classes/Utils/Restriction.php:226
 msgid "No Categories"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:229
+#: src/includes/classes/Utils/Restriction.php:228
 msgid "Choose From the Most Used Categories"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:230
+#: src/includes/classes/Utils/Restriction.php:229
 msgid "Separate Categories w/ Commas"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:232
+#: src/includes/classes/Utils/Restriction.php:231
 msgid "Categories List"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:233
+#: src/includes/classes/Utils/Restriction.php:232
 msgid "Categories List Navigation"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:236
+#: src/includes/classes/Utils/Restriction.php:235
 msgid "Popular Categories"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:237
+#: src/includes/classes/Utils/Restriction.php:236
 msgid "Parent Category"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:238
+#: src/includes/classes/Utils/Restriction.php:237
 msgid "Parent Category:"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:267
-#: src/includes/classes/Utils/Restriction.php:270
+#: src/includes/classes/Utils/Restriction.php:265
+#: src/includes/classes/Utils/Restriction.php:268
 msgid "Restriction updated."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:268
+#: src/includes/classes/Utils/Restriction.php:266
 msgid "Custom field updated."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:269
+#: src/includes/classes/Utils/Restriction.php:267
 msgid "Custom field deleted."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:273
+#: src/includes/classes/Utils/Restriction.php:271
 msgid "Restriction restored to revision from %s."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:276
+#: src/includes/classes/Utils/Restriction.php:274
 msgid "Restriction published."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:277
+#: src/includes/classes/Utils/Restriction.php:275
 msgid "Restriction saved."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:278
+#: src/includes/classes/Utils/Restriction.php:276
 msgid "Restriction submitted."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:280
+#: src/includes/classes/Utils/Restriction.php:278
 msgid "Restriction scheduled for: <strong>%1$s</strong>."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:281
+#: src/includes/classes/Utils/Restriction.php:279
 msgid "M j, Y @ G:i"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:283
+#: src/includes/classes/Utils/Restriction.php:281
 msgid "Restriction draft updated."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:366
+#: src/includes/classes/Utils/Restriction.php:364
 msgid "About Restrictions"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:367
+#: src/includes/classes/Utils/Restriction.php:365
 msgid "Protected Posts/Pages"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:368
+#: src/includes/classes/Utils/Restriction.php:366
 msgid "Protected Post Types"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:369
+#: src/includes/classes/Utils/Restriction.php:367
 msgid "Protected Authors"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:370
+#: src/includes/classes/Utils/Restriction.php:368
 msgid "Protected Categories/Tags"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:371
+#: src/includes/classes/Utils/Restriction.php:369
 msgid "Protected Role Capabilities"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:372
+#: src/includes/classes/Utils/Restriction.php:370
 msgid "Protected Custom Capabilities"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:373
+#: src/includes/classes/Utils/Restriction.php:371
 msgid "Protected URI Patterns"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:435
+#: src/includes/classes/Utils/Restriction.php:433
 msgid "Descriptive summary here..."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:436
+#: src/includes/classes/Utils/Restriction.php:434
 msgid "Enter a descriptive summary here..."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:437
+#: src/includes/classes/Utils/Restriction.php:435
 msgid "Enter a unique identifier..."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:438
+#: src/includes/classes/Utils/Restriction.php:436
 msgid "Create Restriction"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:439
+#: src/includes/classes/Utils/Restriction.php:437
 msgid "Suggested"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:440
+#: src/includes/classes/Utils/Restriction.php:438
 msgid "Optional"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:458
+#: src/includes/classes/Utils/Restriction.php:456
 msgid "Each 'Restriction' Serves Two Purposes:"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:460
+#: src/includes/classes/Utils/Restriction.php:458
 msgid "A Restriction allows you to protect content in WordPress. A single Restriction can protect multiple Posts, Pages, and more."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:461
+#: src/includes/classes/Utils/Restriction.php:459
 msgid "It defines a set of permissions, because you can sell (via WooCommerce Products), or otherwise allow, access to what a Restriction protects."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:463
+#: src/includes/classes/Utils/Restriction.php:461
 msgid "So you can think of <strong>Restrictions</strong> as both a form of <strong>protection</strong> and also as a way to prepare <strong>packages</strong> that can be accessed by others."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:464
+#: src/includes/classes/Utils/Restriction.php:462
 msgid "If you'd like to learn more about Restrictions, see: <a href=\"%1$s\" target=\"_blank\">%2$s Knowledge Base</a>"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:499
-#: src/includes/classes/Utils/Restriction.php:542
-#: src/includes/classes/Utils/Restriction.php:584
-#: src/includes/classes/Utils/Restriction.php:625
-#: src/includes/classes/Utils/Restriction.php:665
+#: src/includes/classes/Utils/Restriction.php:497
+#: src/includes/classes/Utils/Restriction.php:540
+#: src/includes/classes/Utils/Restriction.php:582
+#: src/includes/classes/Utils/Restriction.php:623
+#: src/includes/classes/Utils/Restriction.php:663
 msgid "<strong>Tip:</strong> Use <kbd>Ctrl</kbd> or <kbd>⌘</kbd> to select multiple options."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:502
+#: src/includes/classes/Utils/Restriction.php:500
 msgid "Post IDs to Restrict (WordPress Post IDs, comma-delimited):"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:503
+#: src/includes/classes/Utils/Restriction.php:501
 msgid "e.g., 123, 345, 789, 3492"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:506
+#: src/includes/classes/Utils/Restriction.php:504
 msgid "<strong>Note:</strong> Protecting a Post of any type (e.g., Post, Page, Product) will protect the permalink leading to that Post. It will also protect any other child Posts in a hierarchy. For instance, protecting a parent Page also protects any child Pages, and protecting a bbPress Forum also protects all Topics/Replies in that Forum. This works for any type of Post in WordPress, including <a href=\"https://developer.wordpress.org/plugins/post-types/\" target=\"_blank\">Custom Post Types</a>."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:545
+#: src/includes/classes/Utils/Restriction.php:543
 msgid "Post Types to Restrict (WordPress Post Types, comma-delimited):"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:546
+#: src/includes/classes/Utils/Restriction.php:544
 msgid "e.g., post, article, movie, book"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:549
+#: src/includes/classes/Utils/Restriction.php:547
 msgid "<strong>Note:</strong> Protecting a Post Type will automatically protect <em>all</em> Post permalinks associated with that Type."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:587
+#: src/includes/classes/Utils/Restriction.php:585
 msgid "Author IDs to Restrict (WordPress User IDs, comma-delimited):"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:588
+#: src/includes/classes/Utils/Restriction.php:586
 msgid "e.g., 5, 239, 42"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:591
+#: src/includes/classes/Utils/Restriction.php:589
 msgid "<strong>Note:</strong> Protecting an Author will protect all permalinks leading to Posts (of any type) that were written by that Author."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:628
+#: src/includes/classes/Utils/Restriction.php:626
 msgid "Taxonomy Terms to Restrict (<em style=\"font-style:normal; font-family:monospace;\">[taxonomy]:[term ID]</em>s, comma-delimited):"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:629
+#: src/includes/classes/Utils/Restriction.php:627
 msgid "e.g., category:123, post_tag:456, product_cat:678, product_tag:789"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:632
+#: src/includes/classes/Utils/Restriction.php:630
 msgid "<strong>Note:</strong> Protecting a Taxonomy Term of any type (e.g., Category, Tag) protects permalinks leading to Posts that are associated with that Term. For instance, a Post will be restricted automatically (now or in the future) if it's given a Tag that you've protected. Or, if it's put into a Category that you've protected (or into a child Category of a parent Category you've protected)."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:662
+#: src/includes/classes/Utils/Restriction.php:660
 msgid "A <a href=\"https://developer.wordpress.org/plugins/users/roles-and-capabilities/\" target=\"_blank\">WordPress Role</a> is a predefined list of Capabilities. See also: <a href=\"https://wordpress.org/plugins/user-role-editor/\" target=\"_blank\">Role Editor</a>"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:668
+#: src/includes/classes/Utils/Restriction.php:666
 msgid "<a href=\"https://developer.wordpress.org/plugins/users/roles-and-capabilities/\" target=\"_blank\">WordPress Roles</a> in comma-delimited format. See also: <a href=\"https://wordpress.org/plugins/user-role-editor/\" target=\"_blank\">Role Editor</a>"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:669
+#: src/includes/classes/Utils/Restriction.php:667
 msgid "e.g., contributor, pro_member, participant"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:672
+#: src/includes/classes/Utils/Restriction.php:670
 msgid "<strong>Note:</strong> Protecting a Role is to package the Capabilities associated with that Role. If a customer purchases access to a Restriction that protects a Role, they don't actually acquire the Role itself, but they do acquire the Capabilities provided by that Role; i.e., any Capabilities in the Role that a user doesn't already have, they acquire. Note also: There are a few Systematic Roles with special internal permissions and they cannot be associated with a Restriction. These include: <em>%1$s</em>."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:694
+#: src/includes/classes/Utils/Restriction.php:692
 msgid "CCAPs (<a href=\"https://developer.wordpress.org/reference/functions/current_user_can/\" target=\"_blank\">Custom Capabilities</a>) in comma-delimited format:"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:695
+#: src/includes/classes/Utils/Restriction.php:693
 msgid "e.g., members_area, pro_membership, premium_content"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:697
+#: src/includes/classes/Utils/Restriction.php:695
 msgid "<strong>Note:</strong> Custom Capabilities are automatically prefixed with <code>%1$s</code> internally. You can test for them using: <a href=\"https://developer.wordpress.org/reference/functions/current_user_can/\" target=\"_blank\" style=\"text-decoration:none;\">current_user_can('%1$s<code style=\"padding:0;\">something</code>')</a>, where <code>something</code> is one of the CCAPs you entered here. You can also test for access to an entire Restriction package (a more common use case) via <a href=\"https://developer.wordpress.org/reference/functions/current_user_can/\" target=\"_blank\" style=\"text-decoration:none;\">current_user_can('%2$s<code style=\"padding:0;\">slug</code>')</a>, where <code>slug</code> is the unique identifier you assigned to a Restriction—and that works with or without CCAPs."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:721
+#: src/includes/classes/Utils/Restriction.php:719
 msgid "URI Patterns (line-delmited; i.e., one on each line):"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:722
+#: src/includes/classes/Utils/Restriction.php:720
 msgid "e.g., /path/to/members-only/**"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:724
+#: src/includes/classes/Utils/Restriction.php:722
 msgid "<strong>Tip:</strong> This allows you to protect almost <em>any</em> other location that is served by WordPress. &nbsp; <a href=\"#\" data-toggle=\".-uri-patterns.-section .-hidden.-instructions.-section\"><span class=\"dashicons dashicons-visibility\"></span> toggle instructions</a>"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:727
+#: src/includes/classes/Utils/Restriction.php:725
 msgid "A 'URI' is everything after the domain name in a URL:"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:728
+#: src/includes/classes/Utils/Restriction.php:726
 msgid "http://example.com<code>/this/is/the/URI/part/in/a/location%1$s</code>"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:730
+#: src/includes/classes/Utils/Restriction.php:728
 msgid "WRegx™ (Watered-Down Regex) can be used in your patterns:"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:732
+#: src/includes/classes/Utils/Restriction.php:730
 msgid "<code>*</code> Matches zero or more characters that are not a <em><strong>/</strong></em>"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:733
+#: src/includes/classes/Utils/Restriction.php:731
 msgid "<code>**</code> Matches zero or more characters of any kind."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:734
+#: src/includes/classes/Utils/Restriction.php:732
 msgid "<code>?</code> Matches exactly one character that is not a <em><strong>/</strong></em>"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:735
+#: src/includes/classes/Utils/Restriction.php:733
 msgid "<code>??</code> Matches exactly one character of any kind."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:736
+#: src/includes/classes/Utils/Restriction.php:734
 msgid "<code>[abc]</code> Matches exactly one character: <em>a</em>, <em>b</em>, or <em>c</em>."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:737
+#: src/includes/classes/Utils/Restriction.php:735
 msgid "<code>[a-z0-9]</code> Matches exactly one character: <em>a</em> thru <em>z</em> or <em>0</em> thru <em>9</em>."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:738
+#: src/includes/classes/Utils/Restriction.php:736
 msgid "<code>[!abc]</code> A leading <em>!</em> inside <em>[]</em> negates; i.e., anything that is not: <em>a</em>, <em>b</em>, or <em>c</em>."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:739
+#: src/includes/classes/Utils/Restriction.php:737
 msgid "<code>{abc,def}</code> Matches the fragment <em>abc</em> or <em>def</em> (one or the other)."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:740
+#: src/includes/classes/Utils/Restriction.php:738
 msgid "<code>{abc,def,}</code> Matches <em>abc</em>, <em>def</em> or nothing; i.e., an optional match."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:741
+#: src/includes/classes/Utils/Restriction.php:739
 msgid "<code>{/**,}</code> Matches a <em>/</em> followed by zero or more characters. Or nothing."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:742
+#: src/includes/classes/Utils/Restriction.php:740
 msgid "<code>[*?[]!{},]</code> Matches a literal special character. One of: <em>*?[]!{},</em> explicitly."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:745
+#: src/includes/classes/Utils/Restriction.php:743
 msgid "Other details worth mentioning... <a href=\"#\" data-toggle=\".-uri-patterns.-section .-hidden.-details.-section\" style=\"font-weight:normal;\">toggle more info</a>"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:748
+#: src/includes/classes/Utils/Restriction.php:746
 msgid "Comparison is always caSe-insensitive (i.e., case does not matter)."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:749
+#: src/includes/classes/Utils/Restriction.php:747
 msgid "Your pattern must match an entire URI (beginning to end). Not just a small portion."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:750
+#: src/includes/classes/Utils/Restriction.php:748
 msgid "A URI always starts with a slash (e.g., <em>/example-post%1$s</em>). The smallest possible URI (the home page) is: <em><strong>/</strong></em>"
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:752
+#: src/includes/classes/Utils/Restriction.php:750
 msgid "Your current Permalink Settings in WordPress indicate that all URIs on this site will have a trailing slash on the end. You must match that trailing slash in your patterns."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:754
+#: src/includes/classes/Utils/Restriction.php:752
 msgid "Your current Permalink Settings in WordPress indicate that URIs on this site will not end with a trailing slash. Your patterns should not depend on there always being a trailing slash."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:756
+#: src/includes/classes/Utils/Restriction.php:754
 msgid "In WordPress it is common for any given URI to accept additional endpoint directives. For instance, paginated locations: <em>/example-post/page/2%1$s</em>, <em>/example-post/comments-page/2%1$s</em>. Therefore, we suggest a pattern that covers all possible endpoint variations. For instance: <em>/example-post{/**,}</em> will match the base URI by itself, and also match a possible trailing slash with any endpoint directives it may accept."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:757
+#: src/includes/classes/Utils/Restriction.php:755
 msgid "Any query string variables on the end of a URI (example: <em>?p=123&amp;key=value</em>) are stripped before comparison so you don't need to worry about them. However, if your pattern contains: <em>[?]</em> (literally, a <em>?</em> question mark in square brackets) it indicates that you DO want to check the query string, and they are NOT stripped away in that case; so your pattern will be capable of matching. Just remember that query string variables can appear in any order, as entered by a user. If you check for query strings, use <em>{**&,}</em> and <em>{&**,}</em> around the key=value pair you're looking for. For instance: <em>/example-post{/**,}[?]{**&,}key=value{&**,}</em>. If you're forced to look for multiple variables, the best you can do is: <em>{**&,}key=value{&**&,&}another=value{&**,}</em>. This still expects <em>key=value</em> to be first, but <em>{&**&,&}</em> helps find the second one amidst others."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:758
+#: src/includes/classes/Utils/Restriction.php:756
 msgid "It is possible to protect (and grant) access to portions of <em>/wp-admin/</em> with URI Patterns too. However, please remember that in order for a user to actually do anything inside the admin panel they will also need to have Capabilities which grant them additional permissions; such as the ability to <em>edit_posts</em>. See: <strong>Role Capabilities</strong> as a form of protection if you'd like more information."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:759
+#: src/includes/classes/Utils/Restriction.php:757
 msgid "It is possible to restrict access to every page on the entire site using the pattern <em>/**</em> as a catch-all. In this scenario, everything is off-limits, except for the Systematic URIs listed below. Having said that, please be careful when using a catch-all pattern. Everything (yes, everything) will be off-limits, including your home page! We suggest this as a last resort only. Instead, restrict Posts, Pages, Categories, Tags and/or other specific URIs; i.e., it is best to restrict only portions of a site from public access."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:760
+#: src/includes/classes/Utils/Restriction.php:758
 msgid "Restrictions rely upon PHP as a server-side scripting language. Therefore, you can protect any location (page) served by WordPress via PHP, but you can't protect static files. For instance: <em>.jpg</em>, <em>.pdf</em>, and <em>.zip</em> are static. Generally speaking, if you upload something to the Media Library, it's a static asset. It cannot be protected here. Instead, configure a \"Downloadable Product\" with WooCommerce."
 msgstr ""
 
-#: src/includes/classes/Utils/Restriction.php:761
+#: src/includes/classes/Utils/Restriction.php:759
 msgid "There are a few Systematic URIs on your site that cannot be associated with a Restriction. It's OK if one of your patterns overlaps with these, but any URI matching one of these will simply not be allowed to have any additional Restrictions applied to it whatsoever. In other words, these are automatically excluded (internally), because they are associated with special functionality."
 msgstr ""
 
