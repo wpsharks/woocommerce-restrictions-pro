@@ -1,4 +1,4 @@
-## $v
+## v170316.637
 
 - Updating minimum required version of the WP Sharks Core.
 - Minor tweaks in styles/scripts to enhance dependency order.
