@@ -5,7 +5,7 @@
  * @author @jaswsinc
  * @copyright WebSharks™
  */
-declare (strict_types = 1);
+declare(strict_types=1);
 namespace WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes\Utils;
 
 use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes;
@@ -40,7 +40,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      *
      * @since 160801 Security gate.
      *
-     * @var bool Did check?
+     * @type bool Did check?
      */
     protected $did_check;
 
@@ -49,7 +49,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      *
      * @since 160524 Security gate.
      *
-     * @var array See {@link SecurityCheck{}).
+     * @type array See {@link SecurityCheck{}).
      */
     protected $data; // See {@link SecurityCheck{}).
 
@@ -80,7 +80,6 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         }
         if ($this->Wp->is_admin) {
             $this->doCheck(); // Right now.
-            //
         } else { // Wait until main query is ready.
             add_action('wp', [$this, 'onWp'], -100000);
         }
@@ -95,7 +94,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
      */
     public function onWp(\WP $WP)
     {
-        $this->doCheck();
+        $this->doCheck(); // Proteted; needs public hook.
     }
 
     /**
@@ -141,7 +140,7 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
     }
 
     /**
-     * Deny and redirect.
+     * Deny and/or redirect.
      *
      * @since 160524 Security gate.
      */
@@ -154,7 +153,10 @@ class SecurityGate extends SCoreClasses\SCore\Base\Core
         $redirect_to = $this->maybeAddRedirectArgs($redirect_to);
         $redirect_to = s::applyFilters('security_gate_redirect_to', $redirect_to, $this->data);
 
-        wp_redirect($redirect_to, 307).exit(); // Stop on redirection.
+        c::noCacheFlags();
+        c::noCacheHeaders();
+        wp_redirect($redirect_to);
+        exit(); // Stop on redirection.
     }
 
     /**

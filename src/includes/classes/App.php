@@ -5,7 +5,7 @@
  * @author @jaswsinc
  * @copyright WebSharks™
  */
-declare (strict_types = 1);
+declare(strict_types=1);
 namespace WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes;
 
 use WebSharks\WpSharks\WooCommerce\Restrictions\Pro\Classes;
@@ -40,7 +40,7 @@ class App extends SCoreClasses\App
      *
      * @since 160524
      *
-     * @var string Version.
+     * @type string Version.
      */
     const VERSION = '170128.1471'; //v//
 
@@ -268,16 +268,29 @@ class App extends SCoreClasses\App
             }
         }, 10); // After hook priority `9`; i.e., after post types/statues have been registered by WooCommerce & WC extensions.
 
-        add_action('wp_loaded', function () {
-            $this->Utils->SecurityGate->onWpLoaded(); // Security gate.
+        // This integrates the security gate.
+        // IMPORTANT: This fires after our own ReST actions.
+        // Our own ReST actions MUST do their own security checks.
 
-            // See also: <http://jas.xyz/1WlT51u> to review the BuddyPress loading order.
-            // BuddyPress runs its setup on `plugins_loaded` at the latest, so this comes after BP.
+        // However, if one of our own ReST actions doesn't redirect, and it allows processing
+        // to continue, access to the content itself may still be denied by the security gate.
 
-            // See also: <https://github.com/wp-plugins/bbpress/blob/master/bbpress.php#L969>
-            // bbPress runs its setup on `plugins_loaded` at the latest, so this comes after BBP.
-            //
-        }, 10); // Default hook priority is OK here. On the front-end, this reattaches to the `wp` hook anyway.
-        // On the admin side, this will run immediately (i.e., on `wp_loaded`); but again, default priority is fine.
+        // e.g., If a form is being processed on a Post that requires access.
+        // If the Post has been protected and the ReST action allows processing to continue,
+        // the security gate may end up redirecting the user. That's as it should be.
+
+        // So ReST actions do their own checks, period. No exceptions.
+        // However, if they don't `exit()`, they allow the security gate to run,
+        // which can result in the security gate redirecting a user away from content they are
+        // not allowed to see. Such as a protected Post where any given ReST action was handled.
+        // The best example of this would be a shortcode form processing handler; e.g., a contact form.
+
+        // See also: <http://jas.xyz/1WlT51u> to review the BuddyPress loading order.
+        // BuddyPress runs its setup on `plugins_loaded` at the latest, so this comes after BP.
+
+        // See also: <https://github.com/wp-plugins/bbpress/blob/master/bbpress.php#L969>
+        // bbPress runs its setup on `plugins_loaded` at the latest, so this comes after BBP.
+
+        add_action('wp_loaded', [$this->Utils->SecurityGate, 'onWpLoaded'], 100000);
     }
 }
