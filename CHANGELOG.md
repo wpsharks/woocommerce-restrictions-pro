@@ -1,4 +1,4 @@
-## $v
+## v170316.637
 
 - Enhancing security gate hook priorities.
 - Updating minimum required version of the WP Sharks Core.
