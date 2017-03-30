@@ -1,6 +1,6 @@
 === WooCommerce Restrictions Pro ===
 
-Stable tag: 170316.637
+Stable tag: 170330.42129
 
 Tested up to: 4.8-beta
 Requires at least: 4.5.3

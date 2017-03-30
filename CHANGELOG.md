@@ -1,6 +1,9 @@
-## v170316.637
+## $v
 
 - Enhancing security gate hook priorities.
+
+## v170316.637
+
 - Updating minimum required version of the WP Sharks Core.
 - Minor tweaks in styles/scripts to enhance dependency order.
 - Bug fix. Illegal offset set when protecting by URI Pattern.
